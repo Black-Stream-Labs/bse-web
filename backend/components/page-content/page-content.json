@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_page_content_page_contents",
+  "info": {
+    "name": "PageContent",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string"
+    },
+    "header_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

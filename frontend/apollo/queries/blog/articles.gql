@@ -1,0 +1,17 @@
+query Articles {
+  articles {
+    id
+    title
+
+    slug
+    headerImage {
+      url
+      formats
+    }
+    blogcategories {
+      id
+      name
+      slug
+    }
+  }
+}

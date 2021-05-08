@@ -1,0 +1,35 @@
+# query Pages($slug: String!) {
+#   pages(where: { slug: $slug }) {
+#     id
+#     title
+#     slug
+#     pageZone {
+#       ... on ComponentPagesImage {
+#         caption
+#         image {
+#           url
+#         }
+#       }
+#       ... on ComponentPagesQuote {
+#         quote
+#         quoter
+#       }
+#       ... on ComponentPagesRichText {
+#         richText
+#       }
+#     }
+#   }
+# }
+
+query Pages($slug: String!) {
+  pages(where: { slug: $slug }) {
+    id
+    title
+    subtitle
+    slug
+    content
+    headerimage {
+      url
+    }
+  }
+}

@@ -1,0 +1,8 @@
+schema: https://prime-barnacle-15.hasura.app/v1/graphql
+documents: ./apollo/**/*.gql
+generates:
+  types/graphql.d.ts:
+    - typescript-graphql-files-modules
+  types/types.ts:
+    - typescript
+    - typescript-operations

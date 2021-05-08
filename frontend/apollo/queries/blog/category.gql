@@ -1,0 +1,17 @@
+query BlogCategory($slug: String!) {
+  blogCategories(where: { slug: $slug }) {
+    articles {
+      id
+      title
+      slug
+      content
+      blogcategories {
+        name
+        slug
+      }
+      headerImage {
+        url
+      }
+    }
+  }
+}

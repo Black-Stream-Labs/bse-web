@@ -1,0 +1,18 @@
+query {
+  products {
+    id
+    title
+    description
+    price
+    image {
+      url
+      formats
+    }
+    slug
+    productcategories {
+      name
+      slug
+      id
+    }
+  }
+}

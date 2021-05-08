@@ -1,0 +1,13 @@
+query {
+  homePage {
+    slug
+    title
+    content {
+      content
+      subtitle
+      header_image {
+        url
+      }
+    }
+  }
+}
