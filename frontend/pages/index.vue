@@ -11,6 +11,38 @@
         <!--  eslint-disable-next-line vue/no-v-html -->
         <div class="content" v-html="$md.render(updatedContent)" />
       </div>
+      <div class="container">
+        <div class="columns is-multiline is-centered">
+          <div
+            v-for="(section, ind) in sectionUpdated"
+            :key="ind"
+            class="column is-12 is-12-tablet is-12-desktop is-12-fullhd is-12-widescreen"
+          >
+            <div class="columns is-multiline is-centered">
+              <div
+                class="column is-6"
+                :class="ind % 2 == 0 ? 'is-reversed' : ''"
+              >
+                <img
+                  :src="section.section_image.url"
+                  alt=""
+                  width="300"
+                  class="image"
+                />
+              </div>
+              <div
+                class="column is-6"
+                :class="ind % 2 == 0 ? 'is-reversed' : ''"
+              >
+                <div
+                  class="content"
+                  v-html="$md.render(section.section_content)"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -29,6 +61,8 @@ export default Vue.extend({
   async asyncData({ $strapi, route }) {
     const routeName = route.name === 'index' ? 'home-page' : route.params.slug
     const data = await $strapi.$http.$get(routeName)
+    console.log(data.HomepageSections)
+
     return {
       page: data,
     }
@@ -37,6 +71,27 @@ export default Vue.extend({
     updatedContent() {
       return formatContentImageUrl(this.page.content.content)
     },
+    sectionUpdated() {
+      if (!this.page.HomepageSections) return
+      const x = []
+      this.page.HomepageSections.forEach((el) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
+    },
   },
 })
 </script>
+<style lang="scss" scoped>
+.column {
+  &.is-reversed {
+    &:nth-child(odd) {
+      order: 2;
+    }
+    &:nth-child(even) {
+      order: 1;
+    }
+  }
+}
+</style>

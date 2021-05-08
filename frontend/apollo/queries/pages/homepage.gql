@@ -9,5 +9,12 @@ query {
         url
       }
     }
+    HomepageSections {
+      section_title
+      section_image {
+        url
+      }
+      section_content
+    }
   }
 }
