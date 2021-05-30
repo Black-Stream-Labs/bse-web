@@ -6,9 +6,9 @@
       class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-align-self-stretch"
     >
       <div class="card bm--card-equal-height">
-        <header v-if="article.headerImage" class="card-image pl-4 pt-4">
+        <header v-if="article.header_image" class="card-image pl-4 pt-4">
           <figure class="image is-64x64">
-            <img class="" :src="`/api/${article.headerImage.url}`" />
+            <img class="" :src="`/api/${article.header_image.url}`" />
           </figure>
         </header>
         <main class="card-content py-3">
@@ -17,12 +17,12 @@
             <br />
             {{ article.description }}
             <p
-              v-if="article.blogcategories.length"
+              v-if="article.article_categories.length"
               id="category"
               class="uk-text-uppercase"
             >
-              <span v-for="cat in article.blogcategories" :key="cat.id">
-                {{ cat.name }}
+              <span v-for="cat in article.article_categories" :key="cat.id">
+                {{ cat.category }}
               </span>
             </p>
           </div>

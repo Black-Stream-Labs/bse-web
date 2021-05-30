@@ -17,7 +17,13 @@
 // @ts-nocheck
 import { mapGetters } from 'vuex'
 import Vue from 'vue'
+import Hero from '@/components/Hero'
+import UserContent from '@/components/UserContent'
 export default Vue.extend({
+  components: {
+    Hero,
+    UserContent,
+  },
   layout: 'DefaultLayout',
   middleware: 'auth',
   computed: {

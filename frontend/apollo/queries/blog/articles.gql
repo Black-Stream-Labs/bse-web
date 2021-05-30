@@ -1,16 +1,24 @@
 query Articles {
   articles {
-    id
-    title
-
     slug
-    headerImage {
-      url
-      formats
+    title
+    article_content {
+      content
+      subtitle
+      header_image {
+        previewUrl
+        url
+        formats
+      }
     }
-    blogcategories {
+    article_tags {
       id
-      name
+      tag_name
+      slug
+    }
+    article_categories {
+      id
+      category
       slug
     }
   }

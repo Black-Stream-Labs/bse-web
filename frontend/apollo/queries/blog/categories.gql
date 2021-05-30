@@ -1,7 +1,11 @@
-query BlogCategories {
-  blogCategories {
-    name
+query ArticleCategories {
+  articleCategories {
     slug
+    category
     id
+    articles {
+      slug
+      title
+    }
   }
 }

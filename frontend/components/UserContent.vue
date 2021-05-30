@@ -22,8 +22,8 @@
 <script>
 export default {
   name: 'UserContent',
-  middleware: 'auth',
   layout: 'DefaultLayout',
+  middleware: 'auth',
   props: {
     user: {
       type: Object,
@@ -41,4 +41,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style></style>

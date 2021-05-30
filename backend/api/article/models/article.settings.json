@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "name": "Article"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "article_content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-content.page-content"
+    },
+    "published": {
+      "type": "boolean"
+    },
+    "unpublish_date": {
+      "type": "datetime"
+    },
+    "article_tags": {
+      "via": "articles",
+      "collection": "article-tag"
+    },
+    "article_categories": {
+      "via": "articles",
+      "collection": "article-categories"
+    }
+  }
+}

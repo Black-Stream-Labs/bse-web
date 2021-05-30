@@ -1,10 +1,5 @@
 <template>
-  <section class="hero" :class="[randomClass, size]">
-    <div class="hero-head">
-      <div class="container">
-        <AppNavbar></AppNavbar>
-      </div>
-    </div>
+  <section class="hero is-dark is-fullheight-with-navbar">
     <div class="hero-body py-12">
       <div class="container">
         <div
@@ -23,13 +18,7 @@
             <div v-if="subtitle" class="subtitle">{{ subtitle }}</div>
           </div>
           <div class="column is-8-mobile">
-            <b-image
-              v-if="headerimage"
-              :src="`/api/v1${headerimage}`"
-              :responsive="true"
-              ratio="1by1"
-            >
-            </b-image>
+            <img v-if="headerimage" :src="`/api/v1${headerimage}`" />
           </div>
         </div>
       </div>
@@ -40,11 +29,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue, { PropOptions } from 'vue'
-import AppNavbar from '@/components/AppNavbar'
 export default Vue.extend({
-  components: {
-    AppNavbar,
-  },
   props: {
     title: {
       type: String,
@@ -64,19 +49,14 @@ export default Vue.extend({
     } as PropOptions,
   },
 
-  computed: {
-    randomClass() {
-      const classes = ['is-light', 'is-info', 'is-success', 'is-light']
-      return classes[Math.floor(Math.random() * classes.length)]
-    },
-  },
+  computed: {},
 })
 </script>
 
-<style scoped>
-/deep/ .b-skeleton {
+<style>
+/* /deep/ .b-skeleton {
   height: 100%;
   position: absolute;
   top: 0;
-}
+} */
 </style>

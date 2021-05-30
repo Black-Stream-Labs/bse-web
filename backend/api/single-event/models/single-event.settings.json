@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "single_events",
+  "info": {
+    "name": "SingleEvent"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "richtext"
+    },
+    "header_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "end_date": {
+      "type": "datetime"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

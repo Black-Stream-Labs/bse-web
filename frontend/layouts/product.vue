@@ -16,11 +16,11 @@
       </div>
     </main>
     <AppFooter />
-    <!-- <div
+    <div
       id="snipcart"
       hidden
       data-api-key="ZTc4ZDcwYzktMjNlYy00NjAxLTllMzgtOTk4ZWM1NTlhYjI3NjM1OTIxNTA0MDk0ODc5MDQ4"
-    ></div> -->
+    ></div>
   </div>
 </template>
 

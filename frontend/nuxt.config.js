@@ -1,10 +1,5 @@
 require('dotenv').config()
 export default {
-  /*
-   ** Nuxt target
-   ** See https://nuxtjs.org/api/configuration-target
-   */
-  target: 'static',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'mostre',
@@ -14,46 +9,52 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      // {
-      //   rel: 'preconnect',
-      //   href: 'https://app.snipcart.com',
-      // },
-      // {
-      //   rel: 'preconnect',
-      //   href: 'https://cdn.snipcart.com',
-      // },
-      // {
-      //   rel: 'stylesheet',
-      //   href: 'https://cdn.snipcart.com/themes/v3.0.23/default/snipcart.css',
-      // },
+      {
+        rel: 'preconnect',
+        href: 'https://app.snipcart.com',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://cdn.snipcart.com',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.snipcart.com/themes/v3.0.23/default/snipcart.css',
+      },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
     script: [
-      // {
-      //   src: 'https://cdn.snipcart.com/themes/v3.0.23/default/snipcart.js',
-      //   async: true,
-      //   crossorigin: 'anonymous',
-      // },
+      {
+        src: 'https://cdn.snipcart.com/themes/v3.0.23/default/snipcart.js',
+        async: true,
+        crossorigin: 'anonymous',
+      },
     ],
   },
   // bodyAttr: {
   //   class: 'has-navbar-fixed-top',
   // },
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/scss/variables.scss'],
+  css: ['~/assets/css/tailwind.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ['~plugins/axios', '~/plugins/apollo-overrides'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
   ],
-
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config.js',
+    exposeConfig: false,
+    config: {},
+  },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -61,11 +62,9 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content',
     '@nuxtjs/dotenv',
     '@nuxtjs/auth',
     '@nuxtjs/strapi',
-    'nuxt-buefy',
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
     '@nuxtjs/proxy',
@@ -116,6 +115,7 @@ export default {
     },
     authenticationType: 'Bearer',
     tokenName: 'apollo-token',
+    includeNodeModules: true,
   },
   auth: {
     strategies: {

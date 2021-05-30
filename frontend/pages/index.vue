@@ -61,7 +61,6 @@ export default Vue.extend({
   async asyncData({ $strapi, route }) {
     const routeName = route.name === 'index' ? 'home-page' : route.params.slug
     const data = await $strapi.$http.$get(routeName)
-    console.log(data.HomepageSections)
 
     return {
       page: data,
@@ -83,15 +82,11 @@ export default Vue.extend({
   },
 })
 </script>
-<style lang="scss" scoped>
-.column {
-  &.is-reversed {
-    &:nth-child(odd) {
-      order: 2;
-    }
-    &:nth-child(even) {
-      order: 1;
-    }
-  }
+<style scoped>
+.column &.is-reversed &:nth-child(odd) {
+  order: 2;
+}
+.column &.is-reversed &:nth-child(even) {
+  order: 1;
 }
 </style>

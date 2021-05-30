@@ -1,7 +1,7 @@
 <template>
   <div class="hero">
-    <div v-for="contents in content" :key="contents.id">
-      <div v-for="zone in contents.pageZone" :key="zone.id" class="project">
+    <div v-for="cont in content" :key="cont.id">
+      <div v-for="zone in cont.pageZone" :key="zone.id" class="project">
         <!-- Display all richText here -->
         <div
           v-if="zone.__typename === 'ComponentPostRichText'"
@@ -28,9 +28,10 @@
 
 <script>
 export default {
-  // content is query data from parent page
-  // title is the page title of parent page
-  props: ['content', 'title'],
+  props: {
+    content: { type: Object, default: () => {} },
+    title: { type: String, default: '' },
+  },
 }
 </script>
 
