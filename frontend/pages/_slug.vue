@@ -26,7 +26,6 @@ export default Vue.extend({
   async asyncData({ app, route }) {
     const routeName = route.name === 'index' ? 'home-page' : route.params.slug
     const data = await app.$strapi.$http.$get(routeName)
-    console.log(routeName)
     return {
       page: data,
     }
