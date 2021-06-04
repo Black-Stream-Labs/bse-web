@@ -49,7 +49,8 @@ export default {
     '@nuxtjs/composition-api/module',
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/ngrok',
+    // '@nuxtjs/ngrok',
+    // '@nuxt/image',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
@@ -75,6 +76,7 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
     '@nuxtjs/proxy',
+    '@nuxt/image',
     // this is for outisde testing only
     // ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
   ],
@@ -84,13 +86,16 @@ export default {
     breaks: true,
     injected: true,
   },
-  proxy: {
-    '/api/v1': {
-      target: process.env.API_AUTH_URL || 'http://localhost:1337',
-      pathRewrite: { '^/api/v1': '/' },
-      // changeOrigin: true,
-    },
-  },
+  proxy: [
+    [
+      '/api/v1',
+      {
+        target: process.env.API_AUTH_URL || 'http://localhost:1337',
+        pathRewrite: { '^/api/v1': '/' },
+        // changeOrigin: true,
+      },
+    ],
+  ],
   strapi: {
     url: '/api/v1',
     entities: [

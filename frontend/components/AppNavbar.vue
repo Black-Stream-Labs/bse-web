@@ -65,6 +65,7 @@
         <NuxtLink
           to="/"
           class="hover:rounded-full hover:bg-gray-400 flex items-center justify-center"
+          :class="showLogo ? '' : 'h-0'"
         >
           <!-- <transition name="animate-down"> -->
           <img

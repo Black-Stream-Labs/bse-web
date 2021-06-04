@@ -1,12 +1,12 @@
 <template>
-  <main class="main-container">
+  <div>
     <Hero
       :title="page.title"
       :subtitle="page.content.subtitle"
       :headerimage="page.content.header_image.url"
       size="is-medium"
     ></Hero>
-    <div class="section">
+    <section class="section py-20 px-4">
       <div class="container max-w-5xl mx-auto">
         <!--  eslint-disable-next-line vue/no-v-html -->
         <div class="content" v-html="$md.render(updatedContent)" />
@@ -43,8 +43,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </section>
+  </div>
 </template>
 
 <script lang="ts">

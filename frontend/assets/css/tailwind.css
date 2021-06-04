@@ -12,7 +12,6 @@ body,
 .page-content {
   display: flex;
   flex-flow: column nowrap;
-  height: 100%;
 
 }
 
