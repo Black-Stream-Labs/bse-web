@@ -5,10 +5,10 @@
       :subtitle="page.subtitle"
       :headerimage="page.header_image.url"
     ></Hero>
-    <div class="section">
-      <div class="content" v-html="$md.render(page.content)" />
-      <div class="container"></div>
-    </div>
+    <section class="container max-w-5xl mx-auto">
+      <div v-html="$md.render(page.content)" />
+    </section>
+    <section class="container">magic</section>
   </main>
 </template>
 

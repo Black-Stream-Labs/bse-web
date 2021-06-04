@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative flex justify-center items-center">
     <button
       class="z-10 relative flex items-center select-none"
       @click="open = !open"
@@ -25,7 +25,7 @@
     >
       <div
         v-if="open"
-        class="hidden md:block absolute shadow-lg border w-48 rounded py-1 px-2 text-sm mt-4 bg-gray-50"
+        class="hidden md:block absolute shadow-lg border w-48 rounded py-1 px-2 text-sm mt-4 bg-gray-50 top-8"
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "
@@ -53,7 +53,7 @@
     <!-- to close when clicked on space around it in mobile-->
     <div
       v-if="open"
-      class="md:hidden fixed w-full h-full inset-0 bg-gray-900 opacity-50 z-10"
+      class="md:hidden absolute w-full h-full inset-0 bg-gray-900 opacity-50 z-10"
       @click="open = false"
     ></div>
   </div>

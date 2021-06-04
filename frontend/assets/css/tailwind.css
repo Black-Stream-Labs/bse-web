@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
+.page-content {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+
+}
+
+#main-content {
+  flex: 2 1 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}

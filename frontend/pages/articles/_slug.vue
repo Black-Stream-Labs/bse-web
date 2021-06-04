@@ -1,5 +1,18 @@
 <template>
-  <div class="columns is-mobile">
+  <div class="flex">
+    <div class="w-full">
+      <ol class="flex text-gray-700 bg-gray-300 rounded py-2 px-2">
+        <li class="px-2"><a href="#" class="hover:underline">Home</a></li>
+        <li class="text-gray-500 select-none">/</li>
+        <li class="px-2"><a href="#" class="hover:underline">Series</a></li>
+        <li class="text-gray-500 select-none">/</li>
+        <li class="px-2 text-indigo-600">Game of thrones</li>
+      </ol>
+
+      <br />
+      <br />
+    </div>
+
     <!-- <Hero :title="article.title"></Hero>
     <BlogCategories></BlogCategories>
     <article class="column is-12">

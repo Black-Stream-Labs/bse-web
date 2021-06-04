@@ -7,11 +7,11 @@
       size="is-medium"
     ></Hero>
     <div class="section">
-      <div class="container">
+      <div class="container max-w-5xl mx-auto">
         <!--  eslint-disable-next-line vue/no-v-html -->
         <div class="content" v-html="$md.render(updatedContent)" />
       </div>
-      <div class="container">
+      <div class="container max-w-5xl mx-auto">
         <div class="columns is-multiline is-centered">
           <div
             v-for="(section, ind) in sectionUpdated"

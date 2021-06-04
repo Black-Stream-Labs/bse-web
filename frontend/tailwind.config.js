@@ -16,6 +16,13 @@ module.exports = {
       xs: '475px',
       ...defaultTheme.screens,
     },
+    minWidth: {
+      0: '0',
+      '1/4': '25%',
+      '1/2': '50%',
+      '3/4': '75%',
+      full: '100%',
+    },
     colors: {
       gray: colors.coolGray,
       blue: colors.lightBlue,
@@ -34,10 +41,19 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
+      animation: {
+        'animate-down': 'animate-down 1s ease-in-out linear',
+      },
+      keyframes: {
+        'animate-down': {
+          '0%': { opacity: '0', height: 0 },
+          '100%': { opacity: '1', height: '60px' },
+        },
+      },
     },
   },
   variants: {
-    extend: {},
+    animation: ['responsive', 'motion-safe', 'motion-reduce'],
   },
   // plugins: [require('@tailwindcss/forms')],
 }
