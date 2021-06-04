@@ -1,7 +1,16 @@
 <template>
   <div class="page-content">
+    <a href="#main-content" class="sr-only focus:not-sr-only">
+      Skip to content
+    </a>
     <AppNavbar></AppNavbar>
-    <Nuxt />
+    <div id="main-content">
+      <div v-if="$fetchState.pending">Super Loader</div>
+      <div v-else-if="$fetchState.error">Error</div>
+      <template v-else>
+        <Nuxt></Nuxt>
+      </template>
+    </div>
     <AppFooter />
     <div
       id="snipcart"
@@ -22,6 +31,9 @@ export default Vue.extend({
   components: {
     AppFooter,
     AppNavbar,
+  },
+  async fetch() {
+    this.page = await this.$strapi.$http.$get('home-page')
   },
 })
 </script>

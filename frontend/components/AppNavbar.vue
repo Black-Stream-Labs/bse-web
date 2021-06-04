@@ -14,26 +14,7 @@
         width="85"
       />
     </NuxtLink>
-    <template v-if="!isAuthenticated">
-      <NuxtLink
-        to="/register"
-        class="is-primary"
-        :class="{ 'is-active': $route.name === 'register' }"
-      >
-        Sign up
-      </NuxtLink>
-      <NuxtLink href="/login" class="is-light"> Log in </NuxtLink>
-    </template>
-    <template v-else>
-      <NuxtLink
-        to="/profile"
-        class="is-primary"
-        :class="{ 'is-active': $route.name === 'profile' }"
-      >
-        My Account &nbsp; &nbsp;
-      </NuxtLink>
-      <NuxtLink to="/logout" @click="logout"> Log out </NuxtLink>
-    </template>
+    <AccesibilityMenu></AccesibilityMenu>
     <SnipcartButton></SnipcartButton>
   </nav>
 </template>
@@ -47,6 +28,7 @@ export default Vue.extend({
   name: 'AppNavbar',
   components: {
     SnipcartButton: () => import('@/components/SnipcartButton'),
+    AccesibilityMenu: () => import('@/components/AccesibilityMenu'),
   },
   data() {
     return {}

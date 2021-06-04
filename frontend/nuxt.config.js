@@ -19,13 +19,13 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://cdn.snipcart.com/themes/v3.0.23/default/snipcart.css',
+        href: 'https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css',
       },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
     script: [
       {
-        src: 'https://cdn.snipcart.com/themes/v3.0.23/default/snipcart.js',
+        src: 'https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js',
         async: true,
         crossorigin: 'anonymous',
       },
@@ -46,14 +46,21 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
+    '@nuxtjs/composition-api/module',
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/ngrok',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.js',
     exposeConfig: false,
     config: {},
+  },
+  ngrok: {
+    // module options
+    addr: 8080, // port or network address, defaults to 80
+    region: 'eu', // one of ngrok regions (us, eu, au, ap, sa, jp, in), defaults to
   },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

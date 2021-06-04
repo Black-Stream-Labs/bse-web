@@ -1,20 +1,25 @@
 <template>
   <div class="page-content">
-    <div v-if="$fetchState.pending">Super Loader</div>
-    <div v-else-if="$fetchState.error">Error</div>
-    <main v-else class="main-container">
-      <Hero
-        :title="page.title"
-        :subtitle="page.content.subtitle"
-        :headerimage="page.content.header_image.url"
-      ></Hero>
-      <div class="section">
-        <div class="container">
-          <FilterButtons></FilterButtons>
-          <Nuxt></Nuxt>
-        </div>
-      </div>
-    </main>
+    <a href="#main-content" class="sr-only focus:not-sr-only">
+      Skip to content
+    </a>
+    <div id="main-content">
+      <div v-if="$fetchState.pending">Super Loader</div>
+      <div v-else-if="$fetchState.error">Error</div>
+      <template v-else>
+        <Hero
+          :title="page.title"
+          :subtitle="page.content.subtitle"
+          :headerimage="page.content.header_image.url"
+        ></Hero>
+        <section class="section">
+          <div class="container">
+            <FilterButtons></FilterButtons>
+            <Nuxt></Nuxt>
+          </div>
+        </section>
+      </template>
+    </div>
     <AppFooter />
     <div
       id="snipcart"

@@ -1,11 +1,16 @@
 <template>
   <div class="page-content">
+    <a href="#main-content" class="sr-only focus:not-sr-only">
+      Skip to content
+    </a>
     <AppNavbar></AppNavbar>
-    <div v-if="$fetchState.pending">Super Loader</div>
-    <div v-else-if="$fetchState.error">Error</div>
-    <main v-else class="main-container">
-      <Nuxt></Nuxt>
-    </main>
+    <div id="main-content">
+      <div v-if="$fetchState.pending">Super Loader</div>
+      <div v-else-if="$fetchState.error">Error</div>
+      <template v-else>
+        <Nuxt></Nuxt>
+      </template>
+    </div>
     <AppFooter />
     <div
       id="snipcart"
@@ -18,19 +23,15 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-// import Hero from '@/components/Hero'
 import AppFooter from '@/components/AppFooter'
 import AppNavbar from '@/components/AppNavbar'
 
-// import BlogCategories from '@/components/BlogCategories'
 import PageType from '~/types/pageType'
 
 export default Vue.extend({
   name: 'BlogLayout',
   components: {
     AppFooter,
-    // Hero,
-    // BlogCategories,
     AppNavbar,
   },
   data() {
