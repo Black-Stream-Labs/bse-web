@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Hero
+    <HeroHomepage
       :title="page.title"
       :subtitle="page.content.subtitle"
       :headerimage="page.content.header_image.url"
       size="is-medium"
-    ></Hero>
+    ></HeroHomepage>
     <section class="section py-20 px-4">
       <div class="container max-w-5xl mx-auto">
         <!--  eslint-disable-next-line vue/no-v-html -->
@@ -50,12 +50,12 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
+import HeroHomepage from '@/components/HeroHomepage'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'MainPage',
   components: {
-    Hero,
+    HeroHomepage,
   },
   layout: 'default',
   async asyncData({ $strapi, route }) {

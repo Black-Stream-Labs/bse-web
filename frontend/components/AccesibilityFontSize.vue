@@ -1,24 +1,18 @@
 <template>
   <div class="py-3">
-    <p class="py-2">Change Font Size:</p>
+    <p class="px-2 py-3 block">Change Font Size:</p>
     <p class="flex items-center justify-center py-3">
       <button
-        class="mx-3 px-3 py-2 border rounded border-yellow-400 dark:bg-gray-500 dark:border-yellow-50"
+        class="mx-4 px-2 py-2 text-sm border rounded border-gray-400 dark:bg-gray-900 dark:text-white dark:border-gray-50"
         @click="fontSizeDecrease('0.25')"
       >
-        A
+        A-
       </button>
       <button
-        class="mx-3 px-3 py-2 border rounded dark:bg-gray-900 dark:text-yellow-400 dark:border-yellow-400"
+        class="mx-4 px-2 py-2 text-sm border rounded border-gray-400 dark:bg-gray-900 dark:text-white dark:border-gray-50"
         @click="fontSizeIncrease('0.25')"
       >
-        A
-      </button>
-      <button
-        class="mx-3 px-3 py-2 border rounded border-gray-400 dark:bg-yellow-400 dark:border-yellow-400 dark:text-gray-900"
-        @click="fontSizeIncrease('0.25')"
-      >
-        A
+        A+
       </button>
     </p>
   </div>
@@ -28,9 +22,9 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'AccesibilityColours',
+  name: 'AccesibilityFontSize',
   methods: {
-    fontSizeIncrease(size) {
+    fontSizeIncrease(size: string) {
       let styles = getComputedStyle(document.documentElement).getPropertyValue(
         '--font-size'
       )
@@ -45,7 +39,7 @@ export default Vue.extend({
         `${Number(currSize) + Number(size)}em`
       )
     },
-    fontSizeDecrease(size) {
+    fontSizeDecrease(size: string) {
       const styles = getComputedStyle(
         document.documentElement
       ).getPropertyValue('--font-size')

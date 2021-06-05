@@ -1,16 +1,11 @@
 <template>
   <div class="flex items-center justify-center">
-    <button class="snipcart-checkout px-2 py-2">
-      <span class="flex items-center justify-between">
-        <ShoppingCart :color="dinamicColor"></ShoppingCart>
-        <small class="snipcart-total-price pl-3 hidden md:inline-block"></small>
-      </span>
+    <button class="snipcart-checkout px-2 py-2 mr-3">
+      <ShoppingCart :color="dinamicColor"></ShoppingCart>
+      <!-- <small class="snipcart-total-price pl-3 hidden md:inline-block"></small> -->
     </button>
     <button class="snipcart-customer-signin px-2 py-2">
-      <span class="flex items-center justify-between">
-        <UserImage :color="dinamicColor"></UserImage>
-        <span class="hidden md:inline-block"> </span>
-      </span>
+      <UserImage :color="dinamicColor"></UserImage>
     </button>
   </div>
 </template>
@@ -19,11 +14,14 @@
 // @ts-nocheck
 import Vue from 'vue'
 import { mdiCartOutline } from '@mdi/js'
+import ShoppingCart from '@/components/icons/ShoppingCart.vue'
+import UserImage from '@/components/icons/UserImage.vue'
+
 export default Vue.extend({
   name: 'SnipcartButton',
   components: {
-    ShoppingCart: () => import('@/components/icons/ShoppingCart.vue'),
-    UserImage: () => import('@/components/icons/UserImage.vue'),
+    ShoppingCart,
+    UserImage,
   },
   data() {
     return {
@@ -32,11 +30,22 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$root.$on('changeColor', () => {
-      localStorage.theme === 'light'
-        ? (this.dinamicColor = 'indigo')
-        : (this.dinamicColor = 'white')
+    this.$nextTick(() => {
+      this.checkColor()
     })
+    this.$root.$on('changeColor', () => {
+      this.$nextTick(() => {
+        this.checkColor()
+      })
+    })
+  },
+  methods: {
+    checkColor() {
+      localStorage['nuxt-color-mode'] &&
+      localStorage['nuxt-color-mode'] !== 'light'
+        ? (this.dinamicColor = 'white')
+        : (this.dinamicColor = 'indigo')
+    },
   },
 })
 </script>

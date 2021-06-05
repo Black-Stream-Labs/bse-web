@@ -3,7 +3,7 @@
     <!-- Button content -->
     <template #button>
       <span
-        class="px-2 py-2 border rounded items-center text-sm hidden lg:inline-flex"
+        class="px-2 py-2 border border-gray-400 rounded items-center text-sm hidden lg:inline-flex"
       >
         <span class="mr-2">Accesibility</span>
         <DownArrow></DownArrow>
@@ -20,8 +20,8 @@
     <!-- Opened dropdown content -->
     <template #content>
       <VColorSelect></VColorSelect>
-      <FontSize></FontSize>
-      <AccesibilityColours></AccesibilityColours>
+      <AccesibilityFontSize></AccesibilityFontSize>
+      <AccesibilityContrast></AccesibilityContrast>
       <AccesibilityFonts></AccesibilityFonts>
     </template>
   </VDropdown>
@@ -34,8 +34,8 @@ import VDropdown from '@/components/reusable/VDropdown'
 import SettingsImage from '@/components/icons/SettingsImage'
 import VColorSelect from '@/components/reusable/VColorSelect'
 import DownArrow from '@/components/icons/DownArrow'
-import FontSize from '@/components/FontSize'
-import AccesibilityColours from '@/components/AccesibilityColours'
+import AccesibilityFontSize from '@/components/AccesibilityFontSize'
+import AccesibilityContrast from '@/components/AccesibilityContrast'
 import AccesibilityFonts from '@/components/AccesibilityFonts'
 export default Vue.extend({
   name: 'AccesibilityMenu',
@@ -43,8 +43,8 @@ export default Vue.extend({
     VDropdown,
     SettingsImage,
     DownArrow,
-    FontSize,
-    AccesibilityColours,
+    AccesibilityFontSize,
+    AccesibilityContrast,
     AccesibilityFonts,
     VColorSelect,
   },
@@ -54,13 +54,21 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.checkColor()
+    this.$nextTick(() => {
+      this.checkColor()
+    })
+    this.$root.$on('changeColor', () => {
+      this.$nextTick(() => {
+        this.checkColor()
+      })
+    })
   },
   methods: {
     checkColor() {
-      localStorage.theme === 'light'
-        ? (this.dinamicColor = 'indigo')
-        : (this.dinamicColor = 'white')
+      localStorage['nuxt-color-mode'] &&
+      localStorage['nuxt-color-mode'] !== 'light'
+        ? (this.dinamicColor = 'white')
+        : (this.dinamicColor = 'indigo')
     },
   },
 })

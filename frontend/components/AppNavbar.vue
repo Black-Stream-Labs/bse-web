@@ -5,28 +5,18 @@
       :class="showLogo ? 'py-2 px-4' : 'py-4 px-4'"
       role="navigation"
     >
-      <div class="flex lg:hidden">
-        <MenuIcon
-          v-if="!isOpen"
-          :color="dinamicColor"
-          @click="isOpen = true"
-        ></MenuIcon>
+      <div class="lg:hidden">
+        <button v-if="!isOpen" @click="isOpen = true">
+          <MenuIcon :color="dinamicColor"></MenuIcon>
+        </button>
 
-        <CloseIcon
-          v-else
-          :color="dinamicColor"
-          @click="isOpen = false"
-        ></CloseIcon>
+        <button v-else @click="isOpen = false">
+          <CloseIcon :color="dinamicColor"></CloseIcon>
+        </button>
       </div>
       <div class="sm:flex lg:hidden flex items-center justify-between w-1/2">
         <NuxtLink to="/" class="lg:hidden text-sm">
-          <img
-            src="@/assets/img/logos/BSE-logo.svg"
-            alt="Black Stream Education Logo"
-            class="logo"
-            height="50"
-            width="50"
-          />
+          <LogoImage :color="dinamicColor" height="50" width="50"></LogoImage>
         </NuxtLink>
         <AccesibilityMenu></AccesibilityMenu>
       </div>
@@ -72,15 +62,10 @@
           :class="showLogo ? '' : 'h-0'"
         >
           <!-- <transition name="animate-down"> -->
-          <img
-            id="desktopLogo"
-            src="@/assets/img/logos/BSE-logo.svg"
-            alt="Black Stream Education Logo"
-            class="logo"
-            width="50"
-            :style="showLogo ? 'height:50px' : 'height:0px'"
-            :class="showLogo ? 'motion-safe:animate-down' : 'opacity-0'"
-          />
+          <LogoImage
+            :color="dinamicColor"
+            :height="showLogo ? 50 : 0"
+          ></LogoImage>
           <!-- </transition> -->
         </NuxtLink>
         <NuxtLink
@@ -152,6 +137,7 @@ export default Vue.extend({
     SnipcartButton: () => import('@/components/SnipcartButton'),
     MenuIcon: () => import('@/components/icons/MenuIcon'),
     CloseIcon: () => import('@/components/icons/CloseIcon'),
+    LogoImage: () => import('@/components/icons/LogoImage'),
     AccesibilityMenu: () => import('@/components/AccesibilityMenu'),
   },
   data() {
@@ -170,7 +156,10 @@ export default Vue.extend({
   },
   watch: {
     scrollHeight(newValue, oldValue) {
-      if (newValue === oldValue || newValue < 150) {
+      if (
+        (newValue && newValue !== 0 && newValue === oldValue) ||
+        newValue < 250
+      ) {
         this.showLogo = false
         return
       }
@@ -178,7 +167,9 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.checkColor()
+    this.$nextTick(() => {
+      this.checkColor()
+    })
     window.addEventListener('load', this.scrollHandler)
     window.addEventListener('scroll', this.scrollHandler)
     this.$root.$on('changeColor', () => {
@@ -200,9 +191,10 @@ export default Vue.extend({
       this.scrollHeight = window.scrollY
     },
     checkColor() {
-      localStorage.theme === 'light'
-        ? (this.dinamicColor = 'indigo')
-        : (this.dinamicColor = 'white')
+      localStorage['nuxt-color-mode'] &&
+      localStorage['nuxt-color-mode'] !== 'light'
+        ? (this.dinamicColor = 'white')
+        : (this.dinamicColor = 'indigo')
     },
   },
 })

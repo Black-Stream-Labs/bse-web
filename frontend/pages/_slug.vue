@@ -27,7 +27,7 @@ export default Vue.extend({
     const routeName = route.name === 'index' ? 'home-page' : route.params.slug
     const data = await app.$strapi.$http.$get(routeName)
     return {
-      page: data,
+      page: data || {},
     }
   },
 })

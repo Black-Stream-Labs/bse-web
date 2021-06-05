@@ -36,10 +36,10 @@ module.exports = {
       green: colors.green,
       pink: colors.fuchsia,
     },
-    fontFamily: {
-      sans: ['Lato', ...defaultTheme.fontFamily.sans],
-      serif: ['Merriweather', 'serif'],
-    },
+    // fontFamily: {
+    //   sans: ['Lato', ...defaultTheme.fontFamily.sans],
+    //   serif: ['Merriweather', 'serif'],
+    // },
     extend: {
       spacing: {
         128: '32rem',
@@ -48,15 +48,15 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
-      animation: {
-        'animate-down': 'animate-down 1s ease-in-out linear',
-      },
-      keyframes: {
-        'animate-down': {
-          '0%': { opacity: '0', height: 0 },
-          '100%': { opacity: '1', height: '60px' },
-        },
-      },
+      // animation: {
+      //   'animate-down': 'animate-down 1s ease-in-out linear',
+      // },
+      // keyframes: {
+      //   'animate-down': {
+      //     '0%': { opacity: '0', height: 0 },
+      //     '100%': { opacity: '1', height: '60px' },
+      //   },
+      // },
     },
   },
   variants: {
