@@ -1,6 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  /* a {
+    @apply text-blue-600 underline;
+  } */
+}
 
 html,
 body,
@@ -9,10 +28,18 @@ body,
   height: 100%;
 }
 
+:root {
+  --font-size: 1em;
+}
+
+body {
+  font-size: var(--font-size);
+}
+
 .page-content {
   display: flex;
   flex-flow: column nowrap;
-
+  min-height: 100vh;
 }
 
 #main-content {

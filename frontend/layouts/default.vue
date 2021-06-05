@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="page-content bg-white dark:bg-gray-900 dark:text-white">
     <a href="#main-content" class="sr-only focus:not-sr-only">
       Skip to content
     </a>

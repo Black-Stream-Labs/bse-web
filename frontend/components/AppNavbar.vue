@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 bg-gray-50">
+  <header class="sticky top-0 bg-gray-50 dark:bg-gray-900 dark:text-white">
     <nav
       class="flex justify-between items-center select-none"
       :class="showLogo ? 'py-2 px-4' : 'py-4 px-4'"
@@ -7,11 +7,11 @@
     >
       <div class="sm:flex lg:hidden">
         <div v-show="!isOpen" @click="isOpen = !isOpen">
-          <MenuIcon color="indigo"></MenuIcon>
+          <MenuIcon :color="dinamicColor"></MenuIcon>
         </div>
 
         <div v-show="isOpen" @click="isOpen = !isOpen">
-          <CloseIcon color="indigo"></CloseIcon>
+          <CloseIcon :color="dinamicColor"></CloseIcon>
         </div>
       </div>
       <div class="sm:flex lg:hidden flex items-center justify-between w-1/2">
@@ -93,42 +93,42 @@
     <!-- Mobile Links -->
     <div
       v-if="isOpen"
-      class="bg-gray-50 px-4 py-4 select-none border-b lg:hidden absolute w-full"
+      class="bg-gray-50 px-4 py-4 select-none border-b lg:hidden absolute w-full dark:bg-gray-900 dark:text-white"
     >
       <NuxtLink
         to="/about-us"
-        class="block font-semibold text-gray-800 py-23 -gray-400"
+        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
       >
         About us
       </NuxtLink>
       <NuxtLink
         to="/services"
-        class="block font-semibold text-gray-800 py-23 -gray-400"
+        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
       >
         Services
       </NuxtLink>
       <NuxtLink
         to="/articles"
-        class="block font-semibold text-gray-800 py-23 -gray-400"
+        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
       >
         Articles
       </NuxtLink>
 
       <NuxtLink
         to="/events"
-        class="block font-semibold text-gray-800 py-23 -gray-400"
+        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
       >
         Events
       </NuxtLink>
       <NuxtLink
         to="/safeguarding"
-        class="block font-semibold text-gray-800 py-23 -gray-400"
+        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
       >
         Safeguarding
       </NuxtLink>
       <NuxtLink
         to="/products"
-        class="block font-semibold text-gray-800 py-23 -gray-400"
+        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
       >
         Products
       </NuxtLink>
@@ -151,7 +151,12 @@ export default Vue.extend({
     AccesibilityMenu: () => import('@/components/AccesibilityMenu'),
   },
   data() {
-    return { isOpen: false, showLogo: false, scrollHeight: 0 }
+    return {
+      isOpen: false,
+      showLogo: false,
+      scrollHeight: 0,
+      dinamicColor: 'white',
+    }
   },
   computed: {
     ...mapGetters({
@@ -171,6 +176,12 @@ export default Vue.extend({
   mounted() {
     window.addEventListener('load', this.scrollHandler)
     window.addEventListener('scroll', this.scrollHandler)
+    this.checkColor()
+    this.$root.$on('changeColor', () => {
+      localStorage.theme === 'light'
+        ? (this.dinamicColor = 'indigo')
+        : (this.dinamicColor = 'white')
+    })
   },
 
   methods: {
@@ -183,6 +194,11 @@ export default Vue.extend({
     },
     scrollHandler() {
       this.scrollHeight = window.scrollY
+    },
+    checkColor() {
+      localStorage.theme === 'light'
+        ? (this.dinamicColor = 'indigo')
+        : (this.dinamicColor = 'white')
     },
   },
 })

@@ -10,12 +10,13 @@ module.exports = {
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // 'false' or 'media' or 'class'
   theme: {
     screens: {
       xs: '475px',
       ...defaultTheme.screens,
     },
+
     minWidth: {
       0: '0',
       '1/4': '25%',
@@ -24,6 +25,9 @@ module.exports = {
       full: '100%',
     },
     colors: {
+      transparent: 'transparent',
+      black: '#000',
+      white: '#f9fafb',
       gray: colors.coolGray,
       blue: colors.lightBlue,
       red: colors.rose,
@@ -53,7 +57,16 @@ module.exports = {
     },
   },
   variants: {
-    animation: ['responsive', 'motion-safe', 'motion-reduce'],
+    // animation: ['responsive', 'motion-safe', 'motion-reduce'],
+    backgroundColor: [
+      'dark',
+      'dark-hover',
+      'dark-group-hover',
+      'dark-even',
+      'dark-odd',
+    ],
+    borderColor: ['dark', 'dark-focus', 'dark-focus-within'],
+    textColor: ['dark', 'dark-hover', 'dark-active'],
   },
   // plugins: [require('@tailwindcss/forms')],
 }

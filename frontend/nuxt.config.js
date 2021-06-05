@@ -38,7 +38,14 @@ export default {
   css: ['~/assets/css/tailwind.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~plugins/axios', '~/plugins/apollo-overrides'],
+  plugins: [
+    '~plugins/axios',
+    '~/plugins/apollo-overrides',
+    {
+      src: '~/plugins/checkTheme.js',
+      mode: 'client',
+    },
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: false,
@@ -51,7 +58,14 @@ export default {
     '@nuxtjs/tailwindcss',
     // '@nuxtjs/ngrok',
     // '@nuxt/image',
+    // Doc: https://github.com/nuxt-community/color-mode-module
+    '@nuxtjs/color-mode',
+    // Doc: https://github.com/nuxt-community/tailwindcss-module
+    '@nuxtjs/tailwindcss',
   ],
+  colorMode: {
+    classSuffix: '',
+  },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.js',

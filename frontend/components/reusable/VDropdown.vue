@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex justify-center items-center">
     <button
-      class="z-10 relative flex items-center select-none"
+      class="z-20 relative flex items-center select-none"
       @click="open = !open"
     >
       <slot name="button"></slot>
@@ -25,7 +25,7 @@
     >
       <div
         v-if="open"
-        class="hidden md:block absolute shadow-lg border w-48 rounded py-1 px-2 text-sm mt-4 bg-gray-50 top-8"
+        class="absolute shadow-lg border w-96 rounded py-1 px-2 text-sm mt-4 bg-gray-50 top-8 dark:bg-gray-900 dark:text-white"
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "
@@ -35,7 +35,7 @@
     </transition>
 
     <!--dropdown content: mobile-->
-    <transition
+    <!-- <transition
       enter-active-class="transition-all duration-200 ease-out"
       leave-active-class="transition-all duration-750 ease-in"
       enter-class="opacity-0 scale-75"
@@ -45,17 +45,17 @@
     >
       <div
         v-if="open"
-        class="md:hidden fixed inset-x-0 bottom-0 bg-gray-50 w-full z-20 px-2 py-2 shadow-2xl leading-loose"
+        class="md:hidden fixed inset-x-0 bottom-0 bg-gray-50 w-full z-20 px-2 py-2 shadow-2xl leading-loose dark:bg-gray-900 dark:text-white"
       >
         <slot name="content"></slot>
       </div>
-    </transition>
+    </transition> -->
     <!-- to close when clicked on space around it in mobile-->
-    <div
+    <!-- <div
       v-if="open"
-      class="md:hidden absolute w-full h-full inset-0 bg-gray-900 opacity-50 z-10"
+      class="md:hidden fixed w-full h-full inset-0 bg-gray-900 opacity-50 z-10"
       @click="open = false"
-    ></div>
+    ></div> -->
   </div>
 </template>
 
