@@ -25,7 +25,7 @@
     >
       <div
         v-if="open"
-        class="absolute shadow-lg border w-96 rounded py-1 px-2 text-sm mt-4 bg-gray-50 top-8 dark:bg-gray-900 dark:text-white"
+        class="absolute shadow-lg border w-72 rounded py-1 px-2 text-sm mt-4 bg-gray-50 top-8 dark:bg-gray-900 dark:text-white"
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "

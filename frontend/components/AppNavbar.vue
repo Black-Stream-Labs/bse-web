@@ -5,14 +5,18 @@
       :class="showLogo ? 'py-2 px-4' : 'py-4 px-4'"
       role="navigation"
     >
-      <div class="sm:flex lg:hidden">
-        <div v-show="!isOpen" @click="isOpen = !isOpen">
-          <MenuIcon :color="dinamicColor"></MenuIcon>
-        </div>
+      <div class="flex lg:hidden">
+        <MenuIcon
+          v-if="!isOpen"
+          :color="dinamicColor"
+          @click="isOpen = true"
+        ></MenuIcon>
 
-        <div v-show="isOpen" @click="isOpen = !isOpen">
-          <CloseIcon :color="dinamicColor"></CloseIcon>
-        </div>
+        <CloseIcon
+          v-else
+          :color="dinamicColor"
+          @click="isOpen = false"
+        ></CloseIcon>
       </div>
       <div class="sm:flex lg:hidden flex items-center justify-between w-1/2">
         <NuxtLink to="/" class="lg:hidden text-sm">
@@ -174,13 +178,13 @@ export default Vue.extend({
     },
   },
   mounted() {
+    this.checkColor()
     window.addEventListener('load', this.scrollHandler)
     window.addEventListener('scroll', this.scrollHandler)
-    this.checkColor()
     this.$root.$on('changeColor', () => {
-      localStorage.theme === 'light'
-        ? (this.dinamicColor = 'indigo')
-        : (this.dinamicColor = 'white')
+      this.$nextTick(() => {
+        this.checkColor()
+      })
     })
   },
 

@@ -4,7 +4,7 @@
     <select
       id="themeSelect"
       v-model="$colorMode.preference"
-      class="w-32 h-8 border rounded dark:bg-gray-900 dark:text-white dark:border-gray-50"
+      class="w-28 h-8 border rounded dark:bg-gray-900 dark:text-white dark:border-gray-50"
       @change="$root.$emit('changeColor')"
     >
       <option value="system">System</option>

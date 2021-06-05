@@ -21,21 +21,8 @@
     <template #content>
       <VColorSelect></VColorSelect>
       <FontSize></FontSize>
-      <a
-        class="flex w-full justify-between items-center rounded px-2 py-1 my-1 hover:bg-indigo-600 hover:text-white"
-        href="#"
-        >Help</a
-      >
-      <a
-        class="flex w-full justify-between items-center rounded px-2 py-1 my-1 hover:bg-indigo-600 hover:text-white"
-        href="#"
-        >Orders</a
-      >
-      <a
-        class="flex w-full justify-between items-center rounded px-2 py-1 my-1 hover:bg-indigo-600 hover:text-white"
-        href="#"
-        >Support</a
-      >
+      <AccesibilityColours></AccesibilityColours>
+      <AccesibilityFonts></AccesibilityFonts>
     </template>
   </VDropdown>
 </template>
@@ -48,6 +35,8 @@ import SettingsImage from '@/components/icons/SettingsImage'
 import VColorSelect from '@/components/reusable/VColorSelect'
 import DownArrow from '@/components/icons/DownArrow'
 import FontSize from '@/components/FontSize'
+import AccesibilityColours from '@/components/AccesibilityColours'
+import AccesibilityFonts from '@/components/AccesibilityFonts'
 export default Vue.extend({
   name: 'AccesibilityMenu',
   components: {
@@ -55,6 +44,8 @@ export default Vue.extend({
     SettingsImage,
     DownArrow,
     FontSize,
+    AccesibilityColours,
+    AccesibilityFonts,
     VColorSelect,
   },
   data() {
