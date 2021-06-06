@@ -23,9 +23,8 @@ export default Vue.extend({
     Hero,
   },
   layout: 'default',
-  async asyncData({ app, route }) {
-    const routeName = route.name === 'index' ? 'home-page' : route.params.slug
-    const data = await app.$strapi.$http.$get(routeName)
+  async asyncData({ app }) {
+    const data = await app.$strapi.$http.$get('services')
     return {
       page: data || {},
     }

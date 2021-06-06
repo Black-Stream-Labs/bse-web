@@ -2,24 +2,24 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/about-us",
-      "handler": "about-us.find",
+      "path": "/safeguarding",
+      "handler": "safeguarding.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/about-us",
-      "handler": "about-us.update",
+      "path": "/safeguarding",
+      "handler": "safeguarding.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/about-us",
-      "handler": "about-us.delete",
+      "path": "/safeguarding",
+      "handler": "safeguarding.delete",
       "config": {
         "policies": []
       }

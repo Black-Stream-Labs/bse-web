@@ -25,7 +25,7 @@
         class="hidden lg:flex align-center justify-between text-sm lg:w-full max-w-5xl mx-auto"
       >
         <NuxtLink
-          to="/about-us"
+          to="/about"
           class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           About us
@@ -81,7 +81,7 @@
       class="bg-gray-50 p-4 select-none border-b lg:hidden absolute w-full dark:bg-gray-900 dark:text-white"
     >
       <NuxtLink
-        to="/about-us"
+        to="/about"
         class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         About us

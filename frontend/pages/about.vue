@@ -1,11 +1,11 @@
 <template>
   <div>
-    <HeroHomepage
+    <Hero
       :title="page.title"
-      :subtitle="page.content.subtitle"
-      :headerimage="page.content.header_image.url"
+      :subtitle="page.subtitle"
+      :headerimage="page.header_image.url"
       size="is-medium"
-    ></HeroHomepage>
+    ></Hero>
     <section class="section py-20 px-4">
       <div class="container max-w-5xl mx-auto">
         <!--  eslint-disable-next-line vue/no-v-html -->
@@ -35,24 +35,22 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import HeroHomepage from '@/components/HeroHomepage'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-export default Vue.extend({
-  name: 'MainPage',
-  components: {
-    HeroHomepage,
-  },
-  layout: 'default',
-  async asyncData({ $strapi }) {
-    const data = await $strapi.$http.$get('home-page')
+import Hero from '@/components/Hero'
 
-    return {
-      page: data,
-    }
+export default Vue.extend({
+  name: 'AboutUsPage',
+  components: {
+    Hero,
+  },
+  layout: 'DefaultLayout',
+  async asyncData({ $strapi }) {
+    const page = await $strapi.$http.$get('about')
+    return { page }
   },
   computed: {
     updatedContent() {
-      return formatContentImageUrl(this.page.content.content)
+      return formatContentImageUrl(this.page.content)
     },
     sectionUpdated() {
       if (!this.page.HomepageSections) return
@@ -66,6 +64,7 @@ export default Vue.extend({
   },
 })
 </script>
+
 <style scoped lang="postcss">
 .column &.is-reversed &:nth-child(odd) {
   order: 2;

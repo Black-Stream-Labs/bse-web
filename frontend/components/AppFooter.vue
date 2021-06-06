@@ -1,12 +1,75 @@
 <template>
   <footer
-    class="pt-28 pb-16 px-4 w-full text-gray-50 bg-gray-800 text-sm flex flex-col"
+    class="pt-28 pb-10 px-4 w-full text-gray-50 bg-gray-800 flex flex-col"
   >
-    <div
-      class="md:flex justify-between items-center max-w-5xl mx-auto w-full flex-grow"
-    >
+    <div class="md:flex justify-between max-w-5xl mx-auto w-full flex-grow">
       <div class="mb-4 md:mb-0">
-        <p class=" ">Black Stream Education</p>
+        <ul>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/about"
+              >About Us</a
+            >
+          </li>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/services"
+              >Our Services</a
+            >
+          </li>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/shop"
+              >Our Shop</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="mb-4 md:mb-0">
+        <ul>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/privacy"
+              >Privacy Policies</a
+            >
+          </li>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/terms-conditions"
+              >Terms and Conditions</a
+            >
+          </li>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/faq"
+              >FAQs</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="mb-4 md:mb-0">
+        <ul>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/cookie-policy"
+              >Cookie Policies</a
+            >
+          </li>
+          <li class="py-2">
+            <a
+              class="p-3 border rounded border-transparent hover:border-white"
+              href="/contact"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
       </div>
 
       <div class="flex justify-center flex-col items-center">
@@ -31,7 +94,7 @@
       </div>
     </div>
     <div
-      class="flex flex-col sm:flex-row items-center justify-center w-full max-w-5xl mx-auto flex-grow-0 pt-10"
+      class="flex flex-col sm:flex-row items-center justify-center w-full max-w-5xl mx-auto flex-grow-0 pt-10 text-sm"
     >
       Designed and built with
 

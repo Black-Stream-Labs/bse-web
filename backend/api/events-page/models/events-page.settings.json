@@ -2,7 +2,8 @@
   "kind": "singleType",
   "collectionName": "events_pages",
   "info": {
-    "name": "EventsPage"
+    "name": "EventsPage",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -13,10 +14,6 @@
   "attributes": {
     "title": {
       "type": "string"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
     },
     "content": {
       "type": "richtext"

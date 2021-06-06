@@ -1,8 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "articles_pages",
+  "collectionName": "safe_guardings",
   "info": {
-    "name": "ArticlesPage",
+    "name": "Safeguarding",
     "description": ""
   },
   "options": {
@@ -15,8 +15,10 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-section.page-section"
     },
     "header_image": {
       "model": "file",
@@ -29,6 +31,9 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
