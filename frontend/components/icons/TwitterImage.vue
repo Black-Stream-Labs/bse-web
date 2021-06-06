@@ -1,17 +1,15 @@
 <template>
   <svg
-    id="Capa_1"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    height="20"
-    width="20"
     viewBox="0 0 512 512"
-    style="enable-background: new 0 0 512 512"
+    enable-background="new 0 0 512 512"
     xml:space="preserve"
-    class="fill-current text-gray-600"
+    :height="height"
+    :width="width"
+    :fill="color"
   >
     <g>
       <g>
@@ -50,6 +48,20 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'TwitterImage',
+  props: {
+    color: {
+      type: String,
+      default: 'black',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
 })
 </script>
 

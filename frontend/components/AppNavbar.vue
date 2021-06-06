@@ -18,7 +18,7 @@
         <NuxtLink to="/" class="lg:hidden text-sm">
           <LogoImage :color="dinamicColor" height="50" width="50"></LogoImage>
         </NuxtLink>
-        <AccesibilityMenu :dinamic-color="dinamicColor"></AccesibilityMenu>
+        <AccesibilityMenu :color="dinamicColor"></AccesibilityMenu>
       </div>
       <!-- Desktop Links -->
       <div
@@ -26,102 +26,98 @@
       >
         <NuxtLink
           to="/about-us"
-          class="px-2 py-2 hover:bg-gray-400 flex items-center justify-center"
+          class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           About us
         </NuxtLink>
         <NuxtLink
           to="/services"
-          class="px-2 py-2 hover:bg-gray-400 flex items-center justify-center"
+          class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           Services
         </NuxtLink>
         <NuxtLink
           to="/articles"
-          class="px-2 py-2 hover:bg-gray-400 flex items-center justify-center"
+          class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           Articles
         </NuxtLink>
 
         <NuxtLink
           to="/events"
-          class="px-2 py-2 hover:bg-gray-400 flex items-center justify-center"
+          class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           Events
         </NuxtLink>
         <NuxtLink
           to="/safeguarding"
-          class="px-2 py-2 hover:bg-gray-400 flex items-center justify-center"
+          class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           Safeguarding
         </NuxtLink>
 
         <NuxtLink
           to="/"
-          class="hover:rounded-full hover:bg-gray-400 flex items-center justify-center"
-          :class="showLogo ? '' : 'h-0'"
+          class="hover:rounded-full hover:bg-gray-700 flex items-center justify-center"
         >
           <!-- <transition name="animate-down"> -->
-          <LogoImage
-            :color="dinamicColor"
-            :height="showLogo ? 50 : 0"
-          ></LogoImage>
+          <LogoImage :color="dinamicColor" height="60" width="60"></LogoImage>
           <!-- </transition> -->
         </NuxtLink>
         <NuxtLink
           to="/products"
-          class="px-2 py-2 hover:bg-gray-400 flex items-center justify-center"
+          class="p-2 hover:bg-gray-700 flex items-center justify-center"
         >
           Products
         </NuxtLink>
-        <AccesibilityMenu :dinamic-color="dinamicColor"></AccesibilityMenu>
-        <SnipcartButton :dinamic-color="dinamicColor"></SnipcartButton>
+        <AccesibilityMenu :color="dinamicColor"></AccesibilityMenu>
+        <SnipcartButton :color="dinamicColor"></SnipcartButton>
       </div>
     </nav>
 
     <!-- Mobile Links -->
     <div
       v-if="isOpen"
-      class="bg-gray-50 px-4 py-4 select-none border-b lg:hidden absolute w-full dark:bg-gray-900 dark:text-white"
+      class="bg-gray-50 p-4 select-none border-b lg:hidden absolute w-full dark:bg-gray-900 dark:text-white"
     >
       <NuxtLink
         to="/about-us"
-        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         About us
       </NuxtLink>
       <NuxtLink
         to="/services"
-        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         Services
       </NuxtLink>
       <NuxtLink
         to="/articles"
-        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         Articles
       </NuxtLink>
 
       <NuxtLink
         to="/events"
-        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         Events
       </NuxtLink>
       <NuxtLink
         to="/safeguarding"
-        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         Safeguarding
       </NuxtLink>
       <NuxtLink
         to="/products"
-        class="block font-semibold text-gray-800 py-3 px-3 hover:bg-gray-400 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
       >
         Products
       </NuxtLink>
-      <SnipcartButton :dinamic-color="dinamicColor"></SnipcartButton>
+      <SnipcartButton :color="dinamicColor"></SnipcartButton>
     </div>
   </header>
 </template>
@@ -187,14 +183,15 @@ export default Vue.extend({
       this.checkColor()
     })
   },
+  beforeDestroy() {
+    window.addEventListener('load', this.scrollHandler)
+    window.addEventListener('scroll', this.scrollHandler)
+  },
   methods: {
     async logout() {
       await this.$auth.logout()
     },
-    beforeDestroy() {
-      window.addEventListener('load', this.scrollHandler)
-      window.addEventListener('scroll', this.scrollHandler)
-    },
+
     scrollHandler() {
       this.scrollHeight = window.scrollY
     },

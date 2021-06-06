@@ -1,10 +1,10 @@
 <template>
   <svg
     enable-background="new 0 0 24 24"
-    height="20"
-    width="20"
+    :height="height"
+    :width="width"
+    :fill="color"
     viewBox="0 0 24 24"
-    class="fill-current text-gray-600"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -18,6 +18,20 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'GithubImage',
+  props: {
+    color: {
+      type: String,
+      default: 'black',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
 })
 </script>
 
