@@ -3,13 +3,13 @@
     <p class="px-2 py-3 block">Change Font Size:</p>
     <p class="flex items-center justify-center py-3">
       <button
-        class="mx-4 px-2 py-2 text-sm border rounded border-gray-400 dark:bg-gray-900 dark:text-white dark:border-gray-50"
+        class="mx-4 px-3 py-2 text-sm border rounded border-gray-400 dark:bg-gray-900 dark:text-white dark:border-gray-50"
         @click="fontSizeDecrease('0.25')"
       >
         A-
       </button>
       <button
-        class="mx-4 px-2 py-2 text-sm border rounded border-gray-400 dark:bg-gray-900 dark:text-white dark:border-gray-50"
+        class="mx-4 px-3 py-2 text-sm border rounded border-gray-400 dark:bg-gray-900 dark:text-white dark:border-gray-50"
         @click="fontSizeIncrease('0.25')"
       >
         A+

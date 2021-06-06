@@ -48,29 +48,17 @@ export default Vue.extend({
     AccesibilityFonts,
     VColorSelect,
   },
-  data() {
-    return {
-      dinamicColor: 'white',
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.checkColor()
-    })
-    this.$root.$on('changeColor', () => {
-      this.$nextTick(() => {
-        this.checkColor()
-      })
-    })
-  },
-  methods: {
-    checkColor() {
-      localStorage['nuxt-color-mode'] &&
-      localStorage['nuxt-color-mode'] !== 'light'
-        ? (this.dinamicColor = 'white')
-        : (this.dinamicColor = 'indigo')
+  props: {
+    dinamicColor: {
+      type: String,
+      default: 'indigo',
     },
   },
+  data() {
+    return {}
+  },
+  mounted() {},
+  methods: {},
 })
 </script>
 

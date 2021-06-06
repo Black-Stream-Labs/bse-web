@@ -18,7 +18,7 @@
         <NuxtLink to="/" class="lg:hidden text-sm">
           <LogoImage :color="dinamicColor" height="50" width="50"></LogoImage>
         </NuxtLink>
-        <AccesibilityMenu></AccesibilityMenu>
+        <AccesibilityMenu :dinamic-color="dinamicColor"></AccesibilityMenu>
       </div>
       <!-- Desktop Links -->
       <div
@@ -74,8 +74,8 @@
         >
           Products
         </NuxtLink>
-        <AccesibilityMenu></AccesibilityMenu>
-        <SnipcartButton></SnipcartButton>
+        <AccesibilityMenu :dinamic-color="dinamicColor"></AccesibilityMenu>
+        <SnipcartButton :dinamic-color="dinamicColor"></SnipcartButton>
       </div>
     </nav>
 
@@ -121,7 +121,7 @@
       >
         Products
       </NuxtLink>
-      <SnipcartButton></SnipcartButton>
+      <SnipcartButton :dinamic-color="dinamicColor"></SnipcartButton>
     </div>
   </header>
 </template>
@@ -165,11 +165,15 @@ export default Vue.extend({
       }
       this.showLogo = true
     },
+    '$colorMode.preference': {
+      handler() {
+        this.checkColor()
+      },
+      deep: true,
+      immediate: false,
+    },
   },
   mounted() {
-    this.$nextTick(() => {
-      this.checkColor()
-    })
     window.addEventListener('load', this.scrollHandler)
     window.addEventListener('scroll', this.scrollHandler)
     this.$root.$on('changeColor', () => {
@@ -178,7 +182,11 @@ export default Vue.extend({
       })
     })
   },
-
+  beforeMount() {
+    this.$nextTick(() => {
+      this.checkColor()
+    })
+  },
   methods: {
     async logout() {
       await this.$auth.logout()
@@ -192,9 +200,9 @@ export default Vue.extend({
     },
     checkColor() {
       localStorage['nuxt-color-mode'] &&
-      localStorage['nuxt-color-mode'] !== 'light'
-        ? (this.dinamicColor = 'white')
-        : (this.dinamicColor = 'indigo')
+      localStorage['nuxt-color-mode'] === 'light'
+        ? (this.dinamicColor = 'indigo')
+        : (this.dinamicColor = 'white')
     },
   },
 })

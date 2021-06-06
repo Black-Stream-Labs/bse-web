@@ -1,5 +1,5 @@
 <template>
-  <div class="py-3">
+  <div class="pt-3">
     <p class="py-2">Change Contrast Options:</p>
     <p class="flex items-center justify-center py-3">
       <button
@@ -9,13 +9,13 @@
         A
       </button>
       <button
-        class="mx-3 px-3 py-2 border rounded dark:bg-gray-900 dark:text-yellow-400 dark:border-yellow-400"
+        class="mx-3 px-3 py-2 border border-gray-400 rounded bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-yellow-400 dark:border-yellow-400"
         @click="fontSizeIncrease('0.25')"
       >
         A
       </button>
       <button
-        class="mx-3 px-3 py-2 border rounded border-gray-400 dark:bg-yellow-400 dark:border-yellow-400 dark:text-gray-900"
+        class="mx-3 px-3 py-2 border rounded border-gray-400 bg-yellow-400 dark:bg-yellow-400 dark:border-yellow-400 dark:text-gray-900"
         @click="fontSizeIncrease('0.25')"
       >
         A

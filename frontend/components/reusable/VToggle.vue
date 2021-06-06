@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center w-full my-3">
+  <div class="flex items-center justify-center w-full pt-3">
     <label for="toggleB" class="flex items-center cursor-pointer">
       <!-- toggle -->
       <div class="relative">

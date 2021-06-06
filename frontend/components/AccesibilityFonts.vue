@@ -1,16 +1,18 @@
 <template>
   <div class="pt-3 pb-6">
     <label for="fontFamily" class="px-2">Chose Font Family</label>
-    <select
-      id="fontFamily"
-      v-model="fontFamily"
-      class="w-28 h-8 border rounded dark:bg-gray-900 dark:text-white dark:border-gray-50"
-    >
-      <option value="Default">Default</option>
-      <option value="Arial">Arial</option>
-      <option value="Helvetica">Helvetica</option>
-      <option value="system">System</option>
-    </select>
+    <div class="flex items-center justify-center py-3">
+      <select
+        id="fontFamily"
+        v-model="fontFamily"
+        class="w-28 h-8 border rounded dark:bg-gray-900 dark:text-white dark:border-gray-50"
+      >
+        <option value="Default">Default</option>
+        <option value="Arial">Arial</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="system">System</option>
+      </select>
+    </div>
   </div>
 </template>
 

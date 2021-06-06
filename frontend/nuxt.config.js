@@ -41,10 +41,10 @@ export default {
   plugins: [
     '~plugins/axios',
     '~/plugins/apollo-overrides',
-    {
-      src: '~/plugins/checkTheme.js',
-      mode: 'client',
-    },
+    // {
+    //   src: '~/plugins/checkTheme.js',
+    //   mode: 'client',
+    // },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
