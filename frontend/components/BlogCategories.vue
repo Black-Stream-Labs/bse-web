@@ -33,9 +33,13 @@ export default Vue.extend({
   },
   apollo: {
     articleCategories: {
-      prefetch: false,
+      prefetch: true,
       query: categoriesQuery,
     },
+  },
+  mounted() {
+    console.log(this.articleCategories)
+    console.log(this.apollo)
   },
 })
 </script>

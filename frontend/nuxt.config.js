@@ -85,6 +85,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxtjs/dotenv',
+    '@nuxtjs/pwa',
     '@nuxtjs/auth',
     '@nuxtjs/strapi',
     '@nuxtjs/apollo',
@@ -115,7 +116,7 @@ export default {
     entities: [
       'blogs',
       'user',
-      'blog-categories',
+      'artcile-categories',
       'pages',
       'products',
       'productcategories',

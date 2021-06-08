@@ -17,7 +17,7 @@
     },
     "content": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "content.page-content"
     }
   }

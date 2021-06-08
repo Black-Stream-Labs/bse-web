@@ -3,7 +3,7 @@
     <Hero
       :title="page.title"
       :subtitle="page.subtitle"
-      :headerimage="page.content.header_image.url"
+      :headerimage="updatedHeaderIMage"
     ></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4 py-10">
@@ -40,8 +40,13 @@ export default Vue.extend({
     Hero,
   },
   layout: 'default',
-  async asyncData({ app }) {
-    const data = await app.$strapi.$http.$get('services')
+  async asyncData({ app, params }) {
+    console.log(params)
+    let routeParams = params.slug
+    if (!routeParams) {
+      routeParams = 'home-page'
+    }
+    const data = await app.$strapi.$http.$get(routeParams)
     return {
       page: data || {},
     }
@@ -58,6 +63,13 @@ export default Vue.extend({
         x.push(JSON.parse(formatContentImageUrl(e)))
       })
       return x
+    },
+    updatedHeaderIMage() {
+      if (this.page.content.header_image) {
+        return this.page.content.header_image.url
+      } else {
+        return null
+      }
     },
   },
 })
