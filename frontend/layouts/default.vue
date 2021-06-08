@@ -25,6 +25,7 @@
 import Vue from 'vue'
 import AppFooter from '@/components/AppFooter'
 import AppNavbar from '@/components/AppNavbar'
+import PageType from '~/types/pageType'
 
 export default Vue.extend({
   name: 'DefaultLayout',
@@ -32,8 +33,17 @@ export default Vue.extend({
     AppFooter,
     AppNavbar,
   },
+  data() {
+    return {
+      page: {} as PageType,
+    }
+  },
   async fetch() {
-    this.page = await this.$strapi.$http.$get('home-page')
+    let routeParam = this.$route.params.slug
+    if (!routeParam) {
+      routeParam = 'home-page'
+    }
+    this.page = await this.$strapi.$http.$get(routeParam)
   },
 })
 </script>

@@ -18,12 +18,12 @@
     "content": {
       "type": "component",
       "repeatable": false,
-      "component": "page-content.page-content"
+      "component": "content.page-content"
     },
-    "HomepageSections": {
+    "sections": {
       "type": "component",
       "repeatable": true,
-      "component": "page-section.page-section"
+      "component": "section.page-section"
     }
   }
 }

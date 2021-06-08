@@ -3,26 +3,23 @@
     <Hero
       :title="page.title"
       :subtitle="page.subtitle"
-      :headerimage="page.header_image.url"
-      size="is-medium"
+      :headerimage="page.content.header_image.url"
     ></Hero>
-    <section class="section py-20 px-4">
-      <div class="container max-w-5xl mx-auto">
-        <!--  eslint-disable-next-line vue/no-v-html -->
+    <section class="section">
+      <div class="container max-w-5xl mx-auto px-4 py-10">
         <div v-html="$md.render(updatedContent)" />
       </div>
-      <div class="container max-w-5xl mx-auto">
+      <div class="container max-w-5xl mx-auto px-4">
         <template v-for="(section, ind) in sectionUpdated">
-          <div :key="ind" class="flex items-center justify-center py-10">
-            <div class="" :class="ind % 2 == 0 ? 'flex-row-reverse' : ''">
-              <img
-                :src="section.section_image.url"
-                alt=""
-                width="300"
-                class="image"
-              />
+          <div
+            :key="ind"
+            class="flex items-center justify-center py-10"
+            :class="ind % 2 == 0 ? 'flex-row-reverse' : ''"
+          >
+            <div class="w-1/2 flex items-center justify-center p-4">
+              <img :src="section.section_image.url" alt="" class="image" />
             </div>
-            <div class="" :class="ind % 2 == 0 ? 'flex-row-reverse' : ''">
+            <div class="w-1/2">
               <div v-html="$md.render(section.section_content)"></div>
             </div>
           </div>
@@ -50,12 +47,12 @@ export default Vue.extend({
   },
   computed: {
     updatedContent() {
-      return formatContentImageUrl(this.page.content)
+      return formatContentImageUrl(this.page.content.content)
     },
     sectionUpdated() {
-      if (!this.page.HomepageSections) return
+      if (!this.page.sections) return
       const x = []
-      this.page.HomepageSections.forEach((el) => {
+      this.page.sections.forEach((el) => {
         const e = JSON.stringify(el)
         x.push(JSON.parse(formatContentImageUrl(e)))
       })

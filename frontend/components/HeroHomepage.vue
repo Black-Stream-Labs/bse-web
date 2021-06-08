@@ -1,7 +1,7 @@
 <template>
   <section class="py-20 custom-background bg-gray-100 text-gray-800 border-b-2">
     <div class="container mx-auto">
-      <div class="px-4 md:block">
+      <div class="px-10 md:block">
         <div class="pb-8 mt-auto">
           <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="title w-2/5">
@@ -30,6 +30,9 @@ import Vue, { PropOptions } from 'vue'
 import LogoImage from '@/components/icons/LogoImage.vue'
 export default Vue.extend({
   name: 'HeroHomepage',
+  components: {
+    LogoImage,
+  },
   props: {
     title: {
       type: String,
@@ -53,9 +56,6 @@ export default Vue.extend({
     return {
       // isOpen: false,
     }
-  },
-  components: {
-    LogoImage,
   },
 })
 </script>

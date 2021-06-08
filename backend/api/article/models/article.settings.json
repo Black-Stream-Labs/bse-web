@@ -21,7 +21,7 @@
     "article_content": {
       "type": "component",
       "repeatable": false,
-      "component": "page-content.page-content"
+      "component": "content.page-content"
     },
     "published": {
       "type": "boolean"

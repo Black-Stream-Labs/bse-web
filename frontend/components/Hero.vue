@@ -1,7 +1,7 @@
 <template>
   <section class="py-20 custom-background bg-gray-100 text-gray-800 border-b-2">
     <div class="container mx-auto">
-      <div class="px-4 md:block">
+      <div class="px-10 md:block">
         <div class="pb-8 mt-auto">
           <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="title w-2/5">
@@ -15,7 +15,7 @@
             </div>
 
             <div v-if="headerimage" class="mb-6 mt-12 w-3/5 hidden md:block">
-              <img :src="`/api/v1/${headerimage}`" alt="header image" />
+              <img :src="$getStrapiMedia(headerimage)" alt="header image" />
             </div>
           </div>
         </div>
@@ -27,7 +27,9 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue, { PropOptions } from 'vue'
+import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
+  mixins: [imageUrlManipulation],
   props: {
     title: {
       type: String,
@@ -40,10 +42,6 @@ export default Vue.extend({
     headerimage: {
       type: [String, null],
       default: null,
-    } as PropOptions,
-    size: {
-      type: String,
-      default: 'is-small',
     } as PropOptions,
   },
 

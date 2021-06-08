@@ -18,22 +18,12 @@
     "sections": {
       "type": "component",
       "repeatable": true,
-      "component": "page-section.page-section"
-    },
-    "header_image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
+      "component": "section.page-section"
     },
     "content": {
-      "type": "richtext"
+      "type": "component",
+      "repeatable": false,
+      "component": "content.page-content"
     }
   }
 }

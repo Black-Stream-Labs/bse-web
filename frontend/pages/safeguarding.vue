@@ -3,7 +3,7 @@
     <Hero
       :title="page.title"
       :subtitle="page.subtitle"
-      :headerimage="page.header_image.url"
+      :headerimage="parsedHeaderImage"
     ></Hero>
     <section class="container max-w-5xl mx-auto">
       <div v-html="$md.render(updatedContent)" />
@@ -32,6 +32,7 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
+
 export default Vue.extend({
   name: 'SafeguardingPage',
   components: {
@@ -46,8 +47,16 @@ export default Vue.extend({
   },
   computed: {
     updatedContent() {
-      return formatContentImageUrl(this.page.content)
+      return formatContentImageUrl(this.page.content.content)
     },
+    parsedHeaderImage() {
+      if (this.page.header_image) {
+        return this.page.header_image.url
+      } else {
+        return null
+      }
+    },
+
     sectionUpdated() {
       if (!this.page.sections) return
       const x = []

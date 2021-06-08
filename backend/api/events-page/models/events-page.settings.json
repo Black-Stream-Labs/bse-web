@@ -16,19 +16,9 @@
       "type": "string"
     },
     "content": {
-      "type": "richtext"
-    },
-    "header_image": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
+      "type": "component",
+      "repeatable": true,
+      "component": "content.page-content"
     }
   }
 }

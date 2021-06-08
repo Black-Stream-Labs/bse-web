@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "article_tags",
   "info": {
-    "name": "article_tag",
+    "name": "ArticleTag",
     "description": ""
   },
   "options": {

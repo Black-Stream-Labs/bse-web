@@ -15,28 +15,15 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
-    },
-    "header_image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
-    },
     "sections": {
       "type": "component",
       "repeatable": true,
-      "component": "page-section.page-section"
+      "component": "section.page-section"
     },
-    "subtitle": {
-      "type": "string"
+    "content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.page-content"
     }
   }
 }
