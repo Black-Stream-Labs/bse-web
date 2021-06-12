@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto my-12 px-4">
+  <div class="my-12">
     <div class="md:flex justify-between items-center mb-8">
       <div>
         <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">

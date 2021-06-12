@@ -114,12 +114,13 @@ export default {
   strapi: {
     url: '/api/v1',
     entities: [
-      'blogs',
       'user',
-      'artcile-categories',
-      'pages',
+      'articles',
+      'article-categories',
+      'article-tags',
       'products',
-      'productcategories',
+      'single-events',
+      'product-categories',
     ],
   },
   env: {},

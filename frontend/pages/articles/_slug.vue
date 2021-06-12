@@ -37,12 +37,11 @@ import Vue from 'vue'
 import articleQuery from '~/apollo/queries/blog/article'
 
 export default Vue.extend({
-  name: 'ArticlePage',
+  name: 'SingleArticlePage',
   components: {
     // BlogCategories,
     // Hero,
   },
-  layout: 'article',
   data() {
     return {
       // article: {},

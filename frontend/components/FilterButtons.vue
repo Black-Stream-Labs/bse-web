@@ -36,7 +36,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import categoriesQuery from '~/apollo/queries/product/categories'
+// import categoriesQuery from '~/apollo/queries/blog/categories'
 export default Vue.extend({
   name: 'FilterButtons',
   data() {
@@ -45,12 +45,12 @@ export default Vue.extend({
       error: null,
     }
   },
-  apollo: {
-    categories: {
-      prefetch: true,
-      query: categoriesQuery,
-    },
-  },
+  // apollo: {
+  //   categories: {
+  //     prefetch: true,
+  //     query: categoriesQuery,
+  //   },
+  // },
 })
 </script>
 

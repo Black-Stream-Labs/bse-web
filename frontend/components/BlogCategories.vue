@@ -1,46 +1,41 @@
 <template>
-  <div class="columns is-mobile is-multiline is-centered">
-    <div class="column is-12">
-      <NuxtLink
-        to="/articles"
-        class="py-2 px-4 mr-2 button is-active is-outlined is-small is-rounded"
-      >
-        All Blogs
-      </NuxtLink>
-      <NuxtLink
-        v-for="cat in articleCategories"
-        :key="cat.slug"
-        :to="`/articles/blog-categories/${cat.slug}`"
-        class="py-2 px-4 mr-2 button is-small is-rounded"
-      >
-        {{ cat.category }}
-      </NuxtLink>
-    </div>
+  <div class="flex">
+    <NuxtLink
+      to="/articles"
+      class="p-2 mr-2 rounded border border-gray-500 border-opacity-25 hover:border-gray-500 dark:border-opacity-25 dark:border-gray-50 dark:hover:border-gray-50 hover:border-opacity-100 capitalize"
+    >
+      All Articles
+    </NuxtLink>
+    <NuxtLink
+      v-for="cat in articleCategories"
+      :key="cat.slug"
+      :to="`/articles/blog-categories/${cat.slug}`"
+      class="p-2 mr-2 rounded border border-gray-500 border-opacity-25 hover:border-gray-500 dark:border-gray-50 dark:border-opacity-25 dark:hover:border-gray-50 hover:border-opacity-100 capitalize"
+    >
+      {{ cat.category }}
+    </NuxtLink>
   </div>
 </template>
 
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import categoriesQuery from '~/apollo/queries/blog/categories'
+import { articleCategories } from '@/apollo/queries/blog/categories.js'
 export default Vue.extend({
-  name: 'FilterButtons',
+  name: 'BlogCategories',
   data() {
     return {
       articleCategories: [],
-      error: null,
     }
   },
-  apollo: {
-    articleCategories: {
-      prefetch: true,
-      query: categoriesQuery,
-    },
+  async fetch() {
+    const data = await this.$strapi.graphql({
+      query: articleCategories(),
+    })
+    this.articleCategories = [...data.articleCategories].flat()
   },
-  mounted() {
-    console.log(this.articleCategories)
-    console.log(this.apollo)
-  },
+  fetchOnServer: true,
+  fetchKey: 'article-categories',
 })
 </script>
 

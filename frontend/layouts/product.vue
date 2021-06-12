@@ -38,7 +38,7 @@ import FilterButtons from '@/components/FilterButtons'
 import PageType from '~/types/pageType'
 
 export default Vue.extend({
-  name: 'ProductLayout',
+  name: 'Product',
   components: {
     AppFooter,
     Hero,

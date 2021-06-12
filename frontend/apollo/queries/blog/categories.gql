@@ -6,6 +6,10 @@ query ArticleCategories {
     articles {
       slug
       title
+      article_tags {
+        slug
+        tag_name
+      }
     }
   }
 }

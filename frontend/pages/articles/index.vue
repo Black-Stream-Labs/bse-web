@@ -1,8 +1,11 @@
 <template>
   <div>
-    <Hero :title="page.title" :subtitle="page.subtitle"></Hero>
+    <Hero title="Latest News" :subtitle="page.subtitle"></Hero>
     <div class="section">
-      <div class="container">
+      <div class="container max-w-5xl mx-auto py-10 px-4">
+        <div v-if="updatedContent" class="page-content pb-10">
+          <div v-html="$md.render(updatedContent)"></div>
+        </div>
         <BlogCategories></BlogCategories>
         <BlogArticles :articles="articles"></BlogArticles>
       </div>
@@ -16,6 +19,9 @@ import Vue from 'vue'
 import Hero from '@/components/Hero'
 import BlogCategories from '@/components/BlogCategories'
 import BlogArticles from '@/components/BlogArticles'
+import { articleExtracts } from '@/apollo/queries/blog/articles.js'
+import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
+
 export default Vue.extend({
   name: 'ArticlesPage',
   components: {
@@ -25,12 +31,17 @@ export default Vue.extend({
   },
   layout: 'blog',
   async asyncData({ app }) {
-    const data = await app.$strapi.$http.$get('articles')
     const page = await app.$strapi.$http.$get('articles-page')
+    const articles = await app.$strapi.graphql({ query: articleExtracts() })
     return {
-      articles: data,
       page,
+      articles: articles.articles,
     }
+  },
+  computed: {
+    updatedContent() {
+      return formatContentImageUrl(this.page.content.content)
+    },
   },
 })
 </script>

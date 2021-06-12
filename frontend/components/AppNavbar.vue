@@ -26,39 +26,39 @@
       >
         <NuxtLink
           to="/about"
-          class="p-2 hover:bg-gray-700 flex items-center justify-center"
+          class="p-2 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           About us
         </NuxtLink>
         <NuxtLink
           to="/services"
-          class="p-2 hover:bg-gray-700 flex items-center justify-center"
+          class="p-2 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           Services
         </NuxtLink>
         <NuxtLink
           to="/articles"
-          class="p-2 hover:bg-gray-700 flex items-center justify-center"
+          class="p-2 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           Articles
         </NuxtLink>
 
         <NuxtLink
           to="/events"
-          class="p-2 hover:bg-gray-700 flex items-center justify-center"
+          class="p-2 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           Events
         </NuxtLink>
         <NuxtLink
           to="/safeguarding"
-          class="p-2 hover:bg-gray-700 flex items-center justify-center"
+          class="p-2 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           Safeguarding
         </NuxtLink>
 
         <NuxtLink
           to="/"
-          class="hover:rounded-full hover:bg-gray-700 flex items-center justify-center"
+          class="hover:rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           <!-- <transition name="animate-down"> -->
           <LogoImage :color="dinamicColor" height="60" width="60"></LogoImage>
@@ -66,7 +66,7 @@
         </NuxtLink>
         <NuxtLink
           to="/products"
-          class="p-2 hover:bg-gray-700 flex items-center justify-center"
+          class="p-2 hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
           Products
         </NuxtLink>
@@ -82,38 +82,38 @@
     >
       <NuxtLink
         to="/about"
-        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-50 dark:text-white"
       >
         About us
       </NuxtLink>
       <NuxtLink
         to="/services"
-        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-50 dark:text-white"
       >
         Services
       </NuxtLink>
       <NuxtLink
         to="/articles"
-        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-50 dark:text-white"
       >
         Articles
       </NuxtLink>
 
       <NuxtLink
         to="/events"
-        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-50 dark:text-white"
       >
         Events
       </NuxtLink>
       <NuxtLink
         to="/safeguarding"
-        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-50 dark:text-white"
       >
         Safeguarding
       </NuxtLink>
       <NuxtLink
         to="/products"
-        class="block font-semibold text-gray-800 p-3 hover:bg-gray-700 hover:text-gray-50 dark:text-white"
+        class="block font-semibold text-gray-800 p-3 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-50 dark:text-white"
       >
         Products
       </NuxtLink>

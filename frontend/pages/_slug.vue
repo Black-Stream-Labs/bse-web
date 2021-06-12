@@ -1,3 +1,5 @@
+e
+
 <template>
   <div>
     <Hero
@@ -41,7 +43,6 @@ export default Vue.extend({
   },
   layout: 'default',
   async asyncData({ app, params }) {
-    console.log(params)
     let routeParams = params.slug
     if (!routeParams) {
       routeParams = 'home-page'
