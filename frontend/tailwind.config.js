@@ -71,5 +71,10 @@ module.exports = {
     borderColor: ['dark', 'dark-focus', 'dark-focus-within'],
     textColor: ['dark', 'dark-hover', 'dark-active'],
   },
-  // plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
+    require('@tailwindcss/line-clamp'),
+  ],
 }

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
 export function articleExtracts() {
@@ -6,7 +7,8 @@ export function articleExtracts() {
       articles {
         slug
         title
-        article_content {
+        published_at
+        content {
           content
           subtitle
           header_image {
@@ -15,6 +17,7 @@ export function articleExtracts() {
             formats
           }
         }
+        description
         article_tags {
           id
           tag_name

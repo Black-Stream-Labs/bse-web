@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function articleCategories() {
+export function categsExtra() {
   const query = gql`
     query ArticleCategories {
       articleCategories {
@@ -11,6 +11,17 @@ export function articleCategories() {
         articles {
           slug
           title
+          description
+          published_at
+          content {
+            header_image {
+              url
+            }
+          }
+          author {
+            username
+            id
+          }
           article_tags {
             slug
             tag_name

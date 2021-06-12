@@ -1,59 +1,55 @@
 <template>
-  <div class="flex">
-    <div class="w-full">
-      <ol class="flex text-gray-700 bg-gray-300 rounded py-2 px-2">
-        <li class="px-2"><a href="#" class="hover:underline">Home</a></li>
-        <li class="text-gray-500 select-none">/</li>
-        <li class="px-2"><a href="#" class="hover:underline">Series</a></li>
-        <li class="text-gray-500 select-none">/</li>
-        <li class="px-2 text-indigo-600">Game of thrones</li>
-      </ol>
-
-      <br />
-      <br />
+  <div>
+    <Hero title="Fisrt titt"></Hero>
+    <div class="section">
+      <div class="container max-w-5xl mx-auto py-10 px-4">
+        <div v-if="updatedContent" class="page-content pb-10">
+          <div v-html="$md.render(updatedContent)"></div>
+        </div>
+      </div>
     </div>
-
-    <!-- <Hero :title="article.title"></Hero>
-    <BlogCategories></BlogCategories>
-    <article class="column is-12">
-      <div
-        v-if="article.article_content"
-        id="editor"
-        v-html="$md.render(article.article_content.content)"
-      ></div>
-      <div v-if="article.content" id="editor">{{ article.content }}</div>
-      <p v-if="article.published_at">
-        {{ new Date(article.published_at).toLocaleString() }}
-      </p>
-    </article> -->
   </div>
 </template>
 
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-// import Hero from '@/components/Hero'
-// import BlogCategories from '@/components/BlogCategories'
-import articleQuery from '~/apollo/queries/blog/article'
+import Hero from '@/components/Hero'
+import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
+import { singleArticle } from '@/apollo/queries/blog/singleArticle.js'
+// import singleArticle from '@/apollo/queries/blog/singleArticle.gql'
 
 export default Vue.extend({
   name: 'SingleArticlePage',
   components: {
-    // BlogCategories,
-    // Hero,
+    Hero,
   },
-  data() {
-    return {
-      // article: {},
+  async asyncData({ $strapi, route }) {
+    try {
+      const { articles } = await $strapi.graphql({
+        query: singleArticle(),
+        variables: { slug: `${route.params.slug}` },
+      })
+      return { article: articles[0] }
+    } catch (error) {
+      console.log(error)
     }
   },
-  apollo: {
-    article: {
-      prefetch: false,
-      query: articleQuery,
-      variables() {
-        return { slug: this.$route.params.slug.toLowerCase() }
-      },
+
+  computed: {
+    updatedContent() {
+      if (this.article.content) {
+        return formatContentImageUrl(this.article.content.content)
+      } else {
+        return null
+      }
+    },
+    updatedHeaderIMage() {
+      if (this.article.content && this.article.content.header_image) {
+        return this.article.content.header_image.url
+      } else {
+        return null
+      }
     },
   },
 })

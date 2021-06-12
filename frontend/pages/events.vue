@@ -1,5 +1,3 @@
-e
-
 <template>
   <div>
     <Hero
@@ -36,25 +34,26 @@ e
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
+import { events } from '@/apollo/queries/pages/events.js'
+
 export default Vue.extend({
-  name: 'SitePageTemplate',
+  name: 'EventsPage',
   components: {
     Hero,
   },
-  layout: 'default',
-  async asyncData({ app, params }) {
-    let routeParams = params.slug
-    if (!routeParams) {
-      routeParams = 'home-page'
-    }
-    const data = await app.$strapi.$http.$get(routeParams)
+  async asyncData({ $strapi }) {
+    const data = await $strapi.graphql({ query: events() })
     return {
-      page: data || {},
+      page: data,
     }
   },
   computed: {
     updatedContent() {
-      return formatContentImageUrl(this.page.content.content)
+      if (this.page.content) {
+        return formatContentImageUrl(this.page.content.content)
+      } else {
+        return {}
+      }
     },
     sectionUpdated() {
       if (!this.page.sections) return
@@ -66,7 +65,7 @@ export default Vue.extend({
       return x
     },
     updatedHeaderIMage() {
-      if (this.page.content.header_image) {
+      if (this.page.content && this.page.content.header_image) {
         return this.page.content.header_image.url
       } else {
         return null

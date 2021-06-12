@@ -1,75 +1,87 @@
 <template>
   <div class="my-12">
-    <div class="md:flex justify-between items-center mb-8">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-          Recent Articles:
-        </h2>
-
-        <p class="text-gray-700">
-          Discover tutorials and news about algo-trading specifically written
-          for quants.
-        </p>
-      </div>
-
-      <div class="mt-2">
-        <a
-          href="/blog"
-          class="py-2 text-indigo-600 text-sm hover:underline mt-4"
-        >
-          Browse All <span>&rarr;</span>
-        </a>
-      </div>
-    </div>
     <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4">
-      <article
-        v-for="article in articles"
-        :key="article.id"
-        class="rounded border md:shadow w-full overflow-hidden"
-      >
-        <header>
-          <a href="#">
-            <img
-              v-if="article.header_image"
-              class="w-full h-48 object-cover"
-              :src="`/api/${article.header_image.url}`"
-              :alt="`${article.title} image`"
-            />
-          </a>
-        </header>
-
-        <main class="px-4 py-4">
-          <div class="text-xs text-gray-600 font-medium">
-            <a href="#" class="uppercase hover:underline"> recipe </a>
-            <span class="mx-1">&bull;</span>
-            <span>{{ article.published_at }}</span>
+      <div class="col-span-2">
+        <article
+          v-for="art in articles"
+          :key="art.id"
+          class="rounded border hover:border-gray-600 shadow w-full overflow-hidden md:flex my-2"
+        >
+          <div v-if="art.content && art.content.header_image" class="md:w-1/4">
+            <NuxtLink :to="`/articles/${art.slug}`">
+              <img
+                class="w-full h-full object-cover"
+                :src="$getStrapiMedia(art.content.header_image.url)"
+                :alt="`${art.content.title} image`"
+              />
+            </NuxtLink>
           </div>
 
-          <h3 class="font-semibold text-gray-800 my-4 hover:underline text-lg">
-            <a href="#"> {{ article.title }} </a>
-          </h3>
+          <div
+            class="px-4 py-4 w-full"
+            :class="
+              art.content &&
+              art.content.header_image &&
+              art.content.header_image.url
+                ? 'md:w-3/4 max-w-full'
+                : ''
+            "
+          >
+            <h3
+              class="font-semibold text-gray-800 mt-4 hover:underline text-lg"
+            >
+              <NuxtLink :to="`/articles/${art.slug}`">
+                {{ art.title }}
+              </NuxtLink>
+            </h3>
+            <p>
+              <span class="text-xs text-gray-500 italic">
+                Published -
+                {{
+                  new Date(art.published_at).toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    year: 'numeric',
+                    month: 'short',
+                  })
+                }}
+              </span>
+            </p>
+            <div v-if="art.description" class="mb-4 w-full text-gray-700">
+              <div
+                class="line-clamp-5"
+                v-html="$md.render(art.description)"
+              ></div>
+            </div>
 
-          <div class="text-gray-700">
-            {{ article.description }}
+            <div class="flex justify-between align-center">
+              <div class="w-3/4">
+                <p v-if="art.article_categories.length > 0" id="categories">
+                  <span class="text-xs">
+                    Categories:
+                    <NuxtLink
+                      v-for="cat in art.article_categories"
+                      :key="cat.id"
+                      :to="`/articles/categories/${cat.slug}`"
+                      class="capitalize text-gray-500 font-light rounded bg-gray-200 px-2 py-1"
+                    >
+                      {{ cat.category }}
+                    </NuxtLink>
+                  </span>
+                </p>
+              </div>
+              <div class="w-1/4 flex flex-col align-end justify-end">
+                <NuxtLink
+                  :to="`/articles/${art.slug}`"
+                  class="text-right py-2 text-indigo-600 text-xs uppercase hover:underline"
+                >
+                  Read More <span>&rarr;</span>
+                </NuxtLink>
+              </div>
+            </div>
           </div>
-          <p
-            v-if="article.article_categories.length"
-            id="category"
-            class="uk-text-uppercase"
-          >
-            <span v-for="cat in article.article_categories" :key="cat.id">
-              {{ cat.category }}
-            </span>
-          </p>
-        </main>
-        <footer class="mt-4">
-          <NuxtLink
-            :to="`/articles/${article.slug}`"
-            class="py-2 text-indigo-600 text-xs uppercase hover:underline"
-            >Read More <span>&rarr;</span></NuxtLink
-          >
-        </footer>
-      </article>
+        </article>
+      </div>
+      <BlogSidebar> </BlogSidebar>
     </div>
   </div>
 </template>
@@ -77,15 +89,24 @@
 <script lang="ts">
 //  @ts-nocheck
 import Vue from 'vue'
+import BlogSidebar from '@/components/BlogSidebar'
+
+import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 
 export default Vue.extend({
   name: 'BlogArticles',
+  components: {
+    BlogSidebar,
+  },
+  mixins: [imageUrlManipulation],
+
   props: {
     articles: { type: Array, default: () => [] },
   },
-
   data() {
-    return {}
+    return {
+      searchInputValue: null,
+    }
   },
   computed: {
     // articlesToDisplay() {
@@ -99,6 +120,7 @@ export default Vue.extend({
     //   return this.articles.slice(this.leftArticlesCount, this.articles.length)
     // },
   },
+  methods: {},
 })
 </script>
 

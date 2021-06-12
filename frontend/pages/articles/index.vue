@@ -1,13 +1,17 @@
 <template>
   <div>
-    <Hero title="Latest News" :subtitle="page.subtitle"></Hero>
+    <Hero
+      title="Latest News"
+      :subtitle="page.subtitle"
+      :headerimage="updatedHeaderIMage"
+    ></Hero>
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div v-if="updatedContent" class="page-content pb-10">
           <div v-html="$md.render(updatedContent)"></div>
         </div>
-        <BlogCategories></BlogCategories>
         <BlogArticles :articles="articles"></BlogArticles>
+        <NuxtChild></NuxtChild>
       </div>
     </div>
   </div>
@@ -17,7 +21,6 @@
 //  @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
-import BlogCategories from '@/components/BlogCategories'
 import BlogArticles from '@/components/BlogArticles'
 import { articleExtracts } from '@/apollo/queries/blog/articles.js'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
@@ -25,7 +28,6 @@ import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'ArticlesPage',
   components: {
-    BlogCategories,
     BlogArticles,
     Hero,
   },
@@ -33,6 +35,7 @@ export default Vue.extend({
   async asyncData({ app }) {
     const page = await app.$strapi.$http.$get('articles-page')
     const articles = await app.$strapi.graphql({ query: articleExtracts() })
+
     return {
       page,
       articles: articles.articles,
@@ -40,7 +43,18 @@ export default Vue.extend({
   },
   computed: {
     updatedContent() {
-      return formatContentImageUrl(this.page.content.content)
+      if (this.page.content) {
+        return formatContentImageUrl(this.page.content.content)
+      } else {
+        return null
+      }
+    },
+    updatedHeaderIMage() {
+      if (this.page.content && this.page.content.header_image) {
+        return this.page.content.header_image.url
+      } else {
+        return null
+      }
     },
   },
 })

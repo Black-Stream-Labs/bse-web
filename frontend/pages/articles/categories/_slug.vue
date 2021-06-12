@@ -1,34 +1,21 @@
 <template>
-  <BlogArticles :articles="articles" />
+  <div>
+    <Hero title="Our Authors"></Hero>
+    <section class="section">
+      <div class="container max-w-5xl mx-auto px-4">
+        <BlogCateofies></BlogCateofies>
+      </div>
+    </section>
+  </div>
 </template>
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import blogCategory from '~/apollo/queries/blog/category'
+import Hero from '@/components/Hero'
 export default Vue.extend({
-  name: 'CategoryPage',
-  layout: 'blog',
-
-  async asyncData({ app, route }) {
-    try {
-      const { data } = await app.apolloProvider.defaultClient.query({
-        query: blogCategory,
-        variables: {
-          slug: route.params.slug.toLowerCase(),
-        },
-      })
-      return {
-        articles: data.blogCategories[0].articles,
-      }
-    } catch (error) {
-      return error
-    }
-  },
-  data() {
-    return {
-      // error: null,
-      // articles: [],
-    }
+  name: 'SingleCategoryPage',
+  components: {
+    Hero,
   },
 })
 </script>

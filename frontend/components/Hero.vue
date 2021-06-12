@@ -16,8 +16,17 @@
               </p>
             </div>
 
-            <div v-if="headerimage" class="mb-6 mt-12 w-3/5 hidden md:block">
+            <div
+              v-if="headerimage"
+              class="mb-6 mt-12 w-3/5 hidden md:flex justify-center align-center"
+            >
               <img :src="$getStrapiMedia(headerimage)" alt="header image" />
+            </div>
+            <div
+              v-else
+              class="mb-6 mt-12 w-3/5 hidden md:flex justify-end align-center"
+            >
+              <LogoImage :color="dinamicColor" width="200" height="200" />
             </div>
           </div>
         </div>
@@ -30,7 +39,11 @@
 // @ts-nocheck
 import Vue, { PropOptions } from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
+import LogoImage from '@/components/icons/LogoImage.vue'
 export default Vue.extend({
+  components: {
+    LogoImage,
+  },
   mixins: [imageUrlManipulation],
   props: {
     title: {
@@ -46,11 +59,15 @@ export default Vue.extend({
       default: null,
     } as PropOptions,
   },
-
   data() {
     return {
-      isOpen: false,
+      dinamicColor: 'white',
     }
+  },
+  mounted() {
+    this.$root.$on('updateImageColor', (data: string) => {
+      this.dinamicColor = data
+    })
   },
 })
 </script>

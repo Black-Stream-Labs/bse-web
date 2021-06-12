@@ -101,6 +101,26 @@ export default {
     breaks: true,
     injected: true,
   },
+  image: {
+    provider: 'static',
+    presets: {
+      cover: {
+        modifiers: {
+          fit: 'cover',
+          format: 'jpg',
+          width: 300,
+          height: 300,
+        },
+      },
+      avatar: {
+        modifiers: {
+          format: 'jpg',
+          width: 50,
+          height: 50,
+        },
+      },
+    },
+  },
   proxy: [
     [
       '/api/v1',
@@ -114,7 +134,7 @@ export default {
   strapi: {
     url: '/api/v1',
     entities: [
-      'user',
+      'users',
       'articles',
       'article-categories',
       'article-tags',

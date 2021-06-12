@@ -24,6 +24,10 @@
       "type": "component",
       "repeatable": false,
       "component": "content.page-content"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 200
     }
   }
 }

@@ -151,16 +151,16 @@ export default Vue.extend({
     }),
   },
   watch: {
-    scrollHeight(newValue, oldValue) {
-      if (
-        (newValue && newValue !== 0 && newValue === oldValue) ||
-        newValue < 250
-      ) {
-        this.showLogo = false
-        return
-      }
-      this.showLogo = true
-    },
+    // scrollHeight(newValue, oldValue) {
+    //   if (
+    //     (newValue && newValue !== 0 && newValue === oldValue) ||
+    //     newValue < 250
+    //   ) {
+    //     this.showLogo = false
+    //     return
+    //   }
+    //   this.showLogo = true
+    // },
     '$colorMode.preference': {
       handler() {
         this.checkColor()
@@ -170,12 +170,15 @@ export default Vue.extend({
     },
   },
   mounted() {
-    window.addEventListener('load', this.scrollHandler)
-    window.addEventListener('scroll', this.scrollHandler)
-    this.$root.$on('changeColor', () => {
-      this.$nextTick(() => {
-        this.checkColor()
-      })
+    // window.addEventListener('load', this.scrollHandler)
+    // window.addEventListener('scroll', this.scrollHandler)
+    // this.$root.$on('changeColor', () => {
+    //   this.$nextTick(() => {
+    //     this.checkColor()
+    //   })
+    // })
+    this.$root.$on('updateImageColor', (data: string) => {
+      this.dinamicColor = data
     })
   },
   beforeMount() {
@@ -183,23 +186,27 @@ export default Vue.extend({
       this.checkColor()
     })
   },
-  beforeDestroy() {
-    window.addEventListener('load', this.scrollHandler)
-    window.addEventListener('scroll', this.scrollHandler)
-  },
+  // beforeDestroy() {
+  // window.addEventListener('load', this.scrollHandler)
+  // window.addEventListener('scroll', this.scrollHandler)
+  // },
   methods: {
     async logout() {
       await this.$auth.logout()
     },
 
-    scrollHandler() {
-      this.scrollHeight = window.scrollY
-    },
+    // scrollHandler() {
+    //   this.scrollHeight = window.scrollY
+    // },
     checkColor() {
-      localStorage['nuxt-color-mode'] &&
-      localStorage['nuxt-color-mode'] === 'light'
-        ? (this.dinamicColor = 'indigo')
-        : (this.dinamicColor = 'white')
+      if (
+        localStorage['nuxt-color-mode'] &&
+        localStorage['nuxt-color-mode'] === 'light'
+      ) {
+        this.$root.$emit('updateImageColor', 'indigo')
+      } else {
+        this.$root.$emit('updateImageColor', 'white')
+      }
     },
   },
 })
