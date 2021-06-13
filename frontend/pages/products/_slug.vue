@@ -57,8 +57,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
+import { singleProdQuery } from '@/apollo/queries/product/singleProduct.js'
 import { ProductCustomFields, Product } from '~/types'
-import singleProduct from '~/apollo/queries/product/product'
 export default Vue.extend({
   name: 'ProductPage',
   layout: 'product',
@@ -69,9 +69,8 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    // @ts-ignore
-    const { data } = await this.$apolloProvider.defaultClient.query({
-      query: singleProduct,
+    const { data } = await this.$strapi.graphql({
+      query: { singleProdQuery() },
       variables: { slug: this.$route.params.slug },
     })
     this.product = data.products[0]

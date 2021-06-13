@@ -34,7 +34,7 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-import { about } from '@/apollo/queries/pages/about.js'
+import { aboutQuery } from '@/apollo/queries/pages/about.js'
 
 export default Vue.extend({
   name: 'AboutPage',
@@ -42,9 +42,9 @@ export default Vue.extend({
     Hero,
   },
   async asyncData({ $strapi }) {
-    const data = await $strapi.graphql({ query: about() })
+    const data = await $strapi.graphql({ query: aboutQuery() })
     return {
-      page: data,
+      page: data.about,
     }
   },
   computed: {
@@ -52,7 +52,7 @@ export default Vue.extend({
       if (this.page.content) {
         return formatContentImageUrl(this.page.content.content)
       } else {
-        return {}
+        return null
       }
     },
     sectionUpdated() {

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function safeguarding() {
+export function safeguardingQuery() {
   const query = gql`
     query Safeguarding {
       safeguarding {

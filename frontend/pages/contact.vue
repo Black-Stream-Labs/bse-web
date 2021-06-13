@@ -44,7 +44,7 @@ export default Vue.extend({
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: contact() })
     return {
-      page: data,
+      page: data.contact,
     }
   },
   computed: {
@@ -52,7 +52,7 @@ export default Vue.extend({
       if (this.page.content) {
         return formatContentImageUrl(this.page.content.content)
       } else {
-        return {}
+        return null
       }
     },
     sectionUpdated() {

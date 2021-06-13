@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function events() {
+export function eventsQuery() {
   const query = gql`
     query EventsPage {
       eventsPage {

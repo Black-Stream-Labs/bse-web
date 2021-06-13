@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropOptions } from 'vue'
 
 export default Vue.extend({
   name: 'LogoImage',
@@ -23,15 +23,15 @@ export default Vue.extend({
     color: {
       type: String,
       default: 'black',
-    },
+    } as PropOptions,
     width: {
       type: [String, Number],
       default: '50',
-    },
+    } as PropOptions,
     height: {
       type: [String, Number],
       default: '50',
-    },
+    } as PropOptions,
   },
 })
 </script>

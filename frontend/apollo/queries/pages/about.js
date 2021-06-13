@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function about() {
+export function aboutQuery() {
   const query = gql`
     query About {
       about {

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function services() {
+export function servicesQuery() {
   const query = gql`
     query Services {
       service {

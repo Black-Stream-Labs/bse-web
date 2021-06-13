@@ -7,11 +7,13 @@ export default {
       }
     },
     $formatContentImageUrl(content) {
+      if (!content) return
       return content.split('/uploads/').join(`/api/v1/uploads/`)
     },
   },
 }
 export function formatContentImageUrl(content) {
+  if (!content) return
   return content.split('/uploads/').join(`/api/v1/uploads/`)
 }
 export function getStrapiMedia(url) {

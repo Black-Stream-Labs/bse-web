@@ -1,7 +1,0 @@
-query ProductCategories {
-  categories {
-    id
-    name
-    slug
-  }
-}

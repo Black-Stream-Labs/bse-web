@@ -34,7 +34,7 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-import { safeguarding } from '@/apollo/queries/pages/safeguarding.js'
+import { safeguardingQuery } from '@/apollo/queries/pages/safeguarding.js'
 
 export default Vue.extend({
   name: 'SafeguardingPage',
@@ -42,9 +42,9 @@ export default Vue.extend({
     Hero,
   },
   async asyncData({ $strapi }) {
-    const data = await $strapi.graphql({ query: safeguarding() })
+    const data = await $strapi.graphql({ query: safeguardingQuery() })
     return {
-      page: data,
+      page: data.safeguarding,
     }
   },
   computed: {

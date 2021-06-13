@@ -29,7 +29,7 @@
 
 <script lang="ts">
 // @ts-nocheck
-import Vue from 'vue'
+import Vue, { PropOptions } from 'vue'
 import VDropdown from '@/components/reusable/VDropdown'
 import SettingsImage from '@/components/icons/SettingsImage'
 import VColorSelect from '@/components/reusable/VColorSelect'
@@ -52,7 +52,7 @@ export default Vue.extend({
     dinamicColor: {
       type: String,
       default: 'indigo',
-    },
+    } as PropOptions,
   },
   data() {
     return {}

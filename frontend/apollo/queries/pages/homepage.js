@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function homePage() {
+export function homePageQuery() {
   const query = gql`
     query HomePage {
       homePage {

@@ -34,7 +34,7 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-import { homePage } from '@/apollo/queries/pages/homePage.js'
+import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
 
 export default Vue.extend({
   name: 'SitePageTemplate',
@@ -43,9 +43,9 @@ export default Vue.extend({
   },
   layout: 'default',
   async asyncData({ $strapi }) {
-    const data = await $strapi.graphql({ query: homePage() })
+    const data = await $strapi.graphql({ query: homePageQuery() })
     return {
-      page: data,
+      page: data.homePage,
     }
   },
   computed: {
@@ -53,7 +53,7 @@ export default Vue.extend({
       if (this.page.content) {
         return formatContentImageUrl(this.page.content.content)
       } else {
-        return {}
+        return null
       }
     },
     sectionUpdated() {

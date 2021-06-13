@@ -34,7 +34,7 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-import { events } from '@/apollo/queries/pages/events.js'
+import { eventsQuery } from '@/apollo/queries/pages/events.js'
 
 export default Vue.extend({
   name: 'EventsPage',
@@ -42,9 +42,9 @@ export default Vue.extend({
     Hero,
   },
   async asyncData({ $strapi }) {
-    const data = await $strapi.graphql({ query: events() })
+    const data = await $strapi.graphql({ query: eventsQuery() })
     return {
-      page: data,
+      page: data.eventsPage,
     }
   },
   computed: {

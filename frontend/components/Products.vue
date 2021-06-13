@@ -30,12 +30,15 @@
 
 <script lang="ts">
 // @ts-nocheck
-import Vue from 'vue'
+import Vue, { PropOptions } from 'vue'
 export default Vue.extend({
   name: 'ProductsPage',
   layout: 'product',
   props: {
-    products: { type: Array, default: () => [] },
+    products: {
+      type: Array,
+      default: () => [],
+    } as PropOptions,
   },
 })
 </script>

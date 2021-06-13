@@ -12,7 +12,7 @@
 
 <script lang="ts">
 // @ts-nocheck
-import Vue from 'vue'
+import Vue, { PropOptions } from 'vue'
 import { mdiCartOutline } from '@mdi/js'
 import ShoppingCart from '@/components/icons/ShoppingCart.vue'
 import UserImage from '@/components/icons/UserImage.vue'
@@ -27,7 +27,7 @@ export default Vue.extend({
     color: {
       type: String,
       default: 'indigo',
-    },
+    } as PropOptions,
   },
   data() {
     return {

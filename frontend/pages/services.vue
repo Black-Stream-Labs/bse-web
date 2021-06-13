@@ -34,16 +34,16 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-import { services } from '@/apollo/queries/pages/services.js'
+import { servicesQuery } from '@/apollo/queries/pages/services.js'
 export default Vue.extend({
   name: 'ServicesPage',
   components: {
     Hero,
   },
   async asyncData({ $strapi }) {
-    const data = await $strapi.graphql({ query: services() })
+    const data = await $strapi.graphql({ query: servicesQuery() })
     return {
-      page: data,
+      page: data.service,
     }
   },
   computed: {

@@ -5,20 +5,20 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import allProducts from '@/apollo/queries/product/products.gql'
+import { allProdQuery } from '@/apollo/queries/product/allProducts.js'
 export default Vue.extend({
   name: 'MainProductPage',
   layout: 'product',
-  async fetch() {
-    const { data } = await this.$apolloProvider.defaultClient.query({
-      query: allProducts,
-    })
-    this.products = data.products
-  },
   data() {
     return {
       products: [],
     }
+  },
+  async fetch() {
+    const { data } = await this.$strapi.graphql({
+      query: allProdQuery(),
+    })
+    this.products = data.products
   },
 })
 </script>
