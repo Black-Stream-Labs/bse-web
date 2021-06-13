@@ -147,7 +147,7 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseUrl: process.env.API_AUTH_URL || 'http://localhost:1337',
-    // proxy: true,
+    proxy: true,
   },
   apollo: {
     clientConfigs: {

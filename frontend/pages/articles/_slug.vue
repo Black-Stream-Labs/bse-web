@@ -1,11 +1,12 @@
 <template>
   <div>
-    <Hero title="Fisrt titt"></Hero>
+    <Hero :title="article.title" :headerimage="updatedHeaderIMage"></Hero>
+
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
-        <!-- <div v-if="updatedContent" class="page-content pb-10">
+        <div v-if="updatedContent" class="page-content pb-10">
           <div v-html="$md.render(updatedContent)"></div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -16,9 +17,6 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-// import { singleArticle } from '@/apollo/queries/blog/singleArticle.js'
-import singleArticle from '@/apollo/queries/blog/singleArticle.gql'
-
 export default Vue.extend({
   name: 'SingleArticlePage',
   components: {
@@ -30,24 +28,12 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    const data = await this.$apolloProvider.defaultClient.query({
-      query: singleArticle,
-      variables() {
-        return { slug: this.$route.params.slug }
-      },
+    const data = await this.$strapi.find('articles', {
+      slug: this.$route.params.slug,
     })
-    console.log(data)
-    this.article = data
+
+    this.article = data[0]
   },
-  // apollo: {
-  //   article: {
-  //     query: singleArticle,
-  //     prefetch: true,
-  //     variables() {
-  //       return { slug: this.$route.params.slug }
-  //     },
-  //   },
-  // },
 
   computed: {
     updatedContent() {

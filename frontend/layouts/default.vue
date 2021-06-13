@@ -5,11 +5,7 @@
     </a>
     <AppNavbar></AppNavbar>
     <div id="main-content">
-      <div v-if="$fetchState.pending">Super Loader</div>
-      <div v-else-if="$fetchState.error">Error</div>
-      <template v-else>
-        <Nuxt></Nuxt>
-      </template>
+      <Nuxt></Nuxt>
     </div>
     <AppFooter />
     <div
@@ -25,25 +21,12 @@
 import Vue from 'vue'
 import AppFooter from '@/components/AppFooter'
 import AppNavbar from '@/components/AppNavbar'
-import PageType from '~/types/pageType'
 
 export default Vue.extend({
   name: 'DefaultLayout',
   components: {
     AppFooter,
     AppNavbar,
-  },
-  data() {
-    return {
-      page: {} as PageType,
-    }
-  },
-  async fetch() {
-    let routeParam = this.$route.params.slug
-    if (!routeParam) {
-      routeParam = 'home-page'
-    }
-    this.page = await this.$strapi.$http.$get(routeParam)
   },
 })
 </script>
