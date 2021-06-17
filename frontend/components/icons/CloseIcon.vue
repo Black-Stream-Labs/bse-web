@@ -8,14 +8,18 @@
   >
     <path
       d="M384 128L128 384"
-      :stroke="color"
+      :style="`stroke: ${
+        $colorMode.preference === 'light' ? 'indigo' : 'white'
+      }`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M128 128L384 384"
-      :stroke="color"
+      :style="`stroke: ${
+        $colorMode.preference === 'light' ? 'indigo' : 'white'
+      }`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -29,10 +33,6 @@ import Vue, { PropOptions } from 'vue'
 export default Vue.extend({
   name: 'CloseIcon',
   props: {
-    color: {
-      type: String,
-      default: 'black',
-    } as PropOptions,
     width: {
       type: [String, Number],
       default: '30',

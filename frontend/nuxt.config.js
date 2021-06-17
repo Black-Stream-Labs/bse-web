@@ -92,6 +92,7 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/proxy',
     '@nuxt/image',
+    '@nuxtjs/color-mode',
     // this is for outisde testing only
     // ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
   ],

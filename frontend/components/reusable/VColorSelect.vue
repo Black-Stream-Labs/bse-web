@@ -6,7 +6,7 @@
         id="themeSelect"
         v-model="$colorMode.preference"
         class="w-28 h-8 border rounded dark:bg-gray-900 dark:text-white dark:border-gray-50"
-        @change="$root.$emit('changeColor')"
+        @change="(ev) => $root.$emit('changeColor', ev.target.value)"
       >
         <option value="system">System</option>
         <option value="light">Light</option>

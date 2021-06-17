@@ -28,6 +28,11 @@ export default Vue.extend({
     AppFooter,
     AppNavbar,
   },
+  mounted() {
+    this.$root.$on('changeColor', (data: string) => {
+      console.log('color changed', data)
+    })
+  },
 })
 </script>
 <style></style>

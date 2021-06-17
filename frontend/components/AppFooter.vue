@@ -142,35 +142,8 @@ export default Vue.extend({
       dinamicColor: 'white',
     }
   },
-  watch: {
-    '$colorMode.preference': {
-      handler() {
-        this.checkColor()
-      },
-      deep: true,
-      immediate: false,
-    },
-  },
-  mounted() {
-    this.$root.$on('changeColor', () => {
-      this.$nextTick(() => {
-        this.checkColor()
-      })
-    })
-  },
-  beforeMount() {
-    this.$nextTick(() => {
-      this.checkColor()
-    })
-  },
-  methods: {
-    checkColor() {
-      localStorage['nuxt-color-mode'] &&
-      localStorage['nuxt-color-mode'] === 'light'
-        ? (this.dinamicColor = 'white')
-        : (this.dinamicColor = 'white')
-    },
-  },
+
+  mounted() {},
 })
 </script>
 

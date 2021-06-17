@@ -7,18 +7,18 @@
     >
       <div class="lg:hidden">
         <button v-if="!isOpen" @click="isOpen = true">
-          <MenuIcon :color="dinamicColor"></MenuIcon>
+          <MenuIcon></MenuIcon>
         </button>
 
         <button v-else @click="isOpen = false">
-          <CloseIcon :color="dinamicColor"></CloseIcon>
+          <CloseIcon></CloseIcon>
         </button>
       </div>
       <div class="sm:flex lg:hidden flex items-center justify-between w-1/2">
         <NuxtLink to="/" class="lg:hidden text-sm">
-          <LogoImage :color="dinamicColor" height="50" width="50"></LogoImage>
+          <LogoImage height="50" width="50"></LogoImage>
         </NuxtLink>
-        <AccesibilityMenu :color="dinamicColor"></AccesibilityMenu>
+        <AccesibilityMenu></AccesibilityMenu>
       </div>
       <!-- Desktop Links -->
       <div
@@ -60,9 +60,9 @@
           to="/"
           class="hover:rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 flex items-center justify-center"
         >
-          <!-- <transition name="animate-down"> -->
-          <LogoImage :color="dinamicColor" height="60" width="60"></LogoImage>
-          <!-- </transition> -->
+          <transition name="animate-down">
+            <LogoImage :height="showLogo ? 60 : 0" width="60"></LogoImage>
+          </transition>
         </NuxtLink>
         <NuxtLink
           to="/products"
@@ -70,8 +70,8 @@
         >
           Products
         </NuxtLink>
-        <AccesibilityMenu :color="dinamicColor"></AccesibilityMenu>
-        <SnipcartButton :color="dinamicColor"></SnipcartButton>
+        <AccesibilityMenu></AccesibilityMenu>
+        <SnipcartButton></SnipcartButton>
       </div>
     </nav>
 
@@ -117,7 +117,7 @@
       >
         Products
       </NuxtLink>
-      <SnipcartButton :color="dinamicColor"></SnipcartButton>
+      <SnipcartButton></SnipcartButton>
     </div>
   </header>
 </template>
@@ -136,12 +136,13 @@ export default Vue.extend({
     LogoImage: () => import('@/components/icons/LogoImage'),
     AccesibilityMenu: () => import('@/components/AccesibilityMenu'),
   },
+
   data() {
     return {
       isOpen: false,
       showLogo: false,
       scrollHeight: 0,
-      dinamicColor: 'white',
+      dinamicColor: 'indigo',
     }
   },
   computed: {
@@ -151,62 +152,32 @@ export default Vue.extend({
     }),
   },
   watch: {
-    // scrollHeight(newValue, oldValue) {
-    //   if (
-    //     (newValue && newValue !== 0 && newValue === oldValue) ||
-    //     newValue < 250
-    //   ) {
-    //     this.showLogo = false
-    //     return
-    //   }
-    //   this.showLogo = true
-    // },
-    '$colorMode.preference': {
-      handler() {
-        this.checkColor()
-      },
-      deep: true,
-      immediate: false,
+    scrollHeight(newValue, oldValue) {
+      if (
+        (newValue && newValue !== 0 && newValue === oldValue) ||
+        newValue < 250
+      ) {
+        this.showLogo = false
+        return
+      }
+      this.showLogo = true
     },
   },
   mounted() {
-    // window.addEventListener('load', this.scrollHandler)
-    // window.addEventListener('scroll', this.scrollHandler)
-    // this.$root.$on('changeColor', () => {
-    //   this.$nextTick(() => {
-    //     this.checkColor()
-    //   })
-    // })
-    this.$root.$on('updateImageColor', (data: string) => {
-      this.dinamicColor = data
-    })
+    window.addEventListener('load', this.scrollHandler)
+    window.addEventListener('scroll', this.scrollHandler)
   },
-  beforeMount() {
-    this.$nextTick(() => {
-      this.checkColor()
-    })
+
+  beforeDestroy() {
+    window.removeEventListener('load', this.scrollHandler)
+    window.removeEventListener('scroll', this.scrollHandler)
   },
-  // beforeDestroy() {
-  // window.addEventListener('load', this.scrollHandler)
-  // window.addEventListener('scroll', this.scrollHandler)
-  // },
   methods: {
     async logout() {
       await this.$auth.logout()
     },
-
-    // scrollHandler() {
-    //   this.scrollHeight = window.scrollY
-    // },
-    checkColor() {
-      if (
-        localStorage['nuxt-color-mode'] &&
-        localStorage['nuxt-color-mode'] === 'light'
-      ) {
-        this.$root.$emit('updateImageColor', 'indigo')
-      } else {
-        this.$root.$emit('updateImageColor', 'white')
-      }
+    scrollHandler() {
+      this.scrollHeight = window.scrollY
     },
   },
 })

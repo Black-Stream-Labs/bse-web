@@ -116,7 +116,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      dinamicColor: 'white',
+      dinamicColor: 'indigo',
     }
   },
   mounted() {
