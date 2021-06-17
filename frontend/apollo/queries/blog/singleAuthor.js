@@ -3,8 +3,8 @@ import gql from 'graphql-tag'
 
 export function singleAuthor() {
   const query = gql`
-    query Users($username: String!) {
-      users(where: { username: $username }) {
+    query Users($slug: String!) {
+      users(where: { username: $slug }) {
         username
         id
         articles {

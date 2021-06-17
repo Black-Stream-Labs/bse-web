@@ -1,9 +1,23 @@
 <template>
   <div>
-    <Hero title="Our Authors"></Hero>
+    <Hero :title="singleCategory.category"></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
-        <BlogCateofies></BlogCateofies>
+        <div class="my-12">
+          <div
+            class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
+          >
+            <div class="col-span-2">
+              <template v-for="(article, ind) in singleCategory.articles">
+                <ArticleExtracts
+                  :key="ind"
+                  :article="article"
+                ></ArticleExtracts>
+              </template>
+            </div>
+            <BlogSidebar></BlogSidebar>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -12,10 +26,31 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
+import BlogSidebar from '@/components/BlogSidebar'
+import ArticleExtracts from '@/components/ArticleExtracts'
+
+import { categsExtra } from '@/apollo/queries/blog/categsExtra.js'
+
 export default Vue.extend({
   name: 'SingleCategoryPage',
   components: {
     Hero,
+    BlogSidebar,
+    ArticleExtracts,
+  },
+  async asyncData({ app }) {
+    const data = await app.$strapi.graphql({
+      query: categsExtra(),
+    })
+    return {
+      categories: data.articleCategories,
+    }
+  },
+  computed: {
+    singleCategory() {
+      const categs = this.categories
+      return categs.filter((el: any) => el.slug === this.$route.params.slug)[0]
+    },
   },
 })
 </script>

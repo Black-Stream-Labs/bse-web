@@ -67,14 +67,23 @@ module.exports = {
       'dark-group-hover',
       'dark-even',
       'dark-odd',
+      'hover',
+      'responsive',
     ],
-    borderColor: ['dark', 'dark-focus', 'dark-focus-within'],
-    textColor: ['dark', 'dark-hover', 'dark-active'],
+    borderColor: [
+      'dark',
+      'dark-focus',
+      'dark-focus-within',
+      'hover',
+      'responsive',
+    ],
+    textColor: ['dark', 'dark-hover', 'dark-active', 'hover', 'responsive'],
   },
   plugins: [
     require('@tailwindcss/forms')({
       strategy: 'class',
     }),
     require('@tailwindcss/line-clamp'),
+    require('tailwindcss-dark-mode')(),
   ],
 }

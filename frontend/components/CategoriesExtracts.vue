@@ -115,9 +115,9 @@ export default Vue.extend({
     this.categExtracts = data.articleCategories
   },
   mounted() {
-    this.$root.$on('updateImageColor', (data: string) => {
-      this.dinamicColor = data
-    })
+    // this.$root.$on('updateImageColor', (data: string) => {
+    //   this.dinamicColor = data
+    // })
   },
   fetchOnServer: true,
   fetchKey: 'article-categories',

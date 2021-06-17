@@ -2,7 +2,7 @@
   <div class="md:pl-2 flex flex-wrap text-xs capitalize">
     <NuxtLink
       to="/articles/categories"
-      class="text-gray-500 font-light rounded bg-gray-200 px-2 py-1 m-1"
+      class="text-gray-500 font-light rounded bg-gray-200 px-2 py-1 m-1 dark:bg-gray-700 dark:text-gray-300"
     >
       All Categories
     </NuxtLink>
@@ -10,7 +10,7 @@
       v-for="cat in articleCategories"
       :key="cat.slug"
       :to="`/articles/categories/${cat.slug}`"
-      class="text-gray-500 font-light rounded bg-gray-200 px-2 py-1 m-1"
+      class="text-gray-500 font-light rounded bg-gray-200 px-2 py-1 m-1 dark:bg-gray-700 dark:text-gray-300"
     >
       {{ cat.category }}
     </NuxtLink>

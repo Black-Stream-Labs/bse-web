@@ -13,6 +13,11 @@ export function categsExtra() {
           title
           description
           published_at
+          article_categories {
+            slug
+            id
+            category
+          }
           content {
             header_image {
               url

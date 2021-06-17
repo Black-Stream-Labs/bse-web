@@ -12,11 +12,11 @@
           placeholder="Search..."
         />
         <button
-          class="w-1/4 border border-gray-100 bg-gray-800 flex align-center justify-center"
+          class="w-1/4 border border-gray-100 bg-gray-800 flex place-items-center justify-center dark:bg-gray-700 dark:text-gray-300"
           @click="searchArticles"
         >
           <svg
-            class="fill-current h-6 w-6 text-gray-400"
+            class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
