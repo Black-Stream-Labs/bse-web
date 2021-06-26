@@ -4,10 +4,32 @@ import gql from 'graphql-tag'
 export function productCategoriesQuery() {
   const query = gql`
     query ProductCategories {
-      categories {
+      productCategories {
         id
-        name
+        categ_name
         slug
+        products {
+          id
+          slug
+          is_digital_product
+          product_name
+          published_at
+          product_description
+          product_main_image {
+            id
+            url
+            name
+          }
+          product_images {
+            id
+            name
+            url
+          }
+          product_categories {
+            slug
+            categ_name
+          }
+        }
       }
     }
   `

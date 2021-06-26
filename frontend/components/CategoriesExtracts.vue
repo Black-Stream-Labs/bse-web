@@ -20,7 +20,16 @@
           <article
             v-for="art in category.articles"
             :key="art.id"
-            class="rounded border hover:border-gray-600 shadow w-full overflow-hidden md:flex my-2"
+            class="
+              rounded
+              border
+              hover:border-gray-600
+              shadow
+              w-full
+              overflow-hidden
+              md:flex
+              my-2
+            "
           >
             <div
               v-if="art.content && art.content.header_image"
@@ -74,7 +83,13 @@
               <div class="flex flex-col align-end justify-end">
                 <NuxtLink
                   :to="`/articles/${art.slug}`"
-                  class="text-right py-2 text-indigo-600 text-xs uppercase hover:underline"
+                  class="
+                    text-right
+                    py-2
+                    text-indigo-600 text-xs
+                    uppercase
+                    hover:underline
+                  "
                 >
                   Read More <span>&rarr;</span>
                 </NuxtLink>

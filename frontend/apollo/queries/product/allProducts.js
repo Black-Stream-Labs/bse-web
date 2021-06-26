@@ -3,21 +3,27 @@ import gql from 'graphql-tag'
 
 export function allProdQuery() {
   const query = gql`
-    query {
-      products {
+    query Products {
+      products(limit: 1, start: 0) {
         id
-        title
-        description
+        product_name
+        product_description
         price
-        image {
+        is_digital_product
+        published_at
+        product_images {
           url
-          formats
+          name
         }
         slug
-        productcategories {
+        product_main_image {
           name
-          slug
+          url
+        }
+        product_categories {
           id
+          categ_name
+          slug
         }
       }
     }

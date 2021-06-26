@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "products",
   "info": {
-    "name": "Product"
+    "name": "Product",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -38,8 +39,9 @@
       "required": false,
       "pluginOptions": {}
     },
-    "digital_product": {
-      "type": "boolean"
+    "is_digital_product": {
+      "type": "boolean",
+      "default": false
     },
     "product_description": {
       "type": "richtext"
@@ -51,6 +53,9 @@
     "product_categories": {
       "via": "products",
       "collection": "product-categories"
+    },
+    "price": {
+      "type": "decimal"
     }
   }
 }

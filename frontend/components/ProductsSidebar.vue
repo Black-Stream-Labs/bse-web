@@ -1,9 +1,9 @@
 <template>
   <aside class="col-span-1">
     <div id="sidebar-search" class="mb-4">
-      <span class="mb-2 font-bold"> Search articles: </span>
+      <span class="mb-2 font-bold"> Search Products: </span>
       <div class="md:pl-2 flex no-padding">
-        <label for="searchinput" class="sr-only">Search articles</label>
+        <label for="searchinput" class="sr-only">Search products</label>
         <input
           id="searchinput"
           v-model="searchInputValue"
@@ -27,7 +27,7 @@
             justify-center
             dark:bg-gray-700 dark:text-gray-300
           "
-          @click="searchArticles"
+          @click="searchProducts"
         >
           <svg
             class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
@@ -43,11 +43,7 @@
     </div>
     <div id="sidebar-categs" class="mb-4">
       <span class="mb-2 font-bold">Categories</span>
-      <BlogCategories></BlogCategories>
-    </div>
-    <div id="sidebar-authors" class="mb-4">
-      <span class="mb-2 font-bold">Authors</span>
-      <BlogAuthors></BlogAuthors>
+      <ProductCategories></ProductCategories>
     </div>
   </aside>
 </template>
@@ -55,14 +51,12 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import BlogCategories from '@/components/BlogCategories'
-import BlogAuthors from '@/components/BlogAuthors'
+import ProductCategories from '@/components/ProductCategories'
 
 export default Vue.extend({
-  name: 'BlogSidebar',
+  name: 'ProductsSidebar',
   components: {
-    BlogCategories,
-    BlogAuthors,
+    ProductCategories,
   },
   data() {
     return {
@@ -70,7 +64,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    searchArticles() {
+    searchProducts() {
       if (this.searchInputValue) {
         console.log(this.searchInputValue)
       }

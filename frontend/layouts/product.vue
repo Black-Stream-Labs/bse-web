@@ -3,22 +3,9 @@
     <a href="#main-content" class="sr-only focus:not-sr-only">
       Skip to content
     </a>
+    <AppNavbar></AppNavbar>
     <div id="main-content">
-      <div v-if="$fetchState.pending">Super Loader</div>
-      <div v-else-if="$fetchState.error">Error</div>
-      <template v-else>
-        <Hero
-          :title="page.title"
-          :subtitle="page.content.subtitle"
-          :headerimage="page.content.header_image.url"
-        ></Hero>
-        <section class="section">
-          <div class="container">
-            <FilterButtons></FilterButtons>
-            <Nuxt></Nuxt>
-          </div>
-        </section>
-      </template>
+      <Nuxt></Nuxt>
     </div>
     <AppFooter />
     <div
@@ -33,24 +20,19 @@
 // @ts-nocheck
 import Vue from 'vue'
 import AppFooter from '@/components/AppFooter'
-import Hero from '@/components/Hero'
-import FilterButtons from '@/components/FilterButtons'
-import PageType from '~/types/pageType'
+import AppNavbar from '@/components/AppNavbar'
 
 export default Vue.extend({
   name: 'Product',
   components: {
     AppFooter,
-    Hero,
-    FilterButtons,
+    AppNavbar,
   },
-  data() {
-    return {
-      page: {} as PageType,
-    }
-  },
-  async fetch() {
-    this.page = await this.$strapi.$http.$get('product-page')
+
+  mounted() {
+    this.$root.$on('changeColor', (data: string) => {
+      console.log('color changed', data)
+    })
   },
 })
 </script>

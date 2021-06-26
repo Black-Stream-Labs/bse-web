@@ -1,28 +1,11 @@
 <template>
-  <div class="columns is-multiline is-centered is-mobile">
-    <div
-      v-for="product in products"
-      :key="product.id"
-      class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-align-self-stretch"
-    >
-      <div class="card bm--card-equal-height">
-        <header class="card-image pl-4 pt-4">
-          <figure class="image is-64x64">
-            <img class="" :src="`/api/strapi${product.image.url}`" />
-          </figure>
-        </header>
-        <main class="card-content py-3">
-          <div class="content">
-            <strong>{{ product.title }} sticker. </strong>
-            <br />
-            {{ product.description }}
-          </div>
-        </main>
-        <footer class="card-footer">
-          <NuxtLink :to="`/products/${product.slug}`" class="card-footer-item">
-            More Details
-          </NuxtLink>
-        </footer>
+  <div class="my-12">
+    <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4">
+      <div class="col-span-2">
+        <template v-for="product in products">
+          <ProductExtract :key="product.id" :product="product">
+          </ProductExtract>
+        </template>
       </div>
     </div>
   </div>
@@ -31,9 +14,14 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue, { PropOptions } from 'vue'
+import ProductExtract from '@/components/ProductExtract'
 export default Vue.extend({
   name: 'ProductsPage',
+  components: {
+    ProductExtract,
+  },
   layout: 'product',
+
   props: {
     products: {
       type: Array,

@@ -1,24 +1,33 @@
 <template>
-  <Products :products="products" />
+  <div>
+    <Hero title="Our Products"></Hero>
+    <div class="section">
+      <div class="container max-w-5xl mx-auto py-10 px-4">
+        <Products :products="products" />
+        <NuxtChild></NuxtChild>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
+import Hero from '@/components/Hero'
+import Products from '@/components/Products'
 import { allProdQuery } from '@/apollo/queries/product/allProducts.js'
 export default Vue.extend({
   name: 'MainProductPage',
-  layout: 'product',
-  data() {
-    return {
-      products: [],
-    }
+  components: {
+    Products,
+    Hero,
   },
-  async fetch() {
-    const { data } = await this.$strapi.graphql({
+  layout: 'product',
+  async asyncData({ app }) {
+    const data = await app.$strapi.graphql({
       query: allProdQuery(),
     })
-    this.products = data.products
+    return { products: data.products }
   },
 })
 </script>

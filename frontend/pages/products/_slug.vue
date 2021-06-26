@@ -1,51 +1,99 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card-content">
-        <div class="media">
-          <div v-if="product.image" class="media-left">
-            <figure class="image is-128x128">
-              <img
-                :src="$getStrapiMedia(product.image.formats.thumbnail.url)"
-              />
-            </figure>
-          </div>
-          <div class="media-content">
-            <h4 class="title is-4">
-              {{ product.title }} - ${{ product.price }}
-            </h4>
-          </div>
-        </div>
-        <div class="content">
-          <div class="subtitle is-6">{{ product.description }}</div>
-          <b-button
-            v-if="product.status === 'published'"
-            type="is-primary"
-            class="snipcart-add-item mt-4 py-2 px-4"
-            :data-item-id="product.id"
-            :data-item-price="product.price"
-            :data-item-url="`${$route.fullPath}`"
-            :data-item-description="product.description"
-            :data-item-image="`/api/${product.image.formats.thumbnail.url}`"
-            :data-item-name="product.title"
-            v-bind="customFields"
-          >
-            Add to cart
-          </b-button>
+    <Hero
+      :title="product.product_name"
+      :headerimage="updatedHeaderIMage"
+    ></Hero>
 
-          <div v-else class="text-center mr-10 mb-1">
+    <div class="section">
+      <div class="container max-w-5xl mx-auto py-10 px-4">
+        <div v-if="updatedContent" class="page-content pb-10">
+          <div class="my-12">
             <div
-              class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
-              role="alert"
+              class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
             >
-              <span
-                class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"
-              >
-                Coming soon...
-              </span>
-              <span class="font-semibold mr-2 text-left flex-auto">
-                This article is not available yet.
-              </span>
+              <div class="col-span-2">
+                <div class="capitalize font-extrabold italic mb-5">
+                  Price: <b>£{{ product.price }}</b>
+                </div>
+                <div class="capitalize font-extrabold italic mb-5">
+                  Category:
+
+                  <NuxtLink
+                    v-for="cat in product.product_categories"
+                    :key="cat.slug"
+                    :to="`/products/categories/${cat.slug}`"
+                    class="
+                      text-gray-500
+                      font-light
+                      rounded
+                      bg-gray-200
+                      px-2
+                      py-1
+                      m-1
+                      dark:bg-gray-700 dark:text-gray-300
+                    "
+                  >
+                    {{ cat.categ_name }}
+                  </NuxtLink>
+                </div>
+                <div class="capitalize font-extrabold italic mb-5">
+                  Digital Product:
+                  <b
+                    class="
+                      text-gray-500
+                      font-light
+                      rounded
+                      bg-gray-200
+                      px-2
+                      py-1
+                      m-1
+                      dark:bg-gray-700 dark:text-gray-300
+                    "
+                  >
+                    {{ product.is_digital_product ? 'Yes' : 'No' }}
+                  </b>
+                </div>
+                <div v-html="$md.render(updatedContent)"></div>
+
+                <div>
+                  Extra Images
+
+                  <section
+                    id="photos"
+                    class="my-5 grid grid-cols-1 md:grid-cols-4 gap-4"
+                  >
+                    <template v-for="image in product.product_images">
+                      <button
+                        :key="image.id"
+                        class="hover:opacity-75"
+                        target="_new"
+                        @click="selectImage(image)"
+                      >
+                        <img
+                          class="w-full h-36 object-cover"
+                          :src="$getStrapiMedia(image.formats.small.url)"
+                          :alt="image.name.split('.')[0]"
+                        />
+                      </button>
+                    </template>
+                    <VModal
+                      :image="selectedImage"
+                      :title="selectedImage ? selectedImage.caption : null"
+                      :opened="selectedImage ? true : false"
+                      @close="selectedImage = null"
+                    >
+                      <img
+                        v-if="selectedImage"
+                        class="w-full h-128 object-cover"
+                        :src="$getStrapiMedia(selectedImage.formats.large.url)"
+                        :alt="selectedImage.caption || 'Product Image'"
+                      />
+                    </VModal>
+                  </section>
+                </div>
+              </div>
+              <ProductsSidebar></ProductsSidebar>
             </div>
           </div>
         </div>
@@ -57,43 +105,57 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import { singleProdQuery } from '@/apollo/queries/product/singleProduct.js'
-import { ProductCustomFields, Product } from '~/types'
+import Hero from '@/components/Hero'
+import VModal from '@/components/reusable/VModal'
+import ProductsSidebar from '@/components/ProductsSidebar'
+import imageUrlManipulation, {
+  formatContentImageUrl,
+} from '@/mixins/updateImageUrl.js'
+
 export default Vue.extend({
-  name: 'ProductPage',
+  name: 'SingleProductPage',
+  components: {
+    Hero,
+    ProductsSidebar,
+    VModal,
+  },
+  mixins: [imageUrlManipulation],
+
   layout: 'product',
   data() {
     return {
-      product: {} as Product,
-      error: {} as Error,
+      product: {},
+      showModal: false,
+      selectedImage: null,
     }
   },
   async fetch() {
-    const { data } = await this.$strapi.graphql({
-      query: { singleProdQuery() },
-      variables: { slug: this.$route.params.slug },
+    const data = await this.$strapi.find('products', {
+      slug: this.$route.params.slug,
     })
-    this.product = data.products[0]
+    this.product = data[0]
   },
   computed: {
-    customFields(): any {
-      return this.product.Custom_field.map((el: ProductCustomFields) => ({
-        name: el.title,
-        required: el.required,
-        options: el.options,
-      }))
-        .map((x: any, index: number) =>
-          Object.entries(x as any).map(([key, value]) => ({
-            [`data-item-custom${
-              index + 1
-            }-${key.toString().toLowerCase()}`]: value,
-          }))
-        )
-        .reduce((acc: any, curr: any) => acc.concat(curr), [])
-        .reduce((acc: any, curr: any) => ({
-          ...acc,
-          ...curr,
-        })) as Product
+    updatedContent() {
+      if (this.product.product_description) {
+        return formatContentImageUrl(this.product.product_description)
+      } else {
+        return null
+      }
+    },
+    updatedHeaderIMage() {
+      if (this.product.product_main_image) {
+        return this.product.product_main_image.url
+      } else {
+        return null
+      }
+    },
+  },
+  methods: {
+    selectImage(image: any) {
+      this.showModal = true
+      const { caption, alternativeText, formats, url } = image
+      this.selectedImage = { caption, alternativeText, formats, url }
     },
   },
 })
