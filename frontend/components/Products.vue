@@ -7,6 +7,7 @@
           </ProductExtract>
         </template>
       </div>
+      <ProductsSidebar></ProductsSidebar>
     </div>
   </div>
 </template>
@@ -15,10 +16,12 @@
 // @ts-nocheck
 import Vue, { PropOptions } from 'vue'
 import ProductExtract from '@/components/ProductExtract'
+import ProductsSidebar from '@/components/ProductsSidebar'
 export default Vue.extend({
   name: 'ProductsPage',
   components: {
     ProductExtract,
+    ProductsSidebar,
   },
   layout: 'product',
 

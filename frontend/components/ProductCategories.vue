@@ -53,7 +53,7 @@ export default Vue.extend({
     this.prodCategs = data.productCategories
   },
   fetchOnServer: true,
-  fetchKey: 'article-categories',
+  fetchKey: 'product-categories',
 })
 </script>
 

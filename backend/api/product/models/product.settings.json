@@ -56,6 +56,10 @@
     },
     "price": {
       "type": "decimal"
+    },
+    "product_filters": {
+      "via": "filter",
+      "collection": "product-filters"
     }
   }
 }

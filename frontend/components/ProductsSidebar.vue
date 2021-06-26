@@ -44,6 +44,10 @@
     <div id="sidebar-categs" class="mb-4">
       <span class="mb-2 font-bold">Categories</span>
       <ProductCategories></ProductCategories>
+      <template v-if="$route.name === 'products'">
+        <span class="mb-2 font-bold">Filters</span>
+        <ProductFilters></ProductFilters>
+      </template>
     </div>
   </aside>
 </template>
@@ -52,11 +56,13 @@
 // @ts-nocheck
 import Vue from 'vue'
 import ProductCategories from '@/components/ProductCategories'
+import ProductFilters from '@/components/ProductFilters'
 
 export default Vue.extend({
   name: 'ProductsSidebar',
   components: {
     ProductCategories,
+    ProductFilters,
   },
   data() {
     return {

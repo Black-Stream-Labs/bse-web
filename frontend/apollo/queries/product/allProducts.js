@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 export function allProdQuery() {
   const query = gql`
     query Products {
-      products(limit: 1, start: 0) {
+      products {
         id
         product_name
         product_description

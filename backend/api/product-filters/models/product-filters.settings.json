@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_filters",
+  "info": {
+    "name": "ProductFilters",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "filter_name": {
+      "type": "string"
+    },
+    "filter": {
+      "model": "product",
+      "via": "product_filters"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "filter_name"
+    }
+  }
+}
