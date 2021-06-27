@@ -51,14 +51,21 @@
               "
             >
               <h3
-                class="font-semibold text-gray-800 mt-4 hover:underline text-lg"
+                class="
+                  font-semibold
+                  text-gray-800
+                  dark:text-gray-100
+                  mt-4
+                  hover:underline
+                  text-lg
+                "
               >
                 <NuxtLink :to="`/articles/${art.slug}`">
                   {{ art.title }}
                 </NuxtLink>
               </h3>
               <p>
-                <span class="text-xs text-gray-500 italic">
+                <span class="text-xs text-gray-500 italic dark:text-gray-100">
                   Published -
                   {{
                     new Date(art.published_at).toLocaleDateString('en-GB', {
@@ -69,7 +76,10 @@
                   }}
                 </span>
               </p>
-              <div v-if="art.description" class="mb-4 w-full text-gray-700">
+              <div
+                v-if="art.description"
+                class="mb-4 w-full text-gray-700 dark:text-gray-100"
+              >
                 <div
                   class="line-clamp-5"
                   v-html="$md.render(art.description)"
@@ -88,11 +98,13 @@
                         class="
                           capitalize
                           text-gray-500
+                          dark:text-gray-100 dark:bg-gray-600
                           font-light
                           rounded
                           bg-gray-200
                           px-2
                           py-1
+                          mx-1
                         "
                       >
                         {{ cat.category }}
@@ -106,7 +118,8 @@
                     class="
                       text-right
                       py-2
-                      text-indigo-600 text-xs
+                      text-blue-600 text-xs
+                      dark:text-gray-100
                       uppercase
                       hover:underline
                     "
