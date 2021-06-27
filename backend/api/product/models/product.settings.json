@@ -57,9 +57,9 @@
     "price": {
       "type": "decimal"
     },
-    "product_filters": {
-      "via": "filter",
-      "collection": "product-filters"
+    "product_filter": {
+      "via": "filters",
+      "model": "product-filters"
     }
   }
 }

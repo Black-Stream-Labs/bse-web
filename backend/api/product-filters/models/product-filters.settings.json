@@ -15,13 +15,14 @@
     "filter_name": {
       "type": "string"
     },
-    "filter": {
-      "model": "product",
-      "via": "product_filters"
-    },
     "slug": {
       "type": "uid",
       "targetField": "filter_name"
+    },
+    "filters": {
+      "columnName": "filters",
+      "via": "product_filter",
+      "collection": "product"
     }
   }
 }

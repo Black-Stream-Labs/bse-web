@@ -81,7 +81,7 @@ export default Vue.extend({
     return {
       prodFilters: [],
       checkedFilters: [],
-      allFilters: true,
+      allFilters: false,
     }
   },
   async fetch() {
@@ -100,7 +100,7 @@ export default Vue.extend({
 
       if (newValue !== oldValue && newValue.length > 0) {
         this.$router.push({
-          query: { q: encodeURIComponent(newValue.toString()) },
+          query: { product_filters: encodeURIComponent(newValue) },
         })
         this.allFilters = false
       }
@@ -108,7 +108,7 @@ export default Vue.extend({
   },
   methods: {
     searchWithFilters() {
-      const query = decodeURIComponent(this.$route.query.q)
+      const query = decodeURIComponent(this.$route.query.product_filters)
       this.$root.$emit('updateProductFilters', query)
     },
   },

@@ -31,18 +31,29 @@ export default Vue.extend({
   },
   mounted() {
     this.$root.$on('updateProductFilters', async (query: any) => {
-      let updatedProd
-      if (query !== 'undefined') {
-        updatedProd = await this.$strapi.find('products', {
-          'product_filters.slug': query.split(','),
-        })
+      let updatedProd = []
+      if (!!query && query !== 'undefined') {
+        if (query.split(',').length > 1) {
+          const queryEl = []
+          query.split(',').forEach((el: any) => {
+            queryEl.push(['product_filter.slug', el])
+          })
+          const prod = await this.$strapi.find('products', queryEl)
+          updatedProd.push(prod)
+        } else {
+          const prod = await this.$strapi.find('products', {
+            'product_filter.slug': query.split('&'),
+          })
+
+          updatedProd.push(prod)
+        }
       } else {
         const data = await this.$strapi.graphql({
           query: allProdQuery(),
         })
         updatedProd = data.products
       }
-      this.products = updatedProd
+      this.products = updatedProd.flat(1)
     })
   },
 })
