@@ -14,15 +14,15 @@
         flex
         items-center
         justify-center
-        z-10
+        z-50
       "
     >
       <div
-        class="absolute w-full h-full bg-gray-900 opacity-75"
+        class="absolute w-full h-full bg-gray-900 opacity-75 z-50"
         @click.self="close"
       ></div>
 
-      <div class="absolute max-h-full" :class="maxWidth">
+      <div class="absolute max-h-full z-50" :class="maxWidth">
         <div
           class="
             container
