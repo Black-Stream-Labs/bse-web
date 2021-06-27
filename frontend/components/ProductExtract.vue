@@ -22,6 +22,7 @@
           <img
             class="
               w-50
+              rounded
               transition
               duration-700
               ease-in-out
