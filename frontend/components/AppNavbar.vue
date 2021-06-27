@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 bg-gray-50 dark:bg-gray-900 dark:text-white">
+  <header class="sticky top-0 bg-gray-50 dark:bg-gray-900 dark:text-white z-50">
     <nav
       class="flex justify-between items-center select-none"
       :class="showLogo ? 'py-2 px-4' : 'py-4 px-4'"

@@ -16,8 +16,9 @@
         flex flex-col
       "
     >
-      <div class="overflow-hidden relative">
+      <div class="overflow-hidden relative z-10">
         <NuxtLink
+          class="inline-flex"
           :to="`/products/${product.slug}`"
           :title="product.product_name"
         >
