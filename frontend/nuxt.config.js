@@ -1,3 +1,4 @@
+import PnpWebpackPlugin from 'pnp-webpack-plugin'
 require('dotenv').config()
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -41,6 +42,10 @@ export default {
   plugins: [
     '~plugins/axios.js',
     '~/plugins/apollo-overrides.ts',
+    // {
+    //   src: '~/plugins/calendar.js',
+    //   mode: 'client',
+    // },
     // {
     //   src: '~/plugins/checkTheme.js',
     //   mode: 'client',
@@ -226,6 +231,13 @@ export default {
     //   },
     // },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    extend(config, ctx) {},
+    transpile: /@fullcalendar.*/,
+    extend(config, { isClient }) {
+      if (isClient) {
+        config.optimization.splitChunks.maxSize = 200000
+      }
+      config.resolve.plugins.push(PnpWebpackPlugin)
+      config.resolveLoader.plugins.push(PnpWebpackPlugin.moduleLoader(module))
+    },
   },
 }

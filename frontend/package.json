@@ -38,7 +38,9 @@
     "nuxt": "^2.15.6",
     "tailwindcss-dark-mode": "^1.1.7",
     "vue-apollo": "^3.0.7",
-    "vue-meta": "^2.4.0"
+    "vue-cal": "^3.10.1",
+    "vue-meta": "^2.4.0",
+    "vue-simple-calendar": "^6.0.1"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
@@ -56,6 +58,7 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.0.3",
     "eslint-plugin-nuxt": "^2.0.0",
@@ -67,6 +70,6 @@
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^3.0.0",
-    "tailwindcss": "^2.1.2"
+    "tailwindcss": "^2.2.4"
   }
 }

@@ -82,35 +82,34 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+// @ts-nocheck
+import Vue, { PropOptions } from 'vue'
 export default Vue.extend({
   props: {
     image: {
       type: Object,
       default: () => {},
-    },
+    } as PropOptions,
     opened: {
       type: Boolean,
       default: false,
-    },
+    } as PropOptions,
     title: {
       type: [String, null],
       default: null,
-    },
+    } as PropOptions,
     header: {
       type: [String, null],
       required: false,
       default: null,
-    },
+    } as PropOptions,
     width: {
       type: String,
       default: 'full',
       validator: (value) => ['xs', 'sm', 'md', 'lg', 'full'].includes(value),
-    },
+    } as PropOptions,
   },
-  data() {
-    return {}
-  },
+
   computed: {
     maxWidth() {
       switch (this.width) {

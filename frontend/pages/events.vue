@@ -26,6 +26,15 @@
         </template>
       </div>
     </section>
+    <section class="section">
+      <div class="container max-w-5xl mx-auto px-4">
+        <div class="mb-20">
+          <client-only>
+            <Calendar> </Calendar>
+          </client-only>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -33,6 +42,7 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
+import Calendar from '@/components/reusable/Calendar'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { eventsQuery } from '@/apollo/queries/pages/events.js'
 
@@ -40,6 +50,7 @@ export default Vue.extend({
   name: 'EventsPage',
   components: {
     Hero,
+    Calendar,
   },
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: eventsQuery() })
@@ -47,6 +58,7 @@ export default Vue.extend({
       page: data.eventsPage,
     }
   },
+
   computed: {
     updatedContent() {
       if (this.page.content) {

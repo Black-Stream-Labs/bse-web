@@ -29,12 +29,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
-  name: 'EventsPage',
+  name: 'SingleEventsPage',
   components: {
     Hero,
   },
@@ -45,12 +46,13 @@ export default Vue.extend({
       page: data || {},
     }
   },
+
   computed: {
     updatedContent() {
       return formatContentImageUrl(this.page.content.content)
     },
     sectionUpdated() {
-      if (!this.page.sections) return
+      if (!this.page.sections) return null
       const x = []
       this.page.sections.forEach((el) => {
         const e = JSON.stringify(el)
@@ -66,6 +68,7 @@ export default Vue.extend({
       }
     },
   },
+  methods: {},
 })
 </script>
 
