@@ -1,12 +1,21 @@
 <template>
   <div class="relative flex justify-center items-center">
     <button
-      class="z-20 relative flex items-center select-none"
+      class="
+        z-20
+        relative
+        px-2
+        py-2
+        border border-gray-400
+        rounded
+        items-center
+        text-sm
+        flex
+      "
       @click="open = !open"
     >
       <slot name="button"></slot>
     </button>
-
     <!-- to close when clicked on space around it in desktop-->
     <button
       v-if="open"
@@ -25,7 +34,20 @@
     >
       <div
         v-if="open"
-        class="absolute shadow-lg border w-72 rounded py-1 px-2 text-sm mt-4 bg-gray-50 top-8 dark:bg-gray-900 dark:text-white"
+        class="
+          absolute
+          shadow-lg
+          border
+          w-72
+          rounded
+          py-1
+          px-2
+          text-sm
+          mt-4
+          bg-gray-50
+          top-10
+          dark:bg-gray-900 dark:text-white
+        "
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "
@@ -61,6 +83,7 @@
 
 <script>
 export default {
+  name: 'VDropdown',
   props: {
     placement: {
       type: String,

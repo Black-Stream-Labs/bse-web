@@ -2,21 +2,8 @@
   <VDropdown placement="right">
     <!-- Button content -->
     <template #button>
-      <button
-        class="
-          px-2
-          py-2
-          border border-gray-400
-          rounded
-          items-center
-          text-sm
-          hidden
-          lg:inline-flex
-        "
-      >
-        <span class="mr-2">Accesibility</span>
-        <DownArrow></DownArrow>
-      </button>
+      <span class="mr-2">Accesibility</span>
+      <DownArrow></DownArrow>
       <span class="px-2 py-2 md:border rounded items-center text-sm lg:hidden">
         <SettingsImage
           width="24"
@@ -25,7 +12,6 @@
         ></SettingsImage>
       </span>
     </template>
-
     <!-- Opened dropdown content -->
     <template #content>
       <VColorSelect></VColorSelect>

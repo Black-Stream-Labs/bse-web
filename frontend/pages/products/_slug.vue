@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Hero
-      :title="product.product_name"
-      :headerimage="updatedHeaderIMage"
-    ></Hero>
+    <Hero :title="product.product_name" :headerimage="updatedHeaderIMage" />
 
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
@@ -56,8 +53,13 @@
                 </div>
                 <div v-html="$md.render(updatedContent)"></div>
 
-                <div>
-                  Extra Images
+                <div
+                  v-if="
+                    product.product_images && product.product_images.length > 0
+                  "
+                  class="pt-5"
+                >
+                  Product Images
 
                   <section
                     id="photos"
@@ -92,6 +94,51 @@
                     </VModal>
                   </section>
                 </div>
+                <div>
+                  <button
+                    class="
+                      px-2
+                      py-1
+                      text-xs
+                      border
+                      rounded
+                      border-gray-400
+                      dark:bg-gray-900 dark:text-white dark:border-gray-50
+                      snipcart-add-item
+                    "
+                    :data-item-id="product.id"
+                    :data-item-price="product.price"
+                    :data-item-url="`${$route.fullPath}`"
+                    :data-item-description="product.product_description"
+                    :data-item-image="
+                      $getStrapiMedia(product.product_main_image.url)
+                    "
+                    :data-item-name="product.product_name"
+                  >
+                    Add to cart
+                  </button>
+                </div>
+                <div v-if="similarProducts.length > 0">
+                  <h3 class="mt-16">Similar Products</h3>
+                  <hr class="my-5" />
+                  <div
+                    class="
+                      w-full
+                      h-full
+                      md:h-auto
+                      grid grid-cols-1
+                      md:grid-cols-2
+                      gap-3
+                      py-2
+                    "
+                  >
+                    <ProductExtract
+                      v-for="(prod, ind) in similarProducts"
+                      :key="`similar-${ind}`"
+                      :product="prod"
+                    ></ProductExtract>
+                  </div>
+                </div>
               </div>
               <ProductsSidebar></ProductsSidebar>
             </div>
@@ -108,6 +155,7 @@ import Vue from 'vue'
 import Hero from '@/components/Hero'
 import VModal from '@/components/reusable/VModal'
 import ProductsSidebar from '@/components/ProductsSidebar'
+import ProductExtract from '@/components/ProductExtract'
 import imageUrlManipulation, {
   formatContentImageUrl,
 } from '@/mixins/updateImageUrl.js'
@@ -118,6 +166,7 @@ export default Vue.extend({
     Hero,
     ProductsSidebar,
     VModal,
+    ProductExtract,
   },
   mixins: [imageUrlManipulation],
 
@@ -125,6 +174,7 @@ export default Vue.extend({
   data() {
     return {
       product: {},
+      similarProducts: [],
       showModal: false,
       selectedImage: null,
     }
@@ -134,6 +184,17 @@ export default Vue.extend({
       slug: this.$route.params.slug,
     })
     this.product = data[0]
+    if (data[0].product_filter) {
+      const categs = data[0].product_categories.map((el: any) => [
+        'product_categories.slug',
+        el.slug,
+      ])
+      const similar = await this.$strapi.find('products', categs)
+      console.log('categs', categs, 'similar', similar)
+      this.similarProducts = similar.filter(
+        (el: any) => el.product_name !== this.product.product_name
+      )
+    }
   },
   computed: {
     updatedContent() {
@@ -151,6 +212,18 @@ export default Vue.extend({
       }
     },
   },
+  // async mounted() {
+  //   if (this.product.product_filter) {
+  //     const categs = this.product.product_categories.map((el: any) => el.slug)
+  //     const similar = await this.$strapi.find('products', {
+  //       'product_categories.slug': categs,
+  //     })
+  //     console.log(similar)
+  //     this.similarProducts = similar.filter(
+  //       (el: any) => el.product_name !== this.product.product_name
+  //     )
+  //   }
+  // },
   methods: {
     selectImage(image: any) {
       this.showModal = true

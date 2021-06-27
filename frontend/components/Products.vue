@@ -2,10 +2,23 @@
   <div class="my-12">
     <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4">
       <div class="col-span-2">
-        <template v-for="product in products">
-          <ProductExtract :key="product.id" :product="product">
-          </ProductExtract>
-        </template>
+        <div
+          class="
+            w-full
+            h-full
+            md:h-auto
+            grid grid-cols-1
+            md:grid-cols-2
+            gap-3
+            px-2
+            py-2
+          "
+        >
+          <template v-for="product in products">
+            <ProductExtract :key="product.id" :product="product">
+            </ProductExtract>
+          </template>
+        </div>
       </div>
       <ProductsSidebar></ProductsSidebar>
     </div>

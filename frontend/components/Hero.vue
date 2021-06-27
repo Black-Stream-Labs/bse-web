@@ -1,6 +1,12 @@
 <template>
   <section
-    class="section py-20 bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-white"
+    class="
+      section
+      py-20
+      bg-gray-100
+      text-gray-800
+      dark:bg-gray-900 dark:text-white
+    "
   >
     <div class="container max-w-5xl mx-auto px-4">
       <div class="md:block">
@@ -18,7 +24,15 @@
 
             <div
               v-if="headerimage"
-              class="mb-6 mt-12 w-3/5 hidden md:flex justify-center align-center"
+              class="
+                mb-6
+                mt-12
+                w-3/5
+                hidden
+                md:flex
+                justify-center
+                align-center
+              "
             >
               <img :src="$getStrapiMedia(headerimage)" alt="header image" />
             </div>
