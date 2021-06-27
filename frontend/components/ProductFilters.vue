@@ -5,13 +5,13 @@
         inline-flex
         items-center
         mt-3
-        text-gray-500
         font-light
         rounded
-        bg-gray-200
         px-2
         py-1
         m-1
+        bg-gray-200
+        text-gray-800
         dark:bg-gray-700 dark:text-gray-300
       "
     >
@@ -21,7 +21,16 @@
         class="form-checkbox h-5 w-5 text-gray-600 dark:bg-gray-500"
         :checked="checkedFilters.length === 0"
       />
-      <span class="ml-2 text-gray-200 dark:text-gray-300">All Filters</span>
+      <span
+        class="
+          ml-2
+          bg-gray-200
+          text-gray-800
+          dark:bg-gray-700 dark:text-gray-300
+        "
+      >
+        All Filters
+      </span>
     </label>
 
     <label
@@ -31,10 +40,10 @@
         inline-flex
         items-center
         mt-3
-        text-gray-500
         font-light
         rounded
         bg-gray-200
+        text-gray-800
         px-2
         py-1
         m-1
@@ -47,7 +56,14 @@
         type="checkbox"
         class="form-checkbox h-5 w-5 text-gray-600 dark:bg-gray-500"
       />
-      <span class="ml-2 text-gray-200 dark:text-gray-300">
+      <span
+        class="
+          ml-2
+          bg-gray-200
+          text-gray-800
+          dark:bg-gray-700 dark:text-gray-300
+        "
+      >
         {{ cat.filter_name }}
       </span>
     </label>
@@ -95,7 +111,7 @@ export default Vue.extend({
       if (newValue.length === 0) {
         this.allFilters = true
         this.$router.push('/products')
-        this.$root.$emit('updateProductFilters', 'undefined')
+        // this.$root.$emit('updateProductFilters', 'undefined')
       }
 
       if (newValue !== oldValue && newValue.length > 0) {
