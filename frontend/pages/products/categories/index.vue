@@ -20,6 +20,5 @@ export default Vue.extend({
     Hero,
     ProductCategoriesExtracts,
   },
-  layout: 'product',
 })
 </script>

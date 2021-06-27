@@ -2,7 +2,7 @@
   <aside class="col-span-1">
     <div id="sidebar-search" class="mb-4">
       <span class="mb-2 font-bold"> Search Products: </span>
-      <div class="md:pl-2 flex no-padding">
+      <form class="md:pl-2 flex no-padding">
         <label for="searchinput" class="sr-only">Search products</label>
         <input
           id="searchinput"
@@ -21,13 +21,15 @@
           class="
             w-1/4
             border border-gray-100
+            text-gray-100
             bg-gray-800
             flex
             place-items-center
             justify-center
             dark:bg-gray-700 dark:text-gray-300
           "
-          @click="searchProducts"
+          type="submit"
+          @click.prevent="searchProducts"
         >
           <svg
             class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
@@ -39,7 +41,7 @@
             />
           </svg>
         </button>
-      </div>
+      </form>
     </div>
     <div id="sidebar-categs" class="mb-4">
       <span class="mb-2 font-bold">Categories</span>

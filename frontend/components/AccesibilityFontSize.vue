@@ -46,7 +46,6 @@ export default Vue.extend({
       let styles = getComputedStyle(document.documentElement).getPropertyValue(
         '--font-size'
       )
-      console.log(styles, Number(size))
       if (!styles) {
         styles = '1em'
       }

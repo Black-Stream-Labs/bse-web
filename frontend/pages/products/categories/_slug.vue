@@ -33,7 +33,6 @@ export default Vue.extend({
     ProductsSidebar,
     ProductExtract,
   },
-  layout: 'product',
   async asyncData({ app }) {
     const data = await app.$strapi.graphql({
       query: productCategoriesQuery(),

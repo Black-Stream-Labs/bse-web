@@ -22,7 +22,6 @@ export default Vue.extend({
     Products,
     Hero,
   },
-  layout: 'product',
   async asyncData({ app }) {
     const data = await app.$strapi.graphql({
       query: allProdQuery(),

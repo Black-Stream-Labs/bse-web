@@ -170,7 +170,6 @@ export default Vue.extend({
   },
   mixins: [imageUrlManipulation],
 
-  layout: 'product',
   data() {
     return {
       product: {},
@@ -190,7 +189,6 @@ export default Vue.extend({
         el.slug,
       ])
       const similar = await this.$strapi.find('products', categs)
-      console.log('categs', categs, 'similar', similar)
       this.similarProducts = similar.filter(
         (el: any) => el.product_name !== this.product.product_name
       )
@@ -212,18 +210,7 @@ export default Vue.extend({
       }
     },
   },
-  // async mounted() {
-  //   if (this.product.product_filter) {
-  //     const categs = this.product.product_categories.map((el: any) => el.slug)
-  //     const similar = await this.$strapi.find('products', {
-  //       'product_categories.slug': categs,
-  //     })
-  //     console.log(similar)
-  //     this.similarProducts = similar.filter(
-  //       (el: any) => el.product_name !== this.product.product_name
-  //     )
-  //   }
-  // },
+
   methods: {
     selectImage(image: any) {
       this.showModal = true
