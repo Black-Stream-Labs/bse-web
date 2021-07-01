@@ -17,7 +17,17 @@
       resize-x
     >
       <template #today-button>
-        <button>today</button>
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24 "
+            width="24"
+            height="24"
+            stroke="currentColor"
+          >
+            <path :d="calendar_icon"></path>
+          </svg>
+        </button>
       </template>
       <!-- <template #title="{ title, view }">
         🎉
@@ -63,6 +73,7 @@
 </template>
 
 <script>
+import { mdiCalendar } from '@mdi/js'
 import Vue from 'vue'
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
@@ -77,6 +88,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      calendar_icon: mdiCalendar,
       showDialog: false,
       selectedDate: new Date(new Date().getFullYear(), 11, 31),
       events: [
