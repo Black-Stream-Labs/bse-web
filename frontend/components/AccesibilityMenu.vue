@@ -16,7 +16,7 @@
     <template #content>
       <VColorSelect></VColorSelect>
       <AccesibilityFontSize></AccesibilityFontSize>
-      <AccesibilityContrast></AccesibilityContrast>
+      <!-- <AccesibilityContrast></AccesibilityContrast> -->
       <AccesibilityFonts></AccesibilityFonts>
     </template>
   </VDropdown>
@@ -30,7 +30,7 @@ import SettingsImage from '@/components/icons/SettingsImage'
 import VColorSelect from '@/components/reusable/VColorSelect'
 import DownArrow from '@/components/icons/DownArrow'
 import AccesibilityFontSize from '@/components/AccesibilityFontSize'
-import AccesibilityContrast from '@/components/AccesibilityContrast'
+// import AccesibilityContrast from '@/components/AccesibilityContrast'
 import AccesibilityFonts from '@/components/AccesibilityFonts'
 export default Vue.extend({
   name: 'AccesibilityMenu',
@@ -39,7 +39,7 @@ export default Vue.extend({
     SettingsImage,
     DownArrow,
     AccesibilityFontSize,
-    AccesibilityContrast,
+    // AccesibilityContrast,
     AccesibilityFonts,
     VColorSelect,
   },

@@ -13,7 +13,7 @@
           border-gray-400
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
-        @click="fontSizeDecrease('0.25')"
+        @click="fontSizeDecrease('0.15')"
       >
         A-
       </button>
@@ -28,7 +28,7 @@
           border-gray-400
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
-        @click="fontSizeIncrease('0.25')"
+        @click="fontSizeIncrease('0.15')"
       >
         A+
       </button>
@@ -47,24 +47,24 @@ export default Vue.extend({
         '--font-size'
       )
       if (!styles) {
-        styles = '1em'
+        styles = '1rem'
       }
-      const currSize = styles.replace('em', '')
-      if (Number(currSize) >= 3) return
+      const currSize = styles.replace('rem', '')
+      if (Number(currSize) >= 1.5) return
       document.documentElement.style.setProperty(
         '--font-size',
-        `${Number(currSize) + Number(size)}em`
+        `${Number(currSize) + Number(size)}rem`
       )
     },
     fontSizeDecrease(size: string) {
       const styles = getComputedStyle(
         document.documentElement
       ).getPropertyValue('--font-size')
-      const currSize = styles.replace('em', '')
+      const currSize = styles.replace('rem', '')
       if (Number(currSize) <= 1) return
       document.documentElement.style.setProperty(
         '--font-size',
-        `${Number(currSize) - Number(size)}em`
+        `${Number(currSize) - Number(size)}rem`
       )
     },
   },

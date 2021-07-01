@@ -13,7 +13,7 @@
         <div class="pb-8 mt-auto">
           <div class="mx-auto flex justify-between items-center">
             <div class="title w-2/5">
-              <h1 class="text-2xl md:text-3xl mb-8 mt-16 font-serif capitalize">
+              <h1 class="text-2xl md:text-3xl mb-8 mt-16 capitalize">
                 {{ title }}
               </h1>
 

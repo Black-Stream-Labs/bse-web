@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind screens;
+@tailwind variants;
 
 @layer base {
   h1 {
@@ -21,6 +21,52 @@
   } */
 }
 
+@font-face {
+  font-family: Alegreya;
+  src: url('/fonts/Alegreya/Alegreya-Italic-VariableFont_wght.ttf');
+  font-style: italic;
+  font-weight: normal;
+
+}
+
+@font-face {
+  font-family: Alegreya;
+  src: url('/fonts/Alegreya/Alegreya-VariableFont_wght.ttf');
+  font-weight: 300;
+
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src: url('/fonts/OpenDyslexic2_Windows_MacOS_Linux_OTF/OpenDyslexic-Bold.otf');
+  font-weight: bold;
+
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src: url('/fonts/OpenDyslexic2_Windows_MacOS_Linux_OTF/OpenDyslexic-BoldItalic.otf');
+  font-weight: bold;
+  font-style: italic;
+
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src: url('/fonts/OpenDyslexic2_Windows_MacOS_Linux_OTF/OpenDyslexic-Italic.otf');
+  font-weight: 300;
+  font-style: italic;
+
+}
+
+@font-face {
+  font-family: OpenDyslexic;
+  src: url('/fonts/OpenDyslexic2_Windows_MacOS_Linux_OTF/OpenDyslexic-Regular.otf');
+  font-weight: 300;
+  font-style: normal;
+
+}
+
 html,
 body,
 #__nuxt,
@@ -29,14 +75,45 @@ body,
 }
 
 :root {
-  --font-size: 1em;
-  --font-family: 'Helvetica Neue', 'sans-serif';
+  --font-size: 1rem;
+  --font-family: 'Alegreya', 'Helvetica', 'Arial', 'sans-serif';
+  --contrast-type: 'normal';
+  --font-weight: 400;
+  --font-weight-multiplier: 1;
+  --letter-spacing: 0;
+
 }
 
+strong,
+b,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  --font-weight: 700;
+  /* font-family: var(--font-family); */
+}
+
+
+@media (prefers-color-scheme: dark) and (-webkit-min-device-pixel-ratio: 2),
+(prefers-color-scheme: dark) and (min-resolution: 192dpi) {
+  :root {
+    --font-weight-multiplier: .92;
+    --letter-spacing: .02ch;
+  }
+}
+
+
 body {
+  font-weight: calc(var(--font-weight, 400) * var(--font-weight-multiplier, 1));
+  letter-spacing: var(--letter-spacing, 0);
   font-size: var(--font-size);
   font-family: var(--font-family);
 }
+
 
 .page-content {
   display: flex;
