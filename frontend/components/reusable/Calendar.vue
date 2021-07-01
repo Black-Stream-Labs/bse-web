@@ -90,7 +90,7 @@ export default Vue.extend({
     return {
       calendar_icon: mdiCalendar,
       showDialog: false,
-      selectedDate: new Date(new Date().getFullYear(), 11, 31),
+      selectedDate: new Date(),
       events: [
         {
           start: '2021-06-21',
