@@ -69,6 +69,10 @@
         >
       </template> -->
     </VueCal>
+    <!-- add dialog ans show summary with click to event page and click to close to make event null -->
+    <div v-if="selectedEvent">
+      {{ selectedEvent }}
+    </div>
   </div>
 </template>
 
@@ -90,6 +94,7 @@ export default Vue.extend({
     return {
       calendar_icon: mdiCalendar,
       showDialog: false,
+      selectedEvent: null,
       selectedDate: new Date(),
       events: [
         {
@@ -118,6 +123,8 @@ export default Vue.extend({
   },
   methods: {
     onEventClick(event, e) {
+      console.log(event, e)
+
       this.selectedEvent = event
       this.showDialog = true
 
