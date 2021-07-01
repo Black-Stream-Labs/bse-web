@@ -2,9 +2,10 @@
   <header class="sticky top-0 bg-gray-50 dark:bg-gray-900 dark:text-white z-50">
     <nav
       class="flex justify-between items-center select-none"
-      :class="showLogo ? 'py-2 px-4' : 'py-4 px-4'"
+      :class="'py-4 px-4'"
       role="navigation"
     >
+      <!-- :class="showLogo ? 'py-2 px-4' : 'py-4 px-4'" -->
       <div class="lg:hidden">
         <button v-if="!isOpen" @click="isOpen = true">
           <MenuIcon></MenuIcon>
@@ -109,11 +110,10 @@
             items-center
             justify-center
           "
-          :class="showLogo ? '' : 'h-0'"
         >
-          <transition name="animate-down">
-            <LogoImage :height="showLogo ? 60 : 0" width="60"></LogoImage>
-          </transition>
+          <!-- <transition name="animate-down"> -->
+          <LogoImage height="60" width="60"></LogoImage>
+          <!-- </transition> -->
         </NuxtLink>
         <NuxtLink
           to="/products"
@@ -261,8 +261,8 @@ export default Vue.extend({
   data() {
     return {
       isOpen: false,
-      showLogo: false,
-      scrollHeight: 0,
+      // showLogo: false,
+      // scrollHeight: 0,
       dinamicColor: 'indigo',
     }
   },
@@ -273,33 +273,33 @@ export default Vue.extend({
     }),
   },
   watch: {
-    scrollHeight(newValue, oldValue) {
-      if (
-        (newValue && newValue !== 0 && newValue === oldValue) ||
-        newValue < 250
-      ) {
-        this.showLogo = false
-        return
-      }
-      this.showLogo = true
-    },
+    // scrollHeight(newValue, oldValue) {
+    //   if (
+    //     (newValue && newValue !== 0 && newValue === oldValue) ||
+    //     newValue < 250
+    //   ) {
+    //     this.showLogo = false
+    //     return
+    //   }
+    //   this.showLogo = true
+    // },
   },
   mounted() {
-    window.addEventListener('load', this.scrollHandler)
-    window.addEventListener('scroll', this.scrollHandler)
+    // window.addEventListener('load', this.scrollHandler)
+    // window.addEventListener('scroll', this.scrollHandler)
   },
 
   beforeDestroy() {
-    window.removeEventListener('load', this.scrollHandler)
-    window.removeEventListener('scroll', this.scrollHandler)
+    // window.removeEventListener('load', this.scrollHandler)
+    // window.removeEventListener('scroll', this.scrollHandler)
   },
   methods: {
     async logout() {
       await this.$auth.logout()
     },
-    scrollHandler() {
-      this.scrollHeight = window.scrollY
-    },
+    // scrollHandler() {
+    // this.scrollHeight = window.scrollY
+    // },
   },
 })
 </script>

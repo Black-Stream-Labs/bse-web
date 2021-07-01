@@ -128,3 +128,7 @@ body {
 footer {
   flex-shrink: 0;
 }
+
+.snipcart {
+  z-index: 50;
+}
