@@ -132,3 +132,7 @@ footer {
 .snipcart {
   z-index: 50;
 }
+
+input {
+  color: black;
+}

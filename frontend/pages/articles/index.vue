@@ -57,6 +57,14 @@ export default Vue.extend({
       }
     },
   },
+  mounted() {
+    this.$root.$on('search-articles', async (data) => {
+      const artc = await this.$strapi.find('articles', {
+        title_contains: data,
+      })
+      this.articles = artc
+    })
+  },
 })
 </script>
 

@@ -54,6 +54,12 @@ export default Vue.extend({
       }
       this.products = updatedProd.flat(1)
     })
+    this.$root.$on('search-products', async (data) => {
+      const prods = await this.$strapi.find('products', {
+        product_name_contains: data,
+      })
+      this.products = prods
+    })
   },
 })
 </script>

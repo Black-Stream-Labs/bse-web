@@ -73,8 +73,8 @@ export default Vue.extend({
   },
   methods: {
     searchProducts() {
-      if (this.searchInputValue) {
-        console.log(this.searchInputValue)
+      if (this.searchInputValue && this.searchInputValue.length > 2) {
+        this.$root.$emit('search-products', this.searchInputValue)
       }
     },
   },
