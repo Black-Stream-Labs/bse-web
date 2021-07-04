@@ -3,7 +3,7 @@
     <div id="sidebar-search" class="mb-4">
       <span class="mb-2 font-bold"> Search Products: </span>
       <form class="md:pl-2 flex no-padding">
-        <label for="searchinput" class="sr-only">Search products</label>
+        <label for="searchinput" class="sr-only"> Search products </label>
         <input
           id="searchinput"
           v-model="searchInputValue"
@@ -44,12 +44,40 @@
       </form>
     </div>
     <div id="sidebar-categs" class="mb-4">
-      <span class="mb-2 font-bold">Categories</span>
-      <ProductCategories></ProductCategories>
-      <template v-if="$route.name === 'products'">
-        <span class="mb-2 font-bold">Filters</span>
-        <ProductFilters></ProductFilters>
-      </template>
+      <ProductCategories :update-query="updateQuery"></ProductCategories>
+      <ProductFilters :update-query="updateQuery"></ProductFilters>
+    </div>
+    <div class="pt-5 text-center">
+      <button
+        class="
+          mx-4
+          px-3
+          py-2
+          text-sm
+          border
+          rounded
+          border-gray-400
+          dark:bg-gray-900 dark:text-white dark:border-gray-50
+        "
+        @click="searchWithFilters"
+      >
+        Apply Filters
+      </button>
+      <button
+        class="
+          mx-4
+          px-3
+          py-2
+          text-sm
+          border
+          rounded
+          border-gray-400
+          dark:bg-gray-900 dark:text-white dark:border-gray-50
+        "
+        @click="updateQuery('show_all', null)"
+      >
+        Reset Filters
+      </button>
     </div>
   </aside>
 </template>
@@ -71,11 +99,46 @@ export default Vue.extend({
       searchInputValue: null,
     }
   },
+  mounted() {
+    if (this.$route.query) {
+      this.searchWithFilters()
+    }
+  },
   methods: {
     searchProducts() {
       if (this.searchInputValue && this.searchInputValue.length > 2) {
         this.$root.$emit('search-products', this.searchInputValue)
       }
+    },
+    searchWithFilters() {
+      const query = { ...this.$route.query }
+      console.log(query)
+    },
+    updateQuery(keyOrObj: any, value: any) {
+      const updatedQuery = { ...this.$route.query }
+      if (keyOrObj === 'show_all') {
+        Object.keys(updatedQuery).forEach((key) => {
+          delete updatedQuery[key]
+        })
+        this.$root.$emit('clearProductFilters')
+      } else {
+        const obj =
+          typeof keyOrObj === 'string' ? { [keyOrObj]: value } : keyOrObj
+
+        Object.keys(obj).forEach((key) => {
+          const value = obj[key]
+
+          if (value === null) {
+            delete updatedQuery[key]
+          } else {
+            updatedQuery[key] = value
+          }
+        })
+      }
+      this.$router.push({ query: updatedQuery })
+    },
+    beforeDestroy() {
+      this.$root.$off()
     },
   },
 })
