@@ -140,7 +140,9 @@
                   </div>
                 </div>
               </div>
-              <ProductsSidebar></ProductsSidebar>
+              <ProductsSidebar
+                v-if="$route.name === 'products'"
+              ></ProductsSidebar>
             </div>
           </div>
         </div>
