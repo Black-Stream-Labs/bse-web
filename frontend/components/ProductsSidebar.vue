@@ -74,7 +74,7 @@
           border-gray-400
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
-        @click="updateQuery('show_all', null)"
+        @click="updateQuery('show_all')"
       >
         Reset Filters
       </button>
@@ -111,8 +111,7 @@ export default Vue.extend({
       }
     },
     searchWithFilters() {
-      const query = { ...this.$route.query }
-      console.log(query)
+      this.$root.$emit('updateProductSearch')
     },
     updateQuery(keyOrObj: any, value: any) {
       const updatedQuery = { ...this.$route.query }

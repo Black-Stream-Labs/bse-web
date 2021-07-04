@@ -130,16 +130,24 @@ export default Vue.extend({
     checkedFilters(newValue, oldValue) {
       if (newValue.length === 0) {
         this.allFilters = true
-        this.updateQuery('prod_filters', null)
+        this.updateQuery('product_filter', null)
       }
 
       if (newValue !== oldValue && newValue.length > 0) {
         this.allFilters = false
-        this.updateQuery('prod_filters', encodeURIComponent(newValue))
+        this.updateQuery('product_filter', encodeURIComponent(newValue))
       }
     },
+    // '$route.query.product_filter'(newValue, oldValue) {
+    //   if (newValue && newValue !== oldValue) {
+    //     this.checkedFilters = decodeURIComponent(newValue)
+    //   }
+    // },
   },
   mounted() {
+    if (this.$route.query.product_filter) {
+      this.checkedFilters = decodeURIComponent(this.$route.query.product_filter)
+    }
     this.$root.$on('clearProductFilters', () => {
       this.allFilters = true
     })

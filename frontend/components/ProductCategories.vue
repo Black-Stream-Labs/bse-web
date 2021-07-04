@@ -129,16 +129,26 @@ export default Vue.extend({
     checkedCategories(newValue, oldValue) {
       if (newValue.length === 0) {
         this.allCategories = true
-        this.updateQuery('prod_categs', null)
+        this.updateQuery('product_categories', null)
       }
 
       if (newValue !== oldValue && newValue.length > 0) {
         this.allCategories = false
-        this.updateQuery('prod_categs', encodeURIComponent(newValue))
+        this.updateQuery('product_categories', encodeURIComponent(newValue))
       }
     },
+    // '$route.query.product_categories'(newValue, oldValue) {
+    //   if (newValue && newValue !== oldValue) {
+    //     this.checkedCategories = decodeURIComponent(newValue)
+    //   }
+    // },
   },
   mounted() {
+    if (this.$route.query.product_categories) {
+      this.checkedCategories = decodeURIComponent(
+        this.$route.query.product_categories
+      )
+    }
     this.$root.$on('clearProductFilters', () => {
       this.allCategories = true
     })

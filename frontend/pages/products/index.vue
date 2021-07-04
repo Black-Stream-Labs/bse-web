@@ -22,44 +22,98 @@ export default Vue.extend({
     Products,
     Hero,
   },
-  async asyncData({ app }) {
-    const data = await app.$strapi.graphql({
-      query: allProdQuery(),
-    })
-    return { products: data.products }
+
+  data() {
+    return {
+      products: [],
+    }
   },
   mounted() {
-    this.$root.$on('updateProductFilters', async (query: any) => {
+    this.$root.$on('search-products', async (data: string) => {
+      await this.searchProducts(data)
+    })
+    this.$root.$on('updateProductSearch', async () => {
+      await this.searchProducts()
+    })
+    this.$root.$on('clearProductFilters', () => {
+      this.$nextTick(async () => {
+        this.$router.push('/products')
+        const data = await this.$strapi.graphql({
+          query: allProdQuery(),
+        })
+        this.products = data.products
+      })
+    })
+    this.searchProducts()
+  },
+  methods: {
+    async searchProducts(data: [string, null]) {
+      //  const prods = await this.$strapi.find('products', {
+      //     product_name_contains: data,
+      //   })
+      //   this.products = prods
+      // })
       let updatedProd = []
-      if (!!query && query !== 'undefined') {
-        if (query.split(',').length > 1) {
-          const queryEl = []
-          query.split(',').forEach((el: any) => {
-            queryEl.push(['product_filter.slug', el])
-          })
-          const prod = await this.$strapi.find('products', queryEl)
-          updatedProd.push(prod)
-        } else {
-          const prod = await this.$strapi.find('products', {
-            'product_filter.slug': query.split('&'),
-          })
+      const query = { ...this.$route.query }
+      if (!!query && Object.keys(query).length > 0) {
+        const queryEl = []
+        Object.keys(query).forEach((queryType: string) => {
+          if (queryType === 'product_categories') {
+            if (
+              decodeURIComponent(query.product_categories).split(',').length > 1
+            ) {
+              decodeURIComponent(query.product_categories)
+                .split(',')
+                .forEach((el: any) => {
+                  queryEl.push(['product_categories.slug', el])
+                })
+            } else {
+              queryEl.push([
+                'product_categories.slug',
+                query.product_categories,
+              ])
+            }
+          }
+          if (queryType === 'product_filter') {
+            if (
+              decodeURIComponent(query.product_filter).split(',').length > 1
+            ) {
+              decodeURIComponent(query.product_filter)
+                .split(',')
+                .forEach((el: any) => {
+                  queryEl.push(['product_filter.slug', el])
+                })
+            } else {
+              queryEl.push(['product_filter.slug', query.product_filter])
+            }
+          }
+        })
+        if (!!data && data !== 'undefined') {
+          console.log(data, typeof data)
 
-          updatedProd.push(prod)
+          const prod = await this.$strapi.find(
+            'products',
+            { product_name_contains: data },
+            queryEl
+          )
+          updatedProd = prod
+        } else {
+          const prod = await this.$strapi.find(
+            'products',
+
+            queryEl
+          )
+          updatedProd = prod
         }
       } else {
+        console.log('query query is empty')
         const data = await this.$strapi.graphql({
           query: allProdQuery(),
         })
         updatedProd = data.products
       }
       this.products = updatedProd.flat(1)
-    })
-    this.$root.$on('search-products', async (data) => {
-      const prods = await this.$strapi.find('products', {
-        product_name_contains: data,
-      })
-      this.products = prods
-    })
+    },
   },
 })
 </script>
