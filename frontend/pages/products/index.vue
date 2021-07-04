@@ -31,11 +31,17 @@ export default Vue.extend({
   mounted() {
     // stil to implement search term and filters
     // currently it is search term or filters
-    this.$root.$on('search-products', async (data: string) => {
-      await this.searchProducts(data)
+    // still need to impement a different sidebar for individual product page to redirect and search
+    this.$root.$on('search-products', (data: string) => {
+      this.$nextTick(async () => {
+        console.log('saerch', data)
+        await this.searchProducts(data)
+      })
     })
-    this.$root.$on('updateProductSearch', async () => {
-      await this.searchProducts()
+    this.$root.$on('updateProductSearch', () => {
+      this.$nextTick(async () => {
+        await this.searchProducts()
+      })
     })
     this.$root.$on('clearProductFilters', () => {
       this.$nextTick(async () => {
@@ -50,11 +56,6 @@ export default Vue.extend({
   },
   methods: {
     async searchProducts(data: [string, null]) {
-      //  const prods = await this.$strapi.find('products', {
-      //     product_name_contains: data,
-      //   })
-      //   this.products = prods
-      // })
       let updatedProd = []
       const query = { ...this.$route.query }
       if (!!query && Object.keys(query).length > 0) {

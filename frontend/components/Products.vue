@@ -16,7 +16,7 @@
           differnt product or filter by different options from the sidebar.
         </div>
       </div>
-      <ProductsSidebar v-if="$route.name === 'products'"></ProductsSidebar>
+      <ProductsSidebar></ProductsSidebar>
     </div>
   </div>
 </template>

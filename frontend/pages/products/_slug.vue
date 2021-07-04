@@ -140,9 +140,7 @@
                   </div>
                 </div>
               </div>
-              <ProductsSidebar
-                v-if="$route.name === 'products'"
-              ></ProductsSidebar>
+              <ProductsSidebar></ProductsSidebar>
             </div>
           </div>
         </div>
@@ -212,6 +210,7 @@ export default Vue.extend({
       }
     },
   },
+  mounted() {},
 
   methods: {
     selectImage(image: any) {
