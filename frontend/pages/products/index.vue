@@ -29,6 +29,8 @@ export default Vue.extend({
     }
   },
   mounted() {
+    // stil to implement search term and filters
+    // currently it is search term or filters
     this.$root.$on('search-products', async (data: string) => {
       await this.searchProducts(data)
     })
