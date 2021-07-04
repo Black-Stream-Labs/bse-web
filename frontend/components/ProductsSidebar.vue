@@ -110,6 +110,9 @@ export default Vue.extend({
   methods: {
     searchProducts() {
       if (this.searchInputValue && this.searchInputValue.length > 2) {
+        // if (this.$route.path !== '/products') {
+        //   this.$router.push('/products')
+        // }
         this.$root.$emit('search-products', this.searchInputValue)
       }
     },
