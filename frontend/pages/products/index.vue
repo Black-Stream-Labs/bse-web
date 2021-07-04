@@ -107,10 +107,19 @@ export default Vue.extend({
         }
       } else {
         console.log('query query is empty')
-        const data = await this.$strapi.graphql({
-          query: allProdQuery(),
-        })
-        updatedProd = data.products
+        if (!!data && data !== 'undefined') {
+          console.log(data, typeof data)
+
+          const prod = await this.$strapi.find('products', {
+            product_name_contains: data,
+          })
+          updatedProd = prod
+        } else {
+          const data = await this.$strapi.graphql({
+            query: allProdQuery(),
+          })
+          updatedProd = data.products
+        }
       }
       this.products = updatedProd.flat(1)
     },

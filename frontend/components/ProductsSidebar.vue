@@ -103,6 +103,9 @@ export default Vue.extend({
     if (this.$route.query) {
       this.searchWithFilters()
     }
+    this.$root.$on('clearProductFilters', () => {
+      this.searchInputValue = null
+    })
   },
   methods: {
     searchProducts() {
