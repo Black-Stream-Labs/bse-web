@@ -28,11 +28,9 @@
     </section>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
-        <div class="mb-20">
-          <client-only>
-            <Calendar> </Calendar>
-          </client-only>
-        </div>
+        <client-only>
+          <Calendar> </Calendar>
+        </client-only>
       </div>
     </section>
   </div>

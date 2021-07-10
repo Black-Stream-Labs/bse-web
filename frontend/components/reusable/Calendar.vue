@@ -1,35 +1,36 @@
 <template>
-  <div :class="heightClass">
-    <VueCal
-      :disable-views="['years', 'year']"
-      click-to-navigate
-      active-view="month"
-      events-count-on-year-view
-      today-button
-      :selected-date="selectedDate"
-      :events="events"
-      :on-event-click="onEventClick"
-      events-on-month-view="short"
-      :min-cell-width="320"
-      :drag-to-create-event="false"
-      show-week-numbers
-      small
-      resize-x
-    >
-      <template #today-button>
-        <button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24 "
-            width="24"
-            height="24"
-            stroke="currentColor"
-          >
-            <path :d="calendar_icon"></path>
-          </svg>
-        </button>
-      </template>
-      <!-- <template #title="{ title, view }">
+  <div class="pb-10">
+    <div :class="heightClass">
+      <VueCal
+        :disable-views="['years', 'year']"
+        click-to-navigate
+        active-view="month"
+        events-count-on-year-view
+        today-button
+        :selected-date="selectedDate"
+        :events="updatedEvents"
+        :on-event-click="onEventClick"
+        events-on-month-view="short"
+        :min-cell-width="320"
+        :drag-to-create-event="false"
+        show-week-numbers
+        small
+        resize-x
+      >
+        <template #today-button>
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24 "
+              width="24"
+              height="24"
+              stroke="currentColor"
+            >
+              <path :d="calendar_icon"></path>
+            </svg>
+          </button>
+        </template>
+        <!-- <template #title="{ title, view }">
         🎉
         <span v-if="view.id === 'years'">Years</span>
         <span v-else-if="view.id === 'year'">{{
@@ -48,7 +49,7 @@
         }}</span>
         🎉
       </template> -->
-      <!-- <template #cell-content="{ cell, view, events, goNarrower }">
+        <!-- <template #cell-content="{ cell, view, events, goNarrower }">
         <span
           v-if="view.id === 'day'"
           class="vuecal__cell-date"
@@ -68,11 +69,63 @@
           >Nothing here 👌</span
         >
       </template> -->
-    </VueCal>
-    <!-- add dialog ans show summary with click to event page and click to close to make event null -->
-    <div v-if="selectedEvent">
-      {{ selectedEvent }}
+      </VueCal>
+      <!-- add dialog ans show summary with click to event page and click to close to make event null -->
     </div>
+
+    <VModal
+      v-if="selectedEvent"
+      :header="selectedEvent.title"
+      :title="selectedEvent.title"
+      :opened="selectedEvent ? true : false"
+      @close="selectedEvent = null"
+    >
+      <div>
+        <p>
+          Start Date:
+          <span class="bold">
+            {{
+              new Date(selectedEvent.start).toLocaleString('en-GB', {
+                month: 'short',
+                weekday: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })
+            }}
+          </span>
+        </p>
+        <p class="pb-5">
+          End Date:
+          <span class="bold">
+            {{
+              new Date(selectedEvent.end).toLocaleString('en-GB', {
+                month: 'short',
+                weekday: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })
+            }}
+          </span>
+        </p>
+        <div class="line-clamp-5" v-html="selectedEvent.content"></div>
+        <div class="flex align-items-end justify-end pt-3">
+          <NuxtLink
+            class="
+              px-2
+              py-1
+              text-xs
+              border
+              rounded
+              border-gray-400
+              dark:bg-gray-900 dark:text-white dark:border-gray-50
+            "
+            :to="`/events/${selectedEvent.slug}`"
+          >
+            More details
+          </NuxtLink>
+        </div>
+      </div>
+    </VModal>
   </div>
 </template>
 
@@ -81,9 +134,11 @@ import { mdiCalendar } from '@mdi/js'
 import Vue from 'vue'
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
+import VModal from '@/components/reusable/VModal'
+import { eventsExtractQuery } from '../../apollo/queries/events/events'
 export default Vue.extend({
   name: 'Calendar',
-  components: { VueCal },
+  components: { VueCal, VModal },
   props: {
     heightClass: {
       type: String,
@@ -96,30 +151,39 @@ export default Vue.extend({
       showDialog: false,
       selectedEvent: null,
       selectedDate: new Date(),
-      events: [
-        {
-          start: '2021-06-21',
-          end: '2021-06-21',
-          title: 'Need to go shopping',
-          content: '<i class="v-icon material-icons">shopping_cart</i>',
-          class: 'leisure',
-        },
-        {
-          start: '2021-06-21',
-          end: '2021-07-21',
-          title: 'Golf with John',
-          content: '<i class="v-icon material-icons">golf_course</i>',
-          class: 'sport',
-        },
-        {
-          start: '2021-06-22',
-          end: '2021-06-22',
-          title: "Dad's birthday!",
-          content: '<i class="v-icon material-icons">cake</i>',
-          class: 'sport',
-        },
-      ],
+      events: [],
+      // events: [
+      //   {
+      //     id: '1',
+      //     start: '2021-06-21',
+      //     end: '2021-06-21',
+      //     title: 'Need to go shopping',
+      //     content: '<i class="v-icon material-icons">shopping_cart</i>',
+      //     class: 'leisure',
+      //   },
+      // ],
     }
+  },
+  async fetch() {
+    const events = await this.$strapi.graphql({ query: eventsExtractQuery() })
+    console.log(events.singleEvents)
+    this.events = events.singleEvents
+  },
+  computed: {
+    updatedEvents() {
+      const evs = this.events || []
+      const updatedEvs = evs.map((el) => {
+        return {
+          start: new Date(el.start_date),
+          id: el.id,
+          end: new Date(el.end_date),
+          title: el.title,
+          slug: el.slug,
+          content: el.description,
+        }
+      })
+      return updatedEvs
+    },
   },
   methods: {
     onEventClick(event, e) {
