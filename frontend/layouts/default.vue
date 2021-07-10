@@ -8,10 +8,11 @@
       <Nuxt></Nuxt>
     </div>
     <AppFooter />
+    <div class="snipcart-summary"></div>
     <div
       id="snipcart"
       hidden
-      data-api-key="ZTc4ZDcwYzktMjNlYy00NjAxLTllMzgtOTk4ZWM1NTlhYjI3NjM1OTIxNTA0MDk0ODc5MDQ4"
+      data-api-key="YzBjZDEzOTctOTU2ZS00MzIxLWFmOWYtZWRlMzY5YjhhMjQ5NjM3NTgzNDUyNjUwMjYzODg5"
     ></div>
   </div>
 </template>

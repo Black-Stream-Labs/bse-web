@@ -61,7 +61,7 @@ export default {
     '@nuxtjs/composition-api/module',
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
-    // '@nuxtjs/ngrok',
+    '@nuxtjs/ngrok',
     // '@nuxt/image',
     // Doc: https://github.com/nuxt-community/color-mode-module
     '@nuxtjs/color-mode',
@@ -99,7 +99,7 @@ export default {
     '@nuxt/image',
     '@nuxtjs/color-mode',
     // this is for outisde testing only
-    // ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
+    ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
   ],
   markdownit: {
     preset: 'default',
