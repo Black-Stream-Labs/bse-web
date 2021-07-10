@@ -14,7 +14,17 @@
         <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
         <!-- dot -->
         <div
-          class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
+          class="
+            dot
+            absolute
+            left-1
+            top-1
+            bg-white
+            w-6
+            h-6
+            rounded-full
+            transition
+          "
         ></div>
       </div>
       <!-- label -->

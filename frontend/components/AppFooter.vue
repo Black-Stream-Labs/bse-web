@@ -75,26 +75,64 @@
       <div class="flex justify-center flex-col items-center">
         <a
           href="#"
-          class="hover:text-gray-700 border rounded-full border-transparent m-2 p-3 inline-flex hover:border-white"
+          class="
+            hover:text-gray-700
+            border
+            rounded-full
+            border-transparent
+            m-2
+            p-3
+            inline-flex
+            hover:border-white
+          "
         >
           <TwitterImage :color="dinamicColor"></TwitterImage>
         </a>
         <a
           href="#"
-          class="hover:text-gray-700 border rounded-full border-transparent m-2 p-3 inline-flex hover:border-white"
+          class="
+            hover:text-gray-700
+            border
+            rounded-full
+            border-transparent
+            m-2
+            p-3
+            inline-flex
+            hover:border-white
+          "
         >
           <GithubImage :color="dinamicColor"></GithubImage>
         </a>
         <a
           href="#"
-          class="hover:text-gray-700 border rounded-full border-transparent m-2 p-3 inline-flex hover:border-white"
+          class="
+            hover:text-gray-700
+            border
+            rounded-full
+            border-transparent
+            m-2
+            p-3
+            inline-flex
+            hover:border-white
+          "
         >
           <FacebookImage :color="dinamicColor"></FacebookImage>
         </a>
       </div>
     </div>
     <div
-      class="flex flex-col sm:flex-row items-center justify-center w-full max-w-5xl mx-auto flex-grow-0 pt-10 text-sm"
+      class="
+        flex flex-col
+        sm:flex-row
+        items-center
+        justify-center
+        w-full
+        max-w-5xl
+        mx-auto
+        flex-grow-0
+        pt-10
+        text-sm
+      "
     >
       Designed and built with
 

@@ -56,10 +56,10 @@
 import Vue from 'vue'
 import Notification from '~/components/Notification'
 export default Vue.extend({
-  middleware: 'guest',
   components: {
     Notification,
   },
+  middleware: 'guest',
   data() {
     return {
       email: '',

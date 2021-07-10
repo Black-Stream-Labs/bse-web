@@ -69,8 +69,8 @@
 // @ts-nocheck
 import Vue from 'vue'
 export default Vue.extend({
-  middleware: 'guest',
   layout: 'DefaultLayout',
+  middleware: 'guest',
   data() {
     return {
       username: '',

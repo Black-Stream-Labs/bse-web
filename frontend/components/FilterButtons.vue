@@ -10,7 +10,13 @@
       <div class="column is-12">
         <NuxtLink
           to="/products"
-          class="py-2 px-4 mr-2 button is-active is-outlined is-small is-rounded"
+          class="
+            py-2
+            px-4
+            mr-2
+            button
+            is-active is-outlined is-small is-rounded
+          "
         >
           All Products
         </NuxtLink>

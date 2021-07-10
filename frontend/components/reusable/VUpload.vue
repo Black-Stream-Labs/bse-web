@@ -1,6 +1,19 @@
 <template>
   <button
-    class="mx-2 px-4 py-2 text-sm rounded text-gray-800 border focus:outline-none hover:bg-gray-100 inline-flex items-center justify-between"
+    class="
+      mx-2
+      px-4
+      py-2
+      text-sm
+      rounded
+      text-gray-800
+      border
+      focus:outline-none
+      hover:bg-gray-100
+      inline-flex
+      items-center
+      justify-between
+    "
   >
     Upload file
 

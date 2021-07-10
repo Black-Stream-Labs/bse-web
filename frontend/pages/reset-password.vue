@@ -51,8 +51,8 @@
 // @ts-nocheck
 import Vue from 'vue'
 export default Vue.extend({
-  middleware: 'guest',
   components: {},
+  middleware: 'guest',
   asyncData(context) {
     if (!context.route.query.code) context.redirect('/forgot-password')
     else

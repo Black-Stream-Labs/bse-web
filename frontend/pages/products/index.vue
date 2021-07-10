@@ -34,7 +34,6 @@ export default Vue.extend({
     // still need to impement a different sidebar for individual product page to redirect and search
     this.$root.$on('search-products', (data: string) => {
       this.$nextTick(async () => {
-        console.log('saerch', data)
         await this.searchProducts(data)
       })
     })
@@ -108,21 +107,16 @@ export default Vue.extend({
           )
           updatedProd = prod
         }
+      } else if (!!data && data !== 'undefined') {
+        const prod = await this.$strapi.find('products', {
+          product_name_contains: data,
+        })
+        updatedProd = prod
       } else {
-        console.log('query query is empty')
-        if (!!data && data !== 'undefined') {
-          console.log(data, typeof data)
-
-          const prod = await this.$strapi.find('products', {
-            product_name_contains: data,
-          })
-          updatedProd = prod
-        } else {
-          const data = await this.$strapi.graphql({
-            query: allProdQuery(),
-          })
-          updatedProd = data.products
-        }
+        const data = await this.$strapi.graphql({
+          query: allProdQuery(),
+        })
+        updatedProd = data.products
       }
       this.products = updatedProd.flat(1)
     },
