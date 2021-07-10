@@ -5,8 +5,13 @@
       <select
         id="themeSelect"
         v-model="$colorMode.preference"
-        class="w-28 h-8 border rounded dark:bg-gray-900 dark:text-white dark:border-gray-50"
-        @change="(ev) => $root.$emit('changeColor', ev.target.value)"
+        class="
+          w-28
+          h-8
+          border
+          rounded
+          dark:bg-gray-900 dark:text-white dark:border-gray-50
+        "
       >
         <option value="system">System</option>
         <option value="light">Light</option>
@@ -21,9 +26,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'VColorSelect',
-  beforeDestroy() {
-    this.$root.$off()
-  },
 })
 </script>
 
