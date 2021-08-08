@@ -42,6 +42,10 @@ module.exports = {
       yellow: colors.amber,
       green: colors.green,
       pink: colors.fuchsia,
+      tgreen: '#676B3B',
+      tpurple: '#673B6B',
+      tblue: '#3B4F6C',
+      tbrown: '#7F6127',
     },
     // fontFamily: {
     //   sans: ['Lato', ...defaultTheme.fontFamily.sans],

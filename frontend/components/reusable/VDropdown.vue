@@ -49,7 +49,11 @@
           top-10
           dark:bg-gray-900 dark:text-white
         "
-        :style="$store.state.fullColor ? $store.state.fullColor : ''"
+        :style="
+          $store.state.fullColor
+            ? `background:${$store.state.fullColor.color}`
+            : ''
+        "
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "

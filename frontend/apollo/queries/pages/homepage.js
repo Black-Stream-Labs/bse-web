@@ -7,6 +7,7 @@ export function homePageQuery() {
       homePage {
         id
         title
+        motto
         content {
           content
           subtitle

@@ -23,10 +23,10 @@ import Vue from 'vue'
 import AppFooter from '@/components/AppFooter'
 import AppNavbar from '@/components/AppNavbar'
 const colors = [
-  ['#676B3B', '#B1B49A'], // green
-  ['#673B6B', '#B19AB3'], // purple
-  ['#3B4F6C', '#99A3B4'], // blue
-  ['#7F6127', '#BEAE7D'], // brown
+  ['#676B3B', '#B1B49A', 'tgreen'], // green
+  ['#673B6B', '#B19AB3', 'tpurple'], // purple
+  ['#3B4F6C', '#99A3B4', 'tblue'], // blue
+  ['#7F6127', '#BEAE7D', 'tbrown'], // brown
 ]
 const bgRandomIndex = Math.floor(Math.random() * colors.length)
 const bgc = colors[bgRandomIndex]
