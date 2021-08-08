@@ -9,21 +9,34 @@
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <div v-html="$md.render(updatedContent)" />
       </div>
-      <div class="container max-w-5xl mx-auto px-4">
-        <template v-for="(section, ind) in sectionUpdated">
-          <div
-            :key="ind"
-            class="flex items-center justify-center py-10"
-            :class="ind % 2 == 0 ? 'flex-row-reverse' : ''"
-          >
-            <div class="w-1/2 flex items-center justify-center p-4">
-              <img :src="section.section_image.url" alt="" class="image" />
-            </div>
-            <div class="w-1/2">
-              <div v-html="$md.render(section.section_content)"></div>
+      <div
+        class="container max-w-5xl mx-auto px-4 py-10"
+        :class="`grid gap-4 grid-rows-${sectionUpdated.length + 1}`"
+      >
+        <div
+          v-for="(section, ind) in sectionUpdated"
+          :key="ind"
+          class="row-span-1 py-10"
+        >
+          <div class="grid grid-cols-12">
+            <div
+              class="flex items-center justify-center p-4"
+              :class="`col-start-${ind === 0 ? 1 : ind + 3} col-span-9`"
+            >
+              <img
+                :src="section.section_image.url"
+                alt=""
+                class="image px-4"
+                width="150"
+                height="150"
+              />
+              <div
+                class="px-4"
+                v-html="$md.render(section.section_content)"
+              ></div>
             </div>
           </div>
-        </template>
+        </div>
       </div>
     </section>
   </div>
@@ -59,7 +72,7 @@ export default Vue.extend({
     sectionUpdated() {
       if (!this.page.sections) return
       const x = []
-      this.page.sections.forEach((el) => {
+      this.page.sections.forEach((el: any) => {
         const e = JSON.stringify(el)
         x.push(JSON.parse(formatContentImageUrl(e)))
       })

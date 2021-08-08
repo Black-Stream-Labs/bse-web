@@ -3,13 +3,20 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   mode: 'jit',
-  purge: [
-    './components/**/*.{vue,js}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}',
-  ],
+  purge: {
+    content: [
+      './components/**/*.{vue,js}',
+      './layouts/**/*.vue',
+      './pages/**/*.vue',
+      './plugins/**/*.{js,ts}',
+      './nuxt.config.{js,ts}',
+    ],
+    safelist: {
+      // standard: [/col$/],
+      // deep: [/col$/],
+      greedy: [/col-/],
+    },
+  },
   darkMode: 'class', // 'false' or 'media' or 'class'
   theme: {
     screens: {
@@ -29,7 +36,7 @@ module.exports = {
       black: '#000',
       white: '#f9fafb',
       gray: colors.coolGray,
-      blue: colors.lightBlue,
+      blue: colors.sky,
       red: colors.rose,
       purple: colors.violet,
       yellow: colors.amber,

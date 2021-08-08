@@ -27,7 +27,8 @@
       "@types/node",
       "@nuxt/types",
       "vue-apollo/types",
-      "@nuxt/image"
+      "@nuxt/image",
+      "@nuxtjs/color-mode"
     ]
   },
   "exclude": [
