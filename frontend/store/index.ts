@@ -22,9 +22,7 @@ export const mutations: MutationTree<RootState> = {
     state.bgColor = data
       ? `background: linear-gradient(270deg, ${data[0]} 0%, ${data[1]} 100%)`
       : null
-    state.fullColor = data
-      ? { name: data[2], color: `background:${data[0]}` }
-      : null
+    state.fullColor = data ? { name: data[2], color: data[0] } : null
   },
 }
 

@@ -49,11 +49,7 @@
           top-10
           dark:bg-gray-900 dark:text-white
         "
-        :style="
-          $store.state.fullColor
-            ? `background:${$store.state.fullColor.color}`
-            : ''
-        "
+        :style="fullColor ? `background:${fullColor.color}` : ''"
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "
@@ -102,6 +98,11 @@ export default {
     return {
       open: false,
     }
+  },
+  computed: {
+    fullColor() {
+      return this.$store.state.fullColor
+    },
   },
   mounted() {
     const onEscape = (e) => {

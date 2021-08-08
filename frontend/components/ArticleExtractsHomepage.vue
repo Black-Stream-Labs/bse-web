@@ -11,8 +11,19 @@
       "
       :class="
         $store.state.fullColor
-          ? `hover:bg-${$store.state.fullColor.name} hover:border-${$store.state.fullColor.name}`
-          : ''
+          ? $store.state.fullColor.name === 'tgreen'
+            ? 'hover:bg-tgreen '
+            : $store.state.fullColor.name === 'tpurple'
+            ? 'hover:bg-tpurple'
+            : $store.state.fullColor.name === 'tblue'
+            ? 'hover:bg-tblue'
+            : $store.state.fullColor.name === 'tbrown'
+            ? 'hover:bg-tbrown'
+            : ''
+          : $colorMode.preference === 'system' ||
+            $colorMode.preference === 'dark'
+          ? 'hover:bg-gray-700'
+          : 'hover:bg-gray-500'
       "
     >
       <div class="px-4 py-4 w-full">
@@ -55,6 +66,11 @@
                     py-1
                     mx-1
                     dark:bg-gray-700 dark:text-gray-300
+                  "
+                  :class="
+                    $store.state.fullColor
+                      ? 'text-gray-800 hover:text-gray-700'
+                      : ''
                   "
                 >
                   {{ cat.category }}

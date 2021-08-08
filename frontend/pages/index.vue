@@ -21,10 +21,10 @@
         <div v-html="$md.render(updatedContent)" />
       </div>
     </section>
-    <section class="section">
+    <section v-if="sectionUpdated" class="section">
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <h2>What we do</h2>
-        <div :class="`grid gap-4 grid-rows-${sectionUpdated.length + 1}`">
+        <div class="grid gap-4 grid-rows-5">
           <div
             v-for="(section, ind) in sectionUpdated"
             :key="ind"
@@ -33,17 +33,18 @@
             <div class="grid grid-cols-12">
               <div
                 class="col-span-12"
-                :class="`md:col-start-${
+                :class="[
                   ind === 0
-                    ? 1
+                    ? 'md:col-start-1'
                     : ind === 1
-                    ? 3
+                    ? 'md:col-start-3'
                     : ind === 2 || ind === 4
-                    ? 5
+                    ? 'md:col-start-5'
                     : ind === 3 || ind === 6
-                    ? 3
-                    : 1
-                } md:col-span-5`"
+                    ? 'md:col-start-3'
+                    : 'md:col-start-1',
+                  'md:col-span-5',
+                ]"
               >
                 <div
                   class="

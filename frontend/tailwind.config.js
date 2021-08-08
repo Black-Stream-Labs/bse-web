@@ -11,11 +11,10 @@ module.exports = {
       './plugins/**/*.{js,ts}',
       './nuxt.config.{js,ts}',
     ],
-    safelist: {
-      // standard: [/col$/],
-      // deep: [/col$/],
-      greedy: [/col-/],
-    },
+    // options: {
+    // safelist: [/col-/, /^dark:/, /bg/, /rows-/],
+    // safelist: ['col-start-1', 'col-start-2', 'col-start-3', 'col-start-4'],
+    // },
   },
   darkMode: 'class', // 'false' or 'media' or 'class'
   theme: {
@@ -47,10 +46,6 @@ module.exports = {
       tblue: '#3B4F6C',
       tbrown: '#7F6127',
     },
-    // fontFamily: {
-    //   sans: ['Lato', ...defaultTheme.fontFamily.sans],
-    //   serif: ['Merriweather', 'serif'],
-    // },
     extend: {
       spacing: {
         128: '32rem',
@@ -59,19 +54,9 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
-      // animation: {
-      //   'animate-down': 'animate-down 1s ease-in-out linear',
-      // },
-      // keyframes: {
-      //   'animate-down': {
-      //     '0%': { opacity: '0', height: 0 },
-      //     '100%': { opacity: '1', height: '60px' },
-      //   },
-      // },
     },
   },
   variants: {
-    // animation: ['responsive', 'motion-safe', 'motion-reduce'],
     backgroundColor: [
       'dark',
       'dark-hover',

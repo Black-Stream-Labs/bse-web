@@ -12,11 +12,7 @@
           rounded
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
-        :style="
-          $store.state.fullColor
-            ? `background:${$store.state.fullColor.color}`
-            : ''
-        "
+        :style="fullColor ? `background:${fullColor.color}` : ''"
       >
         <option value="Alegreya">Alegreya</option>
         <option value="Helvetica">Helvetica</option>
@@ -37,6 +33,11 @@ export default Vue.extend({
     return {
       fontFamily: 'Alegreya',
     }
+  },
+  computed: {
+    fullColor() {
+      return this.$store.state.fullColor
+    },
   },
   watch: {
     fontFamily(newValue, oldValue) {

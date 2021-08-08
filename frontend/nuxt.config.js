@@ -33,7 +33,7 @@ export default {
     ],
   },
   // bodyAttr: {
-  //   class: 'has-navbar-fixed-top',
+  //   class: '',
   // },
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/css/tailwind.css'],
@@ -69,20 +69,13 @@ export default {
     '@nuxtjs/tailwindcss',
   ],
   colorMode: {
-    preference: 'system', // default value of $colorMode.preference
-    fallback: 'light', // fallback value if not system preference found
-    hid: 'nuxt-color-mode-script',
-    globalName: '__NUXT_COLOR_MODE__',
-    componentName: 'ColorScheme',
-    classPrefix: '',
-    classSuffix: '-mode',
-    storageKey: 'nuxt-color-mode',
+    classSuffix: '',
   },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.js',
     exposeConfig: true,
-    config: {},
+    // config: {},
   },
   // ngrok: {
   // module options
@@ -104,9 +97,9 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/proxy',
     '@nuxt/image',
-    // '@nuxtjs/color-mode',
+    '@nuxtjs/color-mode',
     // this is for outisde testing only
-    ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
+    // ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
   ],
   markdownit: {
     preset: 'default',
