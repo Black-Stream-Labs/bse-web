@@ -6,7 +6,8 @@
         relative
         px-2
         py-2
-        border border-gray-400
+        lg:border
+        border-gray-400
         rounded
         items-center
         text-sm
@@ -48,6 +49,7 @@
           top-10
           dark:bg-gray-900 dark:text-white
         "
+        :style="$store.state.fullColor ? $store.state.fullColor : ''"
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "
@@ -84,6 +86,7 @@
 <script>
 export default {
   name: 'VDropdown',
+
   props: {
     placement: {
       type: String,

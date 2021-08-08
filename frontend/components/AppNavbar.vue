@@ -1,5 +1,8 @@
 <template>
-  <header class="sticky top-0 bg-gray-50 dark:bg-gray-900 dark:text-white z-50">
+  <header
+    class="sticky top-0 dark:bg-gray-900 text-white z-50"
+    :style="$store.state.bgColor ? $store.state.bgColor : ''"
+  >
     <nav
       class="flex justify-between items-center select-none"
       :class="'py-4 px-4'"
@@ -112,7 +115,7 @@
           "
         >
           <!-- <transition name="animate-down"> -->
-          <LogoImage height="60" width="60"></LogoImage>
+          <LogoImage height="60" width="65"></LogoImage>
           <!-- </transition> -->
         </NuxtLink>
         <NuxtLink
@@ -263,7 +266,7 @@ export default Vue.extend({
       isOpen: false,
       // showLogo: false,
       // scrollHeight: 0,
-      dinamicColor: 'indigo',
+      dinamicColor: 'white',
     }
   },
   computed: {

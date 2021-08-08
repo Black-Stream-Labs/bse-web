@@ -1,12 +1,7 @@
 <template>
   <section
-    class="
-      section
-      py-20
-      bg-gray-100
-      text-gray-800
-      dark:bg-gray-900 dark:text-white
-    "
+    class="section py-20 text-white dark:bg-gray-900 dark:text-white"
+    :style="$store.state.bgColor ? $store.state.bgColor : ''"
   >
     <div class="container max-w-5xl mx-auto px-4">
       <div class="md:block">
@@ -54,11 +49,14 @@
 import Vue, { PropOptions } from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 import LogoImage from '@/components/icons/LogoImage.vue'
+
 export default Vue.extend({
+  name: 'HeroComponent',
   components: {
     LogoImage,
   },
   mixins: [imageUrlManipulation],
+
   props: {
     title: {
       type: String,
@@ -75,9 +73,10 @@ export default Vue.extend({
   },
   data() {
     return {
-      dinamicColor: 'indigo',
+      dinamicColor: 'white',
     }
   },
+
   mounted() {
     this.$root.$on('updateImageColor', (data: string) => {
       this.dinamicColor = data

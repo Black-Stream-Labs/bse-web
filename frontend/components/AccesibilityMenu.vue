@@ -48,7 +48,7 @@ export default Vue.extend({
   props: {
     dinamicColor: {
       type: String,
-      default: 'indigo',
+      default: 'white',
     } as PropOptions,
   },
   data() {

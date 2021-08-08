@@ -12,6 +12,7 @@
           rounded
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
+        :style="$store.state.fullColor ? $store.state.fullColor : ''"
       >
         <option value="Alegreya">Alegreya</option>
         <option value="Helvetica">Helvetica</option>
@@ -27,6 +28,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AccesibilityFonts',
+
   data() {
     return {
       fontFamily: 'Alegreya',

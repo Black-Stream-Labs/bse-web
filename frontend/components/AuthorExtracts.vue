@@ -152,7 +152,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      dinamicColor: 'indigo',
+      dinamicColor: 'white',
     }
   },
   mounted() {

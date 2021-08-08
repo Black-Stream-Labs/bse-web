@@ -22,6 +22,14 @@
 import Vue from 'vue'
 import AppFooter from '@/components/AppFooter'
 import AppNavbar from '@/components/AppNavbar'
+const colors = [
+  ['#676B3B', '#B1B49A'], // green
+  ['#673B6B', '#B19AB3'], // purple
+  ['#3B4F6C', '#99A3B4'], // blue
+  ['#7F6127', '#BEAE7D'], // brown
+]
+const bgRandomIndex = Math.floor(Math.random() * colors.length)
+const bgc = colors[bgRandomIndex]
 
 export default Vue.extend({
   name: 'DefaultLayout',
@@ -29,6 +37,23 @@ export default Vue.extend({
     AppFooter,
     AppNavbar,
   },
+
+  computed: {
+    bgColor() {
+      return this.$colorMode.preference === 'dark' ||
+        this.$colorMode.preference === 'system'
+        ? null
+        : bgc
+    },
+  },
+  watch: {
+    bgColor(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.$store.dispatch('updateBgColor', newValue)
+      }
+    },
+  },
+  created() {},
 })
 </script>
 <style></style>
