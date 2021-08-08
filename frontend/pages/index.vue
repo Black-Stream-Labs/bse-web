@@ -28,22 +28,36 @@
           <div
             v-for="(section, ind) in sectionUpdated"
             :key="ind"
-            class="row-span-1 py-10"
+            class="row-span-1 py-5"
           >
             <div class="grid grid-cols-12">
               <div
-                class="col-span-12"
+                class="col-span-12 hover:text-white"
                 :class="[
-                  ind === 0
+                  ind === 0 || ind === 4
                     ? 'md:col-start-1'
-                    : ind === 1
+                    : ind === 1 || ind === 5
                     ? 'md:col-start-3'
-                    : ind === 2 || ind === 4
+                    : ind === 2 || ind === 6
                     ? 'md:col-start-5'
-                    : ind === 3 || ind === 6
+                    : ind === 3 || ind === 7
                     ? 'md:col-start-3'
                     : 'md:col-start-1',
                   'md:col-span-5',
+                  $store.state.fullColor
+                    ? $store.state.fullColor.name === 'tgreen'
+                      ? 'hover:bg-tgreen '
+                      : $store.state.fullColor.name === 'tpurple'
+                      ? 'hover:bg-tpurple'
+                      : $store.state.fullColor.name === 'tblue'
+                      ? 'hover:bg-tblue'
+                      : $store.state.fullColor.name === 'tbrown'
+                      ? 'hover:bg-tbrown'
+                      : ''
+                    : $colorMode.preference === 'system' ||
+                      $colorMode.preference === 'dark'
+                    ? 'hover:bg-gray-700'
+                    : 'hover:bg-gray-500',
                 ]"
               >
                 <div
@@ -63,19 +77,13 @@
                     height="80"
                   />
                   <div
-                    class="px-4 line-clamp-3"
+                    class="px-4 line-clamp-3 overflow-hidden"
                     v-html="$md.render(section.section_content)"
                   ></div>
-                  <div class="text-right block w-full">
+                  <div class="text-right block w-full py-2">
                     <NuxtLink
                       :to="`/services/${section.title}`"
-                      class="
-                        text-right
-                        py-2
-                        text-indigo-600 text-xs
-                        uppercase
-                        hover:underline
-                      "
+                      class="text-right p-2 text-xs uppercase hover:underline"
                     >
                       Read More <span>&rarr;</span>
                     </NuxtLink>

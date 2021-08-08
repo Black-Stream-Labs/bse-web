@@ -41,8 +41,8 @@
           to="/about"
           class="
             p-2
-            hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -54,8 +54,8 @@
           to="/services"
           class="
             p-2
-            hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -67,8 +67,8 @@
           to="/articles"
           class="
             p-2
-            hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -81,8 +81,8 @@
           to="/events"
           class="
             p-2
-            hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -94,8 +94,8 @@
           to="/safeguarding"
           class="
             p-2
-            hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -107,8 +107,8 @@
         <NuxtLink
           to="/"
           class="
-            hover:rounded-full hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:rounded-full hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -122,8 +122,8 @@
           to="/products"
           class="
             p-2
-            hover:bg-gray-300
-            dark:hover:bg-gray-500
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
             flex
             items-center
             justify-center
@@ -157,8 +157,8 @@
           font-semibold
           text-gray-800
           p-3
-          hover:bg-gray-300
-          dark:hover:bg-gray-500
+          hover:bg-gray-400
+          dark:hover:bg-gray-700
           hover:text-gray-50
           dark:text-white
         "
@@ -172,8 +172,8 @@
           font-semibold
           text-gray-800
           p-3
-          hover:bg-gray-300
-          dark:hover:bg-gray-500
+          hover:bg-gray-400
+          dark:hover:bg-gray-700
           hover:text-gray-50
           dark:text-white
         "
@@ -187,8 +187,8 @@
           font-semibold
           text-gray-800
           p-3
-          hover:bg-gray-300
-          dark:hover:bg-gray-500
+          hover:bg-gray-400
+          dark:hover:bg-gray-700
           hover:text-gray-50
           dark:text-white
         "
@@ -203,8 +203,8 @@
           font-semibold
           text-gray-800
           p-3
-          hover:bg-gray-300
-          dark:hover:bg-gray-500
+          hover:bg-gray-400
+          dark:hover:bg-gray-700
           hover:text-gray-50
           dark:text-white
         "
@@ -218,8 +218,8 @@
           font-semibold
           text-gray-800
           p-3
-          hover:bg-gray-300
-          dark:hover:bg-gray-500
+          hover:bg-gray-400
+          dark:hover:bg-gray-700
           hover:text-gray-50
           dark:text-white
         "
@@ -233,8 +233,8 @@
           font-semibold
           text-gray-800
           p-3
-          hover:bg-gray-300
-          dark:hover:bg-gray-500
+          hover:bg-gray-400
+          dark:hover:bg-gray-700
           hover:text-gray-50
           dark:text-white
         "

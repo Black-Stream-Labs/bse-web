@@ -8,6 +8,20 @@
   >
     <path
       d="M384 128L128 384"
+      style="stroke: white"
+      stroke-width="30"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M128 128L384 384"
+      style="stroke: white"
+      stroke-width="30"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- <path
+      d="M384 128L128 384"
       :style="`stroke: ${
         $colorMode.preference === 'light' ? 'indigo' : 'white'
       }`"
@@ -23,7 +37,7 @@
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
-    />
+    /> -->
   </svg>
 </template>
 

@@ -8,36 +8,28 @@
   >
     <path
       d="M364.083 214.167H64.25"
-      :style="`stroke: ${
-        $colorMode.preference === 'light' ? 'indigo' : 'white'
-      }`"
+      :style="`stroke: white`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M449.75 128.5H64.25"
-      :style="`stroke: ${
-        $colorMode.preference === 'light' ? 'indigo' : 'white'
-      }`"
+      :style="`stroke: white`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M449.75 299.833H64.25"
-      :style="`stroke: ${
-        $colorMode.preference === 'light' ? 'indigo' : 'white'
-      }`"
+      :style="`stroke: white`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M364.083 385.5H64.25"
-      :style="`stroke: ${
-        $colorMode.preference === 'light' ? 'indigo' : 'white'
-      }`"
+      :style="`stroke: white`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
