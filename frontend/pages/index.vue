@@ -21,7 +21,7 @@
         <div v-html="$md.render(updatedContent)" />
       </div>
     </section>
-    <section v-if="sectionUpdated" class="section">
+    <section v-if="sectionUpdated" id="whatwedo" class="section">
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <h2>What we do</h2>
         <div class="grid gap-4 grid-rows-5">
@@ -95,7 +95,28 @@
         </div>
       </div>
     </section>
-    <section class="section"></section>
+    <section
+      id="whattheysay"
+      class="section"
+      :style="$store.state.bgColor ? $store.state.bgColor : ''"
+    >
+      <div class="container max-w-5xl mx-auto px-4 py-10">
+        <h2>What they say</h2>
+        <div class="grid gap-4 grid-rows-5">
+          <div
+            v-for="(test, ind) in testimonials"
+            :key="ind"
+            class="row-span-1 py-5"
+          >
+            <div class="grid grid-cols-12">
+              <div class="col-span-12 hover:text-white">
+                {{ test.author_name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section"></section>
     <section class="section"></section>
     <section class="section"></section>
@@ -105,7 +126,7 @@
           <div
             v-for="(article, ind) in articles"
             :key="ind"
-            class="col-span-2 md:col-span-1"
+            class="col-span-2 md:col-span-1 h-full"
           >
             <ArticleExtractsHomepage
               :article="article"
@@ -124,6 +145,7 @@ import Hero from '@/components/Hero'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
 import { articleExtracts } from '@/apollo/queries/blog/articles.js'
+import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
 
 import ArticleExtractsHomepage from '@/components/ArticleExtractsHomepage'
 
@@ -137,10 +159,14 @@ export default Vue.extend({
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: homePageQuery() })
     const articles = await $strapi.graphql({ query: articleExtracts() })
-    // console.log(articles)
+    const testimonials = await $strapi.graphql({
+      query: testimonialsExtracts(),
+    })
+    console.log('testimonials', testimonials)
     return {
       page: data.homePage,
       articles: articles.articles,
+      testimonials: testimonials.testimonials,
     }
   },
   computed: {

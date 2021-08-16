@@ -22,7 +22,19 @@ module.exports = {
       xs: '475px',
       ...defaultTheme.screens,
     },
-
+    flexGrow: {
+      0: 0,
+      DEFAULT: 2,
+      1: 1,
+    },
+    flex: {
+      1: '1 1 0%',
+      auto: '1 1 auto',
+      // initial: '0 1 auto',
+      inherit: 'inherit',
+      none: 'none',
+      2: '2 2 0%',
+    },
     minWidth: {
       0: '0',
       '1/4': '25%',
