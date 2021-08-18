@@ -6,7 +6,7 @@
     <div
       id="carousel"
       ref="carousel"
-      class="md:w-2/3 grid grid-cols-12 gap-2"
+      class="md:w-2/3 masonry"
       :class="showAll ? '' : 'overflow-hidden max-h-96'"
     >
       <div
@@ -14,21 +14,19 @@
         :key="ind"
         class="
           py-5
-          figure
+          break-inside
           flex flex-wrap flex-col
           justify-around
           col-span-12
           md:col-span-6
         "
       >
-        <div class="shadow-lg mx-3 xl:mx-3 sm:mx-0 lg:mx-0 border border-white">
-          <div class="pt-6 pb-6 pl-6 rounded-tl rounded-tr">
-            <p class="text-xl text-white pb-1">{{ testim.author_name }}</p>
+        <div class="shadow-lg border border-white p-6">
+          <div class="rounded-tl rounded-tr relative">
+            <h3 class="text-xl text-white pb-1">{{ testim.author_name }}</h3>
             <p v-if="testim.author_company" class="text-base">
               {{ testim.author_company }}
             </p>
-          </div>
-          <div class="pl-6 pr-6 pt-10 relative h-64">
             <div
               class="
                 h-16
@@ -39,8 +37,8 @@
                 absolute
                 top-0
                 right-0
-                -mt-8
-                mr-6
+                -mt-4
+                -mr-4
               "
             >
               <img
@@ -52,26 +50,24 @@
                 class="h-full w-full object-cover rounded-full overflow-hidden"
               />
             </div>
-
-            <p class="text-base leading-8 line-clamp-5">
-              {{ testim.text }}
-            </p>
-            <div class="flex justify-end mt-2">
-              <QuotesIcon></QuotesIcon>
-            </div>
+          </div>
+          <p class="text-base leading-8 pt-4">
+            {{ testim.text }}
+          </p>
+          <div class="flex justify-end mt-2">
+            <QuotesIcon></QuotesIcon>
           </div>
         </div>
       </div>
     </div>
-    <div class="cursor-pointer flex w-full pt-4 pb-8">
+    <div class="pb-8">
       <button
         class="
-          p-2
-          border
-          rounded
-          border-gray-50
+          py-2
+          px-4
+          border border-gray-50
           dark:hover:bg-gray-700
-          hover:bg-gray-700
+          hover:bg-gray-500
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
         @click.stop="showAll = !showAll"
