@@ -15,7 +15,7 @@
       :style="$store.state.bgColor ? $store.state.bgColor : ''"
     >
       <div
-        class="container max-w-5xl mx-auto px-4 py-24"
+        class="container max-w-5xl mx-auto px-4 py-24 dark:text-white"
         :class="$store.state.bgColor ? 'text-white' : ''"
       >
         <div v-html="$md.render(updatedContent)" />
@@ -54,8 +54,7 @@
                       : $store.state.fullColor.name === 'tbrown'
                       ? 'hover:bg-tbrown'
                       : ''
-                    : $colorMode.preference === 'system' ||
-                      $colorMode.preference === 'dark'
+                    : $colorMode.preference === 'dark'
                     ? 'hover:bg-gray-700'
                     : 'hover:bg-gray-500',
                 ]"
@@ -98,19 +97,32 @@
     <section
       id="whattheysay"
       class="section"
-      :style="$store.state.bgColor ? $store.state.bgColor : ''"
+      :style="$store.state.bgColor ? $store.state.bgColor + 'text-white' : ''"
     >
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <h2>What they say</h2>
         <div class="grid gap-4 grid-rows-5">
           <div
-            v-for="(test, ind) in testimonials"
+            v-for="(testim, ind) in updatedTestimonials"
             :key="ind"
             class="row-span-1 py-5"
           >
-            <div class="grid grid-cols-12">
-              <div class="col-span-12 hover:text-white">
-                {{ test.author_name }}
+            <div class="grid grid-cols-12 line-clamp-4">
+              <div class="col-span-12">
+                {{ testim.author_name }}
+              </div>
+              <div class="col-span-12">
+                {{ testim.text }}
+              </div>
+              <div class="col-span-12">
+                <img
+                  v-if="testim.author_image"
+                  :src="testim.author_image.url"
+                  :alt="testim.author_image.name"
+                  width="50"
+                  height="50"
+                  class="rounded"
+                />
               </div>
             </div>
           </div>
@@ -162,7 +174,6 @@ export default Vue.extend({
     const testimonials = await $strapi.graphql({
       query: testimonialsExtracts(),
     })
-    console.log('testimonials', testimonials)
     return {
       page: data.homePage,
       articles: articles.articles,
@@ -199,6 +210,14 @@ export default Vue.extend({
       } else {
         return null
       }
+    },
+    updatedTestimonials() {
+      const x = []
+      this.testimonials.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
     },
   },
 })

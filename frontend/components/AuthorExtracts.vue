@@ -151,15 +151,9 @@ export default Vue.extend({
     authors: { type: Array, default: () => [] } as PropOptions,
   },
   data() {
-    return {
-      dinamicColor: 'white',
-    }
+    return {}
   },
-  mounted() {
-    this.$root.$on('updateImageColor', (data: string) => {
-      this.dinamicColor = data
-    })
-  },
+  mounted() {},
 })
 </script>
 

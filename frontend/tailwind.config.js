@@ -18,6 +18,7 @@ module.exports = {
   },
   darkMode: 'class', // 'false' or 'media' or 'class'
   theme: {
+    darkSelector: '.dark-mode',
     screens: {
       xs: '475px',
       ...defaultTheme.screens,

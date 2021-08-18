@@ -1,7 +1,8 @@
 <template>
   <header
-    class="sticky top-0 dark:bg-gray-900 text-white z-50"
-    :style="$store.state.bgColor ? $store.state.bgColor : ''"
+    class="sticky top-0 dark:bg-gray-900 dark:text-white z-50"
+    :class="$store.state.bgColor ? 'text-white' : 'text-gray-800'"
+    :style="$store.state.bgColor ? $store.state.bgColor : null"
   >
     <nav
       class="flex justify-between items-center select-none"
@@ -22,7 +23,8 @@
         <NuxtLink to="/" class="lg:hidden text-sm">
           <LogoImage height="50" width="50"></LogoImage>
         </NuxtLink>
-        <AccesibilityMenu></AccesibilityMenu>
+        <AccesibilityMenu :color="$store.state.bgColor ? 'white' : 'black'">
+        </AccesibilityMenu>
       </div>
       <!-- Desktop Links -->
       <div
@@ -266,7 +268,6 @@ export default Vue.extend({
       isOpen: false,
       // showLogo: false,
       // scrollHeight: 0,
-      dinamicColor: 'white',
     }
   },
   computed: {

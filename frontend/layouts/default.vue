@@ -40,9 +40,11 @@ export default Vue.extend({
 
   computed: {
     bgColor() {
-      return this.$colorMode.preference === 'dark' ||
-        this.$colorMode.preference === 'system'
-        ? null
+      // console.log(this.$colorMode.preference)
+      return this.$colorMode.preference === 'dark'
+        ? // ||
+          //         this.$colorMode.preference === 'system'
+          null
         : bgc
     },
   },
@@ -53,7 +55,9 @@ export default Vue.extend({
       }
     },
   },
-  created() {},
+  created() {
+    this.$store.dispatch('updateBgColor', this.bgColor)
+  },
 })
 </script>
 <style></style>

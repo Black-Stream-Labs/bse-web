@@ -8,14 +8,14 @@
   >
     <path
       d="M384 128L128 384"
-      style="stroke: white"
+      :style="`stroke: ${color}`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M128 128L384 384"
-      style="stroke: white"
+      :style="`stroke: ${color}`"
       stroke-width="30"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -50,6 +50,10 @@ export default Vue.extend({
     width: {
       type: [String, Number],
       default: '30',
+    } as PropOptions,
+    color: {
+      type: String,
+      default: 'white',
     } as PropOptions,
     height: {
       type: [String, Number],

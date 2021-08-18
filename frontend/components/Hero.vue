@@ -35,7 +35,7 @@
               v-else
               class="mb-6 mt-12 w-3/5 hidden md:flex justify-end align-center"
             >
-              <LogoImage :color="dinamicColor" width="200" height="200" />
+              <LogoImage width="200" height="200" />
             </div>
           </div>
         </div>
@@ -72,16 +72,10 @@ export default Vue.extend({
     } as PropOptions,
   },
   data() {
-    return {
-      dinamicColor: 'white',
-    }
+    return {}
   },
 
-  mounted() {
-    this.$root.$on('updateImageColor', (data: string) => {
-      this.dinamicColor = data
-    })
-  },
+  mounted() {},
 })
 </script>
 

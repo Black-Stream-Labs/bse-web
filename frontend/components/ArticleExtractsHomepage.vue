@@ -21,7 +21,7 @@
           : $store.state.fullColor.name === 'tbrown'
           ? 'hover:bg-tbrown'
           : ''
-        : $colorMode.preference === 'system' || $colorMode.preference === 'dark'
+        : $colorMode.preference === 'dark'
         ? 'hover:bg-gray-700'
         : 'hover:bg-gray-500'
     "

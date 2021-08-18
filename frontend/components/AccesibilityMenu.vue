@@ -7,11 +7,7 @@
         <DownArrow></DownArrow>
       </span>
       <span class="px-2 py-2 rounded items-center text-sm lg:hidden">
-        <SettingsImage
-          width="24"
-          height="24"
-          :color="dinamicColor"
-        ></SettingsImage>
+        <SettingsImage width="24" height="24"></SettingsImage>
       </span>
     </template>
     <!-- Opened dropdown content -->
@@ -46,7 +42,7 @@ export default Vue.extend({
     VColorSelect,
   },
   props: {
-    dinamicColor: {
+    color: {
       type: String,
       default: 'white',
     } as PropOptions,

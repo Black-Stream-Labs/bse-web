@@ -86,7 +86,7 @@
             hover:border-white
           "
         >
-          <TwitterImage :color="dinamicColor"></TwitterImage>
+          <TwitterImage></TwitterImage>
         </a>
         <a
           href="#"
@@ -101,7 +101,7 @@
             hover:border-white
           "
         >
-          <GithubImage :color="dinamicColor"></GithubImage>
+          <GithubImage></GithubImage>
         </a>
         <a
           href="#"
@@ -116,7 +116,7 @@
             hover:border-white
           "
         >
-          <FacebookImage :color="dinamicColor"></FacebookImage>
+          <FacebookImage></FacebookImage>
         </a>
       </div>
     </div>
@@ -143,7 +143,7 @@
         title="Strapi"
         class="m-2 p-2 border rounded border-transparent hover:border-white"
       >
-        <StrapiLogo :color="dinamicColor" width="60"></StrapiLogo>
+        <StrapiLogo width="60"></StrapiLogo>
       </a>
       <span> by </span>
       <a
@@ -153,7 +153,7 @@
         title="ThreeBros Design"
         class="m-2 p-2 border rounded border-transparent hover:border-white"
       >
-        <ThreeBros :color="dinamicColor" width="100"></ThreeBros>
+        <ThreeBros width="100"></ThreeBros>
       </a>
     </div>
   </footer>
@@ -176,9 +176,7 @@ export default Vue.extend({
     TwitterImage,
   },
   data() {
-    return {
-      dinamicColor: 'white',
-    }
+    return {}
   },
 
   mounted() {},

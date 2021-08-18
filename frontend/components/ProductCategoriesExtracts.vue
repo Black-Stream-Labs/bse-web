@@ -57,7 +57,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      dinamicColor: 'white',
       prodCategExtracts: [],
     }
   },
@@ -67,11 +66,7 @@ export default Vue.extend({
     })
     this.prodCategExtracts = data.productCategories
   },
-  mounted() {
-    // this.$root.$on('updateImageColor', (data: string) => {
-    //   this.dinamicColor = data
-    // })
-  },
+  mounted() {},
   fetchOnServer: true,
   fetchKey: 'product-categories',
 })
