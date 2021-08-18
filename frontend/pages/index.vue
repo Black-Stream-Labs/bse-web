@@ -97,36 +97,14 @@
     <section
       id="whattheysay"
       class="section"
-      :style="$store.state.bgColor ? $store.state.bgColor + 'text-white' : ''"
+      :style="$store.state.bgColor ? $store.state.bgColor : ''"
     >
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <h2>What they say</h2>
-        <div class="grid gap-4 grid-rows-5">
-          <div
-            v-for="(testim, ind) in updatedTestimonials"
-            :key="ind"
-            class="row-span-1 py-5"
-          >
-            <div class="grid grid-cols-12 line-clamp-4">
-              <div class="col-span-12">
-                {{ testim.author_name }}
-              </div>
-              <div class="col-span-12">
-                {{ testim.text }}
-              </div>
-              <div class="col-span-12">
-                <img
-                  v-if="testim.author_image"
-                  :src="testim.author_image.url"
-                  :alt="testim.author_image.name"
-                  width="50"
-                  height="50"
-                  class="rounded"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+
+        <TestimonialsComp
+          :testimonials="updatedTestimonials"
+        ></TestimonialsComp>
       </div>
     </section>
     <section class="section"></section>
@@ -154,6 +132,7 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
+import TestimonialsComp from '@/components/TestimonialsComp'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
 import { articleExtracts } from '@/apollo/queries/blog/articles.js'
@@ -166,6 +145,7 @@ export default Vue.extend({
   components: {
     Hero,
     ArticleExtractsHomepage,
+    TestimonialsComp,
   },
   layout: 'default',
   async asyncData({ $strapi }) {

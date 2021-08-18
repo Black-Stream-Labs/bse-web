@@ -51,7 +51,7 @@ export default Vue.extend({
   props: {
     color: {
       type: String,
-      default: 'black',
+      default: 'white',
     } as PropOptions,
     width: {
       type: [String, Number],
