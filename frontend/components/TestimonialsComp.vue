@@ -63,21 +63,20 @@
         </div>
       </div>
     </div>
-    <div
-      class="
-        cursor-pointer
-        flex
-        w-full
-        pt-4
-        pb-8
-        sm:pt-8
-        md:pt-8
-        lg:pt-8
-        xl:pt-12
-      "
-    >
-      <button @click.stop="showAll = !showAll">
-        {{ showAll ? 'Less' : 'More' }}
+    <div class="cursor-pointer flex w-full pt-4 pb-8">
+      <button
+        class="
+          p-2
+          border
+          rounded
+          border-gray-50
+          dark:hover:bg-gray-700
+          hover:bg-gray-700
+          dark:bg-gray-900 dark:text-white dark:border-gray-50
+        "
+        @click.stop="showAll = !showAll"
+      >
+        {{ showAll ? 'Show Less' : 'Show More' }}
       </button>
     </div>
   </div>
