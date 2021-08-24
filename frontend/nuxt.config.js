@@ -60,7 +60,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxtjs/composition-api/module',
     '@nuxt/typescript-build',
-    '@nuxtjs/ngrok',
+    // '@nuxtjs/ngrok',
     // '@nuxt/image',
     // Doc: https://github.com/nuxt-community/color-mode-module
     '@nuxtjs/color-mode',
@@ -76,11 +76,11 @@ export default {
     exposeConfig: true,
     // config: {},
   },
-  ngrok: {
-    // module options
-    addr: 8080, // port or network address, defaults to 80
-    region: 'eu', // one of ngrok regions (us, eu, au, ap, sa, jp, in), defaults to
-  },
+  // ngrok: {
+  //   // module options
+  //   addr: 8080, // port or network address, defaults to 80
+  //   region: 'eu', // one of ngrok regions (us, eu, au, ap, sa, jp, in), defaults to
+  // },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -94,7 +94,7 @@ export default {
     '@nuxtjs/strapi',
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
-    '@nuxtjs/proxy',
+    // '@nuxtjs/proxy',
     '@nuxt/image',
     // this is for outisde testing only
     // ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
@@ -136,7 +136,8 @@ export default {
     ],
   ],
   strapi: {
-    url: '/api/v1',
+    url: process.env.API_AUTH_URL || 'http://localhost:1337',
+    // url: '/api/v1',
     entities: [
       'users',
       'articles',
