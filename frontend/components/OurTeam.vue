@@ -7,7 +7,7 @@
       id="teamcarousel"
       ref="teamcarousel"
       class="md:w-3/4 masonry"
-      :class="showAll ? '' : 'overflow-hidden max-h-96'"
+      :class="showAll ? '' : 'overflow-hidden max-h-128'"
     >
       <div
         v-for="(team, ind) in teamMembers"
@@ -19,7 +19,6 @@
           justify-around
           col-span-12
           md:col-span-6
-          lg:col-span-4
         "
       >
         <div class="shadow-lg border border-white p-6">
