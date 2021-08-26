@@ -5,21 +5,49 @@
       :subtitle="page.subtitle"
       :headerimage="updatedHeaderIMage"
     ></Hero>
-    <section class="section">
-      <div class="container max-w-5xl mx-auto px-4 py-10">
+    <section v-if="updatedMotto" class="section py-24">
+      <div class="container max-w-3xl mx-auto px-4 py-10 text-center">
+        <div v-html="$md.render(updatedMotto)" />
+      </div>
+    </section>
+    <section
+      class="section"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+          : ''
+      "
+    >
+      <div
+        class="container max-w-5xl mx-auto px-4 py-24 dark:text-white"
+        :class="$store.state.fullColor ? 'text-white' : ''"
+      >
+        <h2 v-if="page.content.subtitle" class="capitalize text-2xl">
+          {{ page.content.subtitle }}
+        </h2>
         <div v-html="$md.render(updatedContent)" />
       </div>
-      <div class="container max-w-5xl mx-auto px-4">
+    </section>
+    <section class="section">
+      <div class="container max-w-5xl mx-auto p-4">
+        <h2 class="capitalize text-2xl dark:text-white">Why we do things</h2>
         <template v-for="(section, ind) in sectionUpdated">
-          <div
+          <div :key="ind" class="flex flex-row py-8">
+            <!-- <div
             :key="ind"
             class="flex items-center justify-center py-10"
             :class="ind % 2 == 0 ? 'flex-row-reverse' : ''"
-          >
-            <div class="w-1/2 flex items-center justify-center p-4">
-              <img :src="section.section_image.url" alt="" class="image" />
-            </div>
-            <div class="w-1/2">
+          > -->
+            <img
+              :src="section.section_image.url"
+              :alt="section.section_title"
+              class="image"
+              width="80"
+            />
+            <div class="w-3/4 pl-4">
+              <h3 class="capitalize text-xl mb-3">
+                {{ section.section_title }}
+              </h3>
               <div v-html="$md.render(section.section_content)"></div>
             </div>
           </div>
@@ -51,6 +79,13 @@ export default Vue.extend({
     updatedContent() {
       if (this.page.content) {
         return formatContentImageUrl(this.page.content.content)
+      } else {
+        return null
+      }
+    },
+    updatedMotto() {
+      if (this.page.motto) {
+        return formatContentImageUrl(this.page.motto)
       } else {
         return null
       }

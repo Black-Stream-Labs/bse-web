@@ -14,6 +14,7 @@ export function aboutQuery() {
             url
           }
         }
+        motto
         sections {
           section_title
           section_image {

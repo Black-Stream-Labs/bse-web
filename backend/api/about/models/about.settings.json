@@ -25,9 +25,8 @@
       "repeatable": false,
       "component": "content.page-content"
     },
-    "description": {
-      "type": "text",
-      "maxLength": 200
+    "motto": {
+      "type": "richtext"
     }
   }
 }

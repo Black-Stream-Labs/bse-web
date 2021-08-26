@@ -34,6 +34,10 @@
   } */
 }
 
+.section {
+  @apply p-4
+}
+
 :root {
   --background-start: #efefefe;
   --background-end: #efefefe;
