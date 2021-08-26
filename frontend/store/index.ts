@@ -1,9 +1,9 @@
+// eslint-disable-next-line import/named
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 
 export const state = () => ({
   things: [] as string[],
   name: 'Me',
-  bgColor: null as any,
   fullColor: null as any,
   auth: {} as any,
 })
@@ -19,10 +19,7 @@ export const getters: GetterTree<RootState, RootState> = {
 export const mutations: MutationTree<RootState> = {
   CHANGE_NAME: (state, newName: string) => (state.name = newName),
   UPDATE_BG_COLOR: (state, data: any) => {
-    state.bgColor = data
-      ? `background: linear-gradient(270deg, ${data[0]} 0%, ${data[1]} 100%)`
-      : null
-    state.fullColor = data ? { name: data[2], color: data[0] } : null
+    state.fullColor = data ? { name: data[2], color: [data[1], data[0]] } : null
   },
 }
 

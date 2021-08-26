@@ -20,11 +20,16 @@
               rounded
               border
               hover:border-gray-600
-              shadow
+              shadow-lg
               w-full
               overflow-hidden
               md:flex
               my-2
+              transition
+              duration-500
+              ease-in-out
+              transform
+              hover:scale-105
             "
           >
             <div
@@ -140,7 +145,8 @@
 <script lang="ts">
 // @ts-nocheck
 
-import Vue, { PropOptions } from 'vue'
+// eslint-disable-next-line import/named
+import Vue from 'vue'
 import BlogSidebar from '@/components/BlogSidebar'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
@@ -148,7 +154,7 @@ export default Vue.extend({
   components: { BlogSidebar },
   mixins: [imageUrlManipulation],
   props: {
-    authors: { type: Array, default: () => [] } as PropOptions,
+    authors: { type: Array, default: () => [] },
   },
   data() {
     return {}

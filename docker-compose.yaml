@@ -1,0 +1,61 @@
+version: '3.9'
+services:
+  api:
+    container_name: cms
+    image: strapi/strapi
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: strapi
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+    restart: always
+    volumes:
+      - ./backend:/srv/app
+    expose:
+      - 1337
+    command:
+      ['sh', '-c', ' rm -rf node_modules', 'yarn install && yarn develop']
+
+    depends_on:
+      - db
+    labels:
+      traefik.frontend.rule: PathPrefixStrip:/api
+      traefik.port: 1337
+  nuxt:
+    container_name: website
+    image: node:14.17-alpine
+    volumes:
+      - ./frontend:/app
+    restart: always
+    command: ['sh', '-c', ' rm -rf node_modules', 'yarn install && yarn dev']
+    environment:
+      NUXT_HOST: 0.0.0.0
+      API_AUTH_URL: http://api/v1:1337/
+      API_URL_BROWSER: /api/v1
+    expose:
+      - 3000
+    depends_on:
+      - api
+      - db
+    labels:
+      traefik.frontend.rule: PathPrefixStrip:/
+      traefik.port: 3000
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  reverseproxy: # see https://docs.traefik.io/#the-traefik-quickstart-using-docker
+    container_name: reverseproxy
+    image: traefik:latest
+    command: -docker
+    ports:
+      - '4000:80'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

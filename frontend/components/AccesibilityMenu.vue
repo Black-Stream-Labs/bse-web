@@ -22,6 +22,7 @@
 
 <script lang="ts">
 // @ts-nocheck
+// eslint-disable-next-line import/named
 import Vue, { PropOptions } from 'vue'
 import VDropdown from '@/components/reusable/VDropdown'
 import SettingsImage from '@/components/icons/SettingsImage'

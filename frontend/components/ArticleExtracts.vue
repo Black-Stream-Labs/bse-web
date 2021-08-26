@@ -9,6 +9,10 @@
       overflow-hidden
       md:flex
       my-2
+      duration-500
+      ease-in-out
+      transform
+      hover:scale-105
     "
   >
     <div

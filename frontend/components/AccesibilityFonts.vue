@@ -12,7 +12,7 @@
           rounded
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
-        :style="fullColor ? `background:${fullColor.color}` : ''"
+        :style="fullColor ? `background:${fullColor.color[1]}` : ''"
       >
         <option value="Alegreya">Alegreya</option>
         <option value="Helvetica">Helvetica</option>

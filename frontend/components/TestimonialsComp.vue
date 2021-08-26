@@ -14,6 +14,7 @@
         :key="ind"
         class="
           py-5
+          px-6
           break-inside
           flex flex-wrap flex-col
           justify-around
@@ -21,7 +22,18 @@
           md:col-span-6
         "
       >
-        <div class="shadow-lg border border-white p-6">
+        <div
+          class="
+            shadow-lg
+            border border-white
+            p-6
+            transition
+            duration-500
+            ease-in-out
+            transform
+            hover:translate-x-1 hover:translate-y-1 hover:scale-105
+          "
+        >
           <div class="rounded-tl rounded-tr relative">
             <h3 class="text-xl text-white pb-1">{{ testim.author_name }}</h3>
             <p v-if="testim.author_company" class="text-base">

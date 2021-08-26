@@ -34,6 +34,11 @@
   } */
 }
 
+:root {
+  --background-start: #efefefe;
+  --background-end: #efefefe;
+}
+
 @font-face {
   font-family: Alegreya;
   src: url('/fonts/Alegreya/Alegreya-Italic-VariableFont_wght.ttf');

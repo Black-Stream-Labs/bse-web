@@ -4,11 +4,16 @@
       md:flex
       hover:text-white
       border border-gray-800
-      shadow
+      shadow-lg
       w-full
       overflow-hidden
       h-full
       flex
+      transition
+      duration-500
+      ease-in-out
+      transform
+      hover:translate-x-1 hover:translate-y-1 hover:scale-105
     "
     :class="
       $store.state.fullColor

@@ -1,5 +1,19 @@
 <template>
-  <div class="mb-6 max-w-xs rounded-lg shadow-lg border col-span-1 h-full">
+  <div
+    class="
+      mb-6
+      max-w-xs
+      rounded-lg
+      shadow-lg
+      border
+      col-span-1
+      h-full
+      duration-500
+      ease-in-out
+      transform
+      hover:scale-105
+    "
+  >
     <div
       class="
         h-full

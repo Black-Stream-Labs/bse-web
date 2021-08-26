@@ -14,7 +14,7 @@
         "
         :style="
           $store.state.fullColor
-            ? `background:${$store.state.fullColor.color}`
+            ? `background:${$store.state.fullColor.color[1]}`
             : ''
         "
       >

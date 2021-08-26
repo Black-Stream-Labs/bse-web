@@ -1,9 +1,8 @@
 import PnpWebpackPlugin from 'pnp-webpack-plugin'
 require('dotenv').config()
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'mostre',
+    title: 'Black Stream Education',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -35,36 +34,20 @@ export default {
   // bodyAttr: {
   //   class: '',
   // },
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/css/tailwind.css'],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    '~plugins/axios.js',
-    '~/plugins/apollo-overrides.ts',
-    // {
-    //   src: '~/plugins/calendar.js',
-    //   mode: 'client',
-    // },
-    // {
-    //   src: '~/plugins/checkTheme.js',
-    //   mode: 'client',
-    // },
-  ],
+  plugins: ['~plugins/axios.js', '~/plugins/apollo-overrides.ts'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: false,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
     '@nuxtjs/composition-api/module',
     '@nuxt/typescript-build',
     // '@nuxtjs/ngrok',
     // '@nuxt/image',
-    // Doc: https://github.com/nuxt-community/color-mode-module
     '@nuxtjs/color-mode',
-    // Doc: https://github.com/nuxt-community/tailwindcss-module
     '@nuxtjs/tailwindcss',
   ],
   colorMode: {
@@ -83,21 +66,16 @@ export default {
   // },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    // https://go.nuxtjs.dev/content
     '@nuxtjs/dotenv',
     '@nuxtjs/pwa',
     '@nuxtjs/auth',
     '@nuxtjs/strapi',
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
-    // '@nuxtjs/proxy',
+    '@nuxtjs/proxy',
     '@nuxt/image',
-    // this is for outisde testing only
-    // ['@nuxtjs/localtunnel', { subdomain: 'commerce' }],
   ],
   markdownit: {
     preset: 'default',
@@ -130,7 +108,7 @@ export default {
       '/api/v1',
       {
         target: process.env.API_AUTH_URL || 'http://localhost:1337',
-        pathRewrite: { '^/api/v1': '/' },
+        pathRewrite: { '^/api/v1': '' },
         // changeOrigin: true,
       },
     ],
@@ -149,9 +127,9 @@ export default {
     ],
   },
   env: {},
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseUrl: process.env.API_AUTH_URL || 'http://localhost:1337',
+    // baseUrl: process.env.API_AUTH_URL || 'http://localhost:1337',
+    prefix: '/api/v1',
     proxy: true,
   },
   apollo: {
@@ -195,15 +173,11 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    /*
-     ** You can extend webpack config here
-     */
     babel: {
       presets({ isServer }) {
         return [
           [
             require.resolve('@nuxt/babel-preset-app'),
-            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
             {
               buildTarget: isServer ? 'server' : 'client',
               loose: true,

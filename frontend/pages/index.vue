@@ -12,11 +12,15 @@
     </section>
     <section
       class="section"
-      :style="$store.state.bgColor ? $store.state.bgColor : ''"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+          : ''
+      "
     >
       <div
         class="container max-w-5xl mx-auto px-4 py-24 dark:text-white"
-        :class="$store.state.bgColor ? 'text-white' : ''"
+        :class="$store.state.fullColor ? 'text-white' : ''"
       >
         <div v-html="$md.render(updatedContent)" />
       </div>
@@ -32,7 +36,15 @@
           >
             <div class="grid grid-cols-12">
               <div
-                class="col-span-12 hover:text-white"
+                class="
+                  col-span-12
+                  hover:text-white
+                  transition
+                  duration-500
+                  ease-in-out
+                  transform
+                  hover:translate-x-1 hover:translate-y-1 hover:scale-105
+                "
                 :class="[
                   ind === 0 || ind === 4
                     ? 'md:col-start-1'
@@ -61,6 +73,7 @@
               >
                 <div
                   class="
+                    shadow-lg
                     border border-gray-700
                     dark:border-gray-50
                     p-4
@@ -97,10 +110,14 @@
     <section
       id="whattheysay"
       class="section"
-      :style="$store.state.bgColor ? $store.state.bgColor : ''"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-start) 0%, var(--background-end) 100%)`
+          : ''
+      "
     >
       <div class="container max-w-5xl mx-auto px-4 py-10">
-        <h2>What they say</h2>
+        <h2 class="text-white">What they say</h2>
 
         <TestimonialsComp
           :testimonials="updatedTestimonials"

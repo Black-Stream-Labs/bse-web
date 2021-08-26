@@ -87,6 +87,8 @@ module.exports = {
       'responsive',
     ],
     textColor: ['dark', 'dark-hover', 'dark-active', 'hover', 'responsive'],
+    transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
+    // transitionTimingFunction: ['hover', 'focus'],
   },
   plugins: [
     require('@tailwindcss/forms')({

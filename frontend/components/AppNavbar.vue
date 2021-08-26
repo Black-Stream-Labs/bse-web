@@ -1,8 +1,12 @@
 <template>
   <header
     class="sticky top-0 dark:bg-gray-900 dark:text-white z-50"
-    :class="$store.state.bgColor ? 'text-white' : 'text-gray-800'"
-    :style="$store.state.bgColor ? $store.state.bgColor : null"
+    :class="$store.state.fullColor ? 'text-white' : 'text-gray-800'"
+    :style="
+      $store.state.fullColor
+        ? `background: linear-gradient(270deg, var(--background-start) 0%, var(--background-end) 100%)`
+        : null
+    "
   >
     <nav
       class="flex justify-between items-center select-none"
@@ -23,7 +27,7 @@
         <NuxtLink to="/" class="lg:hidden text-sm">
           <LogoImage height="50" width="50"></LogoImage>
         </NuxtLink>
-        <AccesibilityMenu :color="$store.state.bgColor ? 'white' : 'black'">
+        <AccesibilityMenu :color="$store.state.fullColor ? 'white' : 'black'">
         </AccesibilityMenu>
       </div>
       <!-- Desktop Links -->

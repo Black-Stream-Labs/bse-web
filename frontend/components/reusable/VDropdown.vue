@@ -49,7 +49,7 @@
           top-10
           dark:bg-gray-900 dark:text-white
         "
-        :style="fullColor ? `background:${fullColor.color}` : ''"
+        :style="fullColor ? `background:${fullColor.color[1]}` : ''"
         :class="
           placement === 'right' ? 'right-0' : 'center' ? 'mx-auto' : 'left-0'
         "

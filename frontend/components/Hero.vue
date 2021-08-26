@@ -1,7 +1,11 @@
 <template>
   <section
     class="section py-20 text-white dark:bg-gray-900 dark:text-white"
-    :style="$store.state.bgColor ? $store.state.bgColor : ''"
+    :style="
+      $store.state.fullColor
+        ? `background: linear-gradient(270deg, var(--background-start) 0%, var(--background-end) 100%)`
+        : ''
+    "
   >
     <div class="container max-w-5xl mx-auto px-4">
       <div class="md:block">
@@ -46,6 +50,7 @@
 
 <script lang="ts">
 // @ts-nocheck
+// eslint-disable-next-line import/named
 import Vue, { PropOptions } from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 import LogoImage from '@/components/icons/LogoImage.vue'

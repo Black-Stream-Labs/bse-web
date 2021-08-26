@@ -1,21 +1,17 @@
 
 FROM node:14.17
 
+ENV NUXTJS_HOME=/app
 
-VOLUME /usr/src/nuxt-app
-WORKDIR /usr/src/nuxt-app
+RUN mkdir -p $NUXTJS_HOME
 
-COPY . /usr/src/nuxt-app
-RUN rm -rf node_modules
+WORKDIR $NUXTJS_HOME
 
-RUN yarn install
-# expose 5000 on container
-EXPOSE 5000
+COPY . $NUXTJS_HOME
 
-# set app serving to permissive / assigned
+
+EXPOSE 3000
 ENV NUXT_HOST=0.0.0.0
-# set app port
-ENV NUXT_PORT=5000
+ENV NUXT_PORT=3000
 
-# start the app
-CMD ["yarn", "dev"]
+CMD [ "yarn", "dev" ]
