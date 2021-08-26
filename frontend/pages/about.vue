@@ -54,6 +54,42 @@
         </template>
       </div>
     </section>
+    <section
+      class="section"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-start) 0%, var(--background-end) 100%)`
+          : ''
+      "
+    >
+      <div class="container max-w-5xl mx-auto px-4 py-10">
+        <h2 class="text-white">Our Team</h2>
+        <OurTeam :team-members="teamMembers"></OurTeam>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container max-w-5xl mx-auto px-4 py-10">
+        <div v-html="$md.render(updatedExtraContent)"></div>
+      </div>
+    </section>
+
+    <section
+      id="whattheysay"
+      class="section"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+          : ''
+      "
+    >
+      <div class="container max-w-5xl mx-auto px-4 py-10">
+        <h2 class="text-white">What they say</h2>
+
+        <TestimonialsComp
+          :testimonials="updatedTestimonials"
+        ></TestimonialsComp>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -61,24 +97,46 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
+import TestimonialsComp from '@/components/TestimonialsComp'
+import OurTeam from '@/components/OurTeam'
+
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { aboutQuery } from '@/apollo/queries/pages/about.js'
+import { teamQuery } from '@/apollo/queries/team/teamMembers.js'
+import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
 
 export default Vue.extend({
   name: 'AboutPage',
   components: {
     Hero,
+    TestimonialsComp,
+    OurTeam,
   },
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: aboutQuery() })
+    const testimonials = await $strapi.graphql({
+      query: testimonialsExtracts(),
+    })
+    const teamMembers = await $strapi.graphql({
+      query: teamQuery(),
+    })
     return {
       page: data.about,
+      testimonials: testimonials.testimonials,
+      teamMembers: teamMembers.teamMembers,
     }
   },
   computed: {
     updatedContent() {
       if (this.page.content) {
         return formatContentImageUrl(this.page.content.content)
+      } else {
+        return null
+      }
+    },
+    updatedExtraContent() {
+      if (this.page.extraContent) {
+        return formatContentImageUrl(this.page.extraContent)
       } else {
         return null
       }
@@ -105,6 +163,14 @@ export default Vue.extend({
       } else {
         return null
       }
+    },
+    updatedTestimonials() {
+      const x = []
+      this.testimonials.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
     },
   },
 })

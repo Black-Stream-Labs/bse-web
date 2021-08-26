@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_members",
+  "info": {
+    "name": "teamMember"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "member_name": {
+      "type": "string"
+    },
+    "member_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "member_description": {
+      "type": "richtext"
+    }
+  }
+}

@@ -27,6 +27,9 @@
     },
     "motto": {
       "type": "richtext"
+    },
+    "extraContent": {
+      "type": "richtext"
     }
   }
 }

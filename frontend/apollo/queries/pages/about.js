@@ -22,6 +22,7 @@ export function aboutQuery() {
           }
           section_content
         }
+        extraContent
       }
     }
   `
