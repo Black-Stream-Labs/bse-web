@@ -50,25 +50,25 @@
         🎉
       </template> -->
         <!-- <template #cell-content="{ cell, view, events, goNarrower }">
-        <span
-          v-if="view.id === 'day'"
-          class="vuecal__cell-date"
-          :class="view.id"
-          @click="goNarrower"
-        >
-          {{ cell.date.getDate() }}
-        </span>
-        <span
-          v-if="view.id === 'month' && events.length"
-          class="vuecal__cell-events-count"
-          >{{ events.length }}</span
-        >
-        <span
-          v-if="['week', 'day'].includes(view.id) && !events.length"
-          class="vuecal__no-event"
-          >Nothing here 👌</span
-        >
-      </template> -->
+          <span
+            v-if="view.id === 'day'"
+            class="vuecal__cell-date"
+            :class="view.id"
+            @click="goNarrower"
+          >
+            {{ cell.date.getDate() }}
+          </span>
+          <span
+            v-if="view.id === 'month' && events.length"
+            class="vuecal__cell-events-count"
+            >{{ events.length }}</span
+          >
+          <span
+            v-if="['week', 'day'].includes(view.id) && !events.length"
+            class="vuecal__no-event"
+            >Nothing here 👌</span
+          >
+        </template> -->
       </VueCal>
       <!-- add dialog ans show summary with click to event page and click to close to make event null -->
     </div>
@@ -134,8 +134,8 @@ import { mdiCalendar } from '@mdi/js'
 import Vue from 'vue'
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
-import VModal from '@/components/reusable/VModal'
 import { eventsExtractQuery } from '../../apollo/queries/events/events'
+import VModal from '@/components/reusable/VModal'
 export default Vue.extend({
   name: 'Calendar',
   components: { VueCal, VModal },
@@ -166,7 +166,6 @@ export default Vue.extend({
   },
   async fetch() {
     const events = await this.$strapi.graphql({ query: eventsExtractQuery() })
-    console.log(events.singleEvents)
     this.events = events.singleEvents
   },
   computed: {
@@ -179,7 +178,7 @@ export default Vue.extend({
           end: new Date(el.end_date),
           title: el.title,
           slug: el.slug,
-          content: el.description,
+          content: this.$md.render(el.description),
         }
       })
       return updatedEvs

@@ -79,6 +79,7 @@ export default {
   ],
   markdownit: {
     preset: 'default',
+    runtime: true,
     linkify: true,
     breaks: true,
     injected: true,
