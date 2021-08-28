@@ -76,17 +76,45 @@
                   </span>
                 </p>
                 <div v-html="$md.render(updatedContent)"></div>
-                <p>
-                  More articles by the
+                <p class="flex items-center justify-end italic pt-4">
+                  <span class="pr-3"> More articles by </span>
                   <NuxtLink
                     :to="`/articles/authors/${article.author.username}`"
-                    class="text-right py-2 text-xs uppercase my-2 flex"
+                    class="
+                      py-1
+                      px-5
+                      flex
+                      items-center
+                      justify-end
+                      border border-gray-50
+                      text-white
+                      dark:border-gray-50
+                      duration-300
+                      transform-gpu
+                      transition-all
+                    "
+                    :class="[
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? 'bg-tgreen '
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? 'bg-tpurple'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? 'bg-tblue'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? 'bg-tbrown'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'hover:bg-gray-700'
+                        : 'hover:bg-gray-500',
+                    ]"
                   >
                     {{ article.author.username }}
                   </NuxtLink>
                 </p>
-                <div v-if="extraArticles.length > 0">
-                  <h3 class="text-xl2 pb-6 pt-20">
+                <div v-if="extraArticles.length > 0" class="pt-16">
+                  <hr />
+                  <h3 class="text-xl2 pb-6 pt-16">
                     Other articles in the same category
                   </h3>
                   <template v-for="(art, id) in extraArticles">
@@ -134,9 +162,9 @@ export default Vue.extend({
     ])
     const extras = await this.$strapi.find('articles', [...categs])
     this.article = data[0]
-    this.extraArticles = extras.filter(
-      (el: any) => el.slug !== this.$route.params.slug
-    )
+    this.extraArticles = extras
+      .filter((el: any) => el.slug !== this.$route.params.slug)
+      .sort((a: any, b: any) => a.published_at - b.published_at)
   },
 
   computed: {
