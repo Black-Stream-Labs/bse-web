@@ -16,6 +16,8 @@ export function servicesQuery() {
             url
           }
         }
+        motto
+        extraContent
         sections {
           section_title
           section_content

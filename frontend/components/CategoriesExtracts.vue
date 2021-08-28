@@ -29,6 +29,11 @@
               overflow-hidden
               md:flex
               my-2
+              transition
+              duration-500
+              ease-in-out
+              transform
+              hover:scale-105
             "
           >
             <div
@@ -37,6 +42,7 @@
             >
               <NuxtLink :to="`/articles/${art.slug}`">
                 <img
+                  loading="lazy"
                   class="w-full h-full object-cover"
                   :src="$getStrapiMedia(art.content.header_image.url)"
                   :alt="`${art.content.title} image`"
@@ -64,13 +70,23 @@
               <p>
                 <span class="text-xs text-gray-500 italic">
                   Published -
-                  {{
-                    new Date(art.published_at).toLocaleDateString('en-GB', {
-                      day: 'numeric',
-                      year: 'numeric',
-                      month: 'short',
-                    })
-                  }}
+                  <time
+                    :datetime="
+                      new Date(art.published_at).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        year: 'numeric',
+                        month: 'short',
+                      })
+                    "
+                  >
+                    {{
+                      new Date(art.published_at).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        year: 'numeric',
+                        month: 'short',
+                      })
+                    }}
+                  </time>
                 </span>
               </p>
               <div v-if="art.description" class="mb-4 w-full text-gray-700">
@@ -80,18 +96,41 @@
                 ></div>
               </div>
 
-              <div class="flex flex-col align-end justify-end">
+              <div class="flex align-end justify-end">
                 <NuxtLink
                   :to="`/articles/${art.slug}`"
                   class="
-                    text-right
                     py-2
-                    text-indigo-600 text-xs
-                    uppercase
-                    hover:underline
+                    px-4
+                    flex
+                    items-center
+                    justify-end
+                    border border-gray-50
+                    text-white
+                    dark:border-gray-50
+                    duration-300
+                    transform-gpu
+                    transition-all
                   "
+                  :class="[
+                    $store.state.fullColor
+                      ? $store.state.fullColor.name === 'tgreen'
+                        ? 'bg-tgreen '
+                        : $store.state.fullColor.name === 'tpurple'
+                        ? 'bg-tpurple'
+                        : $store.state.fullColor.name === 'tblue'
+                        ? 'bg-tblue'
+                        : $store.state.fullColor.name === 'tbrown'
+                        ? 'bg-tbrown'
+                        : ''
+                      : $colorMode.preference === 'dark'
+                      ? 'hover:bg-gray-700'
+                      : 'hover:bg-gray-500',
+                    transitionButton ? 'scale-105 transition-all ' : '',
+                  ]"
                 >
-                  Read More <span>&rarr;</span>
+                  Read More
+                  <RightArrow></RightArrow>
                 </NuxtLink>
               </div>
             </div>
@@ -106,20 +145,23 @@
 <script lang="ts">
 // @ts-nocheck
 
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 import BlogSidebar from '@/components/BlogSidebar'
+import RightArrow from '@/components/icons/RightArrow'
+
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 import { categsExtra } from '@/apollo/queries/blog/categsExtra.js'
 export default Vue.extend({
   name: 'CategoriesExtracts',
-  components: { BlogSidebar },
+  components: { BlogSidebar, RightArrow },
   mixins: [imageUrlManipulation],
   props: {
-    categories: { type: Array, default: () => [] } as PropOptions,
+    categories: { type: Array, default: () => [] },
   },
   data() {
     return {
       categExtracts: [],
+      transitionButton: false,
     }
   },
   async fetch() {

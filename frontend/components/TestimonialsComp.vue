@@ -26,17 +26,19 @@
           class="
             shadow-lg
             border border-white
-            p-6
+            p-4
             transition
             duration-500
             ease-in-out
-            transform
+            transform-gpu
             hover:translate-x-1 hover:translate-y-1 hover:scale-105
           "
         >
           <div class="rounded-tl rounded-tr relative">
-            <h3 class="text-xl text-white pb-1">{{ testim.author_name }}</h3>
-            <p v-if="testim.author_company" class="text-base">
+            <h3 class="text-xl italic pb-1">
+              {{ testim.author_name }}
+            </h3>
+            <p v-if="testim.author_company" class="text-base italic">
               {{ testim.author_company }}
             </p>
             <div
@@ -49,12 +51,13 @@
                 absolute
                 top-0
                 right-0
-                -mt-4
-                -mr-4
+                -mt-2
+                -mr-2
               "
             >
               <img
                 v-if="testim.author_image"
+                loading="lazy"
                 :src="testim.author_image.url"
                 :alt="`${testim.author_name} image`"
                 width="80"
@@ -63,7 +66,7 @@
               />
             </div>
           </div>
-          <p class="text-base leading-8 pt-4">
+          <p class="text-base leading-8 pt-8">
             {{ testim.text }}
           </p>
           <div class="flex justify-end mt-2">

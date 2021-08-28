@@ -54,10 +54,28 @@
           px-3
           py-2
           text-sm
-          border
-          rounded
-          border-gray-400
+          border border-gray-700
           dark:bg-gray-900 dark:text-white dark:border-gray-50
+          transition
+          duration-500
+          ease-in-out
+          transform-gpu
+          hover:scale-110
+        "
+        :class="
+          $store.state.fullColor
+            ? $store.state.fullColor.name === 'tgreen'
+              ? 'hover:bg-tgreen hover:text-white'
+              : $store.state.fullColor.name === 'tpurple'
+              ? 'hover:bg-tpurple hover:text-white'
+              : $store.state.fullColor.name === 'tblue'
+              ? 'hover:bg-tblue hover:text-white'
+              : $store.state.fullColor.name === 'tbrown'
+              ? 'hover:bg-tbrown hover:text-white'
+              : ''
+            : $colorMode.preference === 'dark'
+            ? 'hover:bg-gray-700 hover:text-white'
+            : 'hover:bg-gray-500 hover:text-white'
         "
         @click="searchWithFilters"
       >
@@ -69,10 +87,28 @@
           px-3
           py-2
           text-sm
-          border
-          rounded
-          border-gray-400
+          border border-gray-700
           dark:bg-gray-900 dark:text-white dark:border-gray-50
+          transition
+          duration-500
+          ease-in-out
+          transform-gpu
+          hover:scale-110
+        "
+        :class="
+          $store.state.fullColor
+            ? $store.state.fullColor.name === 'tgreen'
+              ? 'hover:bg-tgreen hover:text-white'
+              : $store.state.fullColor.name === 'tpurple'
+              ? 'hover:bg-tpurple hover:text-white'
+              : $store.state.fullColor.name === 'tblue'
+              ? 'hover:bg-tblue hover:text-white'
+              : $store.state.fullColor.name === 'tbrown'
+              ? 'hover:bg-tbrown hover:text-white'
+              : ''
+            : $colorMode.preference === 'dark'
+            ? 'hover:bg-gray-700 hover:text-white'
+            : 'hover:bg-gray-500 hover:text-white'
         "
         @click="updateQuery('show_all')"
       >

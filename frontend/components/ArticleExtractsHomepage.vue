@@ -12,7 +12,7 @@
       transition
       duration-500
       ease-in-out
-      transform
+      transform-gpu
       hover:translate-x-1 hover:translate-y-1 hover:scale-105
     "
     :class="
@@ -38,13 +38,23 @@
       <p>
         <span class="text-xs italic dark:text-gray-200">
           Published -
-          {{
-            new Date(article.published_at).toLocaleDateString('en-GB', {
-              day: 'numeric',
-              year: 'numeric',
-              month: 'short',
-            })
-          }}
+          <time
+            :datetime="
+              new Date(article.published_at).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                year: 'numeric',
+                month: 'short',
+              })
+            "
+          >
+            {{
+              new Date(article.published_at).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                year: 'numeric',
+                month: 'short',
+              })
+            }}
+          </time>
         </span>
       </p>
       <div v-if="article.description" class="mb-4 w-full dark:text-gray-100">

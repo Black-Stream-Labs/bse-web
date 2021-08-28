@@ -14,6 +14,8 @@
       transform
       hover:scale-105
     "
+    @mouseenter="transitionButton = true"
+    @mouseleave="transitionButton = false"
   >
     <div
       v-if="article.content && article.content.header_image"
@@ -21,6 +23,7 @@
     >
       <NuxtLink :to="`/articles/${article.slug}`" class="dark:text-gray-50">
         <img
+          loading="lazy"
           class="w-full h-full object-cover"
           :src="$getStrapiMedia(article.content.header_image.url)"
           :alt="`${article.content.title} image`"
@@ -55,13 +58,23 @@
       <p>
         <span class="text-xs text-gray-500 italic dark:text-gray-200">
           Published -
-          {{
-            new Date(article.published_at).toLocaleDateString('en-GB', {
-              day: 'numeric',
-              year: 'numeric',
-              month: 'short',
-            })
-          }}
+          <time
+            :datetime="
+              new Date(article.published_at).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                year: 'numeric',
+                month: 'short',
+              })
+            "
+          >
+            {{
+              new Date(article.published_at).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                year: 'numeric',
+                month: 'short',
+              })
+            }}
+          </time>
         </span>
       </p>
       <div
@@ -75,43 +88,65 @@
       </div>
 
       <div class="flex justify-between align-center">
-        <div class="w-3/4">
-          <p v-if="article.article_categories.length > 0" id="categories">
-            <span class="text-xs">
-              Categories:
-              <NuxtLink
-                v-for="cat in article.article_categories"
-                :key="cat.id"
-                :to="`/articles/categories/${cat.slug}`"
-                class="
-                  capitalize
-                  text-gray-500
-                  font-light
-                  rounded
-                  bg-gray-200
-                  px-2
-                  py-1
-                  mx-1
-                  dark:bg-gray-700 dark:text-gray-300
-                "
-              >
-                {{ cat.category }}
-              </NuxtLink>
-            </span>
-          </p>
-        </div>
-        <div class="w-1/4 flex flex-col align-end justify-end">
+        <p v-if="article.article_categories.length > 0" id="categories">
+          <span class="text-xs">
+            Categories:
+            <NuxtLink
+              v-for="cat in article.article_categories"
+              :key="cat.id"
+              :to="`/articles/categories/${cat.slug}`"
+              class="
+                capitalize
+                text-gray-500
+                font-light
+                rounded
+                bg-gray-200
+                px-2
+                py-1
+                mx-1
+                dark:bg-gray-700 dark:text-gray-300
+              "
+            >
+              {{ cat.category }}
+            </NuxtLink>
+          </span>
+        </p>
+        <div class="flex flex-col align-end justify-end">
           <NuxtLink
             :to="`/articles/${article.slug}`"
             class="
-              text-right
               py-2
-              text-indigo-600 text-xs
-              uppercase
-              hover:underline
+              px-4
+              text-center
+              flex
+              items-center
+              justify-end
+              border border-gray-50
+              text-white
+              dark:border-gray-50
+              duration-300
+              transform-gpu
+              transition-all
             "
+            :class="[
+              $store.state.fullColor
+                ? $store.state.fullColor.name === 'tgreen'
+                  ? 'bg-tgreen '
+                  : $store.state.fullColor.name === 'tpurple'
+                  ? 'bg-tpurple'
+                  : $store.state.fullColor.name === 'tblue'
+                  ? 'bg-tblue'
+                  : $store.state.fullColor.name === 'tbrown'
+                  ? 'bg-tbrown'
+                  : ''
+                : $colorMode.preference === 'dark'
+                ? 'hover:bg-gray-700'
+                : 'hover:bg-gray-500',
+              transitionButton ? 'scale-105 transition-all ' : '',
+            ]"
           >
-            Read More <span>&rarr;</span>
+            Read More
+            <RightArrow></RightArrow>
           </NuxtLink>
         </div>
       </div>
@@ -124,14 +159,23 @@
 import Vue from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 
+import RightArrow from '@/components/icons/RightArrow'
 export default Vue.extend({
   name: 'ArticleExtracts',
+  components: {
+    RightArrow,
+  },
   mixins: [imageUrlManipulation],
   props: {
     article: {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return {
+      transitionButton: false,
+    }
   },
   fetchOnServer: true,
   fetchKey: 'article-extract',

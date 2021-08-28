@@ -26,7 +26,7 @@
 
 <script lang="ts">
 // @ts-nocheck
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 import LogoImage from '@/components/icons/LogoImage.vue'
 export default Vue.extend({
   name: 'HeroHomepage',
@@ -37,19 +37,19 @@ export default Vue.extend({
     title: {
       type: String,
       default: '',
-    } as PropOptions,
+    },
     subtitle: {
       type: String,
       default: '',
-    } as PropOptions,
+    },
     headerimage: {
       type: [String, null],
       default: null,
-    } as PropOptions,
+    },
     size: {
       type: String,
       default: 'is-small',
-    } as PropOptions,
+    },
   },
 
   data() {

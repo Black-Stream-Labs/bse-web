@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 
 export default Vue.extend({
   name: 'StrapiLogo',
@@ -43,15 +43,15 @@ export default Vue.extend({
     color: {
       type: String,
       default: '#8E75FF',
-    } as PropOptions,
+    },
     width: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
     height: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
   },
 })
 </script>

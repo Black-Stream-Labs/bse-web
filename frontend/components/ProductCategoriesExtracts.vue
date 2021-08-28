@@ -43,7 +43,7 @@
 <script lang="ts">
 // @ts-nocheck
 
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 import ProductsSidebar from '@/components/ProductsSidebar'
 import ProductExtract from '@/components/ProductExtract'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
@@ -53,7 +53,7 @@ export default Vue.extend({
   components: { ProductsSidebar, ProductExtract },
   mixins: [imageUrlManipulation],
   props: {
-    categories: { type: Array, default: () => [] } as PropOptions,
+    categories: { type: Array, default: () => [] },
   },
   data() {
     return {

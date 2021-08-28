@@ -13,20 +13,24 @@
                 <div class="capitalize font-extrabold italic mb-5">
                   Price: <b>£{{ product.price }}</b>
                 </div>
-                <div class="capitalize font-extrabold italic mb-5">
-                  Category:
+                <div class="mb-5">
+                  <span class="capitalize font-extrabold italic">
+                    Category:
+                  </span>
 
                   <NuxtLink
                     v-for="cat in product.product_categories"
                     :key="cat.slug"
                     :to="`/products/categories/${cat.slug}`"
                     class="
-                      text-gray-500
+                      text-gray-700
                       font-light
+                      capitalize
                       rounded
                       bg-gray-200
                       px-2
                       py-1
+                      text-xs
                       m-1
                       dark:bg-gray-700 dark:text-gray-300
                     "
@@ -34,12 +38,16 @@
                     {{ cat.categ_name }}
                   </NuxtLink>
                 </div>
-                <div class="capitalize font-extrabold italic mb-5">
-                  Digital Product:
+                <div class="mb-5">
+                  <span class="capitalize font-extrabold italic">
+                    Digital Product:
+                  </span>
                   <b
                     class="
-                      text-gray-500
+                      text-gray-700
                       font-light
+                      text-xs
+                      capitalize
                       rounded
                       bg-gray-200
                       px-2
@@ -73,25 +81,33 @@
                         @click="selectImage(image)"
                       >
                         <img
+                          loading="lazy"
+                          height="36"
                           class="w-full h-36 object-cover"
                           :src="$getStrapiMedia(image.formats.small.url)"
                           :alt="image.name.split('.')[0]"
                         />
                       </button>
                     </template>
-                    <VModal
-                      :image="selectedImage"
-                      :title="selectedImage ? selectedImage.caption : null"
-                      :opened="selectedImage ? true : false"
-                      @close="selectedImage = null"
-                    >
-                      <img
-                        v-if="selectedImage"
-                        class="w-full h-128 object-cover"
-                        :src="$getStrapiMedia(selectedImage.formats.large.url)"
-                        :alt="selectedImage.caption || 'Product Image'"
-                      />
-                    </VModal>
+                    <client-only>
+                      <VModal
+                        :image="selectedImage"
+                        :title="selectedImage ? selectedImage.caption : null"
+                        :opened="selectedImage ? true : false"
+                        @close="selectedImage = null"
+                      >
+                        <img
+                          v-if="selectedImage"
+                          loading="lazy"
+                          height="128"
+                          class="w-full h-128 object-cover"
+                          :src="
+                            $getStrapiMedia(selectedImage.formats.large.url)
+                          "
+                          :alt="selectedImage.caption || 'Product Image'"
+                        />
+                      </VModal>
+                    </client-only>
                   </section>
                 </div>
                 <div>
@@ -99,11 +115,9 @@
                     class="
                       px-2
                       py-1
-                      text-xs
-                      border
-                      rounded
-                      border-gray-400
-                      dark:bg-gray-900 dark:text-white dark:border-gray-50
+                      border border-gray-400
+                      text-white
+                      dark:border-gray-50
                       snipcart-add-item
                     "
                     :data-item-id="product.id"
@@ -114,6 +128,21 @@
                       $getStrapiMedia(product.product_main_image.url)
                     "
                     :data-item-name="product.product_name"
+                    :class="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? 'bg-tgreen '
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? 'bg-tpurple'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? 'bg-tblue'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? 'bg-tbrown'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'bg-gray-700'
+                        : 'bg-gray-500'
+                    "
                   >
                     Add to cart
                   </button>

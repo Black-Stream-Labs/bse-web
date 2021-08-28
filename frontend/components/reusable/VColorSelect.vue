@@ -13,9 +13,7 @@
           dark:bg-gray-900 dark:text-white dark:border-gray-50
         "
         :style="
-          $store.state.fullColor
-            ? `background:${$store.state.fullColor.color[1]}`
-            : ''
+          $store.state.fullColor ? 'background:var(--background-end)' : ''
         "
       >
         <option value="system">System</option>

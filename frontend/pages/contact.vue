@@ -17,7 +17,12 @@
             :class="ind % 2 == 0 ? 'flex-row-reverse' : ''"
           >
             <div class="w-1/2 flex items-center justify-center p-4">
-              <img :src="section.section_image.url" alt="" class="image" />
+              <img
+                loading="lazy"
+                :src="section.section_image.url"
+                :alt="section.section_image.section_title || 'section image'"
+                class="image"
+              />
             </div>
             <div class="w-1/2">
               <div v-html="$md.render(section.section_content)"></div>

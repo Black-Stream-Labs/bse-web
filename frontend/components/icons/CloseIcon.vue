@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 
 export default Vue.extend({
   name: 'CloseIcon',
@@ -50,15 +50,15 @@ export default Vue.extend({
     width: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
     color: {
       type: String,
       default: 'white',
-    } as PropOptions,
+    },
     height: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
   },
 })
 </script>

@@ -10,7 +10,89 @@
               class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
             >
               <div class="col-span-2">
+                <div class="flex justify-between items-center">
+                  <span v-if="article.author" class="text-xl">
+                    Written by:
+                    <span class="font-bold text-2xl italic">{{
+                      article.author.username
+                    }}</span>
+                  </span>
+
+                  <span class="text-xs italic dark:text-gray-200">
+                    Published -
+                    <time
+                      :datetime="
+                        new Date(article.published_at).toLocaleDateString(
+                          'en-GB',
+                          {
+                            day: 'numeric',
+                            year: 'numeric',
+                            month: 'short',
+                          }
+                        )
+                      "
+                    >
+                      {{
+                        new Date(article.published_at).toLocaleDateString(
+                          'en-GB',
+                          {
+                            day: 'numeric',
+                            year: 'numeric',
+                            month: 'short',
+                          }
+                        )
+                      }}
+                    </time>
+                  </span>
+                </div>
+                <p
+                  v-if="article.article_categories.length > 0"
+                  id="artcategories"
+                  class="py-3"
+                >
+                  <span class="text-xs">
+                    Categories:
+                    <span
+                      v-for="cat in article.article_categories"
+                      :key="cat.id"
+                      class="
+                        capitalize
+                        font-light
+                        rounded
+                        bg-gray-200
+                        px-2
+                        py-1
+                        mx-1
+                        dark:bg-gray-700 dark:text-gray-300
+                      "
+                      :class="
+                        $store.state.fullColor
+                          ? 'text-gray-800 hover:text-gray-700'
+                          : ''
+                      "
+                    >
+                      {{ cat.category }}
+                    </span>
+                  </span>
+                </p>
                 <div v-html="$md.render(updatedContent)"></div>
+                <p>
+                  More articles by the
+                  <NuxtLink
+                    :to="`/articles/authors/${article.author.username}`"
+                    class="text-right py-2 text-xs uppercase my-2 flex"
+                  >
+                    {{ article.author.username }}
+                  </NuxtLink>
+                </p>
+                <div v-if="extraArticles.length > 0">
+                  <h3 class="text-xl2 pb-6 pt-20">
+                    Other articles in the same category
+                  </h3>
+                  <template v-for="(art, id) in extraArticles">
+                    <ArticleExtracts :key="id" :article="art"></ArticleExtracts>
+                  </template>
+                </div>
               </div>
               <BlogSidebar></BlogSidebar>
             </div>
@@ -26,24 +108,35 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import BlogSidebar from '@/components/BlogSidebar'
+import ArticleExtracts from '@/components/ArticleExtracts'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'SingleArticlePage',
   components: {
     Hero,
     BlogSidebar,
+    ArticleExtracts,
   },
   data() {
     return {
       article: {},
+      extraArticles: [],
     }
   },
   async fetch() {
     const data = await this.$strapi.find('articles', {
       slug: this.$route.params.slug,
     })
-
+    // await $strapi.find('products', { 'categories.name': ['women', 'men'] })
+    const categs = data[0].article_categories.map((el: any) => [
+      'article_categories.slug',
+      el.slug,
+    ])
+    const extras = await this.$strapi.find('articles', [...categs])
     this.article = data[0]
+    this.extraArticles = extras.filter(
+      (el: any) => el.slug !== this.$route.params.slug
+    )
   },
 
   computed: {

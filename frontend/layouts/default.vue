@@ -65,14 +65,16 @@ export default Vue.extend({
   },
   methods: {
     updateRootColors() {
-      document.documentElement.style.setProperty(
-        '--background-start',
-        this.bgColor[1]
-      )
-      document.documentElement.style.setProperty(
-        '--background-end',
-        this.bgColor[0]
-      )
+      if (this.bgColor) {
+        document.documentElement.style.setProperty(
+          '--background-start',
+          this.bgColor[1]
+        )
+        document.documentElement.style.setProperty(
+          '--background-end',
+          this.bgColor[0]
+        )
+      }
     },
   },
 })

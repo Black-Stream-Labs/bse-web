@@ -23,7 +23,7 @@
 
 <script lang="ts">
 // @ts-nocheck
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 import ProductExtract from '@/components/ProductExtract'
 import ProductsSidebar from '@/components/ProductsSidebar'
 export default Vue.extend({
@@ -37,7 +37,7 @@ export default Vue.extend({
     products: {
       type: Array,
       default: () => [],
-    } as PropOptions,
+    },
   },
 })
 </script>

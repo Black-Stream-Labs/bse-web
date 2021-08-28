@@ -31,27 +31,47 @@
     <section class="section">
       <div class="container max-w-5xl mx-auto p-4">
         <h2 class="capitalize text-2xl dark:text-white">Why we do things</h2>
-        <template v-for="(section, ind) in sectionUpdated">
-          <div :key="ind" class="flex flex-row py-8">
-            <!-- <div
-            :key="ind"
-            class="flex items-center justify-center py-10"
-            :class="ind % 2 == 0 ? 'flex-row-reverse' : ''"
-          > -->
-            <img
-              :src="section.section_image.url"
-              :alt="section.section_title"
-              class="image"
-              width="80"
-            />
-            <div class="w-3/4 pl-4">
-              <h3 class="capitalize text-xl mb-3">
-                {{ section.section_title }}
-              </h3>
-              <div v-html="$md.render(section.section_content)"></div>
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-12 sm:col-span-8">
+            <div
+              v-for="(section, ind) in sectionUpdated"
+              :key="ind"
+              class="flex flex-row items-start py-8"
+            >
+              <img
+                :src="section.section_image.url"
+                :alt="section.section_title"
+                class="image"
+                width="80"
+                height="80"
+                loading="lazy"
+              />
+              <div class="pl-4">
+                <h3 class="capitalize text-xl mb-3">
+                  {{ section.section_title }}
+                </h3>
+                <div v-html="$md.render(section.section_content)"></div>
+              </div>
             </div>
           </div>
-        </template>
+          <div
+            class="
+              hidden
+              sm:flex sm:flex-row
+              items-end
+              justify-end
+              sm:col-span-4
+            "
+          >
+            <LogoImage
+              width="600"
+              height="600"
+              :color="
+                $store.state.fullColor ? 'var(--background-end)' : 'white'
+              "
+            ></LogoImage>
+          </div>
+        </div>
       </div>
     </section>
     <section
@@ -63,7 +83,7 @@
       "
     >
       <div class="container max-w-5xl mx-auto px-4 py-10">
-        <h2 class="text-white">Our Team</h2>
+        <h2 class="text-white pb-10">Our Team</h2>
         <OurTeam :team-members="teamMembers"></OurTeam>
       </div>
     </section>
@@ -98,6 +118,7 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import TestimonialsComp from '@/components/TestimonialsComp'
+import LogoImage from '@/components/icons/LogoImage'
 import OurTeam from '@/components/OurTeam'
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
@@ -111,6 +132,7 @@ export default Vue.extend({
     Hero,
     TestimonialsComp,
     OurTeam,
+    LogoImage,
   },
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: aboutQuery() })
@@ -176,11 +198,4 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped lang="postcss">
-.column &.is-reversed &:nth-child(odd) {
-  order: 2;
-}
-.column &.is-reversed &:nth-child(even) {
-  order: 1;
-}
-</style>
+<style scoped lang="postcss"></style>

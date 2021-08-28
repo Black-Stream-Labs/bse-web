@@ -38,6 +38,7 @@
             >
               <NuxtLink :to="`/articles/${art.slug}`">
                 <img
+                  loading="lazy"
                   class="w-full h-full object-cover"
                   :src="$getStrapiMedia(art.content.header_image.url)"
                   :alt="`${art.content.title} image`"
@@ -72,13 +73,23 @@
               <p>
                 <span class="text-xs text-gray-500 italic dark:text-gray-100">
                   Published -
-                  {{
-                    new Date(art.published_at).toLocaleDateString('en-GB', {
-                      day: 'numeric',
-                      year: 'numeric',
-                      month: 'short',
-                    })
-                  }}
+                  <time
+                    :datetime="
+                      new Date(art.published_at).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        year: 'numeric',
+                        month: 'short',
+                      })
+                    "
+                  >
+                    {{
+                      new Date(art.published_at).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        year: 'numeric',
+                        month: 'short',
+                      })
+                    }}
+                  </time>
                 </span>
               </p>
               <div
@@ -92,44 +103,63 @@
               </div>
 
               <div class="flex justify-between align-center">
-                <div class="w-3/4">
-                  <p v-if="art.article_categories.length > 0" id="categories">
-                    <span class="text-xs">
-                      Categories:
-                      <NuxtLink
-                        v-for="cat in art.article_categories"
-                        :key="cat.id"
-                        :to="`/articles/categories/${cat.slug}`"
-                        class="
-                          capitalize
-                          text-gray-500
-                          dark:text-gray-100 dark:bg-gray-600
-                          font-light
-                          rounded
-                          bg-gray-200
-                          px-2
-                          py-1
-                          mx-1
-                        "
-                      >
-                        {{ cat.category }}
-                      </NuxtLink>
-                    </span>
-                  </p>
-                </div>
-                <div class="w-1/4 flex flex-col align-end justify-end">
+                <p v-if="art.article_categories.length > 0" id="categories">
+                  <span class="text-xs">
+                    Categories:
+                    <NuxtLink
+                      v-for="cat in art.article_categories"
+                      :key="cat.id"
+                      :to="`/articles/categories/${cat.slug}`"
+                      class="
+                        capitalize
+                        text-gray-500
+                        dark:text-gray-100 dark:bg-gray-600
+                        font-light
+                        rounded
+                        bg-gray-200
+                        px-2
+                        py-1
+                        mx-1
+                      "
+                    >
+                      {{ cat.category }}
+                    </NuxtLink>
+                  </span>
+                </p>
+                <div class="flex align-end justify-end">
                   <NuxtLink
                     :to="`/articles/${art.slug}`"
                     class="
-                      text-right
                       py-2
-                      text-blue-600 text-xs
-                      dark:text-gray-100
-                      uppercase
-                      hover:underline
+                      px-4
+                      flex
+                      items-center
+                      justify-end
+                      border border-gray-50
+                      text-white
+                      dark:border-gray-50
+                      duration-300
+                      transform-gpu
+                      transition-all
                     "
+                    :class="[
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? 'bg-tgreen '
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? 'bg-tpurple'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? 'bg-tblue'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? 'bg-tbrown'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'hover:bg-gray-700'
+                        : 'hover:bg-gray-500',
+                    ]"
                   >
-                    Read More <span>&rarr;</span>
+                    Read More
+                    <RightArrow></RightArrow>
                   </NuxtLink>
                 </div>
               </div>
@@ -148,10 +178,12 @@
 // eslint-disable-next-line import/named
 import Vue from 'vue'
 import BlogSidebar from '@/components/BlogSidebar'
+import RightArrow from '@/components/icons/RightArrow'
+
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'AuthorExtracts',
-  components: { BlogSidebar },
+  components: { BlogSidebar, RightArrow },
   mixins: [imageUrlManipulation],
   props: {
     authors: { type: Array, default: () => [] },

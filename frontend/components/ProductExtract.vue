@@ -37,6 +37,7 @@
           :title="product.product_name"
         >
           <img
+            loading="lazy"
             class="
               w-full
               rounded
@@ -75,10 +76,9 @@
             px-2
             py-1
             text-xs
-            border
-            rounded
-            border-gray-400
-            dark:bg-gray-900 dark:text-white dark:border-gray-50
+            border border-gray-400
+            text-white
+            dark:border-gray-50
             snipcart-add-item
           "
           :data-item-id="product.id"
@@ -87,6 +87,21 @@
           :data-item-description="product.product_description"
           :data-item-image="$getStrapiMedia(product.product_main_image.url)"
           :data-item-name="product.product_name"
+          :class="
+            $store.state.fullColor
+              ? $store.state.fullColor.name === 'tgreen'
+                ? 'bg-tgreen '
+                : $store.state.fullColor.name === 'tpurple'
+                ? 'bg-tpurple'
+                : $store.state.fullColor.name === 'tblue'
+                ? 'bg-tblue'
+                : $store.state.fullColor.name === 'tbrown'
+                ? 'bg-tbrown'
+                : ''
+              : $colorMode.preference === 'dark'
+              ? 'bg-gray-700'
+              : 'bg-gray-500'
+          "
         >
           Add to cart
         </button>
@@ -95,12 +110,26 @@
             px-2
             py-1
             text-xs
-            border
-            rounded
-            border-gray-400
-            dark:bg-gray-900 dark:text-white dark:border-gray-50
+            border border-gray-400
+            text-white
+            dark:border-gray-50
           "
           :to="`/products/${product.slug}`"
+          :class="
+            $store.state.fullColor
+              ? $store.state.fullColor.name === 'tgreen'
+                ? 'bg-tgreen'
+                : $store.state.fullColor.name === 'tpurple'
+                ? 'bg-tpurple'
+                : $store.state.fullColor.name === 'tblue'
+                ? 'bg-tblue'
+                : $store.state.fullColor.name === 'tbrown'
+                ? 'bg-tbrown'
+                : ''
+              : $colorMode.preference === 'dark'
+              ? 'bg-gray-700'
+              : 'bg-gray-500'
+          "
         >
           Details &rarr;
         </NuxtLink>

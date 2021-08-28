@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 
 export default Vue.extend({
   name: 'ShoppingCart',
@@ -39,11 +39,11 @@ export default Vue.extend({
     width: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
     height: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
   },
 })
 </script>

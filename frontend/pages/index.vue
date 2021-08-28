@@ -42,7 +42,7 @@
                   transition
                   duration-500
                   ease-in-out
-                  transform
+                  transform-gpu
                   hover:translate-x-1 hover:translate-y-1 hover:scale-105
                 "
                 :class="[
@@ -82,8 +82,9 @@
                 >
                   <img
                     v-if="section.section_image"
+                    loading="lazy"
                     :src="section.section_image.url"
-                    alt=""
+                    :alt="`${section.title} image`"
                     class="image p-4"
                     width="80"
                     height="80"

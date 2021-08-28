@@ -13,7 +13,7 @@
 
 <script lang="ts">
 //  @ts-nocheck
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 import BlogSidebar from '@/components/BlogSidebar'
 import ArticleExtracts from '@/components/ArticleExtracts'
 
@@ -28,7 +28,7 @@ export default Vue.extend({
   mixins: [imageUrlManipulation],
 
   props: {
-    articles: { type: Array, default: () => [] } as PropOptions,
+    articles: { type: Array, default: () => [] },
   },
   data() {
     return {

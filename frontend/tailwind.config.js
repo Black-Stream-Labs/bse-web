@@ -67,6 +67,9 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
+      transitionProperty: {
+        height: 'height',
+      },
     },
   },
   variants: {
@@ -86,6 +89,7 @@ module.exports = {
       'hover',
       'responsive',
     ],
+    height: ['responsive', 'hover', 'focus'],
     textColor: ['dark', 'dark-hover', 'dark-active', 'hover', 'responsive'],
     transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
     // transitionTimingFunction: ['hover', 'focus'],

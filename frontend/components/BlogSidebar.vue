@@ -22,11 +22,25 @@
             w-1/4
             border border-gray-100
             text-gray-100
-            bg-gray-800
             flex
             place-items-center
             justify-center
             dark:bg-gray-700 dark:text-gray-300
+          "
+          :class="
+            $store.state.fullColor
+              ? $store.state.fullColor.name === 'tgreen'
+                ? 'bg-tgreen '
+                : $store.state.fullColor.name === 'tpurple'
+                ? 'bg-tpurple'
+                : $store.state.fullColor.name === 'tblue'
+                ? 'bg-tblue'
+                : $store.state.fullColor.name === 'tbrown'
+                ? 'bg-tbrown'
+                : ''
+              : $colorMode.preference === 'dark'
+              ? 'bg-gray-700'
+              : 'bg-gray-500'
           "
           type="submit"
           @click.prevent="searchArticles"

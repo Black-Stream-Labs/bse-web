@@ -1,51 +1,57 @@
 <template>
   <div class="text-white flex flex-row flex-wrap">
-    <div class="hidden md:block w-1/4 p-4 text-right">
-      <LogoImage width="150" height="150"></LogoImage>
-    </div>
     <div
       id="teamcarousel"
       ref="teamcarousel"
-      class="md:w-3/4 masonry"
-      :class="showAll ? '' : 'overflow-hidden max-h-128'"
+      class="
+        grid grid-cols-12
+        gap-8
+        transition-height
+        duration-300
+        ease-in-out
+        transform-gpu
+      "
+      :class="showAll ? 'max-h-full' : 'overflow-hidden max-h-128'"
     >
       <div
         v-for="(team, ind) in teamMembers"
         :key="ind"
         class="
-          p-2
-          break-inside
+          sm:col-span-6
+          lg:col-span-4
           flex flex-wrap flex-col
           justify-around
-          col-span-12
-          md:col-span-6
+          shadow-lg
+          border border-white
+          p-4
+          transition
+          duration-500
+          ease-in-out
+          transform-gpu
+          hover:translate-x-1 hover:translate-y-1 hover:scale-105
         "
       >
-        <div class="shadow-lg border border-white p-6">
-          <div class="rounded-tl rounded-tr relative">
-            <div class="h-48 w-48 rounded-full bg-cover border-4 border-white">
-              <img
-                v-if="team.member_image"
-                :src="`/api/v1${team.member_image.url}`"
-                :alt="`${team.member_name} image`"
-                class="h-full w-full object-cover rounded-full overflow-hidden"
-              />
-            </div>
-            <h3 class="text-xl text-right text-white pb-1">
-              {{ team.member_name }}
-            </h3>
+        <div class="rounded-tl rounded-tr">
+          <div class="h-48 w-48 rounded-full bg-cover border-4 border-white">
+            <img
+              v-if="team.member_image"
+              loading="lazy"
+              :src="`/api/v1${team.member_image.url}`"
+              :alt="`${team.member_name} image`"
+              class="h-full w-full object-cover rounded-full overflow-hidden"
+            />
           </div>
-          <div
-            class="text-base leading-8 pt-4"
-            v-html="$md.render(team.member_description)"
-          ></div>
-          <div class="flex justify-end mt-2">
-            <QuotesIcon></QuotesIcon>
-          </div>
+          <h3 class="text-xl text-right text-white pb-1">
+            {{ team.member_name }}
+          </h3>
         </div>
+        <div
+          class="text-base leading-8 pt-4 max-h-56 overflow-y-scroll"
+          v-html="$md.render(team.member_description)"
+        ></div>
       </div>
     </div>
-    <div class="pb-8">
+    <div class="py-8">
       <button
         class="
           py-2
@@ -66,14 +72,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import QuotesIcon from '@/components/icons/QuotesIcon'
-import LogoImage from '@/components/icons/LogoImage'
 export default Vue.extend({
   name: 'OurTeam',
-  components: {
-    QuotesIcon,
-    LogoImage,
-  },
   props: {
     teamMembers: {
       type: Array,

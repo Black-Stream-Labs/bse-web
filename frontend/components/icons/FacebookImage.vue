@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import Vue from 'vue'
 
 export default Vue.extend({
   name: 'FacebookImage',
@@ -22,15 +22,15 @@ export default Vue.extend({
     color: {
       type: String,
       default: 'white',
-    } as PropOptions,
+    },
     width: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
     height: {
       type: [String, Number],
       default: '30',
-    } as PropOptions,
+    },
   },
 })
 </script>
