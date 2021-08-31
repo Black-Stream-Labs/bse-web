@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
-export function contact() {
+export function termsConditionsQuery() {
   const query = gql`
-    query Contact {
-      contact {
+    query termsConditions {
+      termsCondition {
         id
         title
         content {
@@ -14,8 +14,8 @@ export function contact() {
             url
           }
         }
-        motto
         extraContent
+        motto
       }
     }
   `

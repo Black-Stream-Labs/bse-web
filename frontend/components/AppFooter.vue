@@ -6,49 +6,24 @@
       <div class="mb-4 md:mb-0">
         <ul>
           <li class="py-2">
-            <a
+            <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
-              href="/about"
-              >About Us</a
+              to="/about"
+              >About Us</NuxtLink
             >
           </li>
           <li class="py-2">
-            <a
+            <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
-              href="/services"
-              >Our Services</a
+              to="/services"
+              >Our Services</NuxtLink
             >
           </li>
           <li class="py-2">
-            <a
+            <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
-              href="/shop"
-              >Our Shop</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="mb-4 md:mb-0">
-        <ul>
-          <li class="py-2">
-            <a
-              class="p-3 border rounded border-transparent hover:border-white"
-              href="/privacy"
-              >Privacy Policies</a
-            >
-          </li>
-          <li class="py-2">
-            <a
-              class="p-3 border rounded border-transparent hover:border-white"
-              href="/terms-conditions"
-              >Terms and Conditions</a
-            >
-          </li>
-          <li class="py-2">
-            <a
-              class="p-3 border rounded border-transparent hover:border-white"
-              href="/faq"
-              >FAQs</a
+              to="/products"
+              >Our Shop</NuxtLink
             >
           </li>
         </ul>
@@ -56,17 +31,42 @@
       <div class="mb-4 md:mb-0">
         <ul>
           <li class="py-2">
-            <a
+            <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
-              href="/cookie-policy"
-              >Cookie Policies</a
+              to="/privacy-policies"
+              >Privacy Policies</NuxtLink
             >
           </li>
           <li class="py-2">
-            <a
+            <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
-              href="/contact"
-              >Contact Us</a
+              to="/terms-conditions"
+              >Terms and Conditions</NuxtLink
+            >
+          </li>
+          <li class="py-2">
+            <NuxtLink
+              class="p-3 border rounded border-transparent hover:border-white"
+              to="/faq"
+              >FAQs</NuxtLink
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="mb-4 md:mb-0">
+        <ul>
+          <li class="py-2">
+            <NuxtLink
+              class="p-3 border rounded border-transparent hover:border-white"
+              to="/cookie-policy"
+              >Cookie Policies</NuxtLink
+            >
+          </li>
+          <li class="py-2">
+            <NuxtLink
+              class="p-3 border rounded border-transparent hover:border-white"
+              to="/contact"
+              >Contact Us</NuxtLink
             >
           </li>
         </ul>

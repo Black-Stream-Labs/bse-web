@@ -1,9 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "contacts",
+  "collectionName": "privacy_policies",
   "info": {
-    "name": "Contact",
-    "description": ""
+    "name": "Privacy-Policies"
   },
   "options": {
     "increments": true,

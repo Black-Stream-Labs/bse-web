@@ -1,9 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "contacts",
+  "collectionName": "terms_conditions",
   "info": {
-    "name": "Contact",
-    "description": ""
+    "name": "Terms-Conditions"
   },
   "options": {
     "increments": true,

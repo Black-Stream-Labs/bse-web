@@ -1,9 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "contacts",
+  "collectionName": "faq_pages",
   "info": {
-    "name": "Contact",
-    "description": ""
+    "name": "FAQPage"
   },
   "options": {
     "increments": true,
