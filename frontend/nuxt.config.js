@@ -29,6 +29,11 @@ export default {
         async: true,
         crossorigin: 'anonymous',
       },
+      {
+        src: 'https://polyfill.io/v3/polyfill.min.js?features=es2015',
+        // async: true,
+        crossorigin: 'anonymous',
+      },
     ],
   },
   // bodyAttr: {
@@ -45,10 +50,11 @@ export default {
   buildModules: [
     '@nuxtjs/composition-api/module',
     '@nuxt/typescript-build',
-    // '@nuxtjs/ngrok',
+    '@nuxtjs/ngrok',
     // '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
+    '@braid/vue-formulate/nuxt',
   ],
   colorMode: {
     classSuffix: '',
@@ -59,11 +65,11 @@ export default {
     exposeConfig: true,
     // config: {},
   },
-  // ngrok: {
-  //   // module options
-  //   addr: 8080, // port or network address, defaults to 80
-  //   region: 'eu', // one of ngrok regions (us, eu, au, ap, sa, jp, in), defaults to
-  // },
+  ngrok: {
+    // module options
+    addr: 8080, // port or network address, defaults to 80
+    region: 'eu', // one of ngrok regions (us, eu, au, ap, sa, jp, in), defaults to
+  },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/axios',
@@ -125,12 +131,13 @@ export default {
       'products',
       'single-events',
       'product-categories',
+      'messages',
     ],
   },
   env: {},
   axios: {
     // baseUrl: process.env.API_AUTH_URL || 'http://localhost:1337',
-    prefix: '/api/v1',
+    // prefix: '/api/v1',
     proxy: true,
   },
   apollo: {
