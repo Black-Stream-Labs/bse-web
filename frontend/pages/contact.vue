@@ -348,8 +348,7 @@ export default Vue.extend({
           subject: this.subject,
           content: this.content,
         })
-        .then((res: any) => {
-          console.log('response from server', res)
+        .then(() => {
           setTimeout(() => {
             this.name = ''
             this.email = ''
@@ -373,13 +372,13 @@ export default Vue.extend({
             this.loading = false
           }, 350)
         })
-      // .finally(() => {
-      //   setTimeout(() => {
-      //     this.isBot = false
-      //     this.bots = null
-      //     this.loading = false
-      //   }, 350)
-      // })
+        .finally(() => {
+          setTimeout(() => {
+            this.isBot = false
+            this.bots = null
+            this.loading = false
+          }, 350)
+        })
     },
   },
 })
