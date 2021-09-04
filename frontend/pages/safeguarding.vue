@@ -122,6 +122,13 @@ export default Vue.extend({
         return {}
       }
     },
+    updatedMotto() {
+      if (this.page.motto) {
+        return formatContentImageUrl(this.page.motto)
+      } else {
+        return null
+      }
+    },
     updatedExtraContent() {
       if (this.page.extraContent) {
         return formatContentImageUrl(this.page.extraContent)
