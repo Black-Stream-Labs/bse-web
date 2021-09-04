@@ -10,8 +10,8 @@
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div v-if="updatedContent" class="page-content pb-10">
           <div class="flex items-center">
-            <NuxtLink
-              to="/products"
+            <a
+              href="#"
               class="
                 inline-flex
                 items-center
@@ -23,6 +23,7 @@
                 text-white
                 dark:border-gray-50
               "
+              aria-label="Go Back to Product Summary including the Search Terms and Filters"
               :class="
                 $store.state.fullColor
                   ? $store.state.fullColor.name === 'tgreen'
@@ -38,10 +39,11 @@
                   ? 'bg-gray-700'
                   : 'bg-gray-500'
               "
+              @click.prevent="$router.go(-1)"
             >
               <LeftArrow></LeftArrow>
               <span class="px-4"> back to products </span>
-            </NuxtLink>
+            </a>
           </div>
           <div class="my-8">
             <div
@@ -207,7 +209,6 @@
                   </div>
                 </div>
               </div>
-              <ProductsSidebar></ProductsSidebar>
             </div>
           </div>
         </div>
@@ -221,7 +222,6 @@
 import Vue from 'vue'
 import Hero from '@/components/Hero'
 import VModal from '@/components/reusable/VModal'
-import ProductsSidebar from '@/components/ProductsSidebar'
 import ProductExtract from '@/components/ProductExtract'
 import LeftArrow from '@/components/icons/LeftArrow'
 import imageUrlManipulation, {
@@ -232,7 +232,6 @@ export default Vue.extend({
   name: 'SingleProductPage',
   components: {
     Hero,
-    ProductsSidebar,
     VModal,
     ProductExtract,
     LeftArrow,

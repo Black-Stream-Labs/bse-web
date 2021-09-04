@@ -101,12 +101,7 @@ import Vue from 'vue'
 import { productFiltersQuery } from '@/apollo/queries/product/prodFilters.js'
 export default Vue.extend({
   name: 'ProductFilters',
-  props: {
-    updateQuery: {
-      type: Function,
-      default: () => 1,
-    },
-  },
+
   data() {
     return {
       prodFilters: [],
@@ -130,22 +125,19 @@ export default Vue.extend({
     checkedFilters(newValue, oldValue) {
       if (newValue.length === 0) {
         this.allFilters = true
-        this.updateQuery('product_filter', null)
+        this.$root.$emit('updateFiltersCategories', { product_filter: null })
       }
 
       if (newValue !== oldValue && newValue.length > 0) {
         this.allFilters = false
-        this.updateQuery('product_filter', encodeURIComponent(newValue))
+        this.$root.$emit('updateFiltersCategories', {
+          product_filter: encodeURIComponent(newValue),
+        })
       }
     },
-    // '$route.query.product_filter'(newValue, oldValue) {
-    //   if (newValue && newValue !== oldValue) {
-    //     this.checkedFilters = decodeURIComponent(newValue)
-    //   }
-    // },
   },
   mounted() {
-    if (this.$route.query.product_filter) {
+    if (this.$route.query && this.$route.query.product_filter) {
       this.checkedFilters = decodeURIComponent(this.$route.query.product_filter)
     }
     this.$root.$on('clearProductFilters', () => {
@@ -155,7 +147,6 @@ export default Vue.extend({
   beforeDestroy() {
     this.$root.$off()
   },
-  methods: {},
 
   fetchOnServer: true,
   fetchKey: 'product-filters',

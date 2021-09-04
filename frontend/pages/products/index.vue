@@ -3,7 +3,29 @@
     <Hero title="Our Products"></Hero>
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
-        <Products :products="products" />
+        <div class="my-12">
+          <div
+            class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
+          >
+            <div class="col-span-2">
+              <div
+                v-if="products.length > 0"
+                class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2"
+              >
+                <template v-for="product in products">
+                  <ProductExtract :key="product.id" :product="product">
+                  </ProductExtract>
+                </template>
+              </div>
+              <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2">
+                There are no products matching your filters. Please search for a
+                differnt product or filter by different options from the
+                sidebar.
+              </div>
+            </div>
+            <ProductsSidebar :update-query="updateQuery"></ProductsSidebar>
+          </div>
+        </div>
         <NuxtChild></NuxtChild>
       </div>
     </div>
@@ -14,111 +36,119 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/Hero'
-import Products from '@/components/Products'
+import ProductExtract from '@/components/ProductExtract'
+
+import ProductsSidebar from '@/components/ProductsSidebar'
+
 import { allProdQuery } from '@/apollo/queries/product/allProducts.js'
 export default Vue.extend({
   name: 'MainProductPage',
   components: {
-    Products,
     Hero,
+    ProductExtract,
+    ProductsSidebar,
   },
-
   data() {
     return {
       products: [],
     }
   },
+
   mounted() {
-    // stil to implement search term and filters
-    // currently it is search term or filters
-    // still need to impement a different sidebar for individual product page to redirect and search
-    this.$root.$on('search-products', (data: string) => {
-      this.$nextTick(async () => {
-        await this.searchProducts(data)
-      })
-    })
-    this.$root.$on('updateProductSearch', () => {
-      this.$nextTick(async () => {
-        await this.searchProducts()
-      })
-    })
+    this.searchProducts()
     this.$root.$on('clearProductFilters', () => {
+      this.$router.push('/products')
       this.$nextTick(async () => {
-        this.$router.push('/products')
         const data = await this.$strapi.graphql({
           query: allProdQuery(),
         })
         this.products = data.products
       })
     })
-    this.searchProducts()
+    this.$root.$on('updateFromSidebar', async (data: unknown) => {
+      await this.updateQuery(data)
+      await this.searchProducts()
+    })
+    this.$root.$on('filtersUpdated', async (data: unknown) => {
+      await this.updateQuery(data)
+      await this.searchProducts()
+    })
   },
   methods: {
-    async searchProducts(data: [string, null]) {
-      let updatedProd = []
-      const query = { ...this.$route.query }
-      if (!!query && Object.keys(query).length > 0) {
-        const queryEl = []
-        Object.keys(query).forEach((queryType: string) => {
-          if (queryType === 'product_categories') {
-            if (
-              decodeURIComponent(query.product_categories).split(',').length > 1
-            ) {
-              decodeURIComponent(query.product_categories)
-                .split(',')
-                .forEach((el: any) => {
-                  queryEl.push(['product_categories.slug', el])
-                })
-            } else {
-              queryEl.push([
-                'product_categories.slug',
-                query.product_categories,
-              ])
+    searchProducts() {
+      setTimeout(async () => {
+        let updatedProd = []
+        const query = await { ...this.$route.query }
+        if (!!query && Object.keys(query).length > 0) {
+          const queryEl = []
+          Object.keys(query).forEach((queryType: string) => {
+            if (queryType === 'q') {
+              queryEl.push(['product_name_contains', query.q])
             }
-          }
-          if (queryType === 'product_filter') {
-            if (
-              decodeURIComponent(query.product_filter).split(',').length > 1
-            ) {
-              decodeURIComponent(query.product_filter)
-                .split(',')
-                .forEach((el: any) => {
-                  queryEl.push(['product_filter.slug', el])
-                })
-            } else {
-              queryEl.push(['product_filter.slug', query.product_filter])
+            if (queryType === 'product_categories') {
+              if (
+                decodeURIComponent(query.product_categories).split(',').length >
+                1
+              ) {
+                decodeURIComponent(query.product_categories)
+                  .split(',')
+                  .forEach((el: any) => {
+                    queryEl.push(['product_categories.slug', el])
+                  })
+              } else {
+                queryEl.push([
+                  'product_categories.slug',
+                  query.product_categories,
+                ])
+              }
             }
-          }
-        })
-        if (!!data && data !== 'undefined') {
-          console.log(data, typeof data)
-
-          const prod = await this.$strapi.find(
-            'products',
-            { product_name_contains: data },
-            queryEl
-          )
+            if (queryType === 'product_filter') {
+              if (
+                decodeURIComponent(query.product_filter).split(',').length > 1
+              ) {
+                decodeURIComponent(query.product_filter)
+                  .split(',')
+                  .forEach((el: any) => {
+                    queryEl.push(['product_filter.slug', el])
+                  })
+              } else {
+                queryEl.push(['product_filter.slug', query.product_filter])
+              }
+            }
+          })
+          const prod = await this.$strapi.find('products', queryEl)
           updatedProd = prod
         } else {
-          const prod = await this.$strapi.find(
-            'products',
-
-            queryEl
-          )
-          updatedProd = prod
+          const data = await this.$strapi.graphql({
+            query: allProdQuery(),
+          })
+          updatedProd = data.products
         }
-      } else if (!!data && data !== 'undefined') {
-        const prod = await this.$strapi.find('products', {
-          product_name_contains: data,
+        this.products = updatedProd.flat(1)
+      }, 350)
+    },
+    updateQuery(keyOrObj: any, value: any) {
+      const updatedQuery = { ...this.$route.query }
+      if (keyOrObj === 'show_all') {
+        Object.keys(updatedQuery).forEach((key) => {
+          delete updatedQuery[key]
         })
-        updatedProd = prod
+        this.$root.$emit('clearProductFilters')
       } else {
-        const data = await this.$strapi.graphql({
-          query: allProdQuery(),
+        const obj =
+          typeof keyOrObj === 'string' ? { [keyOrObj]: value } : keyOrObj
+
+        Object.keys(obj).forEach((key) => {
+          const value = obj[key]
+
+          if (value === null) {
+            delete updatedQuery[key]
+          } else {
+            updatedQuery[key] = value
+          }
         })
-        updatedProd = data.products
       }
-      this.products = updatedProd.flat(1)
+      this.$router.push({ query: updatedQuery })
     },
   },
 })

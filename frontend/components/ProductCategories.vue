@@ -100,12 +100,7 @@ import Vue from 'vue'
 import { productCategoriesQuery } from '@/apollo/queries/product/prodCategs.js'
 export default Vue.extend({
   name: 'ProductCategories',
-  props: {
-    updateQuery: {
-      type: Function,
-      default: () => 1,
-    },
-  },
+
   data() {
     return {
       prodCategs: [],
@@ -126,25 +121,24 @@ export default Vue.extend({
         this.checkedCategories = []
       }
     },
-    checkedCategories(newValue, oldValue) {
+    checkedCategories(newValue, _oldValue) {
       if (newValue.length === 0) {
         this.allCategories = true
-        this.updateQuery('product_categories', null)
+        this.$root.$emit('updateFiltersCategories', {
+          product_categories: null,
+        })
       }
 
-      if (newValue !== oldValue && newValue.length > 0) {
+      if (newValue !== _oldValue && newValue.length > 0) {
         this.allCategories = false
-        this.updateQuery('product_categories', encodeURIComponent(newValue))
+        this.$root.$emit('updateFiltersCategories', {
+          product_categories: encodeURIComponent(newValue),
+        })
       }
     },
-    // '$route.query.product_categories'(newValue, oldValue) {
-    //   if (newValue && newValue !== oldValue) {
-    //     this.checkedCategories = decodeURIComponent(newValue)
-    //   }
-    // },
   },
   mounted() {
-    if (this.$route.query.product_categories) {
+    if (this.$route.query && this.$route.query.product_categories) {
       this.checkedCategories = decodeURIComponent(
         this.$route.query.product_categories
       )

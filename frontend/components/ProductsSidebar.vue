@@ -2,7 +2,7 @@
   <aside class="col-span-1">
     <div id="sidebar-search" class="mb-4">
       <span class="mb-2 font-bold"> Search Products: </span>
-      <form class="md:pl-2 flex no-padding">
+      <form class="md:pl-2 flex no-padding" @submit.prevent="updateSearch">
         <label for="searchinput" class="sr-only"> Search products </label>
         <input
           id="searchinput"
@@ -18,6 +18,10 @@
           placeholder="Search..."
         />
         <button
+          :disabled="
+            searchInputValue === null ||
+            (searchInputValue && searchInputValue.length < 3)
+          "
           class="
             w-1/4
             border border-gray-100
@@ -28,8 +32,12 @@
             justify-center
             dark:bg-gray-700 dark:text-gray-300
           "
+          :class="
+            searchInputValue && searchInputValue.length > 3
+              ? 'cursor-pointer'
+              : 'cursor-not-allowed'
+          "
           type="submit"
-          @click.prevent="searchProducts"
         >
           <svg
             class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
@@ -44,8 +52,8 @@
       </form>
     </div>
     <div id="sidebar-categs" class="mb-4">
-      <ProductCategories :update-query="updateQuery"></ProductCategories>
-      <ProductFilters :update-query="updateQuery"></ProductFilters>
+      <ProductCategories></ProductCategories>
+      <ProductFilters></ProductFilters>
     </div>
     <div class="pt-5 text-center">
       <button
@@ -62,7 +70,11 @@
           transform-gpu
           hover:scale-110
         "
-        :class="
+        :disabled="
+          !$route.query &&
+          (!$route.query.product_categories || !$route.query.product_filters)
+        "
+        :class="[
           $store.state.fullColor
             ? $store.state.fullColor.name === 'tgreen'
               ? 'hover:bg-tgreen hover:text-white'
@@ -75,9 +87,13 @@
               : ''
             : $colorMode.preference === 'dark'
             ? 'hover:bg-gray-700 hover:text-white'
-            : 'hover:bg-gray-500 hover:text-white'
-        "
-        @click="searchWithFilters"
+            : 'hover:bg-gray-500 hover:text-white',
+          $route.query &&
+          ($route.query.product_categories || $route.query.product_filter)
+            ? 'cursor-pointer'
+            : 'cursor-not-allowed',
+        ]"
+        @click="updateSearchWithFilters"
       >
         Apply Filters
       </button>
@@ -95,7 +111,8 @@
           transform-gpu
           hover:scale-110
         "
-        :class="
+        :disabled="$route.query === null"
+        :class="[
           $store.state.fullColor
             ? $store.state.fullColor.name === 'tgreen'
               ? 'hover:bg-tgreen hover:text-white'
@@ -108,9 +125,10 @@
               : ''
             : $colorMode.preference === 'dark'
             ? 'hover:bg-gray-700 hover:text-white'
-            : 'hover:bg-gray-500 hover:text-white'
-        "
-        @click="updateQuery('show_all')"
+            : 'hover:bg-gray-500 hover:text-white',
+          $route.query ? 'cursor-pointer' : 'cursor-not-allowed',
+        ]"
+        @click="updateSearch('show_all')"
       >
         Reset Filters
       </button>
@@ -130,54 +148,36 @@ export default Vue.extend({
     ProductCategories,
     ProductFilters,
   },
-  data() {
+  data(comp: unknown) {
     return {
-      searchInputValue: null,
+      searchInputValue: comp.$route.query.q || null,
+      products: [],
+      filtersAndCategs: null,
     }
   },
   mounted() {
-    if (this.$route.query) {
-      this.searchWithFilters()
-    }
     this.$root.$on('clearProductFilters', () => {
       this.searchInputValue = null
     })
+    this.$root.$on('updateFiltersCategories', (data) => {
+      this.filtersAndCategs = data
+    })
   },
   methods: {
-    searchProducts() {
-      if (this.searchInputValue && this.searchInputValue.length > 2) {
-        // if (this.$route.path !== '/products') {
-        //   this.$router.push('/products')
-        // }
-        this.$root.$emit('search-products', this.searchInputValue)
-      }
+    updateSearchWithFilters() {
+      this.$root.$emit('filtersUpdated', this.filtersAndCategs)
     },
-    searchWithFilters() {
-      this.$root.$emit('updateProductSearch')
-    },
-    updateQuery(keyOrObj: any, value: any) {
-      const updatedQuery = { ...this.$route.query }
-      if (keyOrObj === 'show_all') {
-        Object.keys(updatedQuery).forEach((key) => {
-          delete updatedQuery[key]
-        })
-        this.$root.$emit('clearProductFilters')
+    updateSearch(data: string) {
+      if (data === 'show_all') {
+        this.$root.$emit('updateFromSidebar', data)
+        this.searchInputValue = null
+      } else if (this.searchInputValue && this.searchInputValue.length > 2) {
+        this.$root.$emit('updateFromSidebar', { q: this.searchInputValue })
       } else {
-        const obj =
-          typeof keyOrObj === 'string' ? { [keyOrObj]: value } : keyOrObj
-
-        Object.keys(obj).forEach((key) => {
-          const value = obj[key]
-
-          if (value === null) {
-            delete updatedQuery[key]
-          } else {
-            updatedQuery[key] = value
-          }
-        })
+        this.$root.$emit('updateFromSidebar', { q: null })
       }
-      this.$router.push({ query: updatedQuery })
     },
+
     beforeDestroy() {
       this.$root.$off()
     },

@@ -23,6 +23,7 @@ module.exports = {
       xs: '475px',
       ...defaultTheme.screens,
     },
+    cursor: { 'not-allowed': 'not-allowed', pointer: 'pointer' },
     flexGrow: {
       0: 0,
       DEFAULT: 2,
@@ -60,6 +61,7 @@ module.exports = {
       tbrown: '#7F6127',
     },
     extend: {
+      cursor: ['hover', 'focus'],
       spacing: {
         128: '32rem',
         144: '36rem',
