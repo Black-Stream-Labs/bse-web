@@ -1,6 +1,7 @@
 <template>
   <main class="main-container">
     <Hero
+      v-if="page"
       title="Login into your account"
       subtitle="to view and edit your preferences and details"
     ></Hero>
