@@ -146,7 +146,7 @@
 // @ts-nocheck
 
 import Vue from 'vue'
-import BlogSidebar from '@/components/BlogSidebar'
+import BlogSidebar from '@/components/articles/BlogSidebar'
 import RightArrow from '@/components/icons/RightArrow'
 
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'

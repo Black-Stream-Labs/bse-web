@@ -139,8 +139,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import ProductCategories from '@/components/ProductCategories'
-import ProductFilters from '@/components/ProductFilters'
+import ProductCategories from '@/components/products/ProductCategories'
+import ProductFilters from '@/components/products/ProductFilters'
 
 export default Vue.extend({
   name: 'ProductsSidebar',

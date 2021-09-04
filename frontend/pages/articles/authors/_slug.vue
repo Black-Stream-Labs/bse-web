@@ -26,9 +26,9 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import BlogSidebar from '@/components/BlogSidebar'
-import ArticleExtracts from '@/components/ArticleExtracts'
+import Hero from '@/components/hero/Hero'
+import BlogSidebar from '@/components/articles/BlogSidebar'
+import ArticleExtracts from '@/components/articles/ArticleExtracts'
 import { authors } from '@/apollo/queries/blog/authors.js'
 
 export default Vue.extend({

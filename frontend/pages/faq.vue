@@ -88,8 +88,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import TestimonialsComp from '@/components/TestimonialsComp'
+import Hero from '@/components/hero/Hero'
+import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
 import LogoImage from '@/components/icons/LogoImage'
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'

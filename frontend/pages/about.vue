@@ -117,10 +117,10 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import TestimonialsComp from '@/components/TestimonialsComp'
+import Hero from '@/components/hero/Hero'
+import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
 import LogoImage from '@/components/icons/LogoImage'
-import OurTeam from '@/components/OurTeam'
+import OurTeam from '@/components/team/OurTeam'
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { aboutQuery } from '@/apollo/queries/pages/about.js'

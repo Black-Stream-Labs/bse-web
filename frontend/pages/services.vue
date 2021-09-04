@@ -103,9 +103,9 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
+import Hero from '@/components/hero/Hero'
 import LogoImage from '@/components/icons/LogoImage'
-import TestimonialsComp from '@/components/TestimonialsComp'
+import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
 
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
 

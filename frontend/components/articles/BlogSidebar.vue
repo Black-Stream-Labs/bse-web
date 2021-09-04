@@ -71,8 +71,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import BlogCategories from '@/components/BlogCategories'
-import BlogAuthors from '@/components/BlogAuthors'
+import BlogCategories from '@/components/articles/BlogCategories'
+import BlogAuthors from '@/components/articles/BlogAuthors'
 
 export default Vue.extend({
   name: 'BlogSidebar',

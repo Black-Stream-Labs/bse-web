@@ -25,9 +25,9 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import ProductsSidebar from '@/components/ProductsSidebar'
-import ProductExtract from '@/components/ProductExtract'
+import Hero from '@/components/hero/Hero'
+import ProductsSidebar from '@/components/products/ProductsSidebar'
+import ProductExtract from '@/components/products/ProductExtract'
 import { productCategoriesQuery } from '@/apollo/queries/product/prodCategs.js'
 export default Vue.extend({
   name: 'ProductCategoryPage',

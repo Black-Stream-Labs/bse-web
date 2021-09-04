@@ -21,8 +21,8 @@
 <script lang="ts">
 //  @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import BlogArticles from '@/components/BlogArticles'
+import Hero from '@/components/hero/Hero'
+import BlogArticles from '@/components/articles/BlogArticles'
 import { articleExtracts } from '@/apollo/queries/blog/articles.js'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 

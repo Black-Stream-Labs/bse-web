@@ -54,10 +54,9 @@
 
 <script lang="ts">
 // @ts-nocheck
-// eslint-disable-next-line import/named
 import Vue from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
-import LogoImage from '@/components/icons/LogoImage.vue'
+import LogoImage from '@/components/icons/LogoImage'
 
 export default Vue.extend({
   name: 'HeroComponent',

@@ -14,8 +14,8 @@
 <script lang="ts">
 //  @ts-nocheck
 import Vue from 'vue'
-import BlogSidebar from '@/components/BlogSidebar'
-import ArticleExtracts from '@/components/ArticleExtracts'
+import BlogSidebar from '@/components/articles/BlogSidebar'
+import ArticleExtracts from '@/components/articles/ArticleExtracts'
 
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 

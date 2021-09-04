@@ -150,14 +150,14 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import TestimonialsComp from '@/components/TestimonialsComp'
+import Hero from '@/components/hero/Hero'
+import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
+import ArticleExtractsHomepage from '@/components/articles/ArticleExtractsHomepage'
+
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
 import { articleExtracts } from '@/apollo/queries/blog/articles.js'
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
-
-import ArticleExtractsHomepage from '@/components/ArticleExtractsHomepage'
 
 export default Vue.extend({
   name: 'SitePageTemplate',

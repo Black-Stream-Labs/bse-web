@@ -45,7 +45,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
+import Hero from '@/components/hero/Hero'
 import Calendar from '@/components/reusable/Calendar'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { eventsQuery } from '@/apollo/queries/pages/events.js'

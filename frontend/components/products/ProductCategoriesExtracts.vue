@@ -44,8 +44,9 @@
 // @ts-nocheck
 
 import Vue from 'vue'
-import ProductsSidebar from '@/components/ProductsSidebar'
-import ProductExtract from '@/components/ProductExtract'
+import ProductsSidebar from '@/components/products/ProductsSidebar'
+import ProductExtract from '@/components/products/ProductExtract'
+
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 import { productCategoriesQuery } from '@/apollo/queries/product/prodCategs.js'
 export default Vue.extend({

@@ -12,8 +12,8 @@
 <script lang="ts">
 //  @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import CategoriesExtracts from '@/components/CategoriesExtracts'
+import Hero from '@/components/hero/Hero'
+import CategoriesExtracts from '@/components/articles/CategoriesExtracts'
 export default Vue.extend({
   name: 'ArticlesPage',
   components: {

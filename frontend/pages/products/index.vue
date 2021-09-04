@@ -35,10 +35,10 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
-import ProductExtract from '@/components/ProductExtract'
+import Hero from '@/components/hero/Hero'
+import ProductExtract from '@/components/products/ProductExtract'
 
-import ProductsSidebar from '@/components/ProductsSidebar'
+import ProductsSidebar from '@/components/products/ProductsSidebar'
 
 import { allProdQuery } from '@/apollo/queries/product/allProducts.js'
 export default Vue.extend({

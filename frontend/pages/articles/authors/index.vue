@@ -12,8 +12,8 @@
 <script lang="ts">
 //  @ts-nocheck
 import Vue from 'vue'
-import AuthorExtracts from '@/components/AuthorExtracts'
-import Hero from '@/components/Hero.vue'
+import AuthorExtracts from '@/components/articles/AuthorExtracts'
+import Hero from '@/components/hero/Hero'
 import { authors } from '@/apollo/queries/blog/authors.js'
 export default Vue.extend({
   name: 'AllAuthorsPage',

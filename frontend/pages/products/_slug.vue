@@ -220,9 +220,9 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/Hero'
+import Hero from '@/components/hero/Hero'
 import VModal from '@/components/reusable/VModal'
-import ProductExtract from '@/components/ProductExtract'
+import ProductExtract from '@/components/products/ProductExtract'
 import LeftArrow from '@/components/icons/LeftArrow'
 import imageUrlManipulation, {
   formatContentImageUrl,

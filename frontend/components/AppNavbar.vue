@@ -264,7 +264,8 @@ export default Vue.extend({
     MenuIcon: () => import('@/components/icons/MenuIcon'),
     CloseIcon: () => import('@/components/icons/CloseIcon'),
     LogoImage: () => import('@/components/icons/LogoImage'),
-    AccesibilityMenu: () => import('@/components/AccesibilityMenu'),
+    AccesibilityMenu: () =>
+      import('@/components/accessibility/AccesibilityMenu'),
   },
 
   data() {

@@ -27,7 +27,7 @@
 <script>
 import Vue from 'vue'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-import Hero from '@/components/Hero'
+import Hero from '@/components/hero/Hero'
 export default Vue.extend({
   name: 'IndividualEventPage',
   components: {

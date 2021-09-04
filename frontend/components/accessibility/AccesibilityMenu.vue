@@ -14,7 +14,6 @@
     <template #content>
       <VColorSelect></VColorSelect>
       <AccesibilityFontSize></AccesibilityFontSize>
-      <!-- <AccesibilityContrast></AccesibilityContrast> -->
       <AccesibilityFonts></AccesibilityFonts>
     </template>
   </VDropdown>
@@ -22,15 +21,13 @@
 
 <script lang="ts">
 // @ts-nocheck
-// eslint-disable-next-line import/named
 import Vue from 'vue'
 import VDropdown from '@/components/reusable/VDropdown'
 import SettingsImage from '@/components/icons/SettingsImage'
 import VColorSelect from '@/components/reusable/VColorSelect'
 import DownArrow from '@/components/icons/DownArrow'
-import AccesibilityFontSize from '@/components/AccesibilityFontSize'
-// import AccesibilityContrast from '@/components/AccesibilityContrast'
-import AccesibilityFonts from '@/components/AccesibilityFonts'
+import AccesibilityFontSize from '@/components/accessibility/AccesibilityFontSize'
+import AccesibilityFonts from '@/components/accessibility/AccesibilityFonts'
 export default Vue.extend({
   name: 'AccesibilityMenu',
   components: {
