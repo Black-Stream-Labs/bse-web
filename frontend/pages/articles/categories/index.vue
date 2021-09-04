@@ -21,12 +21,6 @@ export default Vue.extend({
     Hero,
   },
   layout: 'blog',
-  async asyncData({ app }) {
-    const page = await app.$strapi.$http.$get('articles-page')
-    return {
-      page,
-    }
-  },
 })
 </script>
 

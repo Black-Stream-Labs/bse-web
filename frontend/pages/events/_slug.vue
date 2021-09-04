@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Hero :title="page.title" :headerimage="updatedHeaderIMage"></Hero>
+    <Hero
+      v-if="page"
+      :title="page.title"
+      :headerimage="updatedHeaderIMage"
+    ></Hero>
 
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">

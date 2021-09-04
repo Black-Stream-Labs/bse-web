@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero :title="`Articles by: ${author.username}`"></Hero>
+    <Hero v-if="author" :title="`Articles by: ${author.username}`"></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
         <div class="my-12">

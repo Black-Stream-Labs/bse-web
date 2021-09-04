@@ -1,6 +1,7 @@
 <template>
   <div>
     <Hero
+      v-if="page"
       title="Latest News"
       :subtitle="page.subtitle"
       :headerimage="updatedHeaderIMage"

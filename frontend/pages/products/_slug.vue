@@ -1,11 +1,49 @@
 <template>
   <div>
-    <Hero :title="product.product_name" :headerimage="updatedHeaderIMage" />
+    <Hero
+      v-if="product"
+      :title="product.product_name"
+      :headerimage="updatedHeaderIMage"
+    />
 
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div v-if="updatedContent" class="page-content pb-10">
-          <div class="my-12">
+          <div class="flex items-center">
+            <NuxtLink
+              to="/products"
+              class="
+                inline-flex
+                items-center
+                w-max
+                px-2
+                py-2
+                capitalize
+                border border-gray-400
+                text-white
+                dark:border-gray-50
+              "
+              :class="
+                $store.state.fullColor
+                  ? $store.state.fullColor.name === 'tgreen'
+                    ? 'bg-tgreen '
+                    : $store.state.fullColor.name === 'tpurple'
+                    ? 'bg-tpurple'
+                    : $store.state.fullColor.name === 'tblue'
+                    ? 'bg-tblue'
+                    : $store.state.fullColor.name === 'tbrown'
+                    ? 'bg-tbrown'
+                    : ''
+                  : $colorMode.preference === 'dark'
+                  ? 'bg-gray-700'
+                  : 'bg-gray-500'
+              "
+            >
+              <LeftArrow></LeftArrow>
+              <span class="px-4"> back to products </span>
+            </NuxtLink>
+          </div>
+          <div class="my-8">
             <div
               class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
             >
@@ -113,8 +151,8 @@
                 <div>
                   <button
                     class="
-                      px-2
-                      py-1
+                      px-4
+                      py-3
                       border border-gray-400
                       text-white
                       dark:border-gray-50
@@ -185,6 +223,7 @@ import Hero from '@/components/Hero'
 import VModal from '@/components/reusable/VModal'
 import ProductsSidebar from '@/components/ProductsSidebar'
 import ProductExtract from '@/components/ProductExtract'
+import LeftArrow from '@/components/icons/LeftArrow'
 import imageUrlManipulation, {
   formatContentImageUrl,
 } from '@/mixins/updateImageUrl.js'
@@ -196,6 +235,7 @@ export default Vue.extend({
     ProductsSidebar,
     VModal,
     ProductExtract,
+    LeftArrow,
   },
   mixins: [imageUrlManipulation],
 

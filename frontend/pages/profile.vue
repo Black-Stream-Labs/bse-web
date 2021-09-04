@@ -1,6 +1,7 @@
 <template>
   <main class="main-container">
     <Hero
+      v-if="page"
       :title="`Welcome to your account`"
       :subtitle="loggedInUser.username"
       size="is-medium"

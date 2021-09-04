@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Hero :title="`Product Category: ${singleCategory.categ_name}`"></Hero>
+    <Hero
+      v-if="singleCategory"
+      :title="`Product Category: ${singleCategory.categ_name}`"
+    ></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
         <div class="my-12">

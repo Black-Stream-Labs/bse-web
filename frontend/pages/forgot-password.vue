@@ -1,6 +1,7 @@
 <template>
   <main class="main-container">
     <Hero
+      v-if="page"
       title="Reset your password"
       subtitle="In case you forgot your password use the form below to reset it"
     ></Hero>

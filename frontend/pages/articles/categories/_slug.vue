@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero :title="singleCategory.category"></Hero>
+    <Hero v-if="singleCategory" :title="singleCategory.category"></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
         <div class="my-12">

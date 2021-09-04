@@ -1,6 +1,7 @@
 <template>
   <main class="main-container">
     <Hero
+      v-if="page"
       title="Register for a new account"
       subtitle="To benefit from all the features that we have to offer"
     ></Hero>
