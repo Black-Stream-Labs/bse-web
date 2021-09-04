@@ -2,7 +2,7 @@
   <aside class="col-span-1">
     <div id="sidebar-search" class="mb-4">
       <span class="mb-2 font-bold"> Search articles: </span>
-      <form class="md:pl-2 flex no-padding">
+      <form class="md:pl-2 flex no-padding" @submit.prevent="searchArticles">
         <label for="searchinput" class="sr-only">Search articles</label>
         <input
           id="searchinput"
@@ -27,7 +27,11 @@
             justify-center
             dark:bg-gray-700 dark:text-gray-300
           "
-          :class="
+          :disabled="
+            searchInputValue === null ||
+            (searchInputValue && searchInputValue.length < 3)
+          "
+          :class="[
             $store.state.fullColor
               ? $store.state.fullColor.name === 'tgreen'
                 ? 'bg-tgreen '
@@ -40,10 +44,12 @@
                 : ''
               : $colorMode.preference === 'dark'
               ? 'bg-gray-700'
-              : 'bg-gray-500'
-          "
+              : 'bg-gray-500',
+            searchInputValue && searchInputValue.length >= 3
+              ? 'cursor-pointer'
+              : 'cursor-not-allowed',
+          ]"
           type="submit"
-          @click.prevent="searchArticles"
         >
           <svg
             class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
@@ -65,6 +71,45 @@
       <span class="mb-2 font-bold">Authors</span>
       <BlogAuthors></BlogAuthors>
     </div>
+    <div
+      v-if="$route.query && $route.query.q"
+      id="sidebar-clearBtn"
+      class="mb-4 flex items-center justify-center"
+    >
+      <a
+        href="#"
+        class="
+          inline-flex
+          items-center
+          w-max
+          px-2
+          py-2
+          capitalize
+          border border-gray-400
+          text-white
+          dark:border-gray-50
+        "
+        aria-label="Go Back to Product Summary including the Search Terms and Filters"
+        :class="
+          $store.state.fullColor
+            ? $store.state.fullColor.name === 'tgreen'
+              ? 'bg-tgreen '
+              : $store.state.fullColor.name === 'tpurple'
+              ? 'bg-tpurple'
+              : $store.state.fullColor.name === 'tblue'
+              ? 'bg-tblue'
+              : $store.state.fullColor.name === 'tbrown'
+              ? 'bg-tbrown'
+              : ''
+            : $colorMode.preference === 'dark'
+            ? 'bg-gray-700'
+            : 'bg-gray-500'
+        "
+        @click.prevent="removeArticleQuery"
+      >
+        <span class="px-4"> clear search </span>
+      </a>
+    </div>
   </aside>
 </template>
 
@@ -80,17 +125,29 @@ export default Vue.extend({
     BlogCategories,
     BlogAuthors,
   },
-  data() {
+  props: {
+    removeArticleQuery: {
+      type: Function,
+      default: () => 1,
+    },
+  },
+  data(comp: any) {
     return {
-      searchInputValue: null,
+      searchInputValue: comp.$route.query.q || null,
     }
+  },
+  mounted() {
+    this.$root.$on('clearArticleSearchTerm', () => {
+      this.searchInputValue = null
+    })
+  },
+  beforeDestroy() {
+    this.$root.$off()
   },
   methods: {
     searchArticles() {
-      if (this.searchInputValue) {
-        if (this.searchInputValue && this.searchInputValue.length > 2) {
-          this.$root.$emit('search-articles', this.searchInputValue)
-        }
+      if (this.searchInputValue && this.searchInputValue.length > 2) {
+        this.$root.$emit('search-articles', this.searchInputValue)
       }
     },
   },

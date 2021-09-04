@@ -33,7 +33,7 @@
             dark:bg-gray-700 dark:text-gray-300
           "
           :class="
-            searchInputValue && searchInputValue.length > 3
+            searchInputValue && searchInputValue.length >= 3
               ? 'cursor-pointer'
               : 'cursor-not-allowed'
           "
