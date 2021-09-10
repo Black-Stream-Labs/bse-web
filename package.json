@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "add": "^2.0.6",
-    "strapi-provider-email-nodemailer": "^3.6.8",
-    "strapi-provider-email-sendmail": "^3.6.8",
-    "strapi-provider-email-smtp": "^1.0.2",
-    "yarn": "^1.22.11"
-  }
-}
