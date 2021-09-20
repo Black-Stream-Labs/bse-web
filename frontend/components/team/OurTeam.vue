@@ -17,6 +17,7 @@
         v-for="(team, ind) in teamMembers"
         :key="ind"
         class="
+          col-span-12
           sm:col-span-6
           lg:col-span-4
           flex flex-wrap flex-col
