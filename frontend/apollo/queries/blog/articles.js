@@ -8,6 +8,8 @@ export function articleExtracts() {
         slug
         title
         published_at
+        unpublish_date
+        future_publish_date
         content {
           content
           subtitle

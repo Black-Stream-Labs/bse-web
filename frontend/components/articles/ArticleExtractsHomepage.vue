@@ -57,11 +57,8 @@
           </time>
         </span>
       </p>
-      <div v-if="article.description" class="mb-4 w-full dark:text-gray-100">
-        <div
-          class="line-clamp-5"
-          v-html="$md.render(article.description)"
-        ></div>
+      <div class="mb-4 w-full dark:text-gray-100">
+        <div class="line-clamp-5" v-html="$md.render(updatedArticleText)"></div>
       </div>
 
       <div class="flex justify-between align-center flex-grow-1">
@@ -111,7 +108,9 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import imageUrlManipulation from '@/mixins/updateImageUrl.js'
+import imageUrlManipulation, {
+  formatContentImageUrl,
+} from '@/mixins/updateImageUrl.js'
 
 export default Vue.extend({
   name: 'ArticleExtractsHomepage',
@@ -120,6 +119,15 @@ export default Vue.extend({
     article: {
       type: Object,
       default: () => {},
+    },
+  },
+  computed: {
+    updatedArticleText() {
+      if (this.article.description) {
+        return formatContentImageUrl(this.article.description)
+      } else {
+        return formatContentImageUrl(this.article.content.content)
+      }
     },
   },
   fetchOnServer: true,

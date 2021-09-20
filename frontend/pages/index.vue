@@ -156,7 +156,6 @@ import ArticleExtractsHomepage from '@/components/articles/ArticleExtractsHomepa
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
-import { articleExtracts } from '@/apollo/queries/blog/articles.js'
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
 
 export default Vue.extend({
@@ -169,13 +168,22 @@ export default Vue.extend({
   layout: 'default',
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: homePageQuery() })
-    const articles = await $strapi.graphql({ query: articleExtracts() })
+
+    const arts = await $strapi.find('articles', {
+      featured: true,
+    })
+    const articles = arts
+    // .filter(
+    //       (el: any) =>
+    //         el.future_publish_date === null ||
+    //         el.future_publish_date <= new Date().toISOString()
+    //     )
     const testimonials = await $strapi.graphql({
       query: testimonialsExtracts(),
     })
     return {
       page: data.homePage,
-      articles: articles.articles,
+      articles,
       testimonials: testimonials.testimonials,
     }
   },

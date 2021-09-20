@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/domain-experts",
+      "handler": "domain-expert.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/domain-experts/count",
+      "handler": "domain-expert.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/domain-experts/:id",
+      "handler": "domain-expert.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/domain-experts",
+      "handler": "domain-expert.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/domain-experts/:id",
+      "handler": "domain-expert.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/domain-experts/:id",
+      "handler": "domain-expert.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -25,7 +25,7 @@
         <img
           loading="lazy"
           class="w-full h-full object-cover"
-          :src="$getStrapiMedia(article.content.header_image.url)"
+          :src="article.content.header_image.url"
           :alt="`${article.content.title} image`"
         />
       </NuxtLink>
@@ -77,14 +77,8 @@
           </time>
         </span>
       </p>
-      <div
-        v-if="article.description"
-        class="mb-4 w-full text-gray-700 dark:text-gray-100"
-      >
-        <div
-          class="line-clamp-5"
-          v-html="$md.render(article.description)"
-        ></div>
+      <div class="mb-4 w-full text-gray-700 dark:text-gray-100">
+        <div class="line-clamp-5" v-html="$md.render(updatedArticleText)"></div>
       </div>
 
       <div class="flex justify-between align-center">
@@ -176,6 +170,15 @@ export default Vue.extend({
     return {
       transitionButton: false,
     }
+  },
+  computed: {
+    updatedArticleText() {
+      if (this.article.description) {
+        return this.article.description
+      } else {
+        return this.article.content.content
+      }
+    },
   },
   fetchOnServer: true,
   fetchKey: 'article-extract',

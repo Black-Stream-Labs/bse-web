@@ -7,6 +7,7 @@ export function singleArticle() {
       articles(where: { slug: $slug }) {
         slug
         id
+        future_publish_date
         content {
           subtitle
           content

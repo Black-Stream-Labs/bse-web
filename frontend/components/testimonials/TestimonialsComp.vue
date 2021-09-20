@@ -14,7 +14,7 @@
         :key="ind"
         class="
           py-5
-          px-6
+          md:px-6
           break-inside
           flex flex-wrap flex-col
           justify-around

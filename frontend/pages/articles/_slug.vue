@@ -121,7 +121,7 @@
                   <h3 class="text-xl2 pb-6 pt-16">
                     Other articles in the same category
                   </h3>
-                  <template v-for="(art, id) in extraArticles">
+                  <template v-for="(art, id) in updatedExtraArticles">
                     <ArticleExtracts :key="id" :article="art"></ArticleExtracts>
                   </template>
                 </div>
@@ -167,7 +167,14 @@ export default Vue.extend({
     const extras = await this.$strapi.find('articles', [...categs])
     this.article = data[0]
     this.extraArticles = extras
-      .filter((el: any) => el.slug !== this.$route.params.slug)
+      .filter(
+        (el: any) => el.slug !== this.$route.params.slug
+        // &&
+        //           (el.future_publish_date === null ||
+        //             new Date(el.future_publish_date).toISOString() <=
+        //               new Date().toISOString()) &&
+        //           new Date(el.unpublish_date).toISOString() > new Date().toISOString()
+      )
       .sort((a: any, b: any) => a.published_at - b.published_at)
   },
 
@@ -185,6 +192,14 @@ export default Vue.extend({
       } else {
         return null
       }
+    },
+    updatedExtraArticles() {
+      const x = []
+      this.extraArticles.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
     },
   },
 })

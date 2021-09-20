@@ -3,7 +3,7 @@
     <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4">
       <main class="col-span-2">
         <div
-          v-for="(category, ind) in categExtracts"
+          v-for="(category, ind) in updatedCategsExtracts"
           :key="ind"
           class="flex flex-col items-center justify-center"
         >
@@ -44,8 +44,8 @@
                 <img
                   loading="lazy"
                   class="w-full h-full object-cover"
-                  :src="$getStrapiMedia(art.content.header_image.url)"
-                  :alt="`${art.content.title} image`"
+                  :src="art.content.header_image.url"
+                  :alt="`${art.title} image`"
                 />
               </NuxtLink>
             </div>
@@ -149,28 +149,28 @@ import Vue from 'vue'
 import BlogSidebar from '@/components/articles/BlogSidebar'
 import RightArrow from '@/components/icons/RightArrow'
 
-import imageUrlManipulation from '@/mixins/updateImageUrl.js'
-import { categsExtra } from '@/apollo/queries/blog/categsExtra.js'
+import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'CategoriesExtracts',
   components: { BlogSidebar, RightArrow },
-  mixins: [imageUrlManipulation],
   props: {
     categories: { type: Array, default: () => [] },
   },
   data() {
     return {
-      categExtracts: [],
       transitionButton: false,
     }
   },
-  async fetch() {
-    const data = await this.$strapi.graphql({
-      query: categsExtra(),
-    })
-    this.categExtracts = data.articleCategories
+  computed: {
+    updatedCategsExtracts() {
+      const x = []
+      this.categories.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
+    },
   },
-  mounted() {},
   fetchOnServer: true,
   fetchKey: 'article-categories',
 })

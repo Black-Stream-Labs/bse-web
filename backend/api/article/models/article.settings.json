@@ -42,6 +42,12 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "articles"
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "future_publish_date": {
+      "type": "date"
     }
   }
 }

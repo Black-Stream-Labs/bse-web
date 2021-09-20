@@ -8,7 +8,7 @@
             class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
           >
             <div class="col-span-2">
-              <template v-for="(article, ind) in singleCategory.articles">
+              <template v-for="(article, ind) in singleCategory">
                 <ArticleExtracts
                   :key="ind"
                   :article="article"
@@ -28,6 +28,7 @@ import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
 import BlogSidebar from '@/components/articles/BlogSidebar'
 import ArticleExtracts from '@/components/articles/ArticleExtracts'
+import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 
 import { categsExtra } from '@/apollo/queries/blog/categsExtra.js'
 
@@ -48,8 +49,18 @@ export default Vue.extend({
   },
   computed: {
     singleCategory() {
-      const categs = this.categories
-      return categs.filter((el: any) => el.slug === this.$route.params.slug)[0]
+      const categs = this.categories.filter(
+        (el: any) => el.slug === this.$route.params.slug
+        //  &&
+        //           (el.future_publish_date === null ||
+        //             el.future_publish_date <= new Date().toISOString())
+      )[0]
+      const x = []
+      categs.articles.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
     },
   },
 })

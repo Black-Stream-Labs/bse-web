@@ -3,7 +3,7 @@
     <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4">
       <main class="col-span-2">
         <div
-          v-for="(author, ind) in authors"
+          v-for="(author, ind) in updatedAuthorArticles"
           :key="ind"
           class="flex flex-col items-center justify-center"
         >
@@ -40,8 +40,8 @@
                 <img
                   loading="lazy"
                   class="w-full h-full object-cover"
-                  :src="$getStrapiMedia(art.content.header_image.url)"
-                  :alt="`${art.content.title} image`"
+                  :src="art.content.header_image.url"
+                  :alt="`${art.title} image`"
                 />
               </NuxtLink>
             </div>
@@ -99,6 +99,12 @@
                 <div
                   class="line-clamp-5"
                   v-html="$md.render(art.description)"
+                ></div>
+              </div>
+              <div v-else class="mb-4 w-full text-gray-700 dark:text-gray-100">
+                <div
+                  class="line-clamp-5"
+                  v-html="$md.render(art.content.content)"
                 ></div>
               </div>
 
@@ -179,19 +185,24 @@
 import Vue from 'vue'
 import BlogSidebar from '@/components/articles/BlogSidebar'
 import RightArrow from '@/components/icons/RightArrow'
+import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 
-import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'AuthorExtracts',
   components: { BlogSidebar, RightArrow },
-  mixins: [imageUrlManipulation],
   props: {
     authors: { type: Array, default: () => [] },
   },
-  data() {
-    return {}
+  computed: {
+    updatedAuthorArticles() {
+      const x = []
+      this.authors.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
+    },
   },
-  mounted() {},
 })
 </script>
 

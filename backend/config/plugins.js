@@ -1,33 +1,35 @@
 module.exports = ({ env }) => ({
   // ...
-// SendMail
+
+  // could also use the env file variables in here instead of the values
+  // SendMail
   email: {
-    provider: 'sendmail',
+    provider: "sendmail",
     settings: {
-      defaultFrom: 'john@threebros.design',
-      defaultReplyTo: 'john@threebros.design',
+      defaultFrom: "john@threebros.design",
+      defaultReplyTo: "john@threebros.design",
     },
   },
-// SMTP email
-//  email: {
-//     provider: 'smtp',
-//     providerOptions: {
-//       host: 'smtp.gmail.com', //SMTP Host
-//       port: 465   , //SMTP Port
-//       secure: true,
-//       username: 'my.username@gmail.com',
-//       password: 'my.password',
-//       rejectUnauthorized: true,
-//       requireTLS: true,
-//       connectionTimeout: 1,
-//     },
-//     settings: {
-//       from: 'my.username@gmail.com',
-//       replyTo: 'my.username@gmail.com',
-//     },
-//   },
+  // SMTP email
+  //  email: {
+  //     provider: 'smtp',
+  //     providerOptions: {
+  //       host: 'smtp.gmail.com', //SMTP Host
+  //       port: 465   , //SMTP Port
+  //       secure: true,
+  //       username: 'my.username@gmail.com',
+  //       password: 'my.password',
+  //       rejectUnauthorized: true,
+  //       requireTLS: true,
+  //       connectionTimeout: 1,
+  //     },
+  //     settings: {
+  //       from: 'my.username@gmail.com',
+  //       replyTo: 'my.username@gmail.com',
+  //     },
+  //   },
 
-// NodeMailer
+  // NodeMailer
   // email: {
   //   provider: 'nodemailer',
   //   providerOptions: {

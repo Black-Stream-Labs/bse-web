@@ -8,7 +8,7 @@
             class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
           >
             <div class="col-span-2">
-              <template v-for="(article, ind) in author.articles">
+              <template v-for="(article, ind) in updatedArticles">
                 <ArticleExtracts
                   :key="ind"
                   :article="article"
@@ -30,6 +30,7 @@ import Hero from '@/components/hero/Hero'
 import BlogSidebar from '@/components/articles/BlogSidebar'
 import ArticleExtracts from '@/components/articles/ArticleExtracts'
 import { authors } from '@/apollo/queries/blog/authors.js'
+import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 
 export default Vue.extend({
   name: 'SingleAuthorPage',
@@ -38,19 +39,28 @@ export default Vue.extend({
     BlogSidebar,
     ArticleExtracts,
   },
-  data() {
-    return {
-      author: {},
-    }
-  },
-  async fetch() {
-    const data = await this.$strapi.graphql({
+  async asyncData({ $strapi, route }) {
+    const data = await $strapi.graphql({
       query: authors(),
     })
-    this.author = [...data.users].filter(
-      (el) => el.username === this.$route.params.slug
+    const author = [...data.users].filter(
+      (el) => el.username === route.params.slug
     )[0]
+    return {
+      author,
+    }
   },
+  computed: {
+    updatedArticles() {
+      const x = []
+      this.author.articles.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
+    },
+  },
+
   fetchOnServer: true,
   fetchKey: 'single-author',
 })

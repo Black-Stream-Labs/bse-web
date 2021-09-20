@@ -64,25 +64,43 @@ export default Vue.extend({
   layout: 'blog',
   async asyncData({ app, route }) {
     const page = await app.$strapi.$http.$get('articles-page')
-    let articles = {}
+    let arts = {}
     if (route.query.q) {
       const art = await app.$strapi.find('articles', {
         title_contains: route.query.q,
       })
-      articles.articles = art
+      arts.articles = art
     } else {
-      articles = await app.$strapi.graphql({ query: articleExtracts() })
+      arts = await app.$strapi.graphql({ query: articleExtracts() })
     }
-
+    // const dat = new Date().valueOf()
+    const articles = []
+    arts.articles.forEach((el: any) => {
+      const e = JSON.stringify(el)
+      articles.push(JSON.parse(formatContentImageUrl(e)))
+    })
+    // .filter(
+    //   (el: any) =>
+    //     el.future_publish_date === null ||
+    //     el.unpublish_date === null ||
+    //     (el.future_publish_date !== null &&
+    //       new Date(el.future_publish_date).valueOf() >= dat &&
+    //       el.unpublish_date === null) ||
+    //     (el.unpublish_date !== null &&
+    //       new Date(el.unpublish_date).valueOf() < dat &&
+    //       new Date(el.future_publish_date).valueOf() >
+    //         new Date(el.unpublish_date).valueOf())
+    // )
+    articles.sort((a: any, b: any) => a.published_at - b.published_at)
     return {
       page,
-      articles: articles.articles,
+      articles,
       searchInputValue: null,
     }
   },
   computed: {
     updatedContent() {
-      if (this.page.content) {
+      if (this.page.content && this.page.content.content.length > 0) {
         return formatContentImageUrl(this.page.content.content)
       } else {
         return null

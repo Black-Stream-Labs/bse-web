@@ -6,6 +6,8 @@ export const state = () => ({
   name: 'Me',
   fullColor: null as any,
   auth: {} as any,
+  socialMediaAccounts: [] as any[],
+  domainExperts: [] as any[],
 })
 
 export type RootState = ReturnType<typeof state>
@@ -21,11 +23,20 @@ export const mutations: MutationTree<RootState> = {
   UPDATE_BG_COLOR: (state, data: any) => {
     state.fullColor = data ? { name: data[2], color: [data[1], data[0]] } : null
   },
+  SET_SOCIAL_MEDIA_ACCOUNTS: (state, data) =>
+    (state.socialMediaAccounts = data),
+  SET_DOMAIN_EXPERTS: (state, data) => (state.domainExperts = data),
 }
 
 export const actions: ActionTree<RootState, RootState> = {
   updateBgColor({ commit }, data) {
     commit('UPDATE_BG_COLOR', data)
+  },
+  setSocialMediaAccounts({ commit }, data) {
+    commit('SET_SOCIAL_MEDIA_ACCOUNTS', data)
+  },
+  setDomainExperts({ commit }, data) {
+    commit('SET_DOMAIN_EXPERTS', data)
   },
   // async fetchThings({ commit }) {
   //   const things = await this.$axios.$get('/things')
