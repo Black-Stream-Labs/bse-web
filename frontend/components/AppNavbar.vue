@@ -125,7 +125,7 @@
           <!-- </transition> -->
         </NuxtLink>
         <NuxtLink
-          to="/products"
+          to="/shop"
           class="
             p-2
             hover:bg-gray-400
@@ -135,15 +135,15 @@
             justify-center
           "
         >
-          Products
+          Shop
         </NuxtLink>
-        <AccesibilityMenu></AccesibilityMenu>
         <SnipcartButton></SnipcartButton>
+        <AccesibilityMenu></AccesibilityMenu>
       </div>
     </nav>
 
     <!-- Mobile Links -->
-    <div
+    <ul
       v-if="isOpen"
       class="
         bg-gray-50
@@ -156,36 +156,40 @@
         dark:bg-gray-900 dark:text-white
       "
     >
-      <NuxtLink
-        to="/about"
-        class="
-          block
-          font-semibold
-          text-gray-800
-          p-3
-          hover:bg-gray-400
-          dark:hover:bg-gray-700
-          hover:text-gray-50
-          dark:text-white
-        "
-      >
-        About us
-      </NuxtLink>
-      <NuxtLink
-        to="/services"
-        class="
-          block
-          font-semibold
-          text-gray-800
-          p-3
-          hover:bg-gray-400
-          dark:hover:bg-gray-700
-          hover:text-gray-50
-          dark:text-white
-        "
-      >
-        Services
-      </NuxtLink>
+      <li @click="$root.$emit('closeNavigation')">
+        <NuxtLink
+          to="/about"
+          class="
+            block
+            font-semibold
+            text-gray-800
+            p-3
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
+            hover:text-gray-50
+            dark:text-white
+          "
+        >
+          About us
+        </NuxtLink>
+      </li>
+      <li @click="$root.$emit('closeNavigation')">
+        <NuxtLink
+          to="/services"
+          class="
+            block
+            font-semibold
+            text-gray-800
+            p-3
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
+            hover:text-gray-50
+            dark:text-white
+          "
+        >
+          Services
+        </NuxtLink>
+      </li>
       <NuxtLink
         to="/articles"
         class="
@@ -201,54 +205,59 @@
       >
         Articles
       </NuxtLink>
-
-      <NuxtLink
-        to="/events"
-        class="
-          block
-          font-semibold
-          text-gray-800
-          p-3
-          hover:bg-gray-400
-          dark:hover:bg-gray-700
-          hover:text-gray-50
-          dark:text-white
-        "
-      >
-        Events
-      </NuxtLink>
-      <NuxtLink
-        to="/safeguarding"
-        class="
-          block
-          font-semibold
-          text-gray-800
-          p-3
-          hover:bg-gray-400
-          dark:hover:bg-gray-700
-          hover:text-gray-50
-          dark:text-white
-        "
-      >
-        Safeguarding
-      </NuxtLink>
-      <NuxtLink
-        to="/products"
-        class="
-          block
-          font-semibold
-          text-gray-800
-          p-3
-          hover:bg-gray-400
-          dark:hover:bg-gray-700
-          hover:text-gray-50
-          dark:text-white
-        "
-      >
-        Products
-      </NuxtLink>
+      <li @click="$root.$emit('closeNavigation')">
+        <NuxtLink
+          to="/events"
+          class="
+            block
+            font-semibold
+            text-gray-800
+            p-3
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
+            hover:text-gray-50
+            dark:text-white
+          "
+        >
+          Events
+        </NuxtLink>
+      </li>
+      <li @click="$root.$emit('closeNavigation')">
+        <NuxtLink
+          to="/safeguarding"
+          class="
+            block
+            font-semibold
+            text-gray-800
+            p-3
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
+            hover:text-gray-50
+            dark:text-white
+          "
+        >
+          Safeguarding
+        </NuxtLink>
+      </li>
+      <li @click="$root.$emit('closeNavigation')">
+        <NuxtLink
+          to="/shop"
+          class="
+            block
+            font-semibold
+            text-gray-800
+            p-3
+            hover:bg-gray-400
+            dark:hover:bg-gray-700
+            hover:text-gray-50
+            dark:text-white
+          "
+        >
+          Shop
+        </NuxtLink>
+      </li>
       <SnipcartButton></SnipcartButton>
-    </div>
+    </ul>
   </header>
 </template>
 
@@ -294,6 +303,13 @@ export default Vue.extend({
     // },
   },
   mounted() {
+    this.$root.$on('closeNavigation', () => {
+      this.$nextTick(() => {
+        if (this.isOpen) {
+          this.isOpen = false
+        }
+      })
+    })
     // window.addEventListener('load', this.scrollHandler)
     // window.addEventListener('scroll', this.scrollHandler)
   },

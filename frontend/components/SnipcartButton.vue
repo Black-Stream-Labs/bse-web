@@ -10,11 +10,15 @@
         items-center
         justify-center
       "
+      @click="$root.$emit('closeNavigation')"
     >
       <ShoppingCart></ShoppingCart>
       <small class="snipcart-total-price"></small>
     </button>
-    <button class="snipcart-customer-signin px-2 py-2">
+    <button
+      class="snipcart-customer-signin px-2 py-2"
+      @click="$root.$emit('closeNavigation')"
+    >
       <UserImage></UserImage>
     </button>
   </div>

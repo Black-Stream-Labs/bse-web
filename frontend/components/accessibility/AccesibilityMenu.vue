@@ -2,11 +2,21 @@
   <VDropdown placement="right">
     <!-- Button content -->
     <template #button>
-      <span class="mr-2 hidden lg:inline-block">Accesibility</span>
-      <span class="hidden lg:inline-block">
+      <span
+        class="mr-2 hidden lg:inline-block"
+        @click="$root.$emit('closeNavigation')"
+        >Accesibility</span
+      >
+      <span
+        class="hidden lg:inline-block"
+        @click="$root.$emit('closeNavigation')"
+      >
         <DownArrow></DownArrow>
       </span>
-      <span class="px-2 py-2 rounded items-center text-sm lg:hidden">
+      <span
+        class="px-2 py-2 rounded items-center text-sm lg:hidden"
+        @click="$root.$emit('closeNavigation')"
+      >
         <SettingsImage width="24" height="24"></SettingsImage>
       </span>
     </template>
