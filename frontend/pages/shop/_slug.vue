@@ -1,7 +1,8 @@
 <template>
   <div>
-    <Hero
+    <HeroProduct
       v-if="product"
+      :product="product"
       :title="product.product_name"
       :headerimage="updatedHeaderIMage"
     />
@@ -101,56 +102,7 @@
                 </div>
                 <div v-html="$md.render(updatedContent)"></div>
 
-                <div
-                  v-if="
-                    product.product_images && product.product_images.length > 0
-                  "
-                  class="pt-5"
-                >
-                  Product Images
-
-                  <section
-                    id="photos"
-                    class="my-5 grid grid-cols-1 md:grid-cols-4 gap-4"
-                  >
-                    <template v-for="image in product.product_images">
-                      <button
-                        :key="image.id"
-                        class="hover:opacity-75"
-                        target="_new"
-                        @click="selectImage(image)"
-                      >
-                        <img
-                          loading="lazy"
-                          height="36"
-                          class="w-full h-36 object-cover"
-                          :src="$getStrapiMedia(image.formats.small.url)"
-                          :alt="image.name.split('.')[0]"
-                        />
-                      </button>
-                    </template>
-                    <client-only>
-                      <VModal
-                        :image="selectedImage"
-                        :title="selectedImage ? selectedImage.caption : null"
-                        :opened="selectedImage ? true : false"
-                        @close="selectedImage = null"
-                      >
-                        <img
-                          v-if="selectedImage"
-                          loading="lazy"
-                          height="128"
-                          class="w-full h-128 object-cover"
-                          :src="
-                            $getStrapiMedia(selectedImage.formats.large.url)
-                          "
-                          :alt="selectedImage.caption || 'Product Image'"
-                        />
-                      </VModal>
-                    </client-only>
-                  </section>
-                </div>
-                <div>
+                <div class="pt-6">
                   <button
                     class="
                       px-4
@@ -220,8 +172,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import Hero from '@/components/hero/Hero'
-import VModal from '@/components/reusable/VModal'
+import HeroProduct from '@/components/hero/HeroProduct'
 import ProductExtract from '@/components/products/ProductExtract'
 import LeftArrow from '@/components/icons/LeftArrow'
 import imageUrlManipulation, {
@@ -231,8 +182,7 @@ import imageUrlManipulation, {
 export default Vue.extend({
   name: 'SingleProductPage',
   components: {
-    Hero,
-    VModal,
+    HeroProduct,
     ProductExtract,
     LeftArrow,
   },
@@ -242,7 +192,6 @@ export default Vue.extend({
     return {
       product: {},
       similarProducts: [],
-      showModal: false,
       selectedImage: null,
     }
   },
@@ -280,12 +229,6 @@ export default Vue.extend({
   },
   mounted() {},
 
-  methods: {
-    selectImage(image: any) {
-      this.showModal = true
-      const { caption, alternativeText, formats, url } = image
-      this.selectedImage = { caption, alternativeText, formats, url }
-    },
-  },
+  methods: {},
 })
 </script>

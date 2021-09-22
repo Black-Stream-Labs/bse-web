@@ -33,7 +33,7 @@
       <div class="overflow-hidden relative z-10">
         <NuxtLink
           class="inline-flex"
-          :to="`/products/${product.slug}`"
+          :to="`/shop/${product.slug}`"
           :title="product.product_name"
         >
           <img
@@ -57,7 +57,7 @@
           <h2 class="text-xl italic">
             <NuxtLink
               class="hover:underline capitalize"
-              :to="`/products/${product.slug}`"
+              :to="`/shop/${product.slug}`"
             >
               {{ product.product_name }}
             </NuxtLink>
@@ -114,7 +114,7 @@
             text-white
             dark:border-gray-50
           "
-          :to="`/products/${product.slug}`"
+          :to="`/shop/${product.slug}`"
           :class="
             $store.state.fullColor
               ? $store.state.fullColor.name === 'tgreen'
