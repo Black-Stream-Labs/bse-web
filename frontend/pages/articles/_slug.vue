@@ -80,7 +80,13 @@
                   </span>
                 </p>
                 <div v-html="$md.render(updatedContent)"></div>
-                <p class="flex items-center justify-end italic pt-4">
+                <ShareIcons
+                  :title="article.title"
+                  :text="$md.render(updatedContent)"
+                  :url="`${currentDomain}${$route.fullPath}`"
+                  :hashtags="article.article_tags"
+                ></ShareIcons>
+                <div class="flex items-center justify-end italic pt-4">
                   <span class="pr-3"> More articles by </span>
                   <NuxtLink
                     :to="`/articles/authors/${article.author.username}`"
@@ -115,7 +121,7 @@
                   >
                     {{ article.author.username }}
                   </NuxtLink>
-                </p>
+                </div>
                 <div v-if="extraArticles.length > 0" class="pt-16">
                   <hr />
                   <h3 class="text-xl2 pb-6 pt-16">
@@ -141,6 +147,7 @@ import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
 import BlogSidebar from '@/components/articles/BlogSidebar'
 import ArticleExtracts from '@/components/articles/ArticleExtracts'
+import ShareIcons from '@/components/reusable/ShareIcons'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'SingleArticlePage',
@@ -148,11 +155,13 @@ export default Vue.extend({
     Hero,
     BlogSidebar,
     ArticleExtracts,
+    ShareIcons,
   },
   data() {
     return {
       article: {},
       extraArticles: [],
+      currentDomain: '',
     }
   },
   async fetch() {
@@ -177,7 +186,6 @@ export default Vue.extend({
       )
       .sort((a: any, b: any) => a.published_at - b.published_at)
   },
-
   computed: {
     updatedContent() {
       if (this.article.content) {
@@ -201,6 +209,12 @@ export default Vue.extend({
       })
       return x
     },
+  },
+  mounted() {
+    // eslint-disable-next-line nuxt/no-env-in-hooks
+    if (process.client) {
+      this.currentDomain = location
+    }
   },
 })
 </script>
