@@ -26,12 +26,109 @@
         <div v-html="$md.render(updatedContent)" />
       </div>
     </section>
-    <section v-if="sectionUpdated" id="whatwedo" class="section">
-      <div class="container max-w-5xl mx-auto px-4 py-10">
+    <section
+      v-if="sectionUpdated"
+      id="whatwedo"
+      class="section"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+          : ''
+      "
+    >
+      <div class="container max-w-5xl mx-auto px-4 py-10 text-white">
         <h2>What we do</h2>
         <div class="grid gap-4 grid-rows-5">
           <div
             v-for="(section, ind) in sectionUpdated"
+            :key="ind"
+            class="row-span-1 py-5"
+          >
+            <div class="grid grid-cols-12">
+              <div
+                class="
+                  col-span-12
+                  transition
+                  duration-500
+                  ease-in-out
+                  transform-gpu
+                  hover:translate-x-1 hover:translate-y-1 hover:scale-105
+                "
+                :class="[
+                  ind === 0 || ind === 4
+                    ? 'md:col-start-1'
+                    : ind === 1 || ind === 5
+                    ? 'md:col-start-3'
+                    : ind === 2 || ind === 6
+                    ? 'md:col-start-5'
+                    : ind === 3 || ind === 7
+                    ? 'md:col-start-3'
+                    : 'md:col-start-1',
+                  'md:col-span-5',
+                  $store.state.fullColor
+                    ? $store.state.fullColor.name === 'tgreen'
+                      ? 'hover:bg-tgreen '
+                      : $store.state.fullColor.name === 'tpurple'
+                      ? 'hover:bg-tpurple'
+                      : $store.state.fullColor.name === 'tblue'
+                      ? 'hover:bg-tblue'
+                      : $store.state.fullColor.name === 'tbrown'
+                      ? 'hover:bg-tbrown'
+                      : ''
+                    : $colorMode.preference === 'dark'
+                    ? 'hover:bg-gray-700'
+                    : 'hover:bg-gray-500',
+                ]"
+              >
+                <div
+                  class="
+                    shadow-lg
+                    border border-gray-700
+                    dark:border-gray-50
+                    p-4
+                    flex flex-wrap
+                  "
+                >
+                  <img
+                    v-if="section.section_image"
+                    loading="lazy"
+                    :src="section.section_image.url"
+                    :alt="`${section.title} image`"
+                    class="image p-4"
+                    width="80"
+                    height="80"
+                  />
+                  <div
+                    class="px-4"
+                    v-html="$md.render(section.section_content)"
+                  ></div>
+                  <!-- <div
+                    class="px-4 line-clamp-3 overflow-hidden"
+                    v-html="$md.render(section.section_content)"
+                  ></div> -->
+                  <!-- <div class="text-right block w-full py-2">
+                    <NuxtLink
+                      :to="`/services/#${$slugify(
+                        section.section_title
+                      )}-${ind}`"
+                      class="text-right p-2 text-xs uppercase hover:underline"
+                    >
+                      Read More <span>&rarr;</span>
+                    </NuxtLink>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section v-if="servicesUpdated" id="whatwedo" class="section">
+      <div class="container max-w-5xl mx-auto px-4 py-10">
+        <h2>Our Services</h2>
+        <div class="grid gap-4" :class="`grid-rows-${servicesUpdated.length}`">
+          <div
+            v-for="(section, ind) in servicesUpdated"
             :key="ind"
             class="row-span-1 py-5"
           >
@@ -96,7 +193,9 @@
                   ></div>
                   <div class="text-right block w-full py-2">
                     <NuxtLink
-                      :to="`/services/${section.title}`"
+                      :to="`/services/#${$slugify(
+                        section.section_title
+                      )}-${ind}`"
                       class="text-right p-2 text-xs uppercase hover:underline"
                     >
                       Read More <span>&rarr;</span>
@@ -153,10 +252,12 @@ import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
 import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
 import ArticleExtractsHomepage from '@/components/articles/ArticleExtractsHomepage'
+import slugify from '@/mixins/slugify.js'
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
+import { servicesQuery } from '@/apollo/queries/pages/services.js'
 
 export default Vue.extend({
   name: 'SitePageTemplate',
@@ -165,10 +266,12 @@ export default Vue.extend({
     ArticleExtractsHomepage,
     TestimonialsComp,
   },
+  mixins: [slugify],
+
   layout: 'default',
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: homePageQuery() })
-
+    const services = await $strapi.graphql({ query: servicesQuery() })
     const arts = await $strapi.find('articles', {
       featured: true,
     })
@@ -184,6 +287,7 @@ export default Vue.extend({
     return {
       page: data.homePage,
       articles,
+      services: services.service.sections,
       testimonials: testimonials.testimonials,
     }
   },
@@ -206,6 +310,15 @@ export default Vue.extend({
       if (!this.page.sections) return
       const x = []
       this.page.sections.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+      })
+      return x
+    },
+    servicesUpdated() {
+      if (!this.services && this.services.length === 0) return
+      const x = []
+      this.services.forEach((el: any) => {
         const e = JSON.stringify(el)
         x.push(JSON.parse(formatContentImageUrl(e)))
       })

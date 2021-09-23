@@ -11,75 +11,75 @@
         <div v-html="$md.render(updatedMotto)" />
       </div>
     </section>
-    <section class="section">
-      <div class="container max-w-5xl mx-auto px-4">
-        <div class="grid grid-cols-12 gap-4">
-          <div class="col-span-12 sm:col-span-8">
-            <div
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1">
+        <main class="col-span-2 pr-4">
+          <section
+            v-for="(section, ind) in sectionUpdated"
+            :id="`${$slugify(section.section_title)}-${ind}`"
+            :key="ind"
+            class="flex flex-col md:flex-row items-start py-8"
+          >
+            <img
+              :src="section.section_image.url"
+              :alt="section.section_title"
+              class="image"
+              width="80"
+              height="80"
+              loading="lazy"
+            />
+            <div class="md:pl-4 pt-4">
+              <h3 class="capitalize text-xl mb-3">
+                {{ section.section_title }}
+              </h3>
+              <div v-html="$md.render(section.section_content)"></div>
+            </div>
+          </section>
+        </main>
+        <aside
+          class="hidden col-span-1 md:flex flex-col justify-between py-10 pl-8"
+        >
+          <div class="group outline-none sticky top-24 text-justify">
+            <a
               v-for="(section, ind) in sectionUpdated"
-              :key="ind"
-              class="flex flex-row items-start py-8"
+              :key="`sidebar-${ind}`"
+              v-smooth-scroll="{ offset: -100 }"
+              class="
+                group
+                text-center
+                border border-gray-700
+                dark:border-blue-100
+                text-white
+                flex
+                justify-end
+                px-4
+                py-3
+                items-center
+                ease
+              "
+              :class="$store.state.fullColor ? 'text-white' : ''"
+              :style="
+                $store.state.fullColor
+                  ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+                  : ''
+              "
+              :href="`#${$slugify(section.section_title)}-${ind}`"
             >
-              <img
-                :src="section.section_image.url"
-                :alt="section.section_title"
-                class="image"
-                width="80"
-                height="80"
-                loading="lazy"
-              />
-              <div class="pl-4">
-                <h3 class="capitalize text-xl mb-3">
-                  {{ section.section_title }}
-                </h3>
-                <div v-html="$md.render(section.section_content)"></div>
-              </div>
+              {{ section.section_title }}
+            </a>
+            <div class="hidden sm:flex sm:flex-col items-start justify-start">
+              <LogoImage
+                width="300"
+                height="300"
+                :color="
+                  $store.state.fullColor ? 'var(--background-end)' : 'white'
+                "
+              ></LogoImage>
             </div>
           </div>
-          <div
-            class="
-              hidden
-              sm:flex sm:flex-row
-              items-end
-              justify-end
-              sm:col-span-4
-            "
-          >
-            <LogoImage
-              width="600"
-              height="600"
-              :color="
-                $store.state.fullColor ? 'var(--background-end)' : 'white'
-              "
-            ></LogoImage>
-          </div>
-        </div>
+        </aside>
       </div>
-    </section>
-    <section
-      class="section"
-      :style="
-        $store.state.fullColor
-          ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
-          : ''
-      "
-    >
-      <div
-        class="container max-w-5xl mx-auto px-4 py-24 dark:text-white"
-        :class="$store.state.fullColor ? 'text-white' : ''"
-      >
-        <h2 v-if="page.content.subtitle" class="capitalize text-2xl">
-          {{ page.content.subtitle }}
-        </h2>
-        <div v-html="$md.render(updatedContent)" />
-      </div>
-    </section>
-    <section class="section">
-      <div class="container max-w-5xl mx-auto px-4 py-10">
-        <div v-html="$md.render(updatedExtraContent)"></div>
-      </div>
-    </section>
-
+    </div>
     <section
       id="whattheysay"
       class="section"
@@ -89,12 +89,35 @@
           : ''
       "
     >
-      <div class="container max-w-5xl mx-auto px-4 py-10">
+      <div class="container max-w-3xl mx-auto px-4 py-10 text-center">
         <h2 class="text-white">What they say</h2>
-
         <TestimonialsComp
           :testimonials="updatedTestimonials"
         ></TestimonialsComp>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container max-w-5xl mx-auto px-4 py-24 dark:text-white">
+        <h2 v-if="page.content.subtitle" class="capitalize text-2xl">
+          {{ page.content.subtitle }}
+        </h2>
+        <div v-html="$md.render(updatedContent)" />
+      </div>
+    </section>
+    <section
+      v-if="updatedExtraContent"
+      class="section"
+      :style="
+        $store.state.fullColor
+          ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+          : ''
+      "
+    >
+      <div
+        class="container max-w-3xl mx-auto px-4 py-10 text-center"
+        :class="$store.state.fullColor ? 'text-white' : ''"
+      >
+        <div v-html="$md.render(updatedExtraContent)"></div>
       </div>
     </section>
   </div>
@@ -106,7 +129,7 @@ import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
 import LogoImage from '@/components/icons/LogoImage'
 import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
-
+import slugify from '@/mixins/slugify.js'
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
@@ -118,6 +141,7 @@ export default Vue.extend({
     LogoImage,
     TestimonialsComp,
   },
+  mixins: [slugify],
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: servicesQuery() })
     const testimonials = await $strapi.graphql({
@@ -173,6 +197,17 @@ export default Vue.extend({
         x.push(JSON.parse(formatContentImageUrl(e)))
       })
       return x
+    },
+  },
+  methods: {
+    scrollToElement(ele) {
+      const el = document.getElementById(ele)
+      const header = document.getElementsByTagName('header')[0].offsetHeight
+      const headerHeight = el.offsetTop - header
+      return window.scrollTo({
+        top: headerHeight,
+        behavior: 'smooth',
+      })
     },
   },
 })

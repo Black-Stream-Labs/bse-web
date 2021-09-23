@@ -15401,6 +15401,11 @@ vue-server-renderer@^2.6.12:
     serialize-javascript "^3.1.0"
     source-map "0.5.6"
 
+vue-smooth-scroll@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/vue-smooth-scroll/-/vue-smooth-scroll-1.0.13.tgz#77263728f659db5da61fc3bc2789b0eb3ce0f1bb"
+  integrity sha1-dyY3KPZZ212mH8O8J4mw6zzg8bs=
+
 vue-socials@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vue-socials/-/vue-socials-1.1.0.tgz#218c8aa03ec2a646d70e103a3e140958916f1303"
