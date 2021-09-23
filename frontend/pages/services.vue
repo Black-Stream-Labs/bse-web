@@ -11,75 +11,86 @@
         <div v-html="$md.render(updatedMotto)" />
       </div>
     </section>
-    <div class="container max-w-5xl mx-auto px-4">
-      <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1">
-        <main class="col-span-2 pr-4">
-          <section
-            v-for="(section, ind) in sectionUpdated"
-            :id="`${$slugify(section.section_title)}-${ind}`"
-            :key="ind"
-            class="flex flex-col md:flex-row items-start py-8"
-          >
-            <img
-              :src="section.section_image.url"
-              :alt="section.section_title"
-              class="image"
-              width="80"
-              height="80"
-              loading="lazy"
-            />
-            <div class="md:pl-4 pt-4">
-              <h3 class="capitalize text-xl mb-3">
-                {{ section.section_title }}
-              </h3>
-              <div v-html="$md.render(section.section_content)"></div>
-            </div>
-          </section>
-        </main>
-        <aside
-          class="hidden col-span-1 md:flex flex-col justify-between py-10 pl-8"
-        >
-          <div class="group outline-none sticky top-24 text-justify">
-            <a
+    <section class="section">
+      <div class="container max-w-5xl mx-auto px-4">
+        <div class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1">
+          <main class="col-span-2 px-4">
+            <section
               v-for="(section, ind) in sectionUpdated"
-              :key="`sidebar-${ind}`"
-              v-smooth-scroll="{ offset: -100 }"
-              class="
-                group
-                text-center
-                border border-gray-700
-                dark:border-blue-100
-                text-white
-                flex
-                justify-end
-                px-4
-                py-3
-                items-center
-                ease
-              "
-              :class="$store.state.fullColor ? 'text-white' : ''"
-              :style="
-                $store.state.fullColor
-                  ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
-                  : ''
-              "
-              :href="`#${$slugify(section.section_title)}-${ind}`"
+              :id="`${$slugify(section.section_title)}-${ind}`"
+              :key="ind"
+              class="flex flex-col md:flex-row items-start py-8"
             >
-              {{ section.section_title }}
-            </a>
-            <div class="hidden sm:flex sm:flex-col items-start justify-start">
-              <LogoImage
-                width="300"
-                height="300"
-                :color="
-                  $store.state.fullColor ? 'var(--background-end)' : 'white'
+              <img
+                :src="section.section_image.url"
+                :alt="section.section_title"
+                class="image"
+                width="80"
+                height="80"
+                loading="lazy"
+              />
+              <div class="md:pl-4 pt-4">
+                <h3 class="capitalize text-xl mb-3">
+                  {{ section.section_title }}
+                </h3>
+                <div v-html="$md.render(section.section_content)"></div>
+              </div>
+            </section>
+          </main>
+          <aside
+            class="
+              hidden
+              col-span-1
+              md:flex
+              flex-col
+              justify-between
+              py-10
+              pl-8
+            "
+          >
+            <div class="group outline-none sticky top-24 text-justify">
+              <a
+                v-for="(section, ind) in sectionUpdated"
+                :key="`sidebar-${ind}`"
+                v-smooth-scroll="{ offset: -100 }"
+                class="
+                  group
+                  text-center
+                  border border-gray-700
+                  dark:border-blue-100
+                  text-white
+                  flex
+                  justify-end
+                  px-4
+                  py-3
+                  items-center
+                  ease
                 "
-              ></LogoImage>
+                :class="$store.state.fullColor ? 'text-white' : ''"
+                :style="
+                  $store.state.fullColor
+                    ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
+                    : ''
+                "
+                :href="`#${$slugify(section.section_title)}-${ind}`"
+              >
+                {{ section.section_title }}
+              </a>
+              <div class="hidden sm:flex sm:flex-col items-start justify-start">
+                <LogoImage
+                  class="w-full"
+                  height="300"
+                  :color="
+                    $store.state.fullColor ? 'var(--background-end)' : 'white'
+                  "
+                ></LogoImage>
+              </div>
             </div>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
-    </div>
+    </section>
+
     <section
       id="whattheysay"
       class="section"
@@ -89,7 +100,7 @@
           : ''
       "
     >
-      <div class="container max-w-3xl mx-auto px-4 py-10 text-center">
+      <div class="container max-w-5xl mx-auto px-4 py-10 text-center">
         <h2 class="text-white">What they say</h2>
         <TestimonialsComp
           :testimonials="updatedTestimonials"
