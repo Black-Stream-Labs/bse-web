@@ -147,7 +147,14 @@ export default Vue.extend({
   methods: {
     searchArticles() {
       if (this.searchInputValue && this.searchInputValue.length > 2) {
-        this.$root.$emit('search-articles', this.searchInputValue)
+        if (this.$route.name !== 'articles') {
+          this.$router.push({
+            name: 'articles',
+            query: { q: this.searchInputValue },
+          })
+        } else {
+          this.$root.$emit('search-articles', this.searchInputValue)
+        }
       }
     },
   },

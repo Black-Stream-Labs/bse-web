@@ -47,7 +47,18 @@
           </h3>
         </div>
         <div
-          class="text-base leading-8 pt-4 max-h-56 overflow-y-scroll"
+          class="
+            text-base
+            leading-8
+            pt-4
+            pr-3
+            max-h-56
+            overflow-y-scroll
+            scrollbar
+            scrollbar-thin
+            scrollbar-track-white
+            scrollbar-thumb-gray-400
+          "
           v-html="$md.render(team.member_description)"
         ></div>
       </div>

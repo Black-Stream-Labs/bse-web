@@ -45,6 +45,7 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
 import Vue from 'vue'
 
 import { SLinkedIn } from 'vue-socials'

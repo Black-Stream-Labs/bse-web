@@ -123,7 +123,7 @@
                   </NuxtLink>
                 </div>
                 <div v-if="extraArticles.length > 0" class="pt-16">
-                  <hr />
+                  <hr class="w-full my-5" />
                   <h3 class="text-xl2 pb-6 pt-16">
                     Other articles in the same category
                   </h3>

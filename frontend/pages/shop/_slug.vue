@@ -141,7 +141,7 @@
                 </div>
                 <div v-if="similarProducts.length > 0">
                   <h3 class="mt-16">Similar Products</h3>
-                  <hr class="my-5" />
+                  <hr class="w-full my-5" />
                   <div
                     class="
                       w-full

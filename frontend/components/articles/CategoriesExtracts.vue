@@ -8,15 +8,16 @@
           class="flex flex-col items-center justify-center"
         >
           <div class="w-full">
-            Category:
-            <NuxtLink :to="`/articles/categories/${category.slug}`">
-              <b>
-                {{ category.category }} ({{ category.articles.length }}
-                articles)
-              </b>
-            </NuxtLink>
+            <h2 class="text-2xl pb-4">
+              <span class="pr-2"> Article Category: </span>
+              <NuxtLink :to="`/articles/categories/${category.slug}`">
+                <span class="italic capitalize font-bold">
+                  {{ category.category }} ({{ category.articles.length }}
+                  articles)
+                </span>
+              </NuxtLink>
+            </h2>
           </div>
-
           <article
             v-for="art in category.articles"
             :key="art.id"
@@ -135,6 +136,10 @@
               </div>
             </div>
           </article>
+          <hr
+            v-if="ind < updatedCategsExtracts.length - 1"
+            class="w-full my-5"
+          />
         </div>
       </main>
       <BlogSidebar></BlogSidebar>

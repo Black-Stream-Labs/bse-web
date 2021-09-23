@@ -75,6 +75,7 @@ module.exports = {
     },
   },
   variants: {
+    scrollbar: ['dark'],
     backgroundColor: [
       'dark',
       'dark-hover',
@@ -101,6 +102,7 @@ module.exports = {
       strategy: 'class',
     }),
     require('@tailwindcss/line-clamp'),
-    require('tailwindcss-dark-mode')(),
+    require('tailwindcss-dark-mode'),
+    require('tailwind-scrollbar'),
   ],
 }

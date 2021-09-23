@@ -8,10 +8,14 @@
           class="flex flex-col items-center justify-center"
         >
           <div class="w-full">
-            Author:
-            <NuxtLink :to="`/articles/authors/${author.username}`">
-              <b>{{ author.username }}</b>
-            </NuxtLink>
+            <h2 class="text-2xl pb-4">
+              <span class="pr-2"> Articles written by: </span>
+              <NuxtLink :to="`/articles/authors/${author.username}`">
+                <span class="italic capitalize font-bold">
+                  {{ author.username }}
+                </span>
+              </NuxtLink>
+            </h2>
           </div>
           <article
             v-for="art in author.articles"
@@ -171,6 +175,10 @@
               </div>
             </div>
           </article>
+          <hr
+            v-if="ind < updatedAuthorArticles.length - 1"
+            class="w-full my-5"
+          />
         </div>
       </main>
       <BlogSidebar></BlogSidebar>
