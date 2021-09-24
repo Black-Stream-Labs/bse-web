@@ -257,7 +257,10 @@ export default Vue.extend({
       //   ('0' + selectedDate.getMonth()).slice(-2) +
       //   '-' +
       //   ('0' + selectedDate.getDate()).slice(-2)
-      this.$root.$emit('eventDatePicked', encodeURIComponent( selectedDate.toISOString()))
+      this.$root.$emit(
+        'eventDatePicked',
+        encodeURIComponent(selectedDate.toISOString())
+      )
       this.showDatePicker = false
     },
 
