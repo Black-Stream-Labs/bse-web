@@ -87,10 +87,17 @@
               </svg>
             </button>
           </form>
-          <DatePicker class="sm:col-span-6 md:col-span-4 my-2" />
+          <DatePicker class="col-span-12 sm:col-span-6 md:col-span-4 my-2" />
           <div
-            v-if="$route.query && ($route.query.d || $route.query.q)"
-            class="sm:col-span-6 md:col-span-4 my-2 flex flex-wrap items-end"
+            v-show="$route.query && ($route.query.d || $route.query.q)"
+            class="
+              col-span-12
+              sm:col-span-6
+              md:col-span-4
+              my-2
+              flex flex-wrap
+              items-end
+            "
           >
             <a
               href="#"
