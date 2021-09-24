@@ -13,72 +13,120 @@
     </section>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
-        <form
-          class="flex flex-wrap"
-          @submit.prevent="updateEventsQuery('q', searchTerm)"
-        >
-          <label class="block mr-3 dark:text-white">
-            Event name
-            <input
-              v-model="searchTerm"
-              class="
-                form-input
-                block
-                pl-4
-                pr-10
-                py-3
-                w-full
-                focus:outline-none focus:shadow-outline
-                text-gray-700
-              "
-              placeholder="Enter Event Name"
-            />
-          </label>
-          <button
+        <div class="grid grid-cols-12">
+          <form
             class="
-              w-1/4
-              border border-gray-100
-              text-gray-100
-              flex
-              place-items-center
-              justify-center
-              dark:bg-gray-700 dark:text-gray-300
+              col-span-12
+              sm:col-span-6
+              md:col-span-4
+              flex flex-wrap
+              items-end
+              my-2
             "
-            :disabled="
-              searchTerm === null || (searchTerm && searchTerm.length < 3)
-            "
-            :class="[
-              $store.state.fullColor
-                ? $store.state.fullColor.name === 'tgreen'
-                  ? 'bg-tgreen '
-                  : $store.state.fullColor.name === 'tpurple'
-                  ? 'bg-tpurple'
-                  : $store.state.fullColor.name === 'tblue'
-                  ? 'bg-tblue'
-                  : $store.state.fullColor.name === 'tbrown'
-                  ? 'bg-tbrown'
-                  : ''
-                : $colorMode.preference === 'dark'
-                ? 'bg-gray-700'
-                : 'bg-gray-500',
-              searchTerm && searchTerm.length >= 3
-                ? 'cursor-pointer'
-                : 'cursor-not-allowed',
-            ]"
-            type="submit"
+            @submit.prevent="updateEventsQuery('q', searchTerm)"
           >
-            <svg
-              class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+            <label class="block dark:text-white">
+              Event name
+              <input
+                v-model="searchTerm"
+                class="
+                  form-input
+                  block
+                  pl-4
+                  pr-10
+                  py-3
+                  w-full
+                  focus:outline-none focus:shadow-outline
+                  text-gray-700
+                "
+                placeholder="Enter Event Name"
               />
-            </svg>
-          </button>
-        </form>
-        <DatePicker />
+            </label>
+            <button
+              class="
+                py-3
+                px-3
+                border border-gray-100
+                text-gray-100
+                flex
+                place-items-center
+                justify-center
+                dark:bg-gray-700 dark:text-gray-300
+              "
+              :disabled="
+                searchTerm === null || (searchTerm && searchTerm.length < 3)
+              "
+              :class="[
+                $store.state.fullColor
+                  ? $store.state.fullColor.name === 'tgreen'
+                    ? 'bg-tgreen '
+                    : $store.state.fullColor.name === 'tpurple'
+                    ? 'bg-tpurple'
+                    : $store.state.fullColor.name === 'tblue'
+                    ? 'bg-tblue'
+                    : $store.state.fullColor.name === 'tbrown'
+                    ? 'bg-tbrown'
+                    : ''
+                  : $colorMode.preference === 'dark'
+                  ? 'bg-gray-700'
+                  : 'bg-gray-500',
+                searchTerm && searchTerm.length >= 3
+                  ? 'cursor-pointer'
+                  : 'cursor-not-allowed',
+              ]"
+              type="submit"
+            >
+              <svg
+                class="fill-current dark:bg-gray-700 dark:text-gray-300 h-6"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+                />
+              </svg>
+            </button>
+          </form>
+          <DatePicker class="sm:col-span-6 md:col-span-4 my-2" />
+          <div
+            v-if="$route.query && ($route.query.d || $route.query.q)"
+            class="sm:col-span-6 md:col-span-4 my-2 flex flex-wrap items-end"
+          >
+            <a
+              href="#"
+              class="
+                inline-flex
+                items-center
+                w-max
+                py-3
+                px-3
+                capitalize
+                border border-gray-400
+                text-white
+                dark:border-gray-50
+              "
+              aria-label="Go Back to Product Summary including the Search Terms and Filters"
+              :class="
+                $store.state.fullColor
+                  ? $store.state.fullColor.name === 'tgreen'
+                    ? 'bg-tgreen '
+                    : $store.state.fullColor.name === 'tpurple'
+                    ? 'bg-tpurple'
+                    : $store.state.fullColor.name === 'tblue'
+                    ? 'bg-tblue'
+                    : $store.state.fullColor.name === 'tbrown'
+                    ? 'bg-tbrown'
+                    : ''
+                  : $colorMode.preference === 'dark'
+                  ? 'bg-gray-700'
+                  : 'bg-gray-500'
+              "
+              @click.prevent="clearQuery"
+            >
+              <span class="px-4"> clear search </span>
+            </a>
+          </div>
+        </div>
         <div v-if="updatedEvents" class="grid grid-cols-6 gap-4 py-5">
           <!-- events -->
           <div
@@ -355,6 +403,9 @@ export default Vue.extend({
     },
   },
   mounted() {
+    if (this.$route.query && this.$route.query.q) {
+      this.searchTerm = this.$route.query.q
+    }
     this.$root.$on('eventDatePicked', (data: any) => {
       this.$nextTick(() => {
         this.updateEventsQuery('d', decodeURIComponent(data))
@@ -404,6 +455,10 @@ export default Vue.extend({
         const result = await this.$strapi.find('single-events', updatedQ)
         this.events = result
       }, 300)
+    },
+    clearQuery() {
+      this.updateEventsQuery('show_all')
+      this.searchTerm = null
     },
   },
 })

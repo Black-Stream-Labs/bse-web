@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5 w-64">
+  <div class="w-64" :class="classes">
     <label for="datepicker" class="dark:text-white block">Select Date</label>
     <div class="relative">
       <input
@@ -10,8 +10,13 @@
         readonly
         class="w-full pl-4 pr-10 py-3 text-gray-700 form-input"
         placeholder="Select date"
-        @click="showDatepicker = !showDatepicker"
-        @focus="showDatepicker = !showDatepicker"
+        @click="
+          showDatepicker = true
+          initDate()
+        "
+        @focus="showDatepicker = true"
+        @keypress.escape="showDatepicker = false"
+        @keypress.enter="showDatepicker = false"
       />
 
       <div class="absolute top-0 right-0 px-3 py-3">
@@ -31,10 +36,10 @@
       </div>
       <div
         v-show="showDatepicker"
-        class="bg-white mt-12 shadow p-4 absolute top-0 left-0"
+        class="bg-white mt-12 shadow p-4 absolute top-1 left-0"
         style="width: 17rem"
-        @keydown.escape="showDatepicker = !showDatepicker"
-        @keydown.enter="showDatepicker = !showDatepicker"
+        @keypress.escape="showDatepicker = false"
+        @keypress.enter="showDatepicker = false"
       >
         <div class="flex justify-between items-center mb-2">
           <div>
@@ -179,7 +184,12 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'DatePicker',
-  components: {},
+  props: {
+    classes: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       showDatepicker: false,
@@ -207,10 +217,26 @@ export default Vue.extend({
     }
   },
   computed: {},
-
+  watch: {
+    // '$route.query'() {
+    //   if (this.$route.query && this.$route.query.d) {
+    //     this.datepickerValue = this.$route.query.d
+    //   } else {
+    //     this.datepickerValue = ''
+    //   }
+    // },
+  },
   mounted() {
-    this.initDate()
+    if (this.$route.query && this.$route.query.d) {
+      this.datepickerValue = this.$route.query.d
+    } else {
+      this.datepickerValue = ''
+    }
+    // this.initDate()
     this.getNoOfDays()
+    this.$root.$on('eventDatePicked', () => {
+      this.showDatepicker = false
+    })
   },
   methods: {
     initDate() {
