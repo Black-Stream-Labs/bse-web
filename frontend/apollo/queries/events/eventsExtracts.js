@@ -12,6 +12,9 @@ export function eventsExtractQuery() {
         slug
         description
         event_type
+        header_image {
+          url
+        }
       }
     }
   `

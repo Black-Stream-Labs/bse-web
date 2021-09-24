@@ -7,12 +7,20 @@ export function eventsQuery() {
       eventsPage {
         id
         title
+        motto
         content {
           content
           subtitle
           header_image {
             url
           }
+        }
+        sections {
+          section_title
+          section_image {
+            url
+          }
+          section_content
         }
       }
     }

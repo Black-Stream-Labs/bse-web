@@ -134,7 +134,7 @@ import { mdiCalendar } from '@mdi/js'
 import Vue from 'vue'
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
-import { eventsExtractQuery } from '../../apollo/queries/events/events'
+import { eventsExtractQuery } from '../../apollo/queries/events/eventsExtracts'
 import VModal from '@/components/reusable/VModal'
 export default Vue.extend({
   name: 'Calendar',

@@ -19,6 +19,17 @@
       "type": "component",
       "repeatable": false,
       "component": "content.page-content"
+    },
+    "motto": {
+      "type": "richtext"
+    },
+    "extraContent": {
+      "type": "richtext"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "section.page-section"
     }
   }
 }
