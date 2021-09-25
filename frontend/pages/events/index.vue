@@ -90,7 +90,10 @@
           </form>
           <DatePicker class="col-span-12 sm:col-span-6 md:col-span-5 my-2" />
           <div
-            v-show="$route.query && ($route.query.d || $route.query.q)"
+            v-show="
+              $route.query &&
+              ($route.query.d || $route.query.q || $route.query.e)
+            "
             class="
               col-span-12
               sm:col-span-6
@@ -211,7 +214,7 @@
                 v-html="$md.render(event.description)"
               ></div>
               <div class="flex justify-between pt-4 items-center">
-                <span
+                <button
                   class="
                     text-xs
                     capitalize
@@ -225,9 +228,10 @@
                       ? 'background:var(--background-start)'
                       : ''
                   "
+                  @click.stop="updateEventsQuery('e', event.event_type)"
                 >
                   {{ event.event_type }}
-                </span>
+                </button>
                 <NuxtLink
                   class="
                     px-3
@@ -382,8 +386,12 @@ export default Vue.extend({
     const data = await $strapi.graphql({ query: eventsQuery() })
     let events = {}
     const queryEl = []
-    if (route.query.q || route.query.d) {
-      if (route.query.q && route.query.d) {
+    let searchTerm = null
+    if (route.query.q || route.query.d || route.query.e) {
+      if (route.query.e) {
+        queryEl.push({ event_type_contains: route.query.e })
+        searchTerm = '#' + route.query.e
+      } else if (route.query.q && route.query.d) {
         queryEl.push({ title_contains: route.query.q })
         queryEl.push({ end_date_gt: route.query.d })
         queryEl.push({ start_date: route.query.d })
@@ -405,7 +413,7 @@ export default Vue.extend({
       page: data.eventsPage,
       events: events.singleEvents,
       searchData: {},
-      searchTerm: null,
+      searchTerm,
     }
   },
   computed: {
@@ -506,7 +514,10 @@ export default Vue.extend({
       const query = { ...this.$route.query }
       const queryEl = []
       setTimeout(async () => {
-        if (query.q && query.d) {
+        if (query.e) {
+          queryEl.push({ event_type_contains: route.query.e })
+          this.searchTerm = '#' + route.query.e
+        } else if (query.q && query.d) {
           queryEl.push({ title_contains: query.q })
           queryEl.push({ end_date_gt: query.d })
           queryEl.push({ start_date: query.d })
