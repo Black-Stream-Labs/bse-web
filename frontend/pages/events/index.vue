@@ -18,7 +18,8 @@
             class="
               col-span-12
               sm:col-span-6
-              md:col-span-4
+              md:col-span-5
+              lg:col-span-4
               flex flex-wrap
               items-end
               my-2
@@ -46,12 +47,12 @@
               class="
                 py-3
                 px-3
-                border border-gray-100
+                border border-gray-500
                 text-gray-100
                 flex
                 place-items-center
                 justify-center
-                dark:bg-gray-700 dark:text-gray-300
+                dark:bg-gray-600 dark:text-gray-300
               "
               :disabled="
                 searchTerm === null || (searchTerm && searchTerm.length < 3)
@@ -87,13 +88,13 @@
               </svg>
             </button>
           </form>
-          <DatePicker class="col-span-12 sm:col-span-6 md:col-span-4 my-2" />
+          <DatePicker class="col-span-12 sm:col-span-6 md:col-span-5 my-2" />
           <div
             v-show="$route.query && ($route.query.d || $route.query.q)"
             class="
               col-span-12
               sm:col-span-6
-              md:col-span-4
+              md:col-span-2
               my-2
               flex flex-wrap
               items-end
@@ -140,16 +141,16 @@
             v-for="(event, id) in updatedEvents"
             :key="`event-${id}`"
             class="
-              shadow-md
-              rounded-md
+              shadow-lg
+              border
               overflow-hidden
               col-span-6
-              md:col-span-3
-              lg:col-span-2
+              sm:col-span-3
+              md:col-span-2
               flex flex-col
             "
           >
-            <div class="flex-2">
+            <!-- <div class="flex-2">
               <img
                 v-if="event.header_image"
                 :src="event.header_image.url"
@@ -158,23 +159,82 @@
                 height="150"
               />
               <img v-else src="" class="" alt="" />
-            </div>
+            </div> -->
             <div class="p-4">
               <h5 class="text-xl font-semibold mb-2">{{ event.title }}</h5>
+              <div class="flex flex-col pb-8">
+                <span class="text-xs font-bold italic dark:text-gray-200">
+                  Start time -
+                  <time
+                    :datetime="
+                      new Date(event.start_date).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        year: 'numeric',
+                        month: 'short',
+                      })
+                    "
+                  >
+                    {{
+                      new Date(event.start_date).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        year: 'numeric',
+                        month: 'short',
+                      })
+                    }}
+                  </time>
+                </span>
+                <span>
+                  <span class="text-xs font-bold italic dark:text-gray-200">
+                    End time -
+                    <time
+                      :datetime="
+                        new Date(event.end_date).toLocaleDateString('en-GB', {
+                          day: 'numeric',
+                          year: 'numeric',
+                          month: 'short',
+                        })
+                      "
+                    >
+                      {{
+                        new Date(event.end_date).toLocaleDateString('en-GB', {
+                          day: 'numeric',
+                          year: 'numeric',
+                          month: 'short',
+                        })
+                      }}
+                    </time>
+                  </span>
+                </span>
+              </div>
               <div
-                class="mb-4 line-clamp-4"
+                class="mb-4 line-clamp-6"
                 v-html="$md.render(event.description)"
               ></div>
-              <div class="text-right">
+              <div class="flex justify-between pt-4 items-center">
+                <span
+                  class="
+                    text-xs
+                    capitalize
+                    font-light
+                    border border-gray-400
+                    p-1
+                    dark:bg-gray-500 dark:text-white dark:border-gray-50
+                  "
+                  :style="
+                    $store.state.fullColor
+                      ? 'background:var(--background-start)'
+                      : ''
+                  "
+                >
+                  {{ event.event_type }}
+                </span>
                 <NuxtLink
                   class="
-                    px-2
-                    py-1
-                    text-xs
-                    border
-                    rounded
-                    border-gray-400
-                    dark:bg-gray-900 dark:text-white dark:border-gray-50
+                    px-3
+                    py-2
+                    text-sm
+                    border border-gray-400
+                    dark:bg-gray-800 dark:text-white dark:border-gray-50
                   "
                   :class="$store.state.fullColor ? 'text-white' : ''"
                   :style="
@@ -184,7 +244,7 @@
                   "
                   :to="`/events/${event.slug}`"
                 >
-                  More details
+                  Event details
                 </NuxtLink>
               </div>
             </div>
