@@ -50,16 +50,16 @@
       "type": "uid",
       "targetField": "product_name"
     },
-    "product_categories": {
-      "via": "products",
-      "collection": "product-categories"
+    "product_main_categories": {
+      "collection": "product-main-categories",
+      "via": "products"
     },
     "price": {
       "type": "decimal"
     },
-    "product_filter": {
-      "via": "filters",
-      "model": "product-filters"
+    "product_secondary_categories": {
+      "via": "products",
+      "collection": "product-secondary-categories"
     }
   }
 }

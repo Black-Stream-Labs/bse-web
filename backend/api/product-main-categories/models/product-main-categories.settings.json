@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "product_filters",
+  "collectionName": "product_main_categories",
   "info": {
-    "name": "ProductFilters",
+    "name": "ProductMainCategories",
     "description": ""
   },
   "options": {
@@ -12,12 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "filter_name": {
+    "categ_name": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "filter_name"
+      "type": "uid"
+    },
+    "products": {
+      "via": "product_main_categories",
+      "collection": "product",
+      "dominant": true
     }
   }
 }

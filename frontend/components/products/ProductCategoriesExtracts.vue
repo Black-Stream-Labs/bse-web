@@ -8,10 +8,19 @@
           class="flex flex-col items-center justify-center"
         >
           <div class="w-full">
-            Product Category:
+            Product Main Category:
             <NuxtLink :to="`/products/categories/${category.slug}`">
               <b>
                 {{ category.categ_name }} ({{ category.products.length }}
+                articles)
+              </b>
+            </NuxtLink>
+            Product Secondary Category:
+            <NuxtLink :to="`/products/categories/${category.slug}`">
+              <b>
+                {{ category.secondary_categ_name }} ({{
+                  category.products.length
+                }}
                 articles)
               </b>
             </NuxtLink>
@@ -48,7 +57,7 @@ import ProductsSidebar from '@/components/products/ProductsSidebar'
 import ProductExtract from '@/components/products/ProductExtract'
 
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
-import { productCategoriesQuery } from '@/apollo/queries/product/prodCategs.js'
+import { productMainCategoriesQuery } from '@/apollo/queries/product/prodMainCategs.js'
 export default Vue.extend({
   name: 'ProductCategoriesExtracts',
   components: { ProductsSidebar, ProductExtract },
@@ -63,7 +72,7 @@ export default Vue.extend({
   },
   async fetch() {
     const data = await this.$strapi.graphql({
-      query: productCategoriesQuery(),
+      query: productMainCategoriesQuery(),
     })
     this.prodCategExtracts = data.productCategories
   },

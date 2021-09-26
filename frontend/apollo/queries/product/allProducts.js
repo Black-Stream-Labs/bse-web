@@ -20,7 +20,12 @@ export function allProdQuery() {
           name
           url
         }
-        product_categories {
+        product_main_categories {
+          id
+          categ_name
+          slug
+        }
+        product_secondary_categories {
           id
           categ_name
           slug

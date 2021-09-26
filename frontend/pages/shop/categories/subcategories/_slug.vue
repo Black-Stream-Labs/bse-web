@@ -2,7 +2,7 @@
   <div>
     <Hero
       v-if="singleCategory"
-      :title="`Product Category: ${singleCategory.categ_name}`"
+      :title="`Product Category: ${singleCategory.secondary_categ_name}`"
     ></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
@@ -15,7 +15,7 @@
                 <ProductExtract :key="ind" :product="product"></ProductExtract>
               </template>
             </div>
-            <ProductsSidebar></ProductsSidebar>
+            <ProductsSidebar :update-query="updateQuery"></ProductsSidebar>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@ import ProductsSidebar from '@/components/products/ProductsSidebar'
 import ProductExtract from '@/components/products/ProductExtract'
 import { productMainCategoriesQuery } from '@/apollo/queries/product/prodMainCategs.js'
 export default Vue.extend({
-  name: 'ProductCategoryPage',
+  name: 'ProductSubCategoryPage',
   components: {
     Hero,
     ProductsSidebar,

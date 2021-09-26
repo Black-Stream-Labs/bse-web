@@ -52,8 +52,8 @@
       </form>
     </div>
     <div id="sidebar-categs" class="mb-4">
-      <ProductCategories></ProductCategories>
-      <ProductFilters></ProductFilters>
+      <ProductSidebarCategories></ProductSidebarCategories>
+      <!-- <ProductFilters></ProductFilters> -->
     </div>
     <div class="pt-5 text-center">
       <button
@@ -139,14 +139,14 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import ProductCategories from '@/components/products/ProductCategories'
-import ProductFilters from '@/components/products/ProductFilters'
+import ProductSidebarCategories from '@/components/products/ProductSidebarCategories'
+// import ProductFilters from '@/components/products/ProductFilters'
 
 export default Vue.extend({
   name: 'ProductsSidebar',
   components: {
-    ProductCategories,
-    ProductFilters,
+    ProductSidebarCategories,
+    // ProductFilters,
   },
   data(comp: unknown) {
     return {

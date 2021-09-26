@@ -3,7 +3,7 @@
     <Hero title="Product Categories"></Hero>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4">
-        <ProductCategoriesExtracts></ProductCategoriesExtracts>
+        <ProductSecondaryCategories></ProductSecondaryCategories>
       </div>
     </section>
   </div>
@@ -12,13 +12,13 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
-import ProductCategoriesExtracts from '@/components/products/ProductCategoriesExtracts'
+import ProductSecondaryCategories from '@/components/products/ProductSecondaryCategories'
 
 export default Vue.extend({
-  name: 'ProductCategoriesPage',
+  name: 'ProductSubCategoriesPage',
   components: {
     Hero,
-    ProductCategoriesExtracts,
+    ProductSecondaryCategories,
   },
 })
 </script>
