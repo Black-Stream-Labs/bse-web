@@ -47,7 +47,7 @@
       "type": "boolean"
     },
     "future_publish_date": {
-      "type": "date"
+      "type": "datetime"
     }
   }
 }

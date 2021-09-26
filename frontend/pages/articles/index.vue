@@ -53,7 +53,7 @@ import ArticleExtracts from '@/components/articles/ArticleExtracts'
 
 import { articleExtracts } from '@/apollo/queries/blog/articles.js'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
-
+const qs = require('qs')
 export default Vue.extend({
   name: 'ArticlesPage',
   components: {
@@ -64,38 +64,80 @@ export default Vue.extend({
   layout: 'blog',
   async asyncData({ app, route }) {
     const page = await app.$strapi.$http.$get('articles-page')
-    let arts = {}
+    let arts = []
+    let art
+    let updatedQ
+    let searchTerm = null
+    const date = new Date()
+    const queryEl = []
     if (route.query.q) {
-      const art = await app.$strapi.find('articles', {
-        title_contains: route.query.q,
+      queryEl.push({
+        _or: [
+          [
+            { title_contains: route.query.q },
+            { future_publish_date_null: true },
+            { unpublish_date_null: true },
+          ],
+          [
+            { title_contains: route.query.q },
+            { future_publish_date_lt: date.toISOString() },
+            { unpublish_date_lt: date.toISOString() },
+          ],
+          [
+            { title_contains: route.query.q },
+            { future_publish_date_lt: date.toISOString() },
+            { unpublish_date_null: true },
+          ],
+          [
+            { title_contains: route.query.q },
+            { future_publish_date_null: true },
+            { unpublish_date_gt: date.toISOString() },
+          ],
+          [
+            { title_contains: route.query.q },
+            { future_publish_date_lt: date.toISOString() },
+            { unpublish_date_gt: date.toISOString() },
+          ],
+        ],
+        // _or: [],
       })
-      arts.articles = art
+      searchTerm = decodeURIComponent(route.query.q)
+      updatedQ = qs.stringify({ _where: queryEl })
+      art = await app.$strapi.find('articles', updatedQ)
+      arts = art
     } else {
-      arts = await app.$strapi.graphql({ query: articleExtracts() })
+      // queryEl.push({ future_publish_date_lt: date.toISOString() })
+      queryEl.push({
+        _or: [
+          [{ future_publish_date_null: true }, { unpublish_date_null: true }],
+          [
+            { future_publish_date_lt: date.toISOString() },
+            { unpublish_date_null: true },
+          ],
+          [
+            { future_publish_date_null: true },
+            { unpublish_date_gt: date.toISOString() },
+          ],
+          [
+            { future_publish_date_lt: date.toISOString() },
+            { unpublish_date_gt: date.toISOString() },
+          ],
+        ],
+      })
+      updatedQ = qs.stringify({ _where: queryEl })
+      art = await app.$strapi.find('articles', updatedQ)
+      arts = art
     }
-    // const dat = new Date().valueOf()
     const articles = []
-    arts.articles.forEach((el: any) => {
+    arts.forEach((el: any) => {
       const e = JSON.stringify(el)
       articles.push(JSON.parse(formatContentImageUrl(e)))
     })
-    // .filter(
-    //   (el: any) =>
-    //     el.future_publish_date === null ||
-    //     el.unpublish_date === null ||
-    //     (el.future_publish_date !== null &&
-    //       new Date(el.future_publish_date).valueOf() >= dat &&
-    //       el.unpublish_date === null) ||
-    //     (el.unpublish_date !== null &&
-    //       new Date(el.unpublish_date).valueOf() < dat &&
-    //       new Date(el.future_publish_date).valueOf() >
-    //         new Date(el.unpublish_date).valueOf())
-    // )
     articles.sort((a: any, b: any) => a.published_at - b.published_at)
     return {
       page,
       articles,
-      searchInputValue: null,
+      searchInputValue: searchTerm,
     }
   },
   computed: {
