@@ -8,12 +8,14 @@ export function productMainCategoriesQuery() {
         id
         categ_name
         slug
+        image {
+          url
+        }
+        description
         products {
-          product_secondary_categories {
-            id
-            slug
-            categ_name
-          }
+          id
+          slug
+          product_name
         }
       }
     }

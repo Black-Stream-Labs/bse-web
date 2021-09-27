@@ -56,7 +56,7 @@
       <!-- <ProductFilters></ProductFilters> -->
     </div>
     <div class="pt-5 text-center">
-      <button
+      <!-- <button
         class="
           mx-4
           px-3
@@ -96,7 +96,7 @@
         @click="updateSearchWithFilters"
       >
         Apply Filters
-      </button>
+      </button> -->
       <button
         class="
           mx-4
@@ -139,8 +139,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import ProductSidebarCategories from '@/components/products/ProductSidebarCategories'
-// import ProductFilters from '@/components/products/ProductFilters'
+import ProductSidebarCategories from '@/components/shop/ProductSidebarCategories'
+// import ProductFilters from '@/components/shop/ProductFilters'
 
 export default Vue.extend({
   name: 'ProductsSidebar',

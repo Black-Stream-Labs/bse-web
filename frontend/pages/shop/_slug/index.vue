@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeroProduct
+    <PageProductHero
       v-if="product"
       :product="product"
       :title="product.product_name"
@@ -60,9 +60,28 @@
                   </span>
 
                   <NuxtLink
-                    v-for="cat in product.product_categories"
+                    v-for="cat in product.product_main_categories"
                     :key="cat.slug"
-                    :to="`/products/categories/${cat.slug}`"
+                    :to="`/shop/categories/${cat.slug}`"
+                    class="
+                      text-gray-700
+                      font-light
+                      capitalize
+                      rounded
+                      bg-gray-200
+                      px-2
+                      py-1
+                      text-xs
+                      m-1
+                      dark:bg-gray-700 dark:text-gray-300
+                    "
+                  >
+                    {{ cat.categ_name }}
+                  </NuxtLink>
+                  <NuxtLink
+                    v-for="cat in product.product_secondary_categories"
+                    :key="cat.slug"
+                    :to="`/shop/categories/${cat.slug}`"
                     class="
                       text-gray-700
                       font-light
@@ -142,17 +161,7 @@
                 <div v-if="similarProducts.length > 0">
                   <h3 class="mt-16">Similar Products</h3>
                   <hr class="w-full my-5" />
-                  <div
-                    class="
-                      w-full
-                      h-full
-                      md:h-auto
-                      grid grid-cols-1
-                      md:grid-cols-2
-                      gap-3
-                      py-2
-                    "
-                  >
+                  <div class="grid grid-cols-12 gap-4">
                     <ProductExtract
                       v-for="(prod, ind) in similarProducts"
                       :key="`similar-${ind}`"
@@ -172,8 +181,8 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import HeroProduct from '@/components/hero/HeroProduct'
-import ProductExtract from '@/components/products/ProductExtract'
+import PageProductHero from '@/components/hero/PageProductHero'
+import ProductExtract from '@/components/shop/ProductExtract'
 import LeftArrow from '@/components/icons/LeftArrow'
 import imageUrlManipulation, {
   formatContentImageUrl,
@@ -182,7 +191,7 @@ import imageUrlManipulation, {
 export default Vue.extend({
   name: 'SingleProductPage',
   components: {
-    HeroProduct,
+    PageProductHero,
     ProductExtract,
     LeftArrow,
   },
@@ -200,16 +209,22 @@ export default Vue.extend({
       slug: this.$route.params.slug,
     })
     this.product = data[0]
-    if (data[0].product_filter) {
-      const categs = data[0].product_categories.map((el: any) => [
-        'product_categories.slug',
-        el.slug,
-      ])
-      const similar = await this.$strapi.find('products', categs)
-      this.similarProducts = similar.filter(
-        (el: any) => el.product_name !== this.product.product_name
+    const categs = []
+    if (data[0].product_main_categories.length > 0) {
+      data[0].product_main_categories.forEach((el: any) =>
+        categs.push(['product_main_categories.slug', el.slug])
       )
     }
+    if (data[0].product_secondary_categories.length > 0) {
+      data[0].product_secondary_categories.forEach((el: any) =>
+        categs.push(['product_secondary_categories.slug', el.slug])
+      )
+    }
+
+    const similar = await this.$strapi.find('products', categs)
+    this.similarProducts = similar.filter(
+      (el: any) => el.product_name !== this.product.product_name
+    )
   },
   computed: {
     updatedContent() {
@@ -227,8 +242,5 @@ export default Vue.extend({
       }
     },
   },
-  mounted() {},
-
-  methods: {},
 })
 </script>

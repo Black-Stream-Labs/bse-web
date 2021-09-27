@@ -9,14 +9,14 @@
         >
           <div class="w-full">
             Product Main Category:
-            <NuxtLink :to="`/products/categories/${category.slug}`">
+            <NuxtLink :to="`/shop/categories/${category.slug}`">
               <b>
                 {{ category.categ_name }} ({{ category.products.length }}
                 articles)
               </b>
             </NuxtLink>
             Product Secondary Category:
-            <NuxtLink :to="`/products/categories/${category.slug}`">
+            <NuxtLink :to="`/shop/categories/${category.slug}`">
               <b>
                 {{ category.secondary_categ_name }} ({{
                   category.products.length
@@ -53,8 +53,8 @@
 // @ts-nocheck
 
 import Vue from 'vue'
-import ProductsSidebar from '@/components/products/ProductsSidebar'
-import ProductExtract from '@/components/products/ProductExtract'
+import ProductsSidebar from '@/components/shop/ProductsSidebar'
+import ProductExtract from '@/components/shop/ProductExtract'
 
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 import { productMainCategoriesQuery } from '@/apollo/queries/product/prodMainCategs.js'

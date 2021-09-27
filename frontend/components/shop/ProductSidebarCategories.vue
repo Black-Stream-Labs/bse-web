@@ -40,7 +40,10 @@
               v-model="allCategories"
               type="checkbox"
               class="form-checkbox h-5 w-5 text-gray-600 dark:bg-gray-500"
-              :checked="checkedCategories.length === 0"
+              :checked="
+                checkedMainCategories.length === 0 &&
+                checkedSecondaryCategories.length === 0
+              "
             />
             <span
               class="
@@ -54,7 +57,7 @@
             </span>
           </label>
           <label
-            v-for="cat in prodCategs"
+            v-for="cat in prodSecondCategs"
             :key="cat.slug"
             class="
               flex
@@ -72,7 +75,42 @@
             "
           >
             <input
-              v-model="checkedCategories"
+              v-model="checkedMainCategories"
+              :value="cat.slug"
+              type="checkbox"
+              class="form-checkbox h-5 w-5 text-gray-600 dark:bg-gray-500"
+            />
+            <span
+              class="
+                ml-2
+                bg-gray-200
+                text-gray-800
+                dark:bg-gray-700 dark:text-gray-300
+              "
+            >
+              {{ cat.categ_name }}
+            </span>
+          </label>
+          <label
+            v-for="cat in prodMainCategs"
+            :key="cat.slug"
+            class="
+              flex
+              w-full
+              items-center
+              mt-3
+              font-light
+              rounded
+              bg-gray-200
+              text-gray-800
+              px-2
+              py-1
+              m-1
+              dark:bg-gray-700 dark:text-gray-300
+            "
+          >
+            <input
+              v-model="checkedSecondaryCategories"
               :value="cat.slug"
               type="checkbox"
               class="form-checkbox h-5 w-5 text-gray-600 dark:bg-gray-500"
@@ -97,6 +135,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
+import { productSecondaryCategoriesQuery } from '@/apollo/queries/product/prodSecondaryCategs.js'
 
 import { productMainCategoriesQuery } from '@/apollo/queries/product/prodMainCategs.js'
 export default Vue.extend({
@@ -104,17 +143,24 @@ export default Vue.extend({
 
   data() {
     return {
-      prodCategs: [],
-      checkedCategories: [],
+      prodMainCategs: [],
+      prodSecondCategs: [],
+      checkedMainCategories: [],
+      checkedSecondaryCategories: [],
       allCategories: true,
       openedFilters: false,
     }
   },
   async fetch() {
-    const data = await this.$strapi.graphql({
+    const mainCat = await this.$strapi.graphql({
       query: productMainCategoriesQuery(),
     })
-    this.prodCategs = data.productCategories
+    const secondCat = await this.$strapi.graphql({
+      query: productSecondaryCategoriesQuery(),
+    })
+    this.prodMainCategs = mainCat.productMainCategories
+
+    this.prodSecondCategs = secondCat.productSecondaryCategories
   },
   watch: {
     allCategories(newValue, _oldValue) {
@@ -122,26 +168,46 @@ export default Vue.extend({
         this.checkedCategories = []
       }
     },
-    checkedCategories(newValue, _oldValue) {
+    checkedMainCategories(newValue, _oldValue) {
       if (newValue.length === 0) {
         this.allCategories = true
         this.$root.$emit('updateFiltersCategories', {
-          product_categories: null,
+          main_categ: null,
         })
       }
 
       if (newValue !== _oldValue && newValue.length > 0) {
         this.allCategories = false
         this.$root.$emit('updateFiltersCategories', {
-          product_categories: encodeURIComponent(newValue),
+          main_categ: encodeURIComponent(newValue),
+        })
+      }
+    },
+    checkedSecondaryCategories(newValue, _oldValue) {
+      if (newValue.length === 0) {
+        this.allCategories = true
+        this.$root.$emit('updateFiltersCategories', {
+          secondary_categ: null,
+        })
+      }
+
+      if (newValue !== _oldValue && newValue.length > 0) {
+        this.allCategories = false
+        this.$root.$emit('updateFiltersCategories', {
+          secondary_categ: encodeURIComponent(newValue),
         })
       }
     },
   },
   mounted() {
-    if (this.$route.query && this.$route.query.product_categories) {
-      this.checkedCategories = decodeURIComponent(
-        this.$route.query.product_categories
+    if (this.$route.query && this.$route.query.main_categ) {
+      this.checkedMainCategories = decodeURIComponent(
+        this.$route.query.main_categ
+      )
+    }
+    if (this.$route.query && this.$route.query.secondary_categ) {
+      this.checkedSecondaryCategories = decodeURIComponent(
+        this.$route.query.secondary_categ
       )
     }
     this.$root.$on('clearProductFilters', () => {

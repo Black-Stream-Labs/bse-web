@@ -51,8 +51,8 @@
       "targetField": "product_name"
     },
     "product_main_categories": {
-      "collection": "product-main-categories",
-      "via": "products"
+      "via": "products",
+      "collection": "product-main-categories"
     },
     "price": {
       "type": "decimal"
@@ -60,6 +60,11 @@
     "product_secondary_categories": {
       "via": "products",
       "collection": "product-secondary-categories"
+    },
+    "SKU": {
+      "type": "string",
+      "unique": true,
+      "required": true
     }
   }
 }

@@ -210,10 +210,19 @@ export default Vue.extend({
       return x
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.scrollToElement(location.hash.split('#')[1])
+      }, 150)
+    })
+  },
   methods: {
-    scrollToElement(ele) {
-      const el = document.getElementById(ele)
-      const header = document.getElementsByTagName('header')[0].offsetHeight
+    async scrollToElement(ele: string) {
+      const el = await document.getElementById(ele)
+      const header = await document.getElementsByTagName('header')[0]
+        .offsetHeight
+
       const headerHeight = el.offsetTop - header
       return window.scrollTo({
         top: headerHeight,

@@ -38,7 +38,6 @@
             </BlogSidebar>
           </div>
         </div>
-        <NuxtChild></NuxtChild>
       </div>
     </div>
   </div>

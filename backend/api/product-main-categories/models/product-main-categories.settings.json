@@ -22,6 +22,21 @@
       "via": "product_main_categories",
       "collection": "product",
       "dominant": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

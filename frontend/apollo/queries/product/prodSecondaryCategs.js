@@ -8,26 +8,10 @@ export function productSecondaryCategoriesQuery() {
         id
         categ_name
         slug
-        products {
-          id
-          slug
-          product_name
-          product_main_image {
-            previewUrl
-          }
-          price
-          product_description
-          product_secondary_categories {
-            id
-            slug
-            categ_name
-          }
-          product_main_categories {
-            id
-            slug
-            categ_name
-          }
+        image {
+          url
         }
+        description
       }
     }
   `

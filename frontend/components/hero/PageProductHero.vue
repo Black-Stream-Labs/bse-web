@@ -15,10 +15,6 @@
               <h1 class="text-2xl md:text-3xl mb-8 mt-16 capitalize">
                 {{ title }}
               </h1>
-
-              <p v-if="subtitle" class="">
-                {{ subtitle }}
-              </p>
             </div>
 
             <div
@@ -113,7 +109,7 @@ import imageUrlManipulation from '@/mixins/updateImageUrl.js'
 import LogoImage from '@/components/icons/LogoImage'
 
 export default Vue.extend({
-  name: 'HeroProduct',
+  name: 'PageProductHero',
   components: {
     LogoImage,
   },
@@ -128,10 +124,7 @@ export default Vue.extend({
       type: String,
       default: '',
     },
-    subtitle: {
-      type: String,
-      default: '',
-    },
+
     headerimage: {
       type: [String, null],
       default: null,

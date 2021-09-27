@@ -1,23 +1,38 @@
 <template>
   <div>
     <Hero title="Our Products"></Hero>
-    <div class="section">
+    <section class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div class="my-12">
-          <div
-            class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
-          >
-            <div class="col-span-2">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2">
-                <ProductMainCategories> </ProductMainCategories>
+          <div class="grid md:grid-flow-col md:grid-cols-3 gap-4">
+            <main class="col-span-2">
+              <ProductMainCategories
+                v-if="showMainCategs && !showSecondaryCategs"
+                :update-query="updateQuery"
+              />
+              <ProductSecondaryCategories
+                v-else-if="showSecondaryCategs && !showMainCategs"
+                :update-query="updateQuery"
+              />
+              <div v-else class="grid grid-cols-12 gap-4">
+                <template v-if="products.length === 0 && !loading">
+                  no products yet
+                </template>
+                <template v-else-if="loading"> loading </template>
+                <template v-else>
+                  <ProductExtract
+                    v-for="(product, ind) in products"
+                    :key="`prod-${ind}`"
+                    :product="product"
+                  />
+                </template>
               </div>
-            </div>
-            <ProductsSidebar :update-query="updateQuery"></ProductsSidebar>
+            </main>
+            <ProductsSidebar></ProductsSidebar>
           </div>
         </div>
-        <NuxtChild></NuxtChild>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -25,10 +40,10 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
-import ProductMainCategories from '@/components/products/ProductMainCategories'
-
-import ProductsSidebar from '@/components/products/ProductsSidebar'
-
+import ProductMainCategories from '@/components/shop/ProductMainCategories'
+import ProductSecondaryCategories from '@/components/shop/ProductSecondaryCategories'
+import ProductExtract from '@/components/shop/ProductExtract'
+import ProductsSidebar from '@/components/shop/ProductsSidebar'
 import { allProdQuery } from '@/apollo/queries/product/allProducts.js'
 export default Vue.extend({
   name: 'MainProductPage',
@@ -36,32 +51,68 @@ export default Vue.extend({
     Hero,
     ProductMainCategories,
     ProductsSidebar,
+    ProductSecondaryCategories,
+    ProductExtract,
   },
   data() {
     return {
       products: [],
+      showMainCategs: true,
+      loading: false,
+      showSecondaryCategs: false,
     }
+  },
+  watch: {
+    '$route.query': {
+      handler(value) {
+        if (value.q) {
+          this.showMainCategs = false
+          this.showSecondaryCategs = false
+          this.searchProducts()
+        } else if (!!value.main_categ && !!value.secondary_categ) {
+          this.showMainCategs = false
+          this.showSecondaryCategs = false
+          this.searchProducts()
+        } else if (value.main_categ) {
+          this.showMainCategs = false
+          this.showSecondaryCategs = true
+        } else {
+          this.showMainCategs = true
+          this.showSecondaryCategs = false
+        }
+      },
+      immediate: true,
+      deep: true,
+    },
   },
 
   mounted() {
-    this.searchProducts()
     this.$root.$on('clearProductFilters', () => {
       this.$router.push('/products')
-      this.$nextTick(async () => {
-        const data = await this.$strapi.graphql({
-          query: allProdQuery(),
-        })
-        this.products = data.products
+      this.$nextTick(() => {
+        this.showMainCategs = true
+        this.showSecondaryCategs = true
       })
+    })
+    this.$root.$on('updatecategs', (data: any) => {
+      if (data.secondary) {
+        this.showMainCategs = false
+        this.showSecondaryCategs = true
+      } else {
+        this.showSecondaryCategs = false
+        this.showMainCategs = false
+      }
     })
     this.$root.$on('updateFromSidebar', async (data: unknown) => {
       await this.updateQuery(data)
+      this.showMainCategs = true
+      this.showSecondaryCategs = false
       await this.searchProducts()
     })
-    this.$root.$on('filtersUpdated', async (data: unknown) => {
-      await this.updateQuery(data)
-      await this.searchProducts()
-    })
+    // this.$root.$on('filtersUpdated', async (data: unknown) => {
+    //   await this.updateQuery(data)
+    //   await this.searchProducts()
+    // })
   },
   methods: {
     searchProducts() {
@@ -74,36 +125,46 @@ export default Vue.extend({
             if (queryType === 'q') {
               queryEl.push(['product_name_contains', query.q])
             }
-            if (queryType === 'product_categories') {
-              if (
-                decodeURIComponent(query.product_categories).split(',').length >
-                1
-              ) {
-                decodeURIComponent(query.product_categories)
+            if (queryType === 'main_categ') {
+              if (decodeURIComponent(query.main_categ).split(',').length > 1) {
+                decodeURIComponent(query.main_categ)
                   .split(',')
                   .forEach((el: any) => {
-                    queryEl.push(['product_categories.slug', el])
+                    queryEl.push(['product_main_categories.slug', el])
+                  })
+              } else {
+                queryEl.push(['product_main_categories.slug', query.main_categ])
+              }
+            }
+            if (queryType === 'secondary_categ') {
+              if (
+                decodeURIComponent(query.secondary_categ).split(',').length > 1
+              ) {
+                decodeURIComponent(query.secondary_categ)
+                  .split(',')
+                  .forEach((el: any) => {
+                    queryEl.push(['product_secondary_categories.slug', el])
                   })
               } else {
                 queryEl.push([
-                  'product_categories.slug',
-                  query.product_categories,
+                  'product_secondary_categories.slug',
+                  query.secondary_categ,
                 ])
               }
             }
-            if (queryType === 'product_filter') {
-              if (
-                decodeURIComponent(query.product_filter).split(',').length > 1
-              ) {
-                decodeURIComponent(query.product_filter)
-                  .split(',')
-                  .forEach((el: any) => {
-                    queryEl.push(['product_filter.slug', el])
-                  })
-              } else {
-                queryEl.push(['product_filter.slug', query.product_filter])
-              }
-            }
+            // if (queryType === 'product_filter') {
+            //   if (
+            //     decodeURIComponent(query.product_filter).split(',').length > 1
+            //   ) {
+            //     decodeURIComponent(query.product_filter)
+            //       .split(',')
+            //       .forEach((el: any) => {
+            //         queryEl.push(['product_filter.slug', el])
+            //       })
+            //   } else {
+            //     queryEl.push(['product_filter.slug', query.product_filter])
+            //   }
+            // }
           })
           const prod = await this.$strapi.find('products', queryEl)
           updatedProd = prod
@@ -113,7 +174,8 @@ export default Vue.extend({
           })
           updatedProd = data.products
         }
-        this.products = updatedProd.flat(1)
+        console.log(updatedProd)
+        this.products = updatedProd
       }, 350)
     },
     updateQuery(keyOrObj: any, value: any) {

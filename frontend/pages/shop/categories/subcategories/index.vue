@@ -12,7 +12,7 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
-import ProductSecondaryCategories from '@/components/products/ProductSecondaryCategories'
+import ProductSecondaryCategories from '@/components/shop/ProductSecondaryCategories'
 
 export default Vue.extend({
   name: 'ProductSubCategoriesPage',

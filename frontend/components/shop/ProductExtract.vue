@@ -1,36 +1,24 @@
 <template>
   <div
     class="
-      mb-6
-      max-w-xs
-      rounded-lg
-      shadow-lg
+      pb-4
       border
-      col-span-1
+      col-span-12
+      sm:col-span-6
+      md:col-span-5
+      lg:col-span-4
       h-full
       duration-500
       ease-in-out
       transform
+      transition-gpu
       hover:scale-105
+      shadow-md
+      hover:shadow-lg
     "
   >
-    <div
-      class="
-        h-full
-        shadow
-        hover:shadow-lg
-        transition
-        duration-300
-        ease-in-out
-        xl:mb-0
-        lg:mb-0
-        md:mb-0
-        mb-6
-        group
-        flex flex-col
-      "
-    >
-      <div class="overflow-hidden relative z-10">
+    <div class="h-full flex flex-col items-center justify-center">
+      <div class="overflow-hidden relative z-10" style="flex: 2 1 auto">
         <NuxtLink
           class="inline-flex"
           :to="`/shop/${product.slug}`"
@@ -38,21 +26,14 @@
         >
           <img
             loading="lazy"
-            class="
-              w-full
-              rounded
-              transition
-              duration-700
-              ease-in-out
-              group-hover:opacity-60
-            "
+            class="w-full"
             :src="$getStrapiMedia(product.product_main_image.url)"
             :alt="product.product_name"
           />
         </NuxtLink>
       </div>
 
-      <div class="flex flex-col p-2 justify-center" style="flex: 2 1 auto">
+      <div class="flex flex-col p-2 justify-center">
         <div class="flex justify-between items-center">
           <h2 class="text-xl italic">
             <NuxtLink
@@ -70,7 +51,7 @@
           {{ product.product_description }}
         </div>
       </div>
-      <div class="flex justify-between items-center p-2">
+      <div class="w-full flex justify-between items-center p-2">
         <button
           class="
             px-2
@@ -81,7 +62,7 @@
             dark:border-gray-50
             snipcart-add-item
           "
-          :data-item-id="product.id"
+          :data-item-id="product.SKU"
           :data-item-price="product.price"
           :data-item-url="`${$route.fullPath}`"
           :data-item-description="product.product_description"
@@ -151,10 +132,11 @@ export default Vue.extend({
     product: {
       type: Object,
       default: () => {},
+      required: true,
     },
   },
   fetchOnServer: true,
-  fetchKey: 'product-extract',
+  fetchKey: 'product',
 })
 </script>
 
