@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white flex flex-row flex-wrap">
+  <div class="flex flex-row flex-wrap">
     <div
       id="teamcarousel"
       ref="teamcarousel"
@@ -23,7 +23,9 @@
           flex flex-wrap flex-col
           justify-around
           shadow-lg
-          border border-white
+          border
+          dark:border-white
+          border-gray-500
           p-4
           transition
           duration-500
@@ -33,7 +35,16 @@
         "
       >
         <div class="rounded-tl rounded-tr">
-          <div class="h-48 w-48 rounded-full bg-cover border-4 border-white">
+          <div
+            class="
+              h-48
+              w-48
+              rounded-full
+              bg-cover
+              border-4 border-gray-500
+              dark:border-white
+            "
+          >
             <img
               v-if="team.member_image"
               loading="lazy"
@@ -42,7 +53,7 @@
               class="h-full w-full object-cover rounded-full overflow-hidden"
             />
           </div>
-          <h3 class="text-xl text-right text-white pb-1">
+          <h3 class="text-xl text-right pb-1">
             {{ team.member_name }}
           </h3>
         </div>
@@ -56,8 +67,9 @@
             overflow-y-scroll
             scrollbar
             scrollbar-thin
-            scrollbar-track-white
+            scrollbar-track-gray-700
             scrollbar-thumb-gray-400
+            dark:scrollbar-track-gray-300 dark:scrollbar-thumb-gray-500
           "
           v-html="$md.render(team.member_description)"
         ></div>
@@ -68,10 +80,15 @@
         class="
           py-2
           px-4
-          border border-gray-50
+          border border-gray-500
           dark:hover:bg-gray-700
           hover:bg-gray-500
-          dark:bg-gray-900 dark:text-white dark:border-gray-50
+          dark:bg-gray-900
+          text-white
+          dark:border-gray-50
+        "
+        :style="
+          $store.state.fullColor ? `background:  var(--background-end)` : ''
         "
         @click.stop="showAll = !showAll"
       >

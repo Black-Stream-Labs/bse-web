@@ -289,7 +289,11 @@
       </div>
     </section>
 
-    <section v-if="sectionUpdated.length > 0" id="whatwedo" class="section">
+    <section
+      v-if="sectionUpdated && sectionUpdated.length > 0"
+      id="whatwedo"
+      class="section"
+    >
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <h2>What we do</h2>
         <div class="grid gap-4" :class="`grid-rows-${sectionUpdated.length}`">
