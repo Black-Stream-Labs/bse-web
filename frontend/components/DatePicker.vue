@@ -35,8 +35,8 @@
         </svg>
       </div>
       <div
-        v-show="showDatepicker"
-        class="bg-white mt-12 shadow p-4 absolute top-1 left-0"
+        v-if="showDatepicker"
+        class="bg-white mt-12 shadow p-4 absolute top-1 left-0 z-10"
         style="width: 17rem"
         @keypress.escape="showDatepicker = false"
         @keypress.enter="showDatepicker = false"
@@ -236,6 +236,10 @@ export default Vue.extend({
     this.getNoOfDays()
     this.$root.$on('eventDatePicked', () => {
       this.showDatepicker = false
+    })
+    this.$root.$on('clearCalendarInput', () => {
+      this.showDatePicker = false
+      this.datepickerValue = ''
     })
   },
   methods: {

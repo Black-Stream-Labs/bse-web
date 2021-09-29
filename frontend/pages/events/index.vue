@@ -90,7 +90,7 @@
           </form>
           <DatePicker class="col-span-12 sm:col-span-6 md:col-span-5 my-2" />
           <div
-            v-show="
+            v-if="
               $route.query &&
               ($route.query.d || $route.query.q || $route.query.e)
             "
@@ -271,7 +271,8 @@
         </div>
       </div>
     </section>
-    <section
+    <section v-if="updatedContent" class="section">
+      <!-- <section
       v-if="updatedContent"
       class="section"
       :style="
@@ -279,16 +280,16 @@
           ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
           : ''
       "
-    >
+    > -->
       <div
-        class="container max-w-5xl mx-auto px-4 py-10"
-        :class="$store.state.fullColor ? 'text-white' : ''"
+        class="container max-w-5xl mx-auto px-4 py-10 dark:text-white"
+        :class="$store.state.fullColor ? '' : ''"
       >
         <div v-html="$md.render(updatedContent)" />
       </div>
     </section>
 
-    <section v-if="sectionUpdated" id="whatwedo" class="section">
+    <section v-if="sectionUpdated.length > 0" id="whatwedo" class="section">
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <h2>What we do</h2>
         <div class="grid gap-4" :class="`grid-rows-${sectionUpdated.length}`">
@@ -423,7 +424,6 @@ export default Vue.extend({
     } else {
       events = await $strapi.graphql({ query: eventsExtractQuery() })
     }
-    // console.log('events', events)
     return {
       page: data.eventsPage,
       events: events.singleEvents,
@@ -472,14 +472,12 @@ export default Vue.extend({
 
   watch: {
     // searchTerm(value) {
-    //   console.log('searchTerm value', value)
     //   if (value) {
     //     this.updateEventsQuery('q', encodeURIComponent(value))
     //   }
     // },
     '$route.query': {
       handler(value) {
-        console.log('query value', value)
         if (value) {
           this.$nextTick(() => {
             this.searchEvents()
@@ -551,6 +549,7 @@ export default Vue.extend({
     },
     clearQuery() {
       this.updateEventsQuery('show_all')
+      this.$root.$emit('clearCalendarInput')
       this.searchTerm = null
     },
   },

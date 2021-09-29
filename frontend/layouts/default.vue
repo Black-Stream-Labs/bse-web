@@ -40,7 +40,6 @@ export default Vue.extend({
 
   computed: {
     bgColor() {
-      // console.log(this.$colorMode.preference)
       return this.$colorMode.preference === 'dark' ||
         (this.$colorMode.preference === 'system' &&
           this.$colorMode.value === 'dark')

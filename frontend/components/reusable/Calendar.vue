@@ -186,8 +186,6 @@ export default Vue.extend({
   },
   methods: {
     onEventClick(event, e) {
-      console.log(event, e)
-
       this.selectedEvent = event
       this.showDialog = true
 

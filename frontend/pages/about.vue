@@ -143,7 +143,6 @@ export default Vue.extend({
     const teamMembers = await $strapi.graphql({
       query: teamQuery(),
     })
-    console.log(data.about)
     return {
       page: data.about,
       testimonials: testimonials.testimonials,

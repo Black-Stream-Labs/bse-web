@@ -61,7 +61,6 @@ export default Vue.extend({
       )
       return arts
     })
-    console.log(extra[0])
     return {
       author: extra[0],
     }

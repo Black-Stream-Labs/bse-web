@@ -170,7 +170,6 @@ export default Vue.extend({
     this.$root.$on('updateFiltersCategories', (data) => {
       this.filtersAndCategs = data
     })
-    console.log(this.$route.query.main_categ)
   },
   methods: {
     updateSearchWithFilters() {

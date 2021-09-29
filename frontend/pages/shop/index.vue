@@ -183,7 +183,6 @@ export default Vue.extend({
           })
           updatedProd = data.products
         }
-        console.log(updatedProd)
         this.products = updatedProd
         this.loading = false
       }, 350)
