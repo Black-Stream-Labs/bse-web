@@ -54,10 +54,10 @@
                     Category:
                   </span>
 
-                  <NuxtLink
+                  <a
                     v-for="cat in product.product_main_categories"
                     :key="cat.slug"
-                    :to="`/shop/categories/${cat.slug}`"
+                    href="#"
                     class="
                       text-gray-700
                       font-light
@@ -70,13 +70,14 @@
                       m-1
                       dark:bg-gray-700 dark:text-gray-300
                     "
+                    @click.prevent="updateMainCategory(cat)"
                   >
                     {{ cat.categ_name }}
-                  </NuxtLink>
-                  <NuxtLink
+                  </a>
+                  <a
                     v-for="cat in product.product_secondary_categories"
                     :key="cat.slug"
-                    :to="`/shop/categories/${cat.slug}`"
+                    href="#"
                     class="
                       text-gray-700
                       font-light
@@ -89,9 +90,10 @@
                       m-1
                       dark:bg-gray-700 dark:text-gray-300
                     "
+                    @click.prevent="updateSecondCategory(cat)"
                   >
                     {{ cat.categ_name }}
-                  </NuxtLink>
+                  </a>
                 </div>
                 <div class="mb-5">
                   <span class="capitalize font-extrabold italic">
@@ -198,7 +200,6 @@ export default Vue.extend({
     const data = await $strapi.find('products', {
       slug: params.slug,
     })
-    console.log(data[0])
     const product = data[0]
     const categs = []
     if (product.product_main_categories.length > 0) {
@@ -228,6 +229,14 @@ export default Vue.extend({
       } else {
         return null
       }
+    },
+  },
+  methods: {
+    updateMainCategory(item: any) {
+      this.$router.push(`/shop?main_categ=${item.slug}`)
+    },
+    updateSecondCategory(item: any) {
+      this.$router.push(`/shop?secondary_categ=${item.slug}`)
     },
   },
 })
