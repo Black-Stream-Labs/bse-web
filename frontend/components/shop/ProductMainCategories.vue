@@ -10,7 +10,6 @@
         sm:col-span-6
         md:col-span-5
         lg:col-span-4
-        h-full
         duration-500
         ease-in-out
         transform
@@ -18,6 +17,7 @@
         hover:scale-105
         shadow-md
         hover:shadow-lg
+        h-96
       "
     >
       <a
@@ -34,7 +34,7 @@
         :title="item.categ_name"
         @click.prevent="updateQuery('main_categ', item.slug)"
       >
-        <div class="relative z-10" style="flex: 2 1 auto">
+        <div class="relative z-10">
           <img
             v-if="item.image"
             loading="lazy"
@@ -44,11 +44,11 @@
           />
         </div>
 
-        <div class="flex flex-col p-2 justify-center">
+        <div class="flex flex-col p-2 justify-center" style="flex: 2 1 auto">
           <h3 class="text-xl italic text-center pb-4">
             {{ item.categ_name }}
           </h3>
-          <div v-if="item.description" class="line-clamp-3 text-sm">
+          <div v-if="item.description" class="line-clamp-3 text-sm pl-3">
             {{ item.description }}
           </div>
         </div>

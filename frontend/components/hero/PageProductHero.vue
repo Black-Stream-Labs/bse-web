@@ -7,22 +7,18 @@
         : ''
     "
   >
-    <div class="container max-w-5xl mx-auto px-4">
+    <div class="container max-w-5xl mx-auto px-4 min-h-1/4">
       <div class="md:block">
         <div class="pb-8 mt-auto">
           <div class="mx-auto flex justify-between items-center">
             <div class="title w-2/5">
               <h1 class="text-2xl md:text-3xl mb-8 mt-16 capitalize">
-                {{ title }}
+                {{ product.product_name }}
               </h1>
             </div>
 
             <div
-              v-if="
-                selectedImage &&
-                product.product_images &&
-                product.product_images.length > 0
-              "
+              v-if="selectedImage"
               class="
                 mb-6
                 mt-12
@@ -41,7 +37,7 @@
                   loading="lazy"
                   class="object-cover"
                   :src="$getStrapiMedia(selectedImage)"
-                  :alt="`${title} image`"
+                  :alt="`${product.product_name} image`"
                   style="height: 450px"
                 />
               </div>
@@ -60,13 +56,13 @@
                   <button
                     class="hover:opacity-75"
                     target="_new"
-                    @click="selectImage(headerimage)"
+                    @click="updateSelectedImage(product.product_main_image.url)"
                   >
                     <img
                       loading="lazy"
                       height="36"
                       class="w-full h-36 object-cover"
-                      :src="$getStrapiMedia(headerimage)"
+                      :src="$getStrapiMedia(product.product_main_image.url)"
                       :alt="product.product_name"
                     />
                   </button>
@@ -75,7 +71,7 @@
                       :key="image.id"
                       class="hover:opacity-75"
                       target="_new"
-                      @click="selectImage(image)"
+                      @click="updateSelectedImage(image)"
                     >
                       <img
                         loading="lazy"
@@ -120,26 +116,18 @@ export default Vue.extend({
       default: () => {},
       required: true,
     },
-    title: {
-      type: String,
-      default: '',
-    },
-
-    headerimage: {
-      type: [String, null],
-      default: null,
-    },
   },
   data() {
     return {
       selectedImage: null,
     }
   },
+
   mounted() {
-    this.selectedImage = this.headerimage
+    this.selectedImage = this.product.product_main_image.url
   },
   methods: {
-    selectImage(image: any) {
+    updateSelectedImage(image: any) {
       if (typeof image !== 'string') {
         const { url } = image
         this.selectedImage = url

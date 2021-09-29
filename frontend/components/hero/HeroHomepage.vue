@@ -1,9 +1,9 @@
 <template>
   <section class="py-20 custom-background bg-gray-100 text-gray-800 border-b-2">
-    <div class="container mx-auto">
-      <div class="px-10 md:block">
+    <div class="container max-w-5xl mx-auto px-4 min-h-1/4">
+      <div class="md:block">
         <div class="pb-8 mt-auto">
-          <div class="max-w-5xl mx-auto flex justify-between items-center">
+          <div class="mx-auto flex justify-between items-center">
             <div class="title w-2/5">
               <h1 class="text-2xl md:text-3xl mb-8 mt-16">
                 {{ title }}

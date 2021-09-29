@@ -138,19 +138,27 @@
             </a>
           </div>
         </div>
-        <div v-if="updatedEvents" class="grid grid-cols-6 gap-4 py-5">
+        <div v-if="updatedEvents" class="grid grid-cols-12 gap-4 py-5">
           <!-- events -->
           <div
             v-for="(event, id) in updatedEvents"
             :key="`event-${id}`"
             class="
-              shadow-lg
+              pb-4
               border
-              overflow-hidden
-              col-span-6
-              sm:col-span-3
-              md:col-span-2
+              col-span-12
+              sm:col-span-6
+              md:col-span-4
+              lg:col-span-3
+              h-full
               flex flex-col
+              duration-500
+              ease-in-out
+              transform
+              transition-gpu
+              hover:scale-105
+              shadow-md
+              hover:shadow-lg
             "
           >
             <!-- <div class="flex-2">
@@ -163,8 +171,15 @@
               />
               <img v-else src="" class="" alt="" />
             </div> -->
-            <div class="p-4">
-              <h5 class="text-xl font-semibold mb-2">{{ event.title }}</h5>
+            <div class="h-full p-2">
+              <h5 class="text-xl font-semibold mb-2">
+                <NuxtLink
+                  class="hover:underline capitalize"
+                  :to="`/events/${event.slug}`"
+                >
+                  {{ event.title }}
+                </NuxtLink>
+              </h5>
               <div class="flex flex-col pb-8">
                 <span class="text-xs font-bold italic dark:text-gray-200">
                   Start time -

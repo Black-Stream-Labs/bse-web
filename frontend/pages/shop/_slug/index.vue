@@ -1,14 +1,9 @@
 <template>
   <div>
-    <PageProductHero
-      v-if="product"
-      :product="product"
-      :title="product.product_name"
-      :headerimage="updatedHeaderIMage"
-    />
+    <PageProductHero v-if="product" :product="product" />
 
     <div class="section">
-      <div class="container max-w-5xl mx-auto py-10 px-4">
+      <div class="container max-w-5xl mx-auto py-10 px-4 min-h-1/2">
         <div v-if="updatedContent" class="page-content pb-10">
           <div class="flex items-center">
             <a
@@ -119,7 +114,10 @@
                     {{ product.is_digital_product ? 'Yes' : 'No' }}
                   </b>
                 </div>
-                <div v-html="$md.render(updatedContent)"></div>
+                <div
+                  class="min-h-1/3"
+                  v-html="$md.render(updatedContent)"
+                ></div>
 
                 <div class="pt-6">
                   <button
@@ -196,47 +194,37 @@ export default Vue.extend({
     LeftArrow,
   },
   mixins: [imageUrlManipulation],
-
-  data() {
-    return {
-      product: {},
-      similarProducts: [],
-      selectedImage: null,
-    }
-  },
-  async fetch() {
-    const data = await this.$strapi.find('products', {
-      slug: this.$route.params.slug,
+  async asyncData({ $strapi, params }) {
+    const data = await $strapi.find('products', {
+      slug: params.slug,
     })
-    this.product = data[0]
+    console.log(data[0])
+    const product = data[0]
     const categs = []
-    if (data[0].product_main_categories.length > 0) {
-      data[0].product_main_categories.forEach((el: any) =>
+    if (product.product_main_categories.length > 0) {
+      product.product_main_categories.forEach((el: any) =>
         categs.push(['product_main_categories.slug', el.slug])
       )
     }
-    if (data[0].product_secondary_categories.length > 0) {
-      data[0].product_secondary_categories.forEach((el: any) =>
+    if (product.product_secondary_categories.length > 0) {
+      product.product_secondary_categories.forEach((el: any) =>
         categs.push(['product_secondary_categories.slug', el.slug])
       )
     }
 
-    const similar = await this.$strapi.find('products', categs)
-    this.similarProducts = similar.filter(
-      (el: any) => el.product_name !== this.product.product_name
+    const similar = await $strapi.find('products', categs)
+    const similarProducts = similar.filter(
+      (el: any) => el.product_name !== product.product_name
     )
+    return {
+      product,
+      similarProducts,
+    }
   },
   computed: {
     updatedContent() {
       if (this.product.product_description) {
         return formatContentImageUrl(this.product.product_description)
-      } else {
-        return null
-      }
-    },
-    updatedHeaderIMage() {
-      if (this.product.product_main_image) {
-        return this.product.product_main_image.url
       } else {
         return null
       }

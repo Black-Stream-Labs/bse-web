@@ -7,7 +7,7 @@
         : ''
     "
   >
-    <div class="container max-w-5xl mx-auto px-4">
+    <div class="container max-w-5xl mx-auto px-4 min-h-1/4">
       <div class="md:block">
         <div class="pb-8 mt-auto">
           <div class="mx-auto flex justify-between items-center">

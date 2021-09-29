@@ -5,27 +5,35 @@
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div class="my-12">
           <div class="grid md:grid-flow-col md:grid-cols-3 gap-4">
-            <main class="col-span-2">
+            <main class="col-span-2 min-h-1/2">
               <ProductMainCategories
-                v-if="showMainCategs && !showSecondaryCategs"
+                v-show="!loading && showMainCategs && !showSecondaryCategs"
                 :update-query="updateQuery"
               />
               <ProductSecondaryCategories
-                v-else-if="showSecondaryCategs && !showMainCategs"
+                v-show="!loading && showSecondaryCategs && !showMainCategs"
                 :update-query="updateQuery"
               />
-              <div v-else class="grid grid-cols-12 gap-4">
-                <template v-if="products.length === 0 && !loading">
-                  no products yet
-                </template>
-                <template v-else-if="loading"> loading </template>
-                <template v-else>
-                  <ProductExtract
-                    v-for="(product, ind) in products"
-                    :key="`prod-${ind}`"
-                    :product="product"
-                  />
-                </template>
+              <div
+                v-show="loading && !showSecondaryCategs && !showMainCategs"
+                class="grid grid-cols-12 gap-4"
+              >
+                loading products
+              </div>
+              <div
+                v-show="
+                  !loading &&
+                  !showMainCategs &&
+                  !showSecondaryCategs &&
+                  products.length > 0
+                "
+                class="grid grid-cols-12 gap-4"
+              >
+                <ProductExtract
+                  v-for="(product, ind) in products"
+                  :key="`prod-${ind}`"
+                  :product="product"
+                />
               </div>
             </main>
             <ProductsSidebar></ProductsSidebar>
@@ -69,7 +77,7 @@ export default Vue.extend({
           this.showMainCategs = false
           this.showSecondaryCategs = false
           this.searchProducts()
-        } else if (!!value.main_categ && !!value.secondary_categ) {
+        } else if (value.main_categ && value.secondary_categ) {
           this.showMainCategs = false
           this.showSecondaryCategs = false
           this.searchProducts()
@@ -116,6 +124,7 @@ export default Vue.extend({
   },
   methods: {
     searchProducts() {
+      this.loading = true
       setTimeout(async () => {
         let updatedProd = []
         const query = await { ...this.$route.query }
@@ -176,6 +185,7 @@ export default Vue.extend({
         }
         console.log(updatedProd)
         this.products = updatedProd
+        this.loading = false
       }, 350)
     },
     updateQuery(keyOrObj: any, value: any) {
