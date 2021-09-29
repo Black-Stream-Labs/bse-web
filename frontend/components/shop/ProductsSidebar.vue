@@ -51,10 +51,10 @@
         </button>
       </form>
     </div>
-    <div id="sidebar-categs" class="mb-4">
+    <!-- <div id="sidebar-categs" class="mb-4">
       <ProductSidebarCategories></ProductSidebarCategories>
-      <!-- <ProductFilters></ProductFilters> -->
-    </div>
+      <ProductFilters></ProductFilters>
+    </div> -->
     <div class="pt-5 text-center">
       <!-- <button
         class="
