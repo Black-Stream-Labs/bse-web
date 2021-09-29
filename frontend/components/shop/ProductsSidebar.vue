@@ -45,7 +45,7 @@
             viewBox="0 0 20 20"
           >
             <path
-              d="M12.9 14.32a8 8 0w 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
             />
           </svg>
         </button>
@@ -111,7 +111,11 @@
           transform-gpu
           hover:scale-110
         "
-        :disabled="$route.query === null"
+        :disabled="
+          !$route.query.q &&
+          !$route.query.main_categ &&
+          !$route.query.secondary_categ
+        "
         :class="[
           $store.state.fullColor
             ? $store.state.fullColor.name === 'tgreen'
@@ -126,7 +130,11 @@
             : $colorMode.preference === 'dark'
             ? 'hover:bg-gray-700 hover:text-white'
             : 'hover:bg-gray-500 hover:text-white',
-          $route.query ? 'cursor-pointer' : 'cursor-not-allowed',
+          !$route.query.q &&
+          !$route.query.main_categ &&
+          !$route.query.secondary_categ
+            ? 'cursor-not-allowed'
+            : 'cursor-pointer',
         ]"
         @click="updateSearch('show_all')"
       >
@@ -162,6 +170,7 @@ export default Vue.extend({
     this.$root.$on('updateFiltersCategories', (data) => {
       this.filtersAndCategs = data
     })
+    console.log(this.$route.query.main_categ)
   },
   methods: {
     updateSearchWithFilters() {
