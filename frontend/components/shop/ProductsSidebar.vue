@@ -45,7 +45,7 @@
             viewBox="0 0 20 20"
           >
             <path
-              d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              d="M12.9 14.32a8 8 0w 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
             />
           </svg>
         </button>
@@ -139,13 +139,13 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import ProductSidebarCategories from '@/components/shop/ProductSidebarCategories'
+// import ProductSidebarCategories from '@/components/shop/ProductSidebarCategories'
 // import ProductFilters from '@/components/shop/ProductFilters'
 
 export default Vue.extend({
   name: 'ProductsSidebar',
   components: {
-    ProductSidebarCategories,
+    // ProductSidebarCategories,
     // ProductFilters,
   },
   data(comp: unknown) {
