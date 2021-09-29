@@ -1,0 +1,31 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 245" width="184" height="245">
+	<title>Fox1</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: none;stroke: #2c2e35 } 
+		.shp1 { fill: none;stroke: #2c2e35;stroke-linejoin:round } 
+		.shp2 { fill: #2c2e35 } 
+	</style>
+	<g id="Fox1">
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp0" d="M17.8 2.97L33.99 40.29L17.8 51.63L17.8 2.97Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M16.88 54.82L1.35 83.01L60.53 125.74L16.88 54.82Z" />
+			<path id="&lt;Path&gt;" class="shp1" d="M31.44 107.55L62.35 129.44L73.95 140.19L73.95 199.66L31.44 107.55Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M130.1 2.97L113.91 40.29L130.1 51.63L130.1 2.97Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M131.02 54.82L146.55 83.01L87.37 125.74L131.02 54.82Z" />
+			<path id="&lt;Path&gt;" class="shp1" d="M116.46 107.55L85.55 129.44L73.95 140.19L73.95 199.66L116.46 107.55Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M72.5 202.99L32.81 227.06L75.61 244.14L72.5 202.99Z" />
+		</g>
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp2" d="M73.95 27.89L55.75 27.89L18.3 53.74L63.4 127.39L73.95 123.89L73.95 27.89Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M64.19 128.37L73.95 125.01L73.95 137.41L64.19 128.37Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M18.3 0.46L54.04 26.97L36.17 39.23L18.3 0.46Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M73.95 27.89L92.15 27.89L129.6 53.74L84.5 127.39L73.95 123.89L73.95 27.89Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M83.71 128.37L73.95 125.01L73.95 137.41L83.71 128.37Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M129.6 0.46L93.86 26.97L111.73 39.23L129.6 0.46Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M120.34 105.57L77.62 197.55L167.02 141.18L120.34 105.57Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M169.21 143.76L80.33 244.64L156.94 230.79L183.65 194.2L169.21 143.76Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M166.99 143.26L74.95 202.14L78.12 244.14L166.99 143.26Z" />
+		</g>
+	</g>
+</svg>

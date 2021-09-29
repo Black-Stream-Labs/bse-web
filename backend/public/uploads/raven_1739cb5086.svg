@@ -1,0 +1,17 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 278 180" width="278" height="180">
+	<title>Raven1</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #2c2e35 } 
+	</style>
+	<g id="Raven1">
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp0" d="M171.24 20.8L216.6 10.25L192.6 130.52L143.02 73.02L171.24 20.8Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M218.71 10.25L277.44 40.05L214.04 33.5L218.71 10.25Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M171.9 18.96L217.92 7.96L277.44 39.07L217.92 0.89L171.9 18.96Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M141.73 74.69L191.15 132.36L0.56 142.65L141.73 74.69Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M114.96 138.26L191.15 134.14L120.2 162.1L114.96 138.26Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M120.78 163.6L142.69 155.1L188.94 179.31L120.78 163.6Z" />
+		</g>
+	</g>
+</svg>

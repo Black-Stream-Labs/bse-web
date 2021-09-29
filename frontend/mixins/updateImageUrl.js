@@ -8,13 +8,17 @@ export default {
     },
     $formatContentImageUrl(content) {
       if (!content) return
-      return content.split('/uploads/').join(`/api/v1/uploads/`)
+      return content.includes('/uploads/')
+        ? content.split('/uploads/').join(`/api/v1/uploads/`)
+        : content
     },
   },
 }
 export function formatContentImageUrl(content) {
   if (!content) return
-  return content.split('/uploads/').join(`/api/v1/uploads/`)
+  return content.includes('/uploads/')
+    ? content.split('/uploads/').join(`/api/v1/uploads/`)
+    : content
 }
 export function getStrapiMedia(url) {
   if (url === null) return

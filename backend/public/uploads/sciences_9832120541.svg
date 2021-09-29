@@ -1,0 +1,24 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 300" width="440" height="300">
+	<title>Science</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #58366c } 
+		.shp1 { fill: #b0b1b3 } 
+		.shp2 { fill: none;stroke: #b0b1b3;stroke-width: 2.5 } 
+		.txt3 { font-size: 20px;line-height: 20px;fill: #ffffff;font-weight: bold;font-family: "Open Dyslexic" } 
+	</style>
+	<g id="Science">
+		<path id="&lt;Path&gt;" class="shp0" d="M440 300.76L0 300.76L0 0.76L440 0.76L440 300.76Z" />
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp1" d="M228.24 150.64C228.24 155.19 224.55 158.87 220 158.87C215.45 158.87 211.76 155.19 211.76 150.64C211.76 146.09 215.45 142.4 220 142.4C224.55 142.4 228.24 146.09 228.24 150.64Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M234.76 135.88C262.22 163.34 277.87 192.21 269.72 200.36C261.57 208.51 232.7 192.86 205.24 165.4C177.78 137.94 162.12 109.07 170.28 100.91C178.43 92.76 207.3 108.41 234.76 135.88Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M215.43 130.27C253.32 121.76 286.08 123.98 288.61 135.23C291.14 146.48 262.47 162.49 224.57 171C186.68 179.52 153.92 177.3 151.39 166.05C148.86 154.8 177.53 138.78 215.43 130.27Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M202.36 139.47C223.14 106.66 247.88 85.06 257.62 91.23C267.36 97.39 258.41 128.99 237.64 161.8C216.86 194.62 192.12 216.21 182.38 210.05C172.64 203.88 181.59 172.28 202.36 139.47Z" />
+		</g>
+		<text id="Science
+" style="transform: matrix(0.5,0,0,0.5,359.984,14.549)" >
+			<tspan x="22.831" y="15.195" class="txt3">Science
+</tspan>
+		</text>
+	</g>
+</svg>

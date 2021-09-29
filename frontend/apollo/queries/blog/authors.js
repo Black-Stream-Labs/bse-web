@@ -10,7 +10,10 @@ export function authors() {
           slug
           title
           description
+          unpublish_date
+          future_publish_date
           content {
+            content
             header_image {
               url
             }

@@ -1,0 +1,27 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 301" width="440" height="301">
+	<title>ICT</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #636c3a } 
+		.shp1 { fill: none;stroke: #a1aeaf;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.463 } 
+		.shp2 { fill: none;stroke: #a1aeaf;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.144 } 
+		.shp3 { fill: none;stroke: #a1aeaf;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.999 } 
+		.shp4 { fill: #a1aeaf } 
+		.txt5 { font-size: 20px;line-height: 20px;fill: #ffffff;font-weight: bold;font-family: "Open Dyslexic" } 
+	</style>
+	<g id="ICT">
+		<path id="&lt;Path&gt;" class="shp0" d="M440 300.44L0 300.44L0 0.24L440 0.24L440 300.44Z" />
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp1" d="M265.03 207.14L180.38 207.14C178.47 207.14 176.92 205.59 176.92 203.68L176.92 203.68C176.92 201.77 178.47 200.22 180.38 200.22L265.03 200.22C266.94 200.22 268.49 201.77 268.49 203.68L268.49 203.68C268.49 205.59 266.94 207.14 265.03 207.14Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M247.63 200.22L197.79 200.22C197.79 196.42 203.54 192.64 203.54 188.85C203.54 185.06 197.79 181.26 197.79 177.47C214.4 177.47 231.02 177.47 247.63 177.47C247.63 181.24 241.87 185.08 241.87 188.85C241.87 192.66 247.63 196.41 247.63 200.22Z" />
+			<path id="&lt;Path&gt;" class="shp3" d="M298.44 177.47L146.98 177.47C143.08 177.47 139.92 174.31 139.92 170.41L139.92 95.92C139.92 92.02 143.08 88.86 146.98 88.86L298.44 88.86C302.34 88.86 305.5 92.02 305.5 95.92L305.5 170.41C305.5 174.31 302.34 177.47 298.44 177.47Z" />
+			<path id="&lt;Path&gt;" class="shp4" d="M261.48 140.29L215.59 140.29L215.59 111.8L261.48 111.8L261.48 140.29Z" />
+			<path id="&lt;Path&gt;" class="shp4" d="M229.83 154.53L183.94 154.53L183.94 126.04L229.83 126.04L229.83 154.53Z" />
+		</g>
+		<text id="ICT
+" style="transform: matrix(0.5,0,0,0.5,333.407,14.087)" >
+			<tspan x="88.619" y="15.195" class="txt5">ICT
+</tspan>
+		</text>
+	</g>
+</svg>

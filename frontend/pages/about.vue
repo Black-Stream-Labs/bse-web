@@ -29,7 +29,7 @@
         <div v-html="$md.render(updatedContent)" />
       </div>
     </section>
-    <section class="section">
+    <section v-if="sectionUpdated" class="section">
       <div class="container max-w-5xl mx-auto p-4">
         <h2 class="capitalize text-2xl dark:text-white">Why we do things</h2>
         <div class="grid grid-cols-12 gap-4">
@@ -88,7 +88,7 @@
         <OurTeam :team-members="teamMembers"></OurTeam>
       </div>
     </section>
-    <section class="section">
+    <section v-if="updatedExtraContent" class="section">
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <div v-html="$md.render(updatedExtraContent)"></div>
       </div>
@@ -143,6 +143,7 @@ export default Vue.extend({
     const teamMembers = await $strapi.graphql({
       query: teamQuery(),
     })
+    console.log(data.about)
     return {
       page: data.about,
       testimonials: testimonials.testimonials,

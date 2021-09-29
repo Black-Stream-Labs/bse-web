@@ -1,0 +1,31 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 301" width="440" height="301">
+	<title>Art</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #636c3a } 
+		.shp1 { fill: none;stroke: #a1aeaf;stroke-width: 3.315 } 
+		.shp2 { fill: #a1aeaf;stroke: #a1aeaf;stroke-width: 3.315 } 
+		.shp3 { fill: #a1aeaf;stroke: #a1aeaf;stroke-width: 2.565 } 
+		.shp4 { fill: #a1aeaf;stroke: #a1aeaf;stroke-width: 2.19 } 
+		.shp5 { fill: #a1aeaf;stroke: #a1aeaf;stroke-linecap:round;stroke-linejoin:round;stroke-width: 2.565 } 
+		.shp6 { fill: #a1aeaf;stroke: #a1aeaf;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.472 } 
+		.txt7 { font-size: 20px;line-height: 20px;fill: #ffffff;font-weight: bold;font-family: "Open Dyslexic" } 
+	</style>
+	<g id="Art">
+		<path id="&lt;Path&gt;" class="shp0" d="M440 300.22L0 300.22L0 0.03L440 0.03L440 300.22Z" />
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp1" d="M306.42 177.6C291.87 199.26 266.73 217.53 222.16 217.53C177.58 217.53 143.43 184.3 143.43 161.35C143.43 121.37 189.85 90.71 234.42 90.71C264.48 90.71 241.71 136.54 254.59 144.34C266.6 151.62 283.88 111.75 304.84 128.12C317.5 138.01 315.91 164.94 306.42 177.6Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M233.92 113.74C233.92 119.8 229.01 124.71 222.95 124.71C216.89 124.71 211.98 119.8 211.98 113.74C211.98 107.69 216.89 102.78 222.95 102.78C229.01 102.78 233.92 107.69 233.92 113.74Z" />
+			<path id="&lt;Path&gt;" class="shp3" d="M197.43 131.19C197.43 135.88 193.63 139.68 188.94 139.68C184.26 139.68 180.46 135.88 180.46 131.19C180.46 126.5 184.26 122.7 188.94 122.7C193.63 122.7 197.43 126.5 197.43 131.19Z" />
+			<path id="&lt;Path&gt;" class="shp4" d="M176.04 154.12C176.04 158.12 172.79 161.36 168.79 161.36C164.79 161.36 161.55 158.12 161.55 154.12C161.55 150.12 164.79 146.87 168.79 146.87C172.79 146.87 176.04 150.12 176.04 154.12Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M288.02 113.34L197.21 204.15C193.94 207.42 188.65 207.42 185.39 204.15L181.66 200.43C178.4 197.16 178.4 191.87 181.66 188.61L272.47 97.8C275.74 94.53 281.03 94.53 284.3 97.8L288.02 101.52C291.28 104.78 291.28 110.08 288.02 113.34Z" />
+			<path id="&lt;Path&gt;" class="shp5" d="M288.41 101.71L191.93 198.19C190.23 199.89 187.48 199.89 185.78 198.19L185.78 198.19C184.08 196.49 184.08 193.74 185.78 192.04L282.26 95.56C283.96 93.86 286.71 93.86 288.41 95.56L288.41 95.56C290.11 97.26 290.11 100.01 288.41 101.71Z" />
+			<path id="&lt;Path&gt;" class="shp6" d="M301.01 100.59C295.57 106.03 286.09 108.01 279.75 101.67C273.41 95.33 278.42 83.93 281.84 80.8C287 76.06 296.93 81.81 306.32 75.79C300.78 85.66 306.48 95.11 301.01 100.59Z" />
+		</g>
+		<text id="Art &amp; Design
+" style="transform: matrix(0.5,0,0,0.5,333.408,10.282)" >
+			<tspan x="34.625" y="15.195" class="txt7">Art &amp; Design
+</tspan>
+		</text>
+	</g>
+</svg>

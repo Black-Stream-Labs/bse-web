@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white flex flex-row flex-wrap">
+  <div class="flex flex-row flex-wrap">
     <div class="hidden md:block w-1/4 p-4 text-right">
       <LogoImage width="150" height="150"></LogoImage>
     </div>
@@ -7,7 +7,7 @@
       id="carousel"
       ref="carousel"
       class="md:w-3/4 masonry"
-      :class="showAll ? '' : 'overflow-hidden max-h-96'"
+      :class="showAll ? '' : 'overflow-hidden max-h-144'"
     >
       <div
         v-for="(testim, ind) in testimonials"
@@ -32,6 +32,7 @@
             ease-in-out
             transform-gpu
             hover:translate-x-1 hover:translate-y-1 hover:scale-105
+            text-gray-50
           "
         >
           <div class="rounded-tl rounded-tr relative">
@@ -70,7 +71,7 @@
             {{ testim.text }}
           </p>
           <div class="flex justify-end mt-2">
-            <QuotesIcon></QuotesIcon>
+            <QuotesIcon color="white"></QuotesIcon>
           </div>
         </div>
       </div>
@@ -80,10 +81,11 @@
         class="
           py-2
           px-4
+          text-gray-50
           border border-gray-50
           dark:hover:bg-gray-700
           hover:bg-gray-500
-          dark:bg-gray-900 dark:text-white dark:border-gray-50
+          dark:bg-gray-900 dark:border-gray-50
         "
         @click.stop="showAll = !showAll"
       >

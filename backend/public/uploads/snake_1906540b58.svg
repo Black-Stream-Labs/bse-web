@@ -1,0 +1,21 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 278 50" width="278" height="50">
+	<title>Snake1</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #2c2e35 } 
+	</style>
+	<g id="Snake1">
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp0" d="M240.63 22.66L213.21 16.76L178.15 49.38L232.3 40.36L240.63 22.66Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M201.93 24.05L174.6 49.38L135.81 12.07L182.93 8.17L201.93 24.05Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M132.69 13.11L150.65 31.6L126.18 44.09L88.18 44.09L132.69 13.11Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M101.71 31.07L82.45 44.09L46.01 21.19L64.49 14.15L101.71 31.07Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M51.79 27.25L31.95 42.01L22.06 39.4L43.45 21.79L51.79 27.25Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M22.06 35.24L19.98 38.62L0.19 26.91L22.06 35.24Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M57.98 14.15L42.62 19.36L24.92 34.46L39.76 13.11L57.98 14.15Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M172.25 6.69L131.65 9.47L104.75 29.12L98.85 26.91L127.66 0.79L172.25 6.69Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M243.32 4.52L212.47 14.15L204.4 22.22L199.07 18.19L209.39 7.13L243.32 4.52Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M252.43 3.61L217.03 14.96L270.52 26.52L277.81 19.62L252.43 3.61Z" />
+		</g>
+	</g>
+</svg>

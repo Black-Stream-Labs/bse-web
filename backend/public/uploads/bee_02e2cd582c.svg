@@ -1,0 +1,31 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158 176" width="158" height="176">
+	<title>Bee1</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #2c2e35 } 
+	</style>
+	<g id="Bee1">
+		<g id="&lt;Group&gt;">
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp0" d="M79 0.76L79 54.38L30.04 54.38L48.69 15.91L79 0.76Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M28.68 56.52L72.98 56.52L56.46 158.51L32.57 170.36L0.71 115.96L28.68 56.52Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M79 56.52L75.11 56.52L73.43 67.01L79 67.01L79 56.52Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M71.63 77.5L79 77.5L79 91.1L69.8 91.1L71.63 77.5Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M68.44 102.62L79 102.62L79 116.22L66.62 116.22L68.44 102.62Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M64.78 127.75L79 127.75L79 141.35L62.96 141.35L64.78 127.75Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M79 151.65L79 163.37L68.98 163.38L61.52 156.18L62.96 151.65L79 151.65Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M79 167.93L79 175.22L72.81 167.93L79 167.93Z" />
+			</g>
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp0" d="M79 0.76L79 54.38L127.96 54.38L109.31 15.91L79 0.76Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M129.32 56.52L85.02 56.52L101.54 158.51L125.43 170.36L157.29 115.96L129.32 56.52Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M79 56.52L82.89 56.52L84.57 67.01L79 67.01L79 56.52Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M86.37 77.5L79 77.5L79 91.1L88.2 91.1L86.37 77.5Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M89.56 102.62L79 102.62L79 116.22L91.38 116.22L89.56 102.62Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M93.22 127.75L79 127.75L79 141.35L95.04 141.35L93.22 127.75Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M79 151.65L79 163.37L89.02 163.38L96.48 156.18L95.04 151.65L79 151.65Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M79 167.93L79 175.22L85.19 167.93L79 167.93Z" />
+			</g>
+		</g>
+	</g>
+</svg>

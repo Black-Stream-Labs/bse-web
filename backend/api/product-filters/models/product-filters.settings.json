@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "filter_name": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "slug": {
       "type": "uid",

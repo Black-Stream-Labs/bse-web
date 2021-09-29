@@ -9,6 +9,42 @@
     <div class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div v-if="updatedContent" class="page-content pb-10">
+          <div class="flex items-center">
+            <a
+              href="#"
+              class="
+                inline-flex
+                items-center
+                w-max
+                px-2
+                py-2
+                capitalize
+                border border-gray-400
+                text-white
+                dark:border-gray-50
+              "
+              aria-label="Go Back to Product Summary including the Search Terms and Filters"
+              :class="
+                $store.state.fullColor
+                  ? $store.state.fullColor.name === 'tgreen'
+                    ? 'bg-tgreen '
+                    : $store.state.fullColor.name === 'tpurple'
+                    ? 'bg-tpurple'
+                    : $store.state.fullColor.name === 'tblue'
+                    ? 'bg-tblue'
+                    : $store.state.fullColor.name === 'tbrown'
+                    ? 'bg-tbrown'
+                    : ''
+                  : $colorMode.preference === 'dark'
+                  ? 'bg-gray-700'
+                  : 'bg-gray-500'
+              "
+              @click.prevent="$router.go(-1)"
+            >
+              <LeftArrow></LeftArrow>
+              <span class="px-4"> back to articles </span>
+            </a>
+          </div>
           <div class="my-12">
             <div
               class="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-1 gap-4"
@@ -148,6 +184,8 @@ import Hero from '@/components/hero/Hero'
 import BlogSidebar from '@/components/articles/BlogSidebar'
 import ArticleExtracts from '@/components/articles/ArticleExtracts'
 import ShareIcons from '@/components/reusable/ShareIcons'
+import LeftArrow from '@/components/icons/LeftArrow'
+
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 export default Vue.extend({
   name: 'SingleArticlePage',
@@ -156,6 +194,7 @@ export default Vue.extend({
     BlogSidebar,
     ArticleExtracts,
     ShareIcons,
+    LeftArrow,
   },
   data() {
     return {
@@ -168,6 +207,7 @@ export default Vue.extend({
     const data = await this.$strapi.find('articles', {
       slug: this.$route.params.slug,
     })
+    const date = new Date()
     // await $strapi.find('products', { 'categories.name': ['women', 'men'] })
     const categs = data[0].article_categories.map((el: any) => [
       'article_categories.slug',
@@ -177,13 +217,16 @@ export default Vue.extend({
     this.article = data[0]
     this.extraArticles = extras
       .filter(
-        (el: any) => el.slug !== this.$route.params.slug
-        // &&
-        //           (el.future_publish_date === null ||
-        //             new Date(el.future_publish_date).toISOString() <=
-        //               new Date().toISOString()) &&
-        //           new Date(el.unpublish_date).toISOString() > new Date().toISOString()
+        (el: any) =>
+          (el.slug !== this.$route.params.slug &&
+            el.future_publish_date === null &&
+            el.unpublish_date === null) ||
+          (el.future_publish_date < date.toISOString() &&
+            el.unpublish_date === null) ||
+          (el.future_publish_date === null &&
+            el.unpublish_date > date.toISOString())
       )
+
       .sort((a: any, b: any) => a.published_at - b.published_at)
   },
   computed: {

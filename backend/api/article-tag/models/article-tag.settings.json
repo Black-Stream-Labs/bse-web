@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "tag_name": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "articles": {
       "via": "article_tags",

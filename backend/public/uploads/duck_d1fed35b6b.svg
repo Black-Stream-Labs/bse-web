@@ -1,0 +1,18 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234 149" width="234" height="149">
+	<title>Duck1</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #2c2e35 } 
+	</style>
+	<g id="Duck1">
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp0" d="M214.17 99.23L156.39 75.98L75.72 70.7L154.63 148.55L193.38 148.55L214.17 99.23Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M150.4 148.55L72.54 70.7L19.35 113.68L39.43 148.55L150.4 148.55Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M48.06 87.17L18.11 110.59L0.5 70.26L48.06 87.17Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="" />
+			<path id="&lt;Path&gt;" class="shp0" d="M214.17 96.24L157.8 73.25L141.95 25.95L171.28 51.85L191.62 50.26L218.31 90.42L214.17 96.24Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M196.11 46.96L172.99 48.81L141.95 22.65L164.54 0.59L196.11 16.18L196.11 46.96Z" />
+			<path id="&lt;Path&gt;" class="shp0" d="M198.62 23.18L198.62 46.7L233.5 44.58L198.62 23.18Z" />
+		</g>
+	</g>
+</svg>

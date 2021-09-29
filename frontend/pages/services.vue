@@ -218,16 +218,16 @@ export default Vue.extend({
     })
   },
   methods: {
-    async scrollToElement(ele: string) {
-      const el = await document.getElementById(ele)
-      const header = await document.getElementsByTagName('header')[0]
-        .offsetHeight
-
-      const headerHeight = el.offsetTop - header
-      return window.scrollTo({
-        top: headerHeight,
-        behavior: 'smooth',
-      })
+    scrollToElement(ele: string) {
+      const el = document.getElementById(ele)
+      if (ele) {
+        const header = document.getElementsByTagName('header')[0].offsetHeight
+        const headerHeight = el.offsetTop - header
+        return window.scrollTo({
+          top: headerHeight,
+          behavior: 'smooth',
+        })
+      }
     },
   },
 })

@@ -1,0 +1,33 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 300" width="440" height="300">
+	<title>Geo1</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M440 300.15L0 300.15L0 0.15L440 0.15L440 300.15Z" />
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #2d4b6c } 
+		.txt1 { font-size: 20px;line-height: 20px;fill: #ffffff;font-weight: bold;font-family: "Open Dyslexic" } 
+		.shp2 { fill: none;stroke: #b0b1b3;stroke-width: 2.939 } 
+		.shp3 { fill: none;stroke: #b0b1b3;stroke-width: 3.742 } 
+		.shp4 { fill: none;stroke: #b0b1b3;stroke-width: 4.091 } 
+		.shp5 { fill: none;stroke: #b0b1b3;stroke-width: 2.905 } 
+	</style>
+	<g id="Geo1">
+		<path id="&lt;Path&gt;" class="shp0" d="M440 300.15L0 300.15L0 0.15L440 0.15L440 300.15Z" />
+		<text id="Geometry
+" style="transform: matrix(0.5,0,0,0.5,368.745,7.776)" >
+			<tspan x="10.707" y="15.195" class="txt1">Geometry
+</tspan>
+		</text>
+		<g id="&lt;Clip Group&gt;" clip-path="url(#cp1)">
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp2" d="M103.23 122.93L16.29 63.47L75.75 -23.47L162.69 35.99L103.23 122.93Z" />
+				<path id="&lt;Path&gt;" class="shp3" d="M359.98 235.93L266.77 253.43L342.48 142.72L453.19 218.43L359.98 235.93Z" />
+				<path id="&lt;Path&gt;" class="shp4" d="M182.16 242.85C182.16 287.55 145.93 323.78 101.23 323.78C56.54 323.78 20.31 287.55 20.31 242.85C20.31 198.16 56.54 161.93 101.23 161.93C145.93 161.93 182.16 198.16 182.16 242.85Z" />
+				<path id="&lt;Path&gt;" class="shp5" d="M327.56 73.01L287.08 119.83L226.29 108.18L205.99 49.71L246.47 2.9L307.25 14.54L327.56 73.01Z" />
+			</g>
+		</g>
+	</g>
+</svg>

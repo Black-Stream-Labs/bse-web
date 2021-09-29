@@ -43,20 +43,33 @@ export default Vue.extend({
     const data = await app.$strapi.graphql({
       query: categsExtra(),
     })
+    const date = new Date()
+    const extra = data.articleCategories.map((el: any) => {
+      const arts = el
+      arts.articles = arts.articles.filter(
+        (a: any) =>
+          (a.future_publish_date === null && a.unpublish_date === null) ||
+          (a.future_publish_date < date.toISOString() &&
+            a.unpublish_date === null) ||
+          (a.future_publish_date === null &&
+            a.unpublish_date > date.toISOString()) ||
+          (a.future_publish_date < date.toISOString() &&
+            a.unpublish_date > date.toISOString())
+      )
+      return arts
+    })
     return {
-      categories: data.articleCategories,
+      categories: extra,
     }
   },
   computed: {
     singleCategory() {
       const categs = this.categories.filter(
         (el: any) => el.slug === this.$route.params.slug
-        //  &&
-        //           (el.future_publish_date === null ||
-        //             el.future_publish_date <= new Date().toISOString())
       )[0]
       const x = []
       categs.articles.forEach((el: any) => {
+        el.description = el.description ? el.description : el.content.content
         const e = JSON.stringify(el)
         x.push(JSON.parse(formatContentImageUrl(e)))
       })

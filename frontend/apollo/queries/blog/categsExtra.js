@@ -13,12 +13,15 @@ export function categsExtra() {
           title
           description
           published_at
+          unpublish_date
+          future_publish_date
           article_categories {
             slug
             id
             category
           }
           content {
+            content
             header_image {
               url
             }

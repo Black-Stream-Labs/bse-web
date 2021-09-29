@@ -1,0 +1,59 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 301" width="440" height="301">
+	<title>History</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #58366c } 
+		.txt1 { font-size: 20px;line-height: 20px;fill: #ffffff;font-weight: bold;font-family: "Open Dyslexic" } 
+		.shp2 { fill: none;stroke: #ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.5 } 
+		.shp3 { fill: #ffffff;stroke: #ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.478 } 
+		.shp4 { fill: #c28cc5;stroke: #ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.5 } 
+		.shp5 { fill: none;stroke: #58366c;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.348 } 
+		.shp6 { fill: #ffffff } 
+		.shp7 { fill: none;stroke: #58366c;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.577 } 
+		.shp8 { fill: none;stroke: #58366c;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.183 } 
+	</style>
+	<g id="History">
+		<path id="&lt;Path&gt;" class="shp0" d="M440 300.5L0 300.5L0 0.31L440 0.31L440 300.5Z" />
+		<text id="History
+" style="transform: matrix(0.5,0,0,0.5,328.462,10.177)" >
+			<tspan x="65.65" y="15.195" class="txt1">History
+</tspan>
+		</text>
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp2" d="M283.14 211.14L156.86 211.14C155.34 211.14 154.11 209.9 154.11 208.38L154.11 207.36C154.11 205.84 155.34 204.61 156.86 204.61L283.14 204.61C284.66 204.61 285.89 205.84 285.89 207.36L285.89 208.38C285.89 209.9 284.66 211.14 283.14 211.14Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M283.14 96.39L156.86 96.39C155.34 96.39 154.11 95.16 154.11 93.64L154.11 92.62C154.11 91.1 155.34 89.86 156.86 89.86L283.14 89.86C284.66 89.86 285.89 91.1 285.89 92.62L285.89 93.64C285.89 95.16 284.66 96.39 283.14 96.39Z" />
+			<path id="&lt;Path&gt;" class="shp3" d="M269.52 204.61L170.48 204.61L170.48 89.86L269.52 89.86L269.52 204.61Z" />
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp4" d="M276.92 99.85L276.92 99.85C275.1 99.85 273.63 98.38 273.63 96.55L273.63 89.7C273.63 87.88 275.1 86.4 276.92 86.4L276.92 86.4C278.74 86.4 280.22 87.88 280.22 89.7L280.22 96.55C280.22 98.38 278.74 99.85 276.92 99.85Z" />
+				<path id="&lt;Path&gt;" class="shp4" d="M163.2 99.85L163.2 99.85C161.38 99.85 159.9 98.38 159.9 96.55L159.9 89.7C159.9 87.88 161.38 86.4 163.2 86.4L163.2 86.4C165.02 86.4 166.49 87.88 166.49 89.7L166.49 96.55C166.49 98.38 165.02 99.85 163.2 99.85Z" />
+				<path id="&lt;Path&gt;" class="shp4" d="M163.2 214.6L163.2 214.6C161.38 214.6 159.9 213.12 159.9 211.3L159.9 204.44C159.9 202.62 161.38 201.15 163.2 201.15L163.2 201.15C165.02 201.15 166.49 202.62 166.49 204.44L166.49 211.3C166.49 213.12 165.02 214.6 163.2 214.6Z" />
+				<path id="&lt;Path&gt;" class="shp4" d="M276.92 214.6L276.92 214.6C275.1 214.6 273.63 213.12 273.63 211.3L273.63 204.44C273.63 202.62 275.1 201.15 276.92 201.15L276.92 201.15C278.74 201.15 280.22 202.62 280.22 204.44L280.22 211.3C280.22 213.12 278.74 214.6 276.92 214.6Z" />
+			</g>
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp5" d="M203.89 100.26L236.11 100.26" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 112.8L260.56 112.8" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 125.35L260.56 125.35" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 137.89L260.56 137.89" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 150.43L260.56 150.43" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 162.98L260.56 162.98" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 175.52L260.56 175.52" />
+				<path id="&lt;Path&gt;" class="shp5" d="M179.44 188.06L260.56 188.06" />
+				<path id="&lt;Path&gt;" class="shp6" d="M205.15 121.95L194.17 121.95L194.17 103.66L205.15 103.66L205.15 121.95Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M227.66 134.49L211.71 134.49L211.71 116.2L227.66 116.2L227.66 134.49Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M206.34 159.4L195.91 159.4L195.91 141.12L206.34 141.12L206.34 159.4Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M250.41 159.4L239.98 159.4L239.98 141.12L250.41 141.12L250.41 159.4Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M233.55 172.12L223.13 172.12L223.13 153.83L233.55 153.83L233.55 172.12Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M243.7 184.66L222.77 184.66L222.77 166.38L243.7 166.38L243.7 184.66Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M205.15 194.21L194.69 194.21L194.69 181.91L205.15 181.91L205.15 194.21Z" />
+			</g>
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp6" d="M263.21 192.03L224.59 192.03L224.59 156.34L263.21 156.34L263.21 192.03Z" />
+				<path id="&lt;Path&gt;" class="shp7" d="M261.31 174.31C261.31 182.7 254.5 189.51 246.11 189.51C237.72 189.51 230.92 182.7 230.92 174.31C230.92 165.92 237.72 159.12 246.11 159.12C254.5 159.12 261.31 165.92 261.31 174.31Z" />
+				<path id="&lt;Path&gt;" class="shp6" d="M230.27 190.5L224.84 183.25L236.83 174.27L242.26 181.52L230.27 190.5Z" />
+				<path id="&lt;Path&gt;" class="shp0" d="M236.36 172.43C237.03 172.73 237.33 173.51 237.04 174.18L234.2 180.56C233.9 181.23 233.12 181.53 232.45 181.23L226.07 178.4C225.4 178.1 225.1 177.32 225.4 176.65" />
+				<path id="&lt;Path&gt;" class="shp8" d="M246.11 174.31L255.35 174.31" />
+				<path id="&lt;Path&gt;" class="shp8" d="M246.11 174.31L240.13 164.57" />
+			</g>
+		</g>
+	</g>
+</svg>

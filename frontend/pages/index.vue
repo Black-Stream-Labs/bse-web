@@ -26,7 +26,8 @@
         <div v-html="$md.render(updatedContent)" />
       </div>
     </section>
-    <section
+    <section v-if="sectionUpdated" id="whatwedo" class="section">
+      <!-- <section
       v-if="sectionUpdated"
       id="whatwedo"
       class="section"
@@ -35,10 +36,10 @@
           ? `background: linear-gradient(270deg, var(--background-end) 0%, var(--background-start) 100%)`
           : ''
       "
-    >
-      <div class="container max-w-5xl mx-auto px-4 py-10 text-white">
+    > -->
+      <div class="container max-w-5xl mx-auto px-4 py-10 dark:text-white">
         <h2>What we do</h2>
-        <div class="grid gap-4 grid-rows-5">
+        <div class="grid gap-4" :class="`grid-rows-${sectionUpdated.length}`">
           <div
             v-for="(section, ind) in sectionUpdated"
             :key="ind"
@@ -48,11 +49,15 @@
               <div
                 class="
                   col-span-12
+                  md:col-span-8
                   transition
                   duration-500
                   ease-in-out
                   transform-gpu
-                  hover:translate-x-1 hover:translate-y-1 hover:scale-105
+                  hover:text-white
+                  hover:translate-x-1
+                  hover:translate-y-1
+                  hover:scale-105
                 "
                 :class="[
                   ind === 0 || ind === 4
@@ -218,16 +223,13 @@
       "
     >
       <div class="container max-w-5xl mx-auto px-4 py-10">
-        <h2 class="text-white">What they say</h2>
+        <h2 class="text-gray-50">What they say</h2>
 
         <TestimonialsComp
           :testimonials="updatedTestimonials"
         ></TestimonialsComp>
       </div>
     </section>
-    <section class="section"></section>
-    <section class="section"></section>
-    <section class="section"></section>
     <section class="section">
       <div class="container max-w-5xl mx-auto px-4 py-10">
         <div class="grid grid-cols-2 gap-4">

@@ -1,0 +1,39 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 302" width="440" height="302">
+	<title>Geo</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #806024 } 
+		.shp1 { fill: none;stroke: #b0b1b3;stroke-width: 2.5 } 
+		.shp2 { fill: none;stroke: #b0b1b3;stroke-width: 1.819 } 
+		.shp3 { fill: none;stroke: #b0b1b3;stroke-width: 1.465 } 
+		.shp4 { fill: none;stroke: #b0b1b3;stroke-width: 1.178 } 
+		.shp5 { fill: #b0b1b3 } 
+		.shp6 { fill: none;stroke: #b0b1b3;stroke-width: 2.816 } 
+		.shp7 { fill: none;stroke: #b0b1b3;stroke-linecap:round;stroke-linejoin:round;stroke-width: 4.5 } 
+		.txt8 { font-size: 20px;line-height: 20px;fill: #ffffff;font-weight: bold;font-family: "Open Dyslexic" } 
+	</style>
+	<g id="Geo">
+		<path id="&lt;Path&gt;" class="shp0" d="M440 301.02L0 301.02L0 0.83L440 0.83L440 301.02Z" />
+		<g id="&lt;Group&gt;">
+			<path id="&lt;Path&gt;" class="shp1" d="M280.3 139.45C280.3 170.78 254.91 196.18 223.58 196.18C192.25 196.18 166.86 170.78 166.86 139.45C166.86 108.13 192.25 82.73 223.58 82.73C254.91 82.73 280.3 108.13 280.3 139.45Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M253.62 139.45C253.62 170.78 240.17 196.18 223.58 196.18C206.99 196.18 193.54 170.78 193.54 139.45C193.54 108.13 206.99 82.73 223.58 82.73C240.17 82.73 253.62 108.13 253.62 139.45Z" />
+			<path id="&lt;Path&gt;" class="shp2" d="M223.58 109.41C254.91 109.41 280.3 122.86 280.3 139.45C280.3 156.05 254.91 169.5 223.58 169.5C192.25 169.5 166.86 156.05 166.86 139.45C166.86 122.86 192.25 109.41 223.58 109.41Z" />
+			<path id="&lt;Path&gt;" class="shp3" d="M223.58 96.7C252.14 96.7 275.29 106.27 275.29 118.08C275.29 129.88 252.14 139.45 223.58 139.45C195.02 139.45 171.87 129.88 171.87 118.08C171.87 106.27 195.02 96.7 223.58 96.7Z" />
+			<path id="&lt;Path&gt;" class="shp4" d="M223.58 154.48C249.84 154.48 271.12 161.2 271.12 169.5C271.12 177.79 249.84 184.52 223.58 184.52C197.32 184.52 176.04 177.79 176.04 169.5C176.04 161.2 197.32 154.48 223.58 154.48Z" />
+			<path id="&lt;Path&gt;" class="shp5" d="M228.22 77.43C228.22 80.17 226 82.39 223.25 82.39C220.51 82.39 218.29 80.17 218.29 77.43C218.29 74.69 220.51 72.47 223.25 72.47C226 72.47 228.22 74.69 228.22 77.43Z" />
+			<path id="&lt;Path&gt;" class="shp5" d="M228.22 201.48C228.22 204.22 226 206.44 223.25 206.44C220.51 206.44 218.29 204.22 218.29 201.48C218.29 198.74 220.51 196.52 223.25 196.52C226 196.52 228.22 198.74 228.22 201.48Z" />
+			<g id="&lt;Group&gt;">
+				<path id="&lt;Path&gt;" class="shp6" d="M223.58 75.57C188.3 75.57 159.7 104.17 159.7 139.45C159.7 174.74 188.3 203.34 223.58 203.34" />
+				<path id="&lt;Path&gt;" class="shp6" d="" />
+				<path id="&lt;Path&gt;" class="shp6" d="" />
+			</g>
+			<path id="&lt;Path&gt;" class="shp7" d="M223.27 202.27L220.19 218.08" />
+			<path id="&lt;Path&gt;" class="shp1" d="M250.82 218.18C250.82 224.48 237.11 229.58 220.19 229.58C203.28 229.58 189.56 224.48 189.56 218.18C189.56 211.89 203.28 206.79 220.19 206.79C237.11 206.79 250.82 211.89 250.82 218.18Z" />
+		</g>
+		<text id="Geography
+" style="transform: matrix(0.5,0,0,0.5,364.336,14.488)" >
+			<tspan x="4.506" y="15.195" class="txt8">Geography
+</tspan>
+		</text>
+	</g>
+</svg>

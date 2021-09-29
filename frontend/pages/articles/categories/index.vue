@@ -26,8 +26,23 @@ export default Vue.extend({
     const data = await $strapi.graphql({
       query: categsExtra(),
     })
+    const date = new Date()
+    const extra = data.articleCategories.map((el: any) => {
+      const arts = el
+      arts.articles = arts.articles.filter(
+        (a: any) =>
+          (a.future_publish_date === null && a.unpublish_date === null) ||
+          (a.future_publish_date < date.toISOString() &&
+            a.unpublish_date === null) ||
+          (a.future_publish_date === null &&
+            a.unpublish_date > date.toISOString()) ||
+          (a.future_publish_date < date.toISOString() &&
+            a.unpublish_date > date.toISOString())
+      )
+      return arts
+    })
     return {
-      categories: data.articleCategories,
+      categories: extra.flat(1),
     }
   },
 })

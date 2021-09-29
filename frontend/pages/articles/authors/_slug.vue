@@ -45,15 +45,32 @@ export default Vue.extend({
     })
     const author = [...data.users].filter(
       (el) => el.username === route.params.slug
-    )[0]
+    )
+    const date = new Date()
+    const extra = author.map((el: any) => {
+      const arts = el
+      arts.articles = arts.articles.filter(
+        (a: any) =>
+          (a.future_publish_date === null && a.unpublish_date === null) ||
+          (a.future_publish_date < date.toISOString() &&
+            a.unpublish_date === null) ||
+          (a.future_publish_date === null &&
+            a.unpublish_date > date.toISOString()) ||
+          (a.future_publish_date < date.toISOString() &&
+            a.unpublish_date > date.toISOString())
+      )
+      return arts
+    })
+    console.log(extra[0])
     return {
-      author,
+      author: extra[0],
     }
   },
   computed: {
     updatedArticles() {
       const x = []
       this.author.articles.forEach((el: any) => {
+        el.description = el.description ? el.description : el.content.content
         const e = JSON.stringify(el)
         x.push(JSON.parse(formatContentImageUrl(e)))
       })
