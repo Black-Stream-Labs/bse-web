@@ -77,13 +77,13 @@
                 {{ section.section_title }}
               </a>
               <div class="hidden sm:flex sm:flex-col items-start justify-start">
-                <LogoImage
+                <LogoNotextCircle
                   class="w-full"
                   height="300"
                   :color="
                     $store.state.fullColor ? 'var(--background-end)' : 'white'
                   "
-                ></LogoImage>
+                ></LogoNotextCircle>
               </div>
             </div>
           </aside>
@@ -138,7 +138,7 @@
 // @ts-nocheck
 import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
-import LogoImage from '@/components/icons/LogoImage'
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
 import slugify from '@/mixins/slugify.js'
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
@@ -149,7 +149,7 @@ export default Vue.extend({
   name: 'ServicesPage',
   components: {
     Hero,
-    LogoImage,
+    LogoNotextCircle,
     TestimonialsComp,
   },
   mixins: [slugify],

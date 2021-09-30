@@ -55,7 +55,7 @@
               class="
                 flex
                 justify-center
-                align-center
+                items-center
                 text-gray-500
                 dark:text-gray-100
                 focus-within:bg-gray-500 focus-within:text-gray-100

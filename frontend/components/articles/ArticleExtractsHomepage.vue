@@ -61,7 +61,7 @@
         <div class="line-clamp-5" v-html="$md.render(updatedArticleText)"></div>
       </div>
 
-      <div class="flex justify-between align-center flex-grow-1">
+      <div class="flex justify-between items-center flex-grow-1">
         <div class="w-3/4">
           <p v-if="article.article_categories.length > 0" id="categories">
             <span class="text-xs">

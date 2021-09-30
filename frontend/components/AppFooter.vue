@@ -45,22 +45,25 @@
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/about"
-              >About Us</NuxtLink
             >
+              About Us
+            </NuxtLink>
           </li>
           <li class="py-2">
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/services"
-              >Our Services</NuxtLink
             >
+              Our Services
+            </NuxtLink>
           </li>
           <li class="py-2">
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/products"
-              >Our Shop</NuxtLink
             >
+              Our Shop
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -70,22 +73,25 @@
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/privacy-policies"
-              >Privacy Policies</NuxtLink
             >
+              Privacy Policies
+            </NuxtLink>
           </li>
           <li class="py-2">
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/terms-conditions"
-              >Terms and Conditions</NuxtLink
             >
+              Terms and Conditions
+            </NuxtLink>
           </li>
           <li class="py-2">
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/faq"
-              >FAQs</NuxtLink
             >
+              FAQs
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -95,15 +101,17 @@
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/cookie-policy"
-              >Cookie Policies</NuxtLink
             >
+              Cookie Policies
+            </NuxtLink>
           </li>
           <li class="py-2">
             <NuxtLink
               class="p-3 border rounded border-transparent hover:border-white"
               to="/contact"
-              >Contact Us</NuxtLink
             >
+              Contact Us
+            </NuxtLink>
           </li>
         </ul>
       </div>

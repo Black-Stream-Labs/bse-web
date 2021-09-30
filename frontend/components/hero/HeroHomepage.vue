@@ -5,7 +5,9 @@
         <div class="pb-8 mt-auto">
           <div class="mx-auto flex justify-between items-center">
             <div class="title w-2/5">
-              <h1 class="text-2xl md:text-3xl mb-8 mt-16">
+              <h1
+                class="text-3xl md:text-4xl lg:text-5xl mb-8 mt-16 capitalize"
+              >
                 {{ title }}
               </h1>
 
@@ -14,8 +16,8 @@
               </p>
             </div>
 
-            <div class="mb-6 mt-12 w-3/5 hidden md:flex items-end justify-end">
-              <LogoImage width="350" height="350"></LogoImage>
+            <div class="mt-24 w-3/5 hidden md:flex items-end justify-end">
+              <LogoNotextCircle width="300" height="300"></LogoNotextCircle>
             </div>
           </div>
         </div>
@@ -27,11 +29,11 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import LogoImage from '@/components/icons/LogoImage.vue'
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle.vue'
 export default Vue.extend({
   name: 'HeroHomepage',
   components: {
-    LogoImage,
+    LogoNotextCircle,
   },
   props: {
     title: {

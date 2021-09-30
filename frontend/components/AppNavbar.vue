@@ -23,19 +23,20 @@
           <CloseIcon></CloseIcon>
         </button>
       </div>
-      <div class="sm:flex lg:hidden flex items-center justify-between w-1/2">
-        <NuxtLink to="/" class="lg:hidden text-sm">
-          <LogoImage height="50" width="50"></LogoImage>
-        </NuxtLink>
-        <AccesibilityMenu :color="$store.state.fullColor ? 'white' : 'black'">
-        </AccesibilityMenu>
-      </div>
+      <NuxtLink to="/" class="lg:hidden text-sm ml-16" title="HomePage">
+        <LogoNotextCircle height="50" width="50"></LogoNotextCircle>
+      </NuxtLink>
+      <AccesibilityMenu
+        class="lg:hidden text-sm ml-6"
+        :color="$store.state.fullColor ? 'white' : 'black'"
+      >
+      </AccesibilityMenu>
       <!-- Desktop Links -->
       <div
         class="
           hidden
           lg:flex
-          align-center
+          items-center
           justify-between
           text-sm
           lg:w-full
@@ -53,6 +54,7 @@
             items-center
             justify-center
           "
+          title="About us"
         >
           About us
         </NuxtLink>
@@ -66,6 +68,7 @@
             items-center
             justify-center
           "
+          title="Services"
         >
           Services
         </NuxtLink>
@@ -79,6 +82,7 @@
             items-center
             justify-center
           "
+          title="Articles"
         >
           Articles
         </NuxtLink>
@@ -93,6 +97,7 @@
             items-center
             justify-center
           "
+          title="Events"
         >
           Events
         </NuxtLink>
@@ -106,6 +111,7 @@
             items-center
             justify-center
           "
+          title="Safeguarding"
         >
           Safeguarding
         </NuxtLink>
@@ -113,15 +119,17 @@
         <NuxtLink
           to="/"
           class="
+            p-2
             hover:rounded-full hover:bg-gray-400
             dark:hover:bg-gray-700
             flex
             items-center
             justify-center
           "
+          title="Homepage"
         >
           <!-- <transition name="animate-down"> -->
-          <LogoImage height="60" width="65"></LogoImage>
+          <LogoNotextCircle height="60" width="65"></LogoNotextCircle>
           <!-- </transition> -->
         </NuxtLink>
         <NuxtLink
@@ -134,6 +142,7 @@
             items-center
             justify-center
           "
+          title="Shop"
         >
           Shop
         </NuxtLink>
@@ -169,6 +178,7 @@
             hover:text-gray-50
             dark:text-white
           "
+          title="About us"
         >
           About us
         </NuxtLink>
@@ -186,6 +196,7 @@
             hover:text-gray-50
             dark:text-white
           "
+          title="Services"
         >
           Services
         </NuxtLink>
@@ -202,6 +213,7 @@
           hover:text-gray-50
           dark:text-white
         "
+        title="Articles"
       >
         Articles
       </NuxtLink>
@@ -218,6 +230,7 @@
             hover:text-gray-50
             dark:text-white
           "
+          title="Events"
         >
           Events
         </NuxtLink>
@@ -235,6 +248,7 @@
             hover:text-gray-50
             dark:text-white
           "
+          title="Safeguarding"
         >
           Safeguarding
         </NuxtLink>
@@ -252,6 +266,7 @@
             hover:text-gray-50
             dark:text-white
           "
+          title="Shop"
         >
           Shop
         </NuxtLink>
@@ -265,14 +280,14 @@
 // @ts-nocheck
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 export default Vue.extend({
   name: 'AppNavbar',
   components: {
     SnipcartButton: () => import('@/components/SnipcartButton'),
     MenuIcon: () => import('@/components/icons/MenuIcon'),
     CloseIcon: () => import('@/components/icons/CloseIcon'),
-    LogoImage: () => import('@/components/icons/LogoImage'),
+    LogoNotextCircle,
     AccesibilityMenu: () =>
       import('@/components/accessibility/AccesibilityMenu'),
   },

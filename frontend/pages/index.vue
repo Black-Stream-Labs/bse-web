@@ -84,33 +84,200 @@
                     ? 'hover:bg-gray-700'
                     : 'hover:bg-gray-500',
                 ]"
+                @mouseenter="updateVisibility(ind, true)"
+                @mouseleave="updateVisibility(ind, false)"
               >
                 <div
                   class="
                     shadow-lg
+                    relative
                     border border-gray-700
                     dark:border-gray-50
                     p-4
                     flex flex-wrap
                   "
                 >
-                  <img
-                    v-if="section.section_image"
+                  <badger-icon
+                    v-if="ind === 0"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></badger-icon>
+                  <bee-icon
+                    v-if="ind === 1"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></bee-icon>
+                  <butterfly-icon
+                    v-if="ind === 2"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></butterfly-icon>
+                  <fish-icon
+                    v-if="ind === 3"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></fish-icon>
+                  <stag-icon
+                    v-if="ind === 4"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></stag-icon>
+                  <fox-icon
+                    v-if="ind === 5"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></fox-icon>
+                  <bee-icon
+                    v-if="ind === 6"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></bee-icon>
+                  <owl-icon
+                    v-if="ind === 7"
+                    :width="150"
+                    :height="150"
+                    :color="
+                      $store.state.fullColor
+                        ? $store.state.fullColor.name === 'tgreen'
+                          ? '#676B3B'
+                          : $store.state.fullColor.name === 'tpurple'
+                          ? '#673B6B'
+                          : $store.state.fullColor.name === 'tblue'
+                          ? '#3B4F6C'
+                          : $store.state.fullColor.name === 'tbrown'
+                          ? '#7F6127'
+                          : ''
+                        : $colorMode.preference === 'dark'
+                        ? 'white'
+                        : 'black'
+                    "
+                  ></owl-icon>
+                  <!-- <img
+                    v-if="section.section_image && section.visible"
                     loading="lazy"
                     :src="section.section_image.url"
-                    :alt="`${section.title} image`"
-                    class="image p-4"
-                    width="80"
-                    height="80"
-                  />
+                    :alt="`${section.section_title} image`"
+                    class="
+                      image
+                      p-4
+                      absolute
+                      top-5
+                      left-auto
+                      right-auto
+                      bottom-auto
+                    "
+                    width="120"
+                    height="120"
+                  /> -->
                   <div
                     class="px-4"
                     v-html="$md.render(section.section_content)"
                   ></div>
-                  <!-- <div
-                    class="px-4 line-clamp-3 overflow-hidden"
-                    v-html="$md.render(section.section_content)"
-                  ></div> -->
                   <!-- <div class="text-right block w-full py-2">
                     <NuxtLink
                       :to="`/services/#${$slugify(
@@ -251,6 +418,13 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
+import ButterflyIcon from '../components/icons/ButterflyIcon.vue'
+import FishIcon from '../components/icons/FishIcon.vue'
+import StagIcon from '../components/icons/StagIcon.vue'
+import FoxIcon from '../components/icons/FoxIcon.vue'
+import BeeIcon from '../components/icons/BeeIcon.vue'
+import OwlIcon from '../components/icons/OwlIcon.vue'
+import BadgerIcon from '../components/icons/BadgerIcon.vue'
 import Hero from '@/components/hero/Hero'
 import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
 import ArticleExtractsHomepage from '@/components/articles/ArticleExtractsHomepage'
@@ -267,6 +441,13 @@ export default Vue.extend({
     Hero,
     ArticleExtractsHomepage,
     TestimonialsComp,
+    FishIcon,
+    ButterflyIcon,
+    BeeIcon,
+    BadgerIcon,
+    FoxIcon,
+    OwlIcon,
+    StagIcon,
   },
   mixins: [slugify],
 
@@ -314,6 +495,7 @@ export default Vue.extend({
       this.page.sections.forEach((el: any) => {
         const e = JSON.stringify(el)
         x.push(JSON.parse(formatContentImageUrl(e)))
+        x.forEach((e) => (e.visible = false))
       })
       return x
     },
@@ -340,6 +522,12 @@ export default Vue.extend({
         x.push(JSON.parse(formatContentImageUrl(e)))
       })
       return x
+    },
+  },
+  methods: {
+    updateVisibility(ind: number, t: boolean) {
+      console.log(ind, t, 'visbile ?')
+      this.sectionUpdated[ind].visible = t
     },
   },
 })

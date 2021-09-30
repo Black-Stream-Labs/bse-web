@@ -1,0 +1,38 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 512 512"
+    :height="height"
+    :width="width"
+  >
+    <path
+      :fill="color"
+      d="m223.79 164.84 27.63-27.19v80.22l-27.63-53.03Zm63.35 0-27.63-27.19v80.22l27.63-53.03ZM54 102l160.88 61.05 25.4 49.48-109.63 13.36-61.05-30.75L54 102Zm403.82 0-160.88 61.05-25.4 49.48 109.63 13.36 61.05-30.75 15.6-93.14ZM131.54 231.9l112.3-13.36 8.03 16.5-88.7 175.14-31.63-92.7V231.9Zm248.74 0-112.3-13.36-8.03 16.5 88.7 175.14 31.63-92.7V231.9Zm-99.16 58.47-25.02 50.58-25.4-51.15 25.4-51.17 25.02 51.75Z"
+    />
+  </svg>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'ButterflyIcon',
+  props: {
+    color: {
+      type: String,
+      default: 'white',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
+})
+</script>
+
+<style scoped></style>

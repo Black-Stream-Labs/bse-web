@@ -2,7 +2,7 @@
   <div class="md:pl-2 flex flex-wrap capitalize my-4">
     <div class="tab w-full overflow-hidden">
       <button
-        class="flex justify-between align-center p-4 border w-full font-bold"
+        class="flex justify-between items-center p-4 border w-full font-bold"
         @click="openedFilters = !openedFilters"
       >
         Categories

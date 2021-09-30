@@ -54,13 +54,13 @@
               sm:col-span-4
             "
           >
-            <LogoImage
+            <LogoNotextCircle
               width="600"
               height="600"
               :color="
                 $store.state.fullColor ? 'var(--background-end)' : 'white'
               "
-            ></LogoImage>
+            ></LogoNotextCircle>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
 import Vue from 'vue'
 import Hero from '@/components/hero/Hero'
 import TestimonialsComp from '@/components/testimonials/TestimonialsComp'
-import LogoImage from '@/components/icons/LogoImage'
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { termsConditionsQuery } from '@/apollo/queries/pages/termsConditions.js'
@@ -102,7 +102,7 @@ export default Vue.extend({
   components: {
     Hero,
     TestimonialsComp,
-    LogoImage,
+    LogoNotextCircle,
   },
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: termsConditionsQuery() })

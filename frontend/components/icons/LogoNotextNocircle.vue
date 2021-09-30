@@ -19,7 +19,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'LogoImage',
+  name: 'LogoNotextNocircle',
   props: {
     color: {
       type: String,

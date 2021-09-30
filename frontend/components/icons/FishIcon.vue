@@ -1,0 +1,42 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.2"
+    viewBox="0 0 255 224"
+    :width="width"
+    :height="height"
+  >
+    <g :fill="color">
+      <path
+        d="m170.56 103.96 41.98-41.98-49.65-49.65-91.64 91.63 91.64 91.63 49.65-49.65-41.98-41.98Z"
+      />
+      <path
+        d="m215.09 143.39-39.43-39.43 39.43-39.43 39.43 39.43-39.43 39.43ZM160.65 10.44l-42.03 42.31L92.14.07l68.51 10.37Zm-42.06 145 42.32 42.03-52.68 26.48 10.36-68.51Zm-48.87-53.96 32.47-32.45-36.7-8.96 4.23 41.41ZM62.7 60.07l8.06 81.53-70.81-26.63 62.75-54.9Z"
+      />
+    </g>
+  </svg>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'FishIcon',
+  props: {
+    color: {
+      type: String,
+      default: 'white',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
+})
+</script>
+
+<style scoped></style>

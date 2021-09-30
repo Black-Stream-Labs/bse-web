@@ -112,7 +112,7 @@
                 ></div>
               </div>
 
-              <div class="flex justify-between align-center">
+              <div class="flex justify-between items-center">
                 <p v-if="art.article_categories.length > 0" id="categories">
                   <span class="text-xs">
                     Categories:

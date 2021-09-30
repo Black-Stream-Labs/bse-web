@@ -1,0 +1,43 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.2"
+    viewBox="0 0 278 50"
+    :height="height"
+    :width="width"
+  >
+    <g :fill="color">
+      <path
+        d="m240.63 22.66-27.42-5.9-35.06 32.62 54.15-9.02 8.33-17.7Zm-38.7 1.39L174.6 49.38l-38.79-37.31 47.12-3.9 19 15.88Zm-69.24-10.94 17.96 18.49-24.47 12.49h-38l44.51-30.98Zm-30.98 17.96L82.45 44.09l-36.44-22.9 18.48-7.04 37.22 16.92Zm-49.92-3.82L31.95 42.01l-9.89-2.61 21.39-17.61 8.34 5.46Zm-29.73 7.99-2.08 3.38L.19 26.91l21.87 8.33Z"
+      />
+      <path
+        d="m57.98 14.15-15.36 5.21-17.7 15.1 14.84-21.35 18.22 1.04Zm114.27-7.46-40.6 2.78-26.9 19.65-5.9-2.21L127.66.79l44.59 5.9Zm71.07-2.17-30.85 9.63-8.07 8.07-5.33-4.03 10.32-11.06 33.93-2.61Z"
+      />
+      <path d="m252.43 3.61-35.4 11.35 53.49 11.56 7.29-6.9-25.38-16.01Z" />
+    </g>
+  </svg>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'SnakeIcon',
+  props: {
+    color: {
+      type: String,
+      default: 'white',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
+})
+</script>
+
+<style scoped></style>

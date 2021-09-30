@@ -1,0 +1,42 @@
+<template>
+  <svg
+    :height="height"
+    :width="width"
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.2"
+    viewBox="0 0 234 149"
+  >
+    <g :fill="color">
+      <path
+        d="m214.17 99.23-57.78-23.25-80.67-5.28 78.91 77.85h38.75l20.79-49.32Zm-63.77 49.32L72.54 70.7l-53.19 42.98 20.08 34.87H150.4ZM48.06 87.17l-29.95 23.42L.5 70.26l47.56 16.91Zm166.11 9.07L157.8 73.25l-15.85-47.3 29.33 25.9 20.34-1.59 26.69 40.16-4.14 5.82Z"
+      />
+      <path
+        d="m196.11 46.96-23.12 1.85-31.04-26.16L164.54.59l31.57 15.59v30.78Zm2.51-23.78V46.7l34.88-2.12-34.88-21.4Z"
+      />
+    </g>
+  </svg>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'DuckIcon',
+  props: {
+    color: {
+      type: String,
+      default: 'white',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
+})
+</script>
+
+<style scoped></style>

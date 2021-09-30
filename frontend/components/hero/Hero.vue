@@ -12,7 +12,9 @@
         <div class="pb-8 mt-auto">
           <div class="mx-auto flex justify-between items-center">
             <div class="title w-2/5">
-              <h1 class="text-2xl md:text-3xl mb-8 mt-16 capitalize">
+              <h1
+                class="text-3xl md:text-4xl lg:text-5xl mb-8 mt-16 capitalize"
+              >
                 {{ title }}
               </h1>
 
@@ -23,27 +25,21 @@
 
             <div
               v-if="headerimage"
-              class="
-                mb-6
-                mt-12
-                w-3/5
-                hidden
-                md:flex
-                justify-center
-                align-center
-              "
+              class="mt-24 w-3/5 hidden md:flex justify-end items-end"
             >
               <img
                 loading="lazy"
                 :src="$getStrapiMedia(headerimage)"
                 :alt="`${title} image`"
+                width="300"
+                height="300"
               />
             </div>
             <div
               v-else
-              class="mb-6 mt-12 w-3/5 hidden md:flex justify-end align-center"
+              class="mt-24 w-3/5 hidden md:flex justify-end items-end"
             >
-              <LogoImage width="200" height="200" />
+              <LogoNotextCircle width="300" height="300" />
             </div>
           </div>
         </div>
@@ -56,12 +52,12 @@
 // @ts-nocheck
 import Vue from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
-import LogoImage from '@/components/icons/LogoImage'
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 
 export default Vue.extend({
   name: 'HeroComponent',
   components: {
-    LogoImage,
+    LogoNotextCircle,
   },
   mixins: [imageUrlManipulation],
 

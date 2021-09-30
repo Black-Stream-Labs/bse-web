@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-row flex-wrap">
     <div class="hidden md:block w-1/4 p-4 text-right">
-      <LogoImage width="150" height="150"></LogoImage>
+      <LogoNotextCircle
+        color="white"
+        width="150"
+        height="150"
+      ></LogoNotextCircle>
     </div>
     <div
       id="carousel"
@@ -99,12 +103,12 @@
 // @ts-nocheck
 import Vue from 'vue'
 import QuotesIcon from '@/components/icons/QuotesIcon'
-import LogoImage from '@/components/icons/LogoImage'
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 export default Vue.extend({
   name: 'TestimonialsComp',
   components: {
     QuotesIcon,
-    LogoImage,
+    LogoNotextCircle,
   },
   props: {
     testimonials: {

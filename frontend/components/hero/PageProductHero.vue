@@ -7,12 +7,14 @@
         : ''
     "
   >
-    <div class="container max-w-5xl mx-auto px-4 min-h-1/4">
+    <div class="container max-w-5xl mx-auto px-4 min-h-1/2">
       <div class="md:block">
         <div class="pb-8 mt-auto">
           <div class="mx-auto flex justify-between items-center">
             <div class="title w-2/5">
-              <h1 class="text-2xl md:text-3xl mb-8 mt-16 capitalize">
+              <h1
+                class="text-3xl md:text-4xl lg:text-5xl mb-8 mt-16 capitalize"
+              >
                 {{ product.product_name }}
               </h1>
             </div>
@@ -20,8 +22,7 @@
             <div
               v-if="selectedImage"
               class="
-                mb-6
-                mt-12
+                mt-24
                 w-3/5
                 hidden
                 md:grid
@@ -87,9 +88,9 @@
             </div>
             <div
               v-else
-              class="mb-6 mt-12 w-3/5 hidden md:flex justify-end align-center"
+              class="mt-24 w-3/5 hidden md:flex justify-end items-end"
             >
-              <LogoImage width="200" height="200" />
+              <LogoNotextCircle color="white" width="150" height="150" />
             </div>
           </div>
         </div>
@@ -102,12 +103,12 @@
 // @ts-nocheck
 import Vue from 'vue'
 import imageUrlManipulation from '@/mixins/updateImageUrl.js'
-import LogoImage from '@/components/icons/LogoImage'
+import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 
 export default Vue.extend({
   name: 'PageProductHero',
   components: {
-    LogoImage,
+    LogoNotextCircle,
   },
   mixins: [imageUrlManipulation],
   props: {
