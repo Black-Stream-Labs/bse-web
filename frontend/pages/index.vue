@@ -372,8 +372,8 @@
                     :src="section.section_image.url"
                     :alt="`${section.title} image`"
                     class="image p-4"
-                    width="80"
-                    height="80"
+                    width="120"
+                    height="120"
                   />
                   <div
                     class="px-4 line-clamp-3 overflow-hidden"
