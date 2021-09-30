@@ -79,7 +79,11 @@ export default Vue.extend({
   watch: {
     '$route.query': {
       handler(value) {
-        if (value.q) {
+        if (value.sort) {
+          this.showMainCategs = false
+          this.showSecondaryCategs = false
+          this.searchProducts()
+        } else if (value.q) {
           this.showMainCategs = false
           this.showSecondaryCategs = false
           this.searchProducts()
@@ -101,13 +105,13 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.$root.$on('clearProductFilters', () => {
-      this.$router.push('/products')
-      this.$nextTick(() => {
-        this.showMainCategs = true
-        this.showSecondaryCategs = true
-      })
-    })
+    // this.$root.$on('clearProductFilters', () => {
+    //   this.$router.push('/products')
+    //   this.$nextTick(() => {
+    //     this.showMainCategs = true
+    //     this.showSecondaryCategs = true
+    //   })
+    // })
     this.$root.$on('updatecategs', (data: any) => {
       if (data.secondary) {
         this.showMainCategs = false
@@ -119,14 +123,26 @@ export default Vue.extend({
     })
     this.$root.$on('updateFromSidebar', async (data: unknown) => {
       await this.updateQuery(data)
+      // await this.searchProducts()
       this.showMainCategs = true
       this.showSecondaryCategs = false
-      await this.searchProducts()
     })
     // this.$root.$on('filtersUpdated', async (data: unknown) => {
     //   await this.updateQuery(data)
     //   await this.searchProducts()
     // })
+    this.$root.$on('noSortingNeeded', async () => {
+      await this.updateQuery({ sort: null })
+      await this.searchProducts()
+      this.showSecondaryCategs = false
+      this.showMainCategs = true
+    })
+    this.$root.$on('sortBy', async (data: any) => {
+      await this.updateQuery(data)
+      await this.searchProducts()
+      this.showSecondaryCategs = false
+      this.showMainCategs = false
+    })
   },
   methods: {
     searchProducts() {
@@ -167,6 +183,31 @@ export default Vue.extend({
                 ])
               }
             }
+            if (queryType === 'sort') {
+              switch (query.sort) {
+                case 'priceAscending':
+                  queryEl.push([`_sort`, 'price:ASC'])
+                  break
+
+                case 'priceDescending':
+                  queryEl.push([`_sort`, 'price:DESC'])
+                  break
+                case 'nameAscending':
+                  queryEl.push([`_sort`, 'product_name:ASC'])
+
+                  break
+                case 'nameDescending':
+                  queryEl.push([`_sort`, 'product_name:DESC'])
+
+                  break
+                case 'onlyDiscounts':
+                  queryEl.push([`DiscountPercentage_null`, 'false'])
+                  break
+
+                default:
+                  break
+              }
+            }
             // if (queryType === 'product_filter') {
             //   if (
             //     decodeURIComponent(query.product_filter).split(',').length > 1
@@ -199,7 +240,7 @@ export default Vue.extend({
         Object.keys(updatedQuery).forEach((key) => {
           delete updatedQuery[key]
         })
-        this.$root.$emit('clearProductFilters')
+        // this.$root.$emit('clearProductFilters')
       } else {
         const obj =
           typeof keyOrObj === 'string' ? { [keyOrObj]: value } : keyOrObj

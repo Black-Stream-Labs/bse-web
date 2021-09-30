@@ -182,7 +182,7 @@ export default Vue.extend({
         Object.keys(updatedQuery).forEach((key) => {
           delete updatedQuery[key]
         })
-        this.$root.$emit('clearProductFilters')
+        // this.$root.$emit('clearProductFilters')
       } else {
         const obj =
           typeof keyOrObj === 'string' ? { [keyOrObj]: value } : keyOrObj

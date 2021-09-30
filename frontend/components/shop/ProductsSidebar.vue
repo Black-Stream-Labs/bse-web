@@ -70,12 +70,12 @@
           "
           placeholder="Select Sortation"
         >
-          <option value="null" selected>Select Sortation</option>
+          <option :value="null" selected>Select Sortation</option>
           <option value="priceDescending">By Price High to Low</option>
           <option value="priceAscending">By Price Low to High</option>
           <option value="nameDescending">By Name A - Z</option>
           <option value="nameAscending">By Name Z - A</option>
-          <option value="onlyDiscounts">Only Discounted Products</option>
+          <!-- <option value="onlyDiscounts">Only Discounted Products</option> -->
         </select>
         <div
           class="
@@ -161,7 +161,8 @@
         :disabled="
           !$route.query.q &&
           !$route.query.main_categ &&
-          !$route.query.secondary_categ
+          !$route.query.secondary_categ &&
+          !$route.query.sort
         "
         :class="[
           $store.state.fullColor
@@ -183,7 +184,7 @@
             ? 'cursor-not-allowed'
             : 'cursor-pointer',
         ]"
-        @click="updateSearch('show_all')"
+        @click.prevent="updateSearch('show_all')"
       >
         Reset Filters
       </button>
@@ -206,26 +207,26 @@ export default Vue.extend({
   data(comp: unknown) {
     return {
       searchInputValue: comp.$route.query.q || null,
-      products: [],
       filtersAndCategs: null,
-      sortationFilter: null,
+      sortationFilter: comp.$route.query.sort || null,
     }
   },
   watch: {
     sortationFilter(newValue, oldValue) {
       if (newValue === 'null') {
         this.$root.$emit('noSortingNeeded')
+        this.sortationFilter = null
       }
       if (newValue !== oldValue) {
-        this.$root.$emit('sortBy', newValue)
+        this.$root.$emit('sortBy', { sort: newValue })
       }
     },
   },
   mounted() {
-    this.$root.$on('clearProductFilters', () => {
-      this.searchInputValue = null
-      this.sortationFilter = null
-    })
+    // this.$root.$on('clearProductFilters', () => {
+    //   this.searchInputValue = null
+    //   this.sortationFilter = null
+    // })
     // this.$root.$on('updateFiltersCategories', (data) => {
     //   this.filtersAndCategs = data
     // })
@@ -238,6 +239,7 @@ export default Vue.extend({
       if (data === 'show_all') {
         this.$root.$emit('updateFromSidebar', data)
         this.searchInputValue = null
+        this.sortationFilter = null
       } else if (this.searchInputValue && this.searchInputValue.length > 2) {
         this.$root.$emit('updateFromSidebar', { q: this.searchInputValue })
       } else {
