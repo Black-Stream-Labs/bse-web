@@ -10,8 +10,16 @@
     <div class="container max-w-5xl mx-auto px-4 min-h-1/2">
       <div class="md:block">
         <div class="pb-8 mt-auto">
-          <div class="mx-auto flex justify-between items-center">
-            <div class="title w-2/5">
+          <div
+            class="
+              mx-auto
+              flex flex-col
+              md:flex-row
+              justify-between
+              items-center
+            "
+          >
+            <div class="title w-full md:w-2/5">
               <h1
                 class="text-3xl md:text-4xl lg:text-5xl mb-8 mt-16 capitalize"
               >
@@ -22,24 +30,35 @@
             <div
               v-if="selectedImage"
               class="
-                mt-24
-                w-3/5
-                hidden
-                md:grid
-                grid-cols-4
+                md:mt-24
+                w-full
+                md:w-3/5
+                flex flex-col
+                md:grid md:grid-cols-4
                 space-y-2
                 gap-4
-                grid-rows-3
+                md:grid-rows-2
               "
             >
-              <div class="w-full col-span-4 row-span-2 overflow-hidden">
+              <div
+                class="
+                  w-full
+                  col-span-4
+                  row-span-1
+                  overflow-hidden
+                  flex flex-col
+                  md:flex-row
+                  items-end
+                  justify-end
+                "
+              >
                 <img
-                  height="450"
+                  height="400"
                   loading="lazy"
-                  class="object-cover"
+                  class="object-fit"
                   :src="$getStrapiMedia(selectedImage)"
                   :alt="`${product.product_name} image`"
-                  style="height: 450px"
+                  style="height: 400px"
                 />
               </div>
               <div
@@ -52,7 +71,14 @@
 
                 <section
                   id="photos"
-                  class="my-5 grid grid-cols-1 md:grid-cols-4 gap-4"
+                  class="
+                    my-5
+                    flex flex-wrap
+                    md:grid
+                    grid-cols-1
+                    md:grid-cols-4
+                    gap-4
+                  "
                 >
                   <button
                     class="hover:opacity-75"
@@ -62,7 +88,8 @@
                     <img
                       loading="lazy"
                       height="36"
-                      class="w-full h-36 object-cover"
+                      width="36"
+                      class="w-full h-36 object-fit"
                       :src="$getStrapiMedia(product.product_main_image.url)"
                       :alt="product.product_name"
                     />
@@ -77,8 +104,13 @@
                       <img
                         loading="lazy"
                         height="36"
-                        class="w-full h-36 object-cover"
-                        :src="$getStrapiMedia(image.formats.small.url)"
+                        width="36"
+                        class="w-full h-36 object-fit"
+                        :src="
+                          $getStrapiMedia(
+                            image.formats ? image.formats.small.url : image.url
+                          )
+                        "
                         :alt="image.name.split('.')[0]"
                       />
                     </button>
