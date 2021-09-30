@@ -214,28 +214,26 @@ export default Vue.extend({
   watch: {
     sortationFilter(newValue, oldValue) {
       if (newValue === 'null') {
-        console.log('reset sortation but keep other things')
+        this.$root.$emit('noSortingNeeded')
       }
       if (newValue !== oldValue) {
-        console.log(newValue)
-        console.log(
-          'start sortation with all the other things and hide categories'
-        )
+        this.$root.$emit('sortBy', newValue)
       }
     },
   },
   mounted() {
     this.$root.$on('clearProductFilters', () => {
       this.searchInputValue = null
+      this.sortationFilter = null
     })
-    this.$root.$on('updateFiltersCategories', (data) => {
-      this.filtersAndCategs = data
-    })
+    // this.$root.$on('updateFiltersCategories', (data) => {
+    //   this.filtersAndCategs = data
+    // })
   },
   methods: {
-    updateSearchWithFilters() {
-      this.$root.$emit('filtersUpdated', this.filtersAndCategs)
-    },
+    // updateSearchWithFilters() {
+    //   this.$root.$emit('filtersUpdated', this.filtersAndCategs)
+    // },
     updateSearch(data: string) {
       if (data === 'show_all') {
         this.$root.$emit('updateFromSidebar', data)
