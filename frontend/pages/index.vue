@@ -450,7 +450,7 @@ import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { homePageQuery } from '@/apollo/queries/pages/homepage.js'
 import { testimonialsExtracts } from '@/apollo/queries/testimonials/testimonialsExtracts.js'
 import { servicesQuery } from '@/apollo/queries/pages/services.js'
-
+const qs = require('qs')
 export default Vue.extend({
   name: 'SitePageTemplate',
   components: {
@@ -471,9 +471,29 @@ export default Vue.extend({
   async asyncData({ $strapi }) {
     const data = await $strapi.graphql({ query: homePageQuery() })
     const services = await $strapi.graphql({ query: servicesQuery() })
-    const arts = await $strapi.find('articles', {
-      featured: true,
+    const date = new Date()
+    const queryEl = []
+    queryEl.push({
+      _or: [
+        [{ future_publish_date_null: true }, { unpublish_date_null: true }],
+        [
+          { future_publish_date_lt: date.toISOString() },
+          { unpublish_date_null: true },
+        ],
+        [
+          { future_publish_date_null: true },
+          { unpublish_date_gt: date.toISOString() },
+        ],
+        [
+          { future_publish_date_lt: date.toISOString() },
+          { unpublish_date_gt: date.toISOString() },
+        ],
+      ],
+      _and: [{ featured: true }],
     })
+    const updatedQ = qs.stringify({ _where: queryEl })
+
+    const arts = await $strapi.find('articles', updatedQ)
     const articles = arts
     // .filter(
     //       (el: any) =>
