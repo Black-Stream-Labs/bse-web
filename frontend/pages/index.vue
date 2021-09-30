@@ -113,10 +113,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></badger-icon>
                   <bee-icon
@@ -135,10 +135,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></bee-icon>
                   <butterfly-icon
@@ -157,10 +157,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></butterfly-icon>
                   <fish-icon
@@ -179,10 +179,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></fish-icon>
                   <stag-icon
@@ -201,10 +201,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></stag-icon>
                   <fox-icon
@@ -223,10 +223,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></fox-icon>
                   <bee-icon
@@ -245,10 +245,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></bee-icon>
                   <owl-icon
@@ -267,10 +267,10 @@
                           ? '#3B4F6C'
                           : $store.state.fullColor.name === 'tbrown'
                           ? '#7F6127'
-                          : ''
+                          : 'white'
                         : $colorMode.preference === 'dark'
                         ? 'white'
-                        : 'black'
+                        : 'white'
                     "
                   ></owl-icon>
                   <!-- <img
@@ -544,7 +544,6 @@ export default Vue.extend({
   },
   methods: {
     updateVisibility(ind: number, t: boolean) {
-      console.log(ind, t, 'visbile ?')
       this.sectionUpdated[ind].visible = t
     },
   },
