@@ -38,7 +38,9 @@
           <img
             v-if="item.image"
             loading="lazy"
-            class="w-full transition duration-700 ease-in-out"
+            height="60"
+            width="60"
+            class="w-full transition duration-700 ease-in-out h-60"
             :src="$getStrapiMedia(item.image.url)"
             :alt="item.categ_name"
           />

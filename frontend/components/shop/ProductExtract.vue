@@ -26,7 +26,16 @@
         >
           <img
             loading="lazy"
-            class="w-full"
+            class="
+              w-full
+              transition
+              duration-700
+              ease-in-out
+              h-60
+              object-contain
+            "
+            height="60"
+            width="60"
             :src="$getStrapiMedia(product.product_main_image.url)"
             :alt="product.product_name"
           />

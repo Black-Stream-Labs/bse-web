@@ -4,8 +4,14 @@
     <section class="section">
       <div class="container max-w-5xl mx-auto py-10 px-4">
         <div class="my-12">
-          <div class="grid md:grid-flow-col md:grid-cols-3 gap-4">
-            <main class="col-span-2 min-h-1/2">
+          <div
+            class="
+              grid grid-flow-row-dense
+              md:grid-flow-col md:grid-cols-3
+              gap-4
+            "
+          >
+            <main class="row-start-2 md:row-start-1 md:col-span-2 min-h-1/2">
               <ProductMainCategories
                 v-show="!loading && showMainCategs && !showSecondaryCategs"
                 :update-query="updateQuery"

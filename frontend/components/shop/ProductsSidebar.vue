@@ -1,8 +1,8 @@
 <template>
-  <aside class="col-span-1">
+  <aside class="row-start-1 col-span-1">
     <div id="sidebar-search" class="mb-4">
-      <span class="mb-2 font-bold"> Search Products: </span>
-      <form class="md:pl-2 flex no-padding" @submit.prevent="updateSearch">
+      <span class="mb-4 font-bold"> Search Products: </span>
+      <form class="flex no-padding" @submit.prevent="updateSearch">
         <label for="searchinput" class="sr-only"> Search products </label>
         <input
           id="searchinput"
@@ -51,11 +51,58 @@
         </button>
       </form>
     </div>
+    <div>
+      <label for="#sortation" class="mb-4 font-bold">Sort Products by: </label>
+      <div class="relative inline-block w-full text-gray-700">
+        <select
+          id="sortation"
+          v-model="sortationFilter"
+          class="
+            w-full
+            h-10
+            pl-2
+            pr-6
+            text-base
+            placeholder-gray-500
+            border
+            appearance-none
+            focus:shadow-outline
+          "
+          placeholder="Select Sortation"
+        >
+          <option value="null" selected>Select Sortation</option>
+          <option value="priceDescending">By Price High to Low</option>
+          <option value="priceAscending">By Price Low to High</option>
+          <option value="nameDescending">By Name A - Z</option>
+          <option value="nameAscending">By Name Z - A</option>
+          <option value="onlyDiscounts">Only Discounted Products</option>
+        </select>
+        <div
+          class="
+            absolute
+            inset-y-0
+            right-0
+            flex
+            items-center
+            px-2
+            pointer-events-none
+          "
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+            <path
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
     <!-- <div id="sidebar-categs" class="mb-4">
       <ProductSidebarCategories></ProductSidebarCategories>
       <ProductFilters></ProductFilters>
     </div> -->
-    <div class="pt-5 text-center">
+    <div class="pt-5 text-center mb-10">
       <!-- <button
         class="
           mx-4
@@ -161,7 +208,21 @@ export default Vue.extend({
       searchInputValue: comp.$route.query.q || null,
       products: [],
       filtersAndCategs: null,
+      sortationFilter: null,
     }
+  },
+  watch: {
+    sortationFilter(newValue, oldValue) {
+      if (newValue === 'null') {
+        console.log('reset sortation but keep other things')
+      }
+      if (newValue !== oldValue) {
+        console.log(newValue)
+        console.log(
+          'start sortation with all the other things and hide categories'
+        )
+      }
+    },
   },
   mounted() {
     this.$root.$on('clearProductFilters', () => {
