@@ -102,7 +102,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -122,7 +124,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -142,7 +146,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -162,7 +168,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -182,7 +190,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -202,7 +212,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -222,7 +234,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -242,7 +256,9 @@
                     :width="150"
                     :height="150"
                     :color="
-                      $store.state.fullColor
+                      section.visible
+                        ? 'white'
+                        : $store.state.fullColor
                         ? $store.state.fullColor.name === 'tgreen'
                           ? '#676B3B'
                           : $store.state.fullColor.name === 'tpurple'
@@ -467,9 +483,20 @@ export default Vue.extend({
     const testimonials = await $strapi.graphql({
       query: testimonialsExtracts(),
     })
+    let sectionUpdated = []
+    const x = []
+    if (data.homePage.sections) {
+      data.homePage.sections.forEach((el: any) => {
+        const e = JSON.stringify(el)
+        x.push(JSON.parse(formatContentImageUrl(e)))
+        x.forEach((e) => (e.visible = false))
+      })
+    }
+    sectionUpdated = x
     return {
       page: data.homePage,
       articles,
+      sectionUpdated,
       services: services.service.sections,
       testimonials: testimonials.testimonials,
     }
@@ -489,16 +516,7 @@ export default Vue.extend({
         return null
       }
     },
-    sectionUpdated() {
-      if (!this.page.sections) return
-      const x = []
-      this.page.sections.forEach((el: any) => {
-        const e = JSON.stringify(el)
-        x.push(JSON.parse(formatContentImageUrl(e)))
-        x.forEach((e) => (e.visible = false))
-      })
-      return x
-    },
+
     servicesUpdated() {
       if (!this.services && this.services.length === 0) return
       const x = []
