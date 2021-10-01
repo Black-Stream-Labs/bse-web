@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mail_subscriptions",
+  "info": {
+    "name": "MailSubscription"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subscriber_email": {
+      "type": "email",
+      "unique": true
+    }
+  }
+}

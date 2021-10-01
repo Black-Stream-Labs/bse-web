@@ -39,6 +39,7 @@
     "nuxt": "^2.15.8",
     "remove": "^0.1.5",
     "tailwindcss-dark-mode": "^1.1.7",
+    "vee-validate": "^3.4.13",
     "vue-apollo": "^3.0.7",
     "vue-cal": "^3.10.1",
     "vue-flatpickr-component": "^9.0.5",

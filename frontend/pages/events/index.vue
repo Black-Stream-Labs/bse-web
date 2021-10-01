@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Hero
+    <HeroEventsComponent
       v-if="page"
       :title="page.title"
       :subtitle="page.subtitle"
-      :headerimage="updatedHeaderIMage"
-    ></Hero>
+    ></HeroEventsComponent>
     <section v-if="updatedMotto" class="section py-24">
       <div class="container max-w-3xl mx-auto px-4 py-10 text-center">
         <div v-html="$md.render(updatedMotto)" />
       </div>
     </section>
     <section class="section">
-      <div class="container max-w-5xl mx-auto px-4">
+      <div v-if="updatedEvents" class="container max-w-5xl mx-auto px-4">
         <div class="grid grid-cols-12">
           <form
             class="
@@ -138,7 +137,7 @@
             </a>
           </div>
         </div>
-        <div v-if="updatedEvents" class="grid grid-cols-12 gap-4 py-5">
+        <div class="grid grid-cols-12 gap-4 py-5">
           <!-- events -->
           <div
             v-for="(event, id) in updatedEvents"
@@ -270,6 +269,155 @@
           </div>
         </div>
       </div>
+      <div v-else class="container max-w-5xl mx-auto px-4">
+        <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+          <form @submit.prevent="handleSubmit(subscribeUser)">
+            <ValidationProvider
+              v-slot="{ errors }"
+              vid="email"
+              name="Email"
+              :rules="{ required: true, email: true }"
+              class="block w-full lg:w-2/3 pb-5"
+            >
+              <label class="block w-full lg:w-2/3 pb-5">
+                <span class="text-gray-700 dark:text-white"
+                  >Subscribe to our newsletter</span
+                >
+                <input
+                  id="email"
+                  v-model="subscriberEmail"
+                  type="text"
+                  placeholder="Email"
+                  class="form-input mt-1 block w-full"
+                />
+                <span class="text-sm text-red-700 italic bold">
+                  {{ errors[0] }}
+                </span>
+              </label>
+            </ValidationProvider>
+
+            <div class="w-full">
+              <button
+                type="submit"
+                class="
+                  w-1/4
+                  py-4
+                  border border-gray-100
+                  text-gray-100
+                  flex
+                  place-items-center
+                  justify-center
+                  dark:bg-gray-700 dark:text-gray-300
+                "
+                :disabled="subscriberEmail === null"
+                :class="[
+                  subscriberEmail === null
+                    ? 'cursor-not-allowed'
+                    : 'cursor-pointer',
+                  $store.state.fullColor
+                    ? $store.state.fullColor.name === 'tgreen'
+                      ? 'bg-tgreen '
+                      : $store.state.fullColor.name === 'tpurple'
+                      ? 'bg-tpurple'
+                      : $store.state.fullColor.name === 'tblue'
+                      ? 'bg-tblue'
+                      : $store.state.fullColor.name === 'tbrown'
+                      ? 'bg-tbrown'
+                      : ''
+                    : $colorMode.preference === 'dark'
+                    ? 'bg-gray-700'
+                    : 'bg-gray-500',
+                ]"
+              >
+                Subscribe
+              </button>
+            </div>
+          </form>
+        </ValidationObserver>
+        <div
+          v-if="loading"
+          class="
+            overflow-x-hidden overflow-y-auto
+            fixed
+            inset-0
+            z-50
+            outline-none
+            focus:outline-none
+            justify-center
+            items-center
+            flex
+          "
+        >
+          <div class="relative w-auto my-6 mx-auto max-w-sm">
+            <!--content-->
+            <div
+              class="
+                shadow-lg
+                relative
+                flex flex-col
+                w-128
+                bg-white
+                outline-none
+                focus:outline-none
+                px-4
+              "
+            >
+              <!--header-->
+              <div
+                class="
+                  flex
+                  items-start
+                  justify-between
+                  p-3
+                  border-b border-solid border-gray-500
+                "
+              >
+                <h3 class="text-xl font-semibold">Subscribing</h3>
+              </div>
+              <!--body-->
+              <div class="p-6 flex-auto">
+                <p
+                  v-if="!success && errored"
+                  class="py-4 leading-relaxed"
+                  style="color: orangered"
+                >
+                  Your email is already subscribed to our newsletter. You cannot
+                  resubscribe using the same email.
+                </p>
+                <p
+                  v-if="!errored && success"
+                  class="py-4 leading-relaxed text-green-800"
+                >
+                  Thank you for subscribing to our newsletter. Your subscription
+                  is now active.
+                </p>
+                <div v-if="!success && !errored" class="spinner">
+                  <div
+                    class="dot1"
+                    :style="
+                      $store.state.fullColor
+                        ? `background: var(--background-end)`
+                        : '#333'
+                    "
+                  ></div>
+                  <div
+                    class="dot2"
+                    :style="
+                      $store.state.fullColor
+                        ? `background: var(--background-end)`
+                        : '#333'
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          v-if="loading"
+          class="opacity-50 fixed inset-0 z-40 bg-black"
+        ></div>
+      </div>
     </section>
     <section v-if="updatedContent" class="section">
       <!-- <section
@@ -387,20 +535,28 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-
-import Hero from '@/components/hero/Hero'
+import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
+import * as rules from 'vee-validate/dist/rules'
 import DatePicker from '@/components/DatePicker'
 
 import { eventsExtractQuery } from '@/apollo/queries/events/eventsExtracts.js'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { eventsQuery } from '@/apollo/queries/pages/events.js'
+import HeroEventsComponent from '@/components/hero/HeroEventsComponent.vue'
 
+// install rules and localization
+Object.keys(rules).forEach((rule) => {
+  // eslint-disable-next-line import/namespace
+  extend(rule, rules[rule])
+})
 const qs = require('qs')
 export default Vue.extend({
   name: 'EventsPage',
   components: {
-    Hero,
     DatePicker,
+    HeroEventsComponent,
+    ValidationProvider,
+    ValidationObserver,
   },
   async asyncData({ $strapi, route }) {
     const data = await $strapi.graphql({ query: eventsQuery() })
@@ -433,18 +589,25 @@ export default Vue.extend({
       events: events.singleEvents,
       searchData: {},
       searchTerm,
+      subscriberEmail: null,
+      bots: null,
+      errorMessage: null,
+      isBot: false,
+      loading: false,
+      success: false,
+      errored: false,
     }
   },
   computed: {
     updatedContent() {
-      if (this.page.content) {
+      if (this.page && this.page.content) {
         return formatContentImageUrl(this.page.content.content)
       } else {
         return {}
       }
     },
     sectionUpdated() {
-      if (!this.page.sections) return
+      if (!this.page && !this.page.sections) return
       const x = []
       this.page.sections.forEach((el) => {
         const e = JSON.stringify(el)
@@ -452,15 +615,9 @@ export default Vue.extend({
       })
       return x
     },
-    updatedHeaderIMage() {
-      if (this.page.content && this.page.content.header_image) {
-        return this.page.content.header_image.url
-      } else {
-        return null
-      }
-    },
+
     updatedMotto() {
-      if (!this.page.motto) return
+      if (!this.page && !this.page.motto) return
       return formatContentImageUrl(this.page.motto)
     },
     updatedEvents() {
@@ -556,6 +713,56 @@ export default Vue.extend({
       this.$root.$emit('clearCalendarInput')
       this.searchTerm = null
     },
+    async subscribeUser() {
+      this.loading = true
+      if (this.bots !== null) {
+        this.isBot = true
+        this.loading = false
+        return
+      }
+      if (!(await this.$refs.form.validate())) {
+        this.loading = false
+        return false
+      }
+      await this.$strapi
+        .create('mail-subscriptions', {
+          subscriber_email: this.subscriberEmail,
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.success = true
+            this.errored = false
+            setTimeout(() => {
+              requestAnimationFrame(() => {
+                this.subscriberEmail = null
+                this.bots = null
+                this.isBot = false
+                this.loading = false
+                this.errorMessage = null
+                this.$refs.form.reset()
+              })
+            }, 1000)
+          }, 1000)
+        })
+        .catch((err: any) => {
+          setTimeout(() => {
+            this.success = false
+            this.errored = true
+            this.errorMessage = err
+            setTimeout(() => {
+              requestAnimationFrame(() => {
+                // this.subscriberEmail = null
+                this.bots = null
+                this.isBot = false
+                this.loading = false
+                // this.errorMessage = null
+                this.errored = false
+                this.$refs.form.reset()
+              })
+            }, 1500)
+          }, 500)
+        })
+    },
   },
 })
 </script>
@@ -566,5 +773,69 @@ export default Vue.extend({
 }
 .column &.is-reversed &:nth-child(even) {
   order: 1;
+}
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+
+  -webkit-animation: sk-rotate 2s infinite linear;
+  animation: sk-rotate 2s infinite linear;
+}
+
+.dot1,
+.dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  border-radius: 100%;
+
+  -webkit-animation: sk-bounce 2s infinite ease-in-out;
+  animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+@-webkit-keyframes sk-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes sk-rotate {
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes sk-bounce {
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bounce {
+  0%,
+  100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }
 </style>
