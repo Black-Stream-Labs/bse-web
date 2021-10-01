@@ -286,16 +286,12 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
-import * as rules from 'vee-validate/dist/rules'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Hero from '@/components/hero/Hero'
 import LogoNotextCircle from '@/components/icons/LogoNotextCircle'
 import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { contact } from '@/apollo/queries/pages/contact.js'
-Object.keys(rules).forEach((rule) => {
-  // eslint-disable-next-line import/namespace
-  extend(rule, rules[rule])
-})
+
 export default Vue.extend({
   name: 'ContactPage',
   components: {

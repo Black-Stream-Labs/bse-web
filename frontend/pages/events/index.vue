@@ -277,70 +277,72 @@
           You can always come back to this page in a while or subscribe to our
           newsletter to be notified when we publish new events.
         </p>
-        <ValidationObserver ref="form" v-slot="{ handleSubmit }">
-          <form @submit.prevent="handleSubmit(subscribeUser)">
-            <ValidationProvider
-              v-slot="{ errors }"
-              vid="email"
-              name="Email"
-              :rules="{ required: true, email: true }"
-            >
-              <label class="block w-full lg:w-2/3 pb-5">
-                <span class="text-gray-700 dark:text-white text-xl font-bold"
-                  >Subscribe to our newsletter</span
-                >
-                <input
-                  id="email"
-                  v-model="subscriberEmail"
-                  type="text"
-                  placeholder="Email"
-                  class="form-input mt-1 block w-full"
-                />
-                <span class="text-sm text-red-700 italic bold">
-                  {{ errors[0] }}
-                </span>
-              </label>
-            </ValidationProvider>
-
-            <div class="w-full">
-              <button
-                type="submit"
-                class="
-                  max-w-max
-                  py-4
-                  px-16
-                  border border-gray-100
-                  text-gray-100
-                  flex
-                  place-items-center
-                  justify-center
-                  dark:bg-gray-700 dark:text-gray-300
-                "
-                :disabled="subscriberEmail === null"
-                :class="[
-                  subscriberEmail === null
-                    ? 'cursor-not-allowed'
-                    : 'cursor-pointer',
-                  $store.state.fullColor
-                    ? $store.state.fullColor.name === 'tgreen'
-                      ? 'bg-tgreen '
-                      : $store.state.fullColor.name === 'tpurple'
-                      ? 'bg-tpurple'
-                      : $store.state.fullColor.name === 'tblue'
-                      ? 'bg-tblue'
-                      : $store.state.fullColor.name === 'tbrown'
-                      ? 'bg-tbrown'
-                      : ''
-                    : $colorMode.preference === 'dark'
-                    ? 'bg-gray-700'
-                    : 'bg-gray-500',
-                ]"
+        <client-only>
+          <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+            <form @submit.prevent="handleSubmit(subscribeUser)">
+              <ValidationProvider
+                v-slot="{ errors }"
+                vid="email"
+                name="Email"
+                rules="required|email"
               >
-                Subscribe
-              </button>
-            </div>
-          </form>
-        </ValidationObserver>
+                <label class="block w-full lg:w-2/3 pb-5">
+                  <span class="text-gray-700 dark:text-white text-xl font-bold"
+                    >Subscribe to our newsletter</span
+                  >
+                  <input
+                    id="email"
+                    v-model.lazy="subscriberEmail"
+                    type="text"
+                    placeholder="Email"
+                    class="form-input mt-1 block w-full"
+                  />
+                  <span class="text-sm text-red-700 italic bold">
+                    {{ errors[0] }}
+                  </span>
+                </label>
+              </ValidationProvider>
+
+              <div class="w-full">
+                <button
+                  type="submit"
+                  class="
+                    max-w-max
+                    py-4
+                    px-16
+                    border border-gray-100
+                    text-gray-100
+                    flex
+                    place-items-center
+                    justify-center
+                    dark:bg-gray-700 dark:text-gray-300
+                  "
+                  :disabled="subscriberEmail === null"
+                  :class="[
+                    subscriberEmail === null
+                      ? 'cursor-not-allowed'
+                      : 'cursor-pointer',
+                    $store.state.fullColor
+                      ? $store.state.fullColor.name === 'tgreen'
+                        ? 'bg-tgreen '
+                        : $store.state.fullColor.name === 'tpurple'
+                        ? 'bg-tpurple'
+                        : $store.state.fullColor.name === 'tblue'
+                        ? 'bg-tblue'
+                        : $store.state.fullColor.name === 'tbrown'
+                        ? 'bg-tbrown'
+                        : ''
+                      : $colorMode.preference === 'dark'
+                      ? 'bg-gray-700'
+                      : 'bg-gray-500',
+                  ]"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
+          </ValidationObserver>
+        </client-only>
         <div
           v-if="loading"
           class="
@@ -542,8 +544,7 @@
 <script lang="ts">
 // @ts-nocheck
 import Vue from 'vue'
-import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
-import * as rules from 'vee-validate/dist/rules'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import DatePicker from '@/components/DatePicker'
 
 import { eventsExtractQuery } from '@/apollo/queries/events/eventsExtracts.js'
@@ -551,19 +552,14 @@ import { formatContentImageUrl } from '@/mixins/updateImageUrl.js'
 import { eventsQuery } from '@/apollo/queries/pages/events.js'
 import HeroEventsComponent from '@/components/hero/HeroEventsComponent.vue'
 
-// install rules and localization
-Object.keys(rules).forEach((rule) => {
-  // eslint-disable-next-line import/namespace
-  extend(rule, rules[rule])
-})
 const qs = require('qs')
 export default Vue.extend({
   name: 'EventsPage',
   components: {
     DatePicker,
     HeroEventsComponent,
-    ValidationProvider,
     ValidationObserver,
+    ValidationProvider,
   },
   async asyncData({ $strapi, route }) {
     const data = await $strapi.graphql({ query: eventsQuery() })

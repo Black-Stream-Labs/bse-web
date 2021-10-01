@@ -44,6 +44,7 @@ export default {
   plugins: [
     '~plugins/axios.js',
     '~/plugins/apollo-overrides.ts',
+    { src: '~/plugins/validate.js', mode: 'client' },
     { src: '@/plugins/smoothscroll.js', mode: 'client' },
   ],
 
@@ -186,6 +187,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    transpile: ['vee-validate/dist/rules'],
     babel: {
       presets({ isServer }) {
         return [
@@ -217,7 +219,6 @@ export default {
     //   },
     // },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    transpile: /@fullcalendar.*/,
     extend(config, { isClient }) {
       if (isClient) {
         config.optimization.splitChunks.maxSize = 200000
