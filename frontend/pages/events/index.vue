@@ -270,6 +270,13 @@
         </div>
       </div>
       <div v-else class="container max-w-5xl mx-auto px-4">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl mb-4 pt-10">
+          There are no events published yet
+        </h2>
+        <p class="mb-10">
+          You can always come back to this page in a while or subscribe to our
+          newsletter to be notified when we publish new events.
+        </p>
         <ValidationObserver ref="form" v-slot="{ handleSubmit }">
           <form @submit.prevent="handleSubmit(subscribeUser)">
             <ValidationProvider
@@ -277,10 +284,9 @@
               vid="email"
               name="Email"
               :rules="{ required: true, email: true }"
-              class="block w-full lg:w-2/3 pb-5"
             >
               <label class="block w-full lg:w-2/3 pb-5">
-                <span class="text-gray-700 dark:text-white"
+                <span class="text-gray-700 dark:text-white text-xl font-bold"
                   >Subscribe to our newsletter</span
                 >
                 <input
@@ -300,8 +306,9 @@
               <button
                 type="submit"
                 class="
-                  w-1/4
+                  max-w-max
                   py-4
+                  px-16
                   border border-gray-100
                   text-gray-100
                   flex
