@@ -1,0 +1,106 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 512 512"
+    :width="width"
+    :height="height"
+  >
+    <path
+      :fill="color"
+      :stroke="color"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.02"
+      d="M495.54 485.96H16.41A10.45 10.45 0 0 1 6 475.5v-3.85c0-5.78 4.68-10.46 10.4-10.46h479.14c5.8 0 10.47 4.68 10.47 10.46v3.85c0 5.78-4.68 10.46-10.47 10.46Zm0-435.12H16.41A10.43 10.43 0 0 1 6 40.44v-3.9c0-5.73 4.68-10.4 10.4-10.4h479.14c5.8 0 10.47 4.67 10.47 10.4v3.9c0 5.73-4.68 10.4-10.47 10.4Z"
+    />
+    <path
+      :stroke="color"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.01"
+      d="M443.84 461.2H68.11V26.12h375.73V461.2Z"
+    />
+    <path
+      :stroke="color"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.02"
+      d="M475.62 63.98h-7.35a8.87 8.87 0 0 1-8.85-8.85V21.85c0-4.9 4-8.85 8.85-8.85h7.35c4.9 0 8.85 3.95 8.85 8.85v33.28c0 4.9-3.96 8.85-8.85 8.85Zm-431.5 0h-7.34a8.84 8.84 0 0 1-8.85-8.85V21.85c0-4.9 3.95-8.85 8.85-8.85h7.34c4.9 0 8.85 3.95 8.85 8.85v33.28c0 4.9-3.95 8.85-8.85 8.85Zm0 435.12h-7.34a8.84 8.84 0 0 1-8.85-8.86v-33.33c0-4.84 3.95-8.8 8.85-8.8h7.34c4.9 0 8.85 3.96 8.85 8.8v33.33c0 4.9-3.95 8.85-8.85 8.85Zm431.5 0h-7.35a8.87 8.87 0 0 1-8.85-8.86v-33.33c0-4.84 4-8.8 8.85-8.8h7.35c4.9 0 8.85 3.96 8.85 8.8v33.33c0 4.9-3.96 8.85-8.85 8.85Z"
+    />
+    <path
+      :stroke="color"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width=".92"
+      d="M194.84 65.54H317.1m-214.98 47.58h307.71m-307.71 47.53h307.71m-307.71 47.59h307.71m-307.71 47.53h307.71m-307.71 47.58h307.71m-307.71 47.53h307.71m-307.71 47.59h307.71"
+    />
+    <path
+      :fill="color"
+      :stroke="color"
+      d="M199.12 147.3H158.5V78.95h40.63v68.35Zm85.44 47.53H225v-68.35h59.56v68.35Zm-80.93 94.44h-38.57v-68.29h38.57v68.3Zm167.19 0h-38.51v-68.29h38.51v68.3Zm-63.94 48.26h-38.52v-68.35h38.51v68.35Z"
+    />
+    <path
+      :fill="color"
+      :stroke="color"
+      d="M345.39 385.06h-78.42V316.7h78.42v68.35Zm-146.26 36.23h-38.69v-45.64h38.69v45.64Z"
+    />
+    <path
+      :stroke="color"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M419.96 413.5h-146.6V278.2h146.6v135.3Z"
+    />
+    <path
+      :stroke="color"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M412.73 346.32a57.62 57.62 0 0 1-57.66 57.6 57.62 57.62 0 0 1-57.66-57.6 57.62 57.62 0 0 1 57.66-57.6 57.62 57.62 0 0 1 57.66 57.6Z"
+    />
+    <path
+      :stroke="color"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m294.96 407.7-20.65-27.49 45.53-34.06 20.6 27.5-45.48 34.06Z"
+    />
+    <path
+      :fill="color"
+      d="M318.06 339.2c2.56 1.1 3.67 4.06 2.56 6.62l-10.74 24.2a5.13 5.13 0 0 1-6.68 2.57l-24.21-10.74a5.05 5.05 0 0 1-2.5-6.68"
+    />
+    <path
+      :stroke="color"
+      stroke-linejoin="round"
+      d="M318.06 339.2c2.56 1.1 3.67 4.06 2.56 6.62l-10.74 24.2a5.13 5.13 0 0 1-6.68 2.57l-24.21-10.74a5.05 5.05 0 0 1-2.5-6.68"
+    />
+    <path
+      :stroke="color"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M355.07 346.32h35.06m-35.06 0-22.7-36.9"
+    />
+  </svg>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'HistoryIcon',
+  props: {
+    color: {
+      type: String,
+      default: 'white',
+    },
+    width: {
+      type: [String, Number],
+      default: '30',
+    },
+    height: {
+      type: [String, Number],
+      default: '30',
+    },
+  },
+})
+</script>
+
+<style scoped></style>
